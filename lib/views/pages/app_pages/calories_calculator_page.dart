@@ -50,7 +50,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 38, 38, 38),
+      backgroundColor: Color.fromARGB(255, 30, 30, 30),
       appBar: AppBar(
         title: const Center(
             child: Text(
@@ -151,7 +151,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
                 child: Text(
                   resultText,
                   style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.green,
                       fontSize: 40,
                       fontWeight: FontWeight.w500),
                 ),
@@ -251,7 +251,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
       controller: controler,
       decoration: const InputDecoration(
         filled: true,
-        fillColor: Color.fromARGB(255, 82, 82, 82),
+        fillColor: Color.fromARGB(255, 0, 0, 0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           borderSide: BorderSide(color: Colors.black),
@@ -278,9 +278,8 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
             chagngeIndex(index);
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: currentIndex == index
-                ? color
-                : const Color.fromARGB(255, 82, 82, 82),
+            backgroundColor:
+                currentIndex == index ? color : Color.fromARGB(255, 0, 0, 0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
@@ -301,6 +300,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
           height: 60,
           width: 60,
           child: Image(
+              color: Colors.white,
               image: index == 0
                   ? const AssetImage("assets/icons/male.png")
                   : const AssetImage("assets/icons/female.png"),

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/views/pages/app_pages/bottom_navigation.dart';
+import 'package:true_gym/views/pages/app_pages/home_page.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 import 'package:true_gym/views/pages/register_pages/signup_page.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
-  var emailController = TextEditingController();
-
-  var passwordController = TextEditingController();
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+
+    var passwordController = TextEditingController();
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -83,8 +83,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const BottomNavigation()));
+                                  builder: (context) => const HomePage()));
                         },
                         style: ElevatedButton.styleFrom(
                             fixedSize: const Size(500, 60),

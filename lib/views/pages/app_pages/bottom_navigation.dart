@@ -28,9 +28,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
+    const Exersieses(),
     const ProfilePage(),
-    const ProfilePage(),
-    const Exersieses()
   ];
 
   @override
@@ -59,7 +58,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               activeColor: Colors.white,
 
               color: Colors.white.withOpacity(0.4),
-              backgroundColor: Colors.black,
+              backgroundColor: const Color.fromARGB(255, 44, 44, 44),
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               tabs: const [
@@ -67,14 +66,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   icon: Icons.home,
                   text: 'Home',
                 ),
-                GButton(icon: Icons.person, text: 'Profile'),
-                GButton(
-                  icon: Icons.person,
-                  text: 'Profile',
-                ),
                 GButton(
                   icon: Icons.fitness_center,
                   text: 'Exersieses',
+                ),
+                GButton(
+                  icon: Icons.person,
+                  text: 'Profile',
                 ),
               ],
             ),

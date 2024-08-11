@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'True Gym',
       debugShowCheckedModeBanner: false,
-      home: CaloriesCalculatorPage(),
+      home: LoginPage(),
     );
   }
 }

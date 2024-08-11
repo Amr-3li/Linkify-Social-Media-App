@@ -6,13 +6,9 @@ class SignupPage extends StatelessWidget {
   SignupPage({super.key});
 
   var emailController = TextEditingController();
-
   var passwordController = TextEditingController();
-
   var confirmPasswordController = TextEditingController();
-
   var nameController = TextEditingController();
-
   var phoneController = TextEditingController();
 
   @override
