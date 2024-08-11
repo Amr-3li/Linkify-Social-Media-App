@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "80016148150",
+    "project_id": "true-gym-f19a8",
+    "storage_bucket": "true-gym-f19a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80016148150:android:6cf2cba01e04f3d7f14817",
+        "android_client_info": {
+          "package_name": "com.example.true_gym"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4DITdXL-zFMNqlEtSUnLxgGY97y9AtR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80016148150:android:c7b7843349257e7bf14817",
+        "android_client_info": {
+          "package_name": "come.true.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4DITdXL-zFMNqlEtSUnLxgGY97y9AtR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
