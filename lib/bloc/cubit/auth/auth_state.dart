@@ -37,3 +37,4 @@ final class SignoutFailed extends AuthState {
 
   SignoutFailed(this.error);
 }
+

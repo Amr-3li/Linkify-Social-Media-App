@@ -17,10 +17,12 @@ class LoginPage extends StatelessWidget {
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if(state is SigninSuccess){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
-        }else if(state is SigninFailed){
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString())));
+        if (state is SigninSuccess) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
+        } else if (state is SigninFailed) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error.toString())));
         }
       },
       builder: (context, state) {
@@ -88,41 +90,52 @@ class LoginPage extends StatelessWidget {
                           ),
                           const SizedBox(
                             height: 30,
-                          ),state is SigninLoading ? const CircularProgressIndicator() :
-                          ElevatedButton(
-                            onPressed: () {
-                              BlocProvider.of<AuthCubit>(context).signin(emailController.text, passwordController.text);
-                            },
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(500, 60),
-                                animationDuration: const Duration(seconds: 2),
-                                backgroundColor:
-                                    const Color.fromARGB(199, 69, 69, 135)),
-                            child: const Text(
-                              "Login",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
                           ),
+                          state is SigninLoading
+                              ? const CircularProgressIndicator()
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    BlocProvider.of<AuthCubit>(context).signin(
+                                        emailController.text,
+                                        passwordController.text);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(500, 60),
+                                      animationDuration:
+                                          const Duration(seconds: 2),
+                                      backgroundColor: const Color.fromARGB(
+                                          199, 69, 69, 135)),
+                                  child: const Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
                           const SizedBox(
                             height: 10,
-                          ),state is SigninLoading ? const SizedBox() :
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignupPage()));
-                            },
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(500, 60),
-                              animationDuration: const Duration(seconds: 2),
-                            ),
-                            child: const Text(
-                              "Register",
-                              style: TextStyle(fontSize: 20),
-                            ),
                           ),
+                          state is SigninLoading
+                              ? const SizedBox()
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => BlocProvider(
+                                                  create: (context) => AuthCubit(),
+                                                  child: SignupPage(),
+                                                )));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    fixedSize: const Size(500, 60),
+                                    animationDuration:
+                                        const Duration(seconds: 2),
+                                  ),
+                                  child: const Text(
+                                    "Register",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
                           const SizedBox(
                             height: 200,
                           ),
