@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/data/models/user.dart';
+import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/pages/app_pages/exersieses.dart';
 import 'package:true_gym/views/pages/app_pages/profile.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
@@ -56,7 +58,6 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context) => const ProfilePage()));
                       },
                       child: UserAccountsDrawerHeader(
-                        
                         accountName: Text(user.name.toString()),
                         accountEmail: Text(user.email.toString()),
                         currentAccountPicture: const CircleAvatar(
@@ -74,32 +75,31 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.person, color: Colors.white),
                 title: const Text('Profile',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfilePage()));
-                    },
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.settings, color: Colors.white),
                 title: const Text('Settings',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SettingsPage()));
-                    },
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()));
+                },
               ),
               const Divider(),
               const ListTile(
                 leading: Icon(Icons.help, color: Colors.white),
                 title: Text('Help',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
-                   
               ),
               const ListTile(
                 leading: Icon(Icons.info, color: Colors.white),
@@ -118,10 +118,16 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(color: Colors.white, fontSize: 20)),
               ),
               const Divider(),
-              const ListTile(
-                leading: Icon(Icons.logout, color: Colors.white),
-                title: Text('Logout',
+               ListTile(
+                leading: const Icon(Icons.logout, color: Colors.white),
+                title: const Text('Logout',
+                
                     style: TextStyle(color: Colors.white, fontSize: 20)),
+                onTap: () {
+                  Navigator.pop(context);
+                  BlocProvider.of<AuthCubit>(context).signout();
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const InitialPage()));
+                },
               ),
             ],
           ),

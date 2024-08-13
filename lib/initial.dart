@@ -45,7 +45,7 @@ class _MyWidgetState extends State<InitialPage> {
                         create: (context) => AuthCubit(),
                       ),
                       BlocProvider (
-                        create: (context)  => UserCubit()..getUserData(),
+                        create: (_)  => UserCubit()..getUserData(),
                       ),
                     ],
                     child: const HomePage(),

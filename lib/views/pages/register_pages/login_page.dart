@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/views/pages/app_pages/home_page.dart';
+import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 import 'package:true_gym/views/pages/register_pages/signup_page.dart';
 
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
       listener: (context, state) {
         if (state is SigninSuccess) {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+              MaterialPageRoute(builder: (context) => const InitialPage()));
         } else if (state is SigninFailed) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error.toString())));
@@ -122,7 +122,8 @@ class LoginPage extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => BlocProvider(
-                                                  create: (context) => AuthCubit(),
+                                                  create: (context) =>
+                                                      AuthCubit(),
                                                   child: SignupPage(),
                                                 )));
                                   },

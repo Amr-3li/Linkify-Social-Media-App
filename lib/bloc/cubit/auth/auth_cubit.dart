@@ -12,7 +12,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
   FirebaseAuth auth = FirebaseAuth.instance;
   CollectionReference collRef = FirebaseFirestore.instance.collection("users");
-  late SharedPreferences prefs;
+   late SharedPreferences prefs;
   Future<void> signin(String username, String password) async {
     prefs = await SharedPreferences.getInstance();
     emit(SigninLoading());
@@ -29,7 +29,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signout() async {
     emit(SignoutLoading());
     try {
+       prefs = await SharedPreferences.getInstance();
       await auth.signOut();
+      prefs.remove('id');
       emit(SignoutSuccess());
     } on FirebaseAuthException catch (e) {
       emit(SignoutFailed(e.code));
@@ -42,7 +44,6 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      print("asdaasd" + userCredential.user!.uid);
       await collRef.doc(userCredential.user!.uid).set({
         'email': email,
         'name': username,
