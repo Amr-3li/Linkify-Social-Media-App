@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: username, password: password);
-      prefs!.setString('id', userCredential.user!.uid);
+      prefs.setString('id', userCredential.user!.uid);
       emit(SigninSuccess());
     } on FirebaseAuthException catch (e) {
       emit(SigninFailed(e.code));

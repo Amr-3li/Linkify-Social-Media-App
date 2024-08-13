@@ -82,6 +82,7 @@ class SignupPage extends StatelessWidget {
                           InputTextField(
                             controller: phoneController,
                             hintText: "phone number",
+                            isnumber: true,
                           ),
                           const SizedBox(
                             height: 30,

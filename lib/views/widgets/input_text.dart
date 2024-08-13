@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class InputTextField extends StatelessWidget {
-   InputTextField({super.key, this.isPassword,required this.hintText,required this.controller,});
-  bool ? isPassword;
+  InputTextField(
+      {super.key,
+      this.isPassword,
+      required this.hintText,
+      required this.controller,
+      this.isnumber = false});
+  bool? isPassword, isnumber;
   String hintText;
   TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return  TextField(
+    return TextField(
       controller: controller,
       obscureText: isPassword ?? false,
+      keyboardType: isnumber! ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
         labelText: hintText,
         labelStyle: const TextStyle(color: Colors.white),
