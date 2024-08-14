@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/views/widgets/input_text.dart';
 
 class CaloriesCalculatorPage extends StatefulWidget {
   const CaloriesCalculatorPage({super.key});
@@ -49,118 +50,114 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 30, 30),
-      appBar: AppBar(
-        title: const Center(
-            child: Text(
-          'Calories Calculator in day ',
-          style: TextStyle(color: Colors.white),
-        )),
-        backgroundColor: const Color.fromARGB(255, 99, 99, 99),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  radioButton('Male', Colors.blue, 0),
-                  const SizedBox(
-                    width: 20,
+    return Container(
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              stops: [0.3, 0.6, 0.9],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromARGB(255, 255, 255, 255),
+                Color.fromARGB(255, 92, 92, 92),
+                Color.fromARGB(255, 0, 0, 0),
+              ])),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text(
+            'Calories Calculator in day ',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color.fromARGB(255, 99, 99, 99),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    radioButton('Male', Colors.blue, 0),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    radioButton('Female', Colors.pink, 1),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InputTextField(
+                  hintText: "Height in Cm",
+                  controller: ageController,
+                  isnumber: true,
+                  color: Colors.black,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InputTextField(
+                  hintText: '   weight in kg',
+                  controller: ageController,
+                  isnumber: true,
+                  color: Colors.black,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InputTextField(
+                  hintText: "Age",
+                  controller: ageController,
+                  isnumber: true,
+                  color: Colors.black,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Align(
+                  alignment: AlignmentDirectional.center,
+                  child: activityStat(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Align(
+                  alignment: AlignmentDirectional.center,
+                  child: calculateButton(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Align(
+                  alignment: AlignmentDirectional.center,
+                  child: Text(
+                    "amount of calories :",
+                    style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
-                  radioButton('Female', Colors.pink, 1),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                '   Height in Cm',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              inputText(
-                controler: heightController,
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                '   weight in kg',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              inputText(
-                controler: weightController,
-                keyboardType: TextInputType.number,
-              ),
-              
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                '   Age',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              inputText(
-                controler: ageController,
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Align(
-                alignment: AlignmentDirectional.center,
-                child: activityStat(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Align(
-                alignment: AlignmentDirectional.center,
-                child: calculateButton(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Align(
-                alignment: AlignmentDirectional.center,
-                child: Text(
-                  "amount of calories :",
-                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Align(
-                alignment: AlignmentDirectional.center,
-                child: Text(
-                  resultText,
-                  style: const TextStyle(
-                      color: Colors.green,
-                      fontSize: 40,
-                      fontWeight: FontWeight.w500),
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 70,
-              ),
-            ],
+                Align(
+                  alignment: AlignmentDirectional.center,
+                  child: Text(
+                    resultText,
+                    style: const TextStyle(
+                        color: Colors.green,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -257,10 +254,10 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
           borderRadius: BorderRadius.all(Radius.circular(20)),
           borderSide: BorderSide(color: Colors.black),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          borderSide: BorderSide.none,
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.all(Radius.circular(20)),
+        //   borderSide: BorderSide.none,
+        // ),
       ),
     );
   }
@@ -279,19 +276,22 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
             chagngeIndex(index);
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor:
-                currentIndex == index ? color : Color.fromARGB(255, 0, 0, 0),
+            backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+                borderRadius: BorderRadius.circular(20.0),
+                side: BorderSide(
+                    width: 3,
+                    color: currentIndex == index
+                        ? color
+                        : Color.fromARGB(255, 0, 0, 0))),
           ),
-          child: buttonContent(index, value),
+          child: buttonContent(index, value, color),
         ),
       ),
     );
   }
 
-  Column buttonContent(int index, String value) {
+  Column buttonContent(int index, String value, Color color) {
     return Column(
       children: [
         const SizedBox(
@@ -301,7 +301,9 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
           height: 60,
           width: 60,
           child: Image(
-              color: Colors.white,
+              color: currentIndex == index
+                  ? color
+                  : Color.fromARGB(255, 255, 255, 255),
               image: index == 0
                   ? const AssetImage("assets/icons/male.png")
                   : const AssetImage("assets/icons/female.png"),
@@ -312,7 +314,11 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
         ),
         Text(
           value,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(
+              color: currentIndex == index
+                  ? color
+                  : const Color.fromARGB(255, 255, 255, 255),
+              fontSize: 20),
         ),
       ],
     );

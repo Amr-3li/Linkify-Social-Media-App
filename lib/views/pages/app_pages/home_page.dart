@@ -8,6 +8,7 @@ import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/pages/app_pages/exersieses.dart';
 import 'package:true_gym/views/pages/app_pages/profile.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
+import 'package:true_gym/views/widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,11 +23,12 @@ class _HomePageState extends State<HomePage> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-            stops: [0.3, 0.9],
+            stops: [0.3, 0.6, 0.9],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
               Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 92, 92, 92),
               Color.fromARGB(255, 0, 0, 0),
             ]),
       ),
@@ -118,15 +120,17 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(color: Colors.white, fontSize: 20)),
               ),
               const Divider(),
-               ListTile(
+              ListTile(
                 leading: const Icon(Icons.logout, color: Colors.white),
                 title: const Text('Logout',
-                
                     style: TextStyle(color: Colors.white, fontSize: 20)),
                 onTap: () {
                   Navigator.pop(context);
                   BlocProvider.of<AuthCubit>(context).signout();
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const InitialPage()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const InitialPage()));
                 },
               ),
             ],
@@ -160,9 +164,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(color: Colors.black, fontSize: 30),
           ),
         ),
-        body: const Center(
-          child: Text('Home Page'),
-        ),
+        body: const HomePageBody(),
       ),
     );
   }
