@@ -105,6 +105,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
                 controler: weightController,
                 keyboardType: TextInputType.number,
               ),
+              
               const SizedBox(
                 height: 20,
               ),

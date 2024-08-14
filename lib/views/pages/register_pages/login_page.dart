@@ -14,6 +14,7 @@ class LoginPage extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
 
     TextEditingController passwordController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
@@ -61,86 +62,90 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         color: const Color.fromARGB(190, 20, 20, 20),
                       ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 90,
-                          ),
-                          InputTextField(
-                            controller: emailController,
-                            hintText: "Email",
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          InputTextField(
-                            controller: passwordController,
-                            hintText: "password",
-                            isPassword: true,
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: TextButton(
-                              child: const Text(
-                                "forget password?",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {},
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 90,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          state is SigninLoading
-                              ? const CircularProgressIndicator()
-                              : ElevatedButton(
-                                  onPressed: () {
-                                    BlocProvider.of<AuthCubit>(context).signin(
-                                        emailController.text,
-                                        passwordController.text);
-                                  },
-                                  style: ElevatedButton.styleFrom(
+                            InputTextField(
+                              controller: emailController,
+                              hintText: "Email",
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            InputTextField(
+                              controller: passwordController,
+                              hintText: "password",
+                              isPassword: true,
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: TextButton(
+                                child: const Text(
+                                  "forget password?",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            state is SigninLoading
+                                ? const CircularProgressIndicator()
+                                : ElevatedButton(
+                                    onPressed: () async {
+                                      _formKey.currentState!.validate();
+                                    await  BlocProvider.of<AuthCubit>(context).signin(
+                                          emailController.text,
+                                          passwordController.text);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: const Size(500, 60),
+                                        animationDuration:
+                                            const Duration(seconds: 2),
+                                        backgroundColor: const Color.fromARGB(
+                                            199, 69, 69, 135)),
+                                    child: const Text(
+                                      "Login",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                  ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            state is SigninLoading
+                                ? const SizedBox()
+                                : ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => BlocProvider(
+                                                    create: (context) =>
+                                                        AuthCubit(),
+                                                    child: SignupPage(),
+                                                  )));
+                                    },
+                                    style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(500, 60),
                                       animationDuration:
                                           const Duration(seconds: 2),
-                                      backgroundColor: const Color.fromARGB(
-                                          199, 69, 69, 135)),
-                                  child: const Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                    ),
+                                    child: const Text(
+                                      "Register",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
                                   ),
-                                ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          state is SigninLoading
-                              ? const SizedBox()
-                              : ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => BlocProvider(
-                                                  create: (context) =>
-                                                      AuthCubit(),
-                                                  child: SignupPage(),
-                                                )));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(500, 60),
-                                    animationDuration:
-                                        const Duration(seconds: 2),
-                                  ),
-                                  child: const Text(
-                                    "Register",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ),
-                          const SizedBox(
-                            height: 200,
-                          ),
-                        ],
+                            const SizedBox(
+                              height: 200,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

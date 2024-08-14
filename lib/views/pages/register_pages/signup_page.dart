@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/views/pages/register_pages/login_page.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
 // ignore: must_be_immutable
@@ -12,7 +11,7 @@ class SignupPage extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-
+  final keyform = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -60,94 +59,101 @@ class SignupPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         color: const Color.fromARGB(190, 20, 20, 20),
                       ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 90,
-                          ),
-                          InputTextField(
-                            controller: nameController,
-                            hintText: "name",
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          InputTextField(
-                            controller: emailController,
-                            hintText: "Email",
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          InputTextField(
-                            controller: phoneController,
-                            hintText: "phone number",
-                            isnumber: true,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          InputTextField(
-                            controller: passwordController,
-                            hintText: "password",
-                            isPassword: true,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          state is RegisterLoading
-                              ? const CircularProgressIndicator()
-                              : ElevatedButton(
-                                  onPressed: () async {
-                                    try {
-                                      await BlocProvider.of<AuthCubit>(context)
-                                          .register(
-                                              nameController.text,
-                                              emailController.text,
-                                              phoneController.text,
-                                              passwordController.text);
+                      child: Form(
+                        key: keyform,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 90,
+                            ),
+                            InputTextField(
+                              controller: nameController,
+                              hintText: "name",
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            InputTextField(
+                              controller: emailController,
+                              hintText: "Email",
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            InputTextField(
+                              controller: phoneController,
+                              hintText: "phone number",
+                              isnumber: true,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            InputTextField(
+                              controller: passwordController,
+                              hintText: "password",
+                              isPassword: true,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            state is RegisterLoading
+                                ? const CircularProgressIndicator()
+                                : ElevatedButton(
+                                    onPressed: () async {
+                                      try {
+                                        if (!keyform.currentState!.validate()) {
+                                          return;
+                                        }
+                                        await BlocProvider.of<AuthCubit>(
+                                                context)
+                                            .register(
+                                                nameController.text,
+                                                emailController.text,
+                                                phoneController.text,
+                                                passwordController.text);
 
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content:
-                                              Text("user created successfully"),
-                                        ),
-                                      );
-                                    } on Exception catch (e) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text(e.toString()),
-                                      ));
-                                    }
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(500, 60),
-                                      animationDuration:
-                                          const Duration(seconds: 2),
-                                      backgroundColor: const Color.fromARGB(
-                                          199, 69, 69, 135)),
-                                  child: const Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                                "user created successfully"),
+                                          ),
+                                        );
+                                      } on Exception catch (e) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: Text(e.toString()),
+                                        ));
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: const Size(500, 60),
+                                        animationDuration:
+                                            const Duration(seconds: 2),
+                                        backgroundColor: const Color.fromARGB(
+                                            199, 69, 69, 135)),
+                                    child: const Text(
+                                      "Sign Up",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
                                   ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextButton(
+                                child: const Text(
+                                  "Already have an account?",
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextButton(
-                              child: const Text(
-                                "Already have an account?",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              }),
-                          const SizedBox(
-                            height: 200,
-                          ),
-                        ],
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                            const SizedBox(
+                              height: 200,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
