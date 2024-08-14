@@ -8,6 +8,7 @@ import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/pages/app_pages/exersieses.dart';
 import 'package:true_gym/views/pages/app_pages/profile.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
+import 'package:true_gym/views/widgets/basic_bages_Color.dart';
 import 'package:true_gym/views/widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,19 +21,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            stops: [0.3, 0.6, 0.9],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 92, 92, 92),
-              Color.fromARGB(255, 0, 0, 0),
-            ]),
-      ),
-      child: Scaffold(
+    return BasicBagesColor(  // I make this widget because i use it in every page
+      body: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         drawer: Drawer(
@@ -69,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   } else {
-                    return Container();
+                    return const CircularProgressIndicator();
                   }
                 },
               ),

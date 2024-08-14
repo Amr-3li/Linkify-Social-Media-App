@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconpicker/Models/icon_pack.dart';
 import 'package:true_gym/views/pages/app_pages/calculator_pages/calories_calculator_page.dart';
+import 'package:true_gym/views/pages/app_pages/calculator_pages/water_calculator.dart';
 import 'package:true_gym/views/widgets/calculator/calculator_item.dart';
 
 class CalculatorsList extends StatelessWidget {
@@ -23,7 +23,16 @@ class CalculatorsList extends StatelessWidget {
       {
         'icon': Icons.water_drop_outlined,
         'title': 'Water \nin day',
-        'onTap': () {},
+        'onTap': () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const WaterCalculator();
+              },
+            ),
+          );
+        },
       },
       {
         'icon': Icons.coffee_outlined,

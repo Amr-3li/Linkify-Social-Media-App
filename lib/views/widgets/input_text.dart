@@ -37,7 +37,7 @@ class InputTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: color!),
     );
   }
 }

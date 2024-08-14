@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/views/widgets/basic_bages_Color.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
 class CaloriesCalculatorPage extends StatefulWidget {
@@ -50,18 +51,8 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              stops: [0.3, 0.6, 0.9],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 92, 92, 92),
-                Color.fromARGB(255, 0, 0, 0),
-              ])),
-      child: Scaffold(
+    return BasicBagesColor(
+      body: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text(
@@ -94,7 +85,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
                 ),
                 InputTextField(
                   hintText: "Height in Cm",
-                  controller: ageController,
+                  controller: heightController,
                   isnumber: true,
                   color: Colors.black,
                 ),
@@ -103,7 +94,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
                 ),
                 InputTextField(
                   hintText: '   weight in kg',
-                  controller: ageController,
+                  controller: weightController,
                   isnumber: true,
                   color: Colors.black,
                 ),
