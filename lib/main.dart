@@ -1,17 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/data/repository/exersiese_repo.dart';
+import 'package:true_gym/data/web_ser/exersieses_calories.dart';
 import 'package:true_gym/firebase_options.dart';
 import 'package:true_gym/initial.dart';
-import 'package:true_gym/views/pages/register_pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  ExersieseRepository(ExersiesesWebService()).getExersieses(70, "jump", 30);
 
   runApp(const MyApp());
 }
@@ -25,8 +24,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'True Gym',
       debugShowCheckedModeBanner: false,
-      home:  InitialPage(),
-     
+      home: InitialPage(),
     );
   }
 }

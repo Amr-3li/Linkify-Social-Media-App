@@ -100,7 +100,7 @@ class LoginPage extends StatelessWidget {
                                     onPressed: () async {
                                       _formKey.currentState!.validate();
                                     await  BlocProvider.of<AuthCubit>(context).signin(
-                                          emailController.text,
+                                          emailController.text.trim(),
                                           passwordController.text);
                                     },
                                     style: ElevatedButton.styleFrom(

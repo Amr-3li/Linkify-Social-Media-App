@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/bloc/cubit/exersiese/exersiese_cubit.dart';
+import 'package:true_gym/data/repository/exersiese_repo.dart';
+import 'package:true_gym/data/web_ser/exersieses_calories.dart';
 import 'package:true_gym/views/pages/app_pages/calculator_pages/calories_calculator_page.dart';
+import 'package:true_gym/views/pages/app_pages/calculator_pages/exersiese_calculator.dart';
 import 'package:true_gym/views/pages/app_pages/calculator_pages/water_calculator.dart';
 import 'package:true_gym/views/widgets/calculator/calculator_item.dart';
 
@@ -42,7 +47,14 @@ class CalculatorsList extends StatelessWidget {
       {
         'icon': Icons.directions_bike,
         'title': 'calories \nof exercise',
-        'onTap': () {},
+        'onTap': () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return BlocProvider(
+              create: (context) => ExersieseCubit(ExersieseRepository(ExersiesesWebService())),
+              child: const ExersiesesCalculator(),
+            );
+          }));
+        },
       },
     ];
     return Container(

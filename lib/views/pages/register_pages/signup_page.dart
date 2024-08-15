@@ -108,7 +108,7 @@ class SignupPage extends StatelessWidget {
                                                 context)
                                             .register(
                                                 nameController.text,
-                                                emailController.text,
+                                                emailController.text.trim(),
                                                 phoneController.text,
                                                 passwordController.text);
 
