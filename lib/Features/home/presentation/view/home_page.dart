@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/home/presentation/view/widgets/home_appbar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/Features/profile/presentation/view/profile.dart';
+import 'package:true_gym/views/pages/app_pages/settings.dart';
 import 'package:true_gym/views/widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,41 +13,69 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List navigationItems = [
+    Icons.home,
+    Icons.calculate,
+    Icons.person,
+  ];
+  List pages = const [HomePageBody(), SettingsPage(), ProfilePage()];
+  int currentIndex = 0;
+  late PageController pageController;
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
-      drawer: HomeDrawer(),
-      appBar: HomeAppbar(),
-      body: HomePageBody(),
-    );
+  void initState() {
+    pageController = PageController(initialPage: 0);
+    super.initState();
   }
-}
 
-class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppbar({super.key});
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 2,
-      shadowColor:
-          MyColors.shadowColor, // Ensure MyColors is defined and imported
-      centerTitle: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(10),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      drawer: const HomeDrawer(),
+      appBar: const HomeAppbar(),
+      body: PageView.builder(
+          itemCount: pages.length,
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          itemBuilder: (context, index) {
+            return pages[index];
+          }),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          height: 50,
+          decoration: const BoxDecoration(
+              color: Color(0xFFE5E5E5),
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: navigationItems.asMap().entries.map((e) {
+              return IconButton(
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = e.key;
+                      pageController.animateToPage(currentIndex,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut);
+                    });
+                  },
+                  icon: Icon(e.value,
+                      color: currentIndex == e.key ? Colors.black : Colors.grey,
+                      size: 30));
+            }).toList(),
+          ),
         ),
       ),
-      backgroundColor: Colors.white,
-      title: const Text(
-        'True Gym',
-        style: TextStyle(color: Colors.black, fontSize: 30),
-      ),
     );
   }
-
-  // Define preferredSize for AppBar's height
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/data/repository/exersiese_repo.dart';
@@ -12,7 +13,10 @@ void main() async {
   );
   ExersieseRepository(ExersiesesWebService()).getExersieses(70, "jump", 30);
 
-  runApp(const MyApp());
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

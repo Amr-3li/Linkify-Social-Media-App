@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 class ExersiesesWebService {
@@ -13,7 +12,6 @@ class ExersiesesWebService {
           "https://api.api-ninjas.com/v1/caloriesburned?activity=$activity&X-Api-Key=NjiWr0TPUdsOZRNQ6iAzPw==oypLENzVqVZH0yPV&weight=$bounds&duration=$time");
       return response.data;
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }

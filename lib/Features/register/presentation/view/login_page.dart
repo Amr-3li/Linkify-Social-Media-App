@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
 
     TextEditingController passwordController = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
                         color: const Color.fromARGB(190, 20, 20, 20),
                       ),
                       child: Form(
-                        key: _formKey,
+                        key: formKey,
                         child: Column(
                           children: [
                             const SizedBox(
@@ -98,7 +98,7 @@ class LoginPage extends StatelessWidget {
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
                                     onPressed: () async {
-                                      _formKey.currentState!.validate();
+                                      formKey.currentState!.validate();
                                       await BlocProvider.of<AuthCubit>(context)
                                           .signin(emailController.text.trim(),
                                               passwordController.text);
