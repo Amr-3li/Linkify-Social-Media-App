@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
-import 'package:true_gym/views/pages/register_pages/signup_page.dart';
+import 'package:true_gym/Features/register/presentation/view/signup_page.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
@@ -99,9 +99,9 @@ class LoginPage extends StatelessWidget {
                                 : ElevatedButton(
                                     onPressed: () async {
                                       _formKey.currentState!.validate();
-                                    await  BlocProvider.of<AuthCubit>(context).signin(
-                                          emailController.text.trim(),
-                                          passwordController.text);
+                                      await BlocProvider.of<AuthCubit>(context)
+                                          .signin(emailController.text.trim(),
+                                              passwordController.text);
                                     },
                                     style: ElevatedButton.styleFrom(
                                         fixedSize: const Size(500, 60),
@@ -125,7 +125,8 @@ class LoginPage extends StatelessWidget {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => BlocProvider(
+                                              builder: (context) =>
+                                                  BlocProvider(
                                                     create: (context) =>
                                                         AuthCubit(),
                                                     child: SignupPage(),

@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/views/pages/app_pages/home_page.dart';
-import 'package:true_gym/views/pages/register_pages/login_page.dart';
+import 'package:true_gym/Features/home/presentation/view/home_page.dart';
+import 'package:true_gym/Features/register/presentation/view/login_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
@@ -44,8 +44,8 @@ class _MyWidgetState extends State<InitialPage> {
                       BlocProvider(
                         create: (context) => AuthCubit(),
                       ),
-                      BlocProvider (
-                        create: (_)  => UserCubit()..getUserData(),
+                      BlocProvider(
+                        create: (_) => UserCubit()..getUserData(),
                       ),
                     ],
                     child: const HomePage(),
