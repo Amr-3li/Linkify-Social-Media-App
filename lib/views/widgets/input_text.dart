@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class InputTextField extends StatelessWidget {
-  InputTextField({
+  const InputTextField({
     super.key,
     this.isPassword,
     required this.hintText,
@@ -10,10 +10,10 @@ class InputTextField extends StatelessWidget {
     this.isnumber = false,
     this.color = Colors.white,
   });
-  bool? isPassword, isnumber;
-  String hintText;
-  TextEditingController controller;
-  Color? color;
+  final bool? isPassword, isnumber;
+  final String hintText;
+  final TextEditingController controller;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -33,7 +33,11 @@ class InputTextField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: color!, width: 2),
+          borderSide: BorderSide(color: color!.withOpacity(0.2), width: 1),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: color!, width: 1),
           borderRadius: BorderRadius.circular(20),
         ),
       ),

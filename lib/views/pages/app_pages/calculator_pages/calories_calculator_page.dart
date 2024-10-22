@@ -51,104 +51,75 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BasicBagesColor(
-      body: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: const Text(
-            'Calories Calculator in day ',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: const Color.fromARGB(255, 99, 99, 99),
-          centerTitle: true,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Calories Calculator in day ',
+          style: TextStyle(color: Colors.white),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    radioButton('Male', Colors.blue, 0),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    radioButton('Female', Colors.pink, 1),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InputTextField(
+        backgroundColor: const Color.fromARGB(255, 99, 99, 99),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Row(children: [
+                radioButton('Male', Colors.blue, 0),
+                const SizedBox(width: 20),
+                radioButton('Female', Colors.pink, 1)
+              ]),
+              const SizedBox(height: 20),
+              InputTextField(
                   hintText: "Height in Cm",
                   controller: heightController,
                   isnumber: true,
-                  color: Colors.black,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InputTextField(
+                  color: Colors.black),
+              const SizedBox(height: 20),
+              InputTextField(
                   hintText: '   weight in kg',
                   controller: weightController,
                   isnumber: true,
-                  color: Colors.black,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InputTextField(
-                  hintText: "Age",
-                  controller: ageController,
-                  isnumber: true,
-                  color: Colors.black,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Align(
+                  color: Colors.black),
+              const SizedBox(height: 20),
+              InputTextField(
+                hintText: "Age",
+                controller: ageController,
+                isnumber: true,
+                color: Colors.black,
+              ),
+              const SizedBox(height: 30),
+              Align(
                   alignment: AlignmentDirectional.center,
-                  child: activityStat(),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Align(
+                  child: activityStat()),
+              const SizedBox(height: 30),
+              Align(
                   alignment: AlignmentDirectional.center,
-                  child: calculateButton(),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Align(
+                  child: calculateButton()),
+              const SizedBox(height: 30),
+              const Align(
                   alignment: AlignmentDirectional.center,
-                  child: Text(
-                    "amount of calories :",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
-                  ),
+                  child: Text("amount of calories :",
+                      style: TextStyle(color: Colors.white, fontSize: 30))),
+              const SizedBox(height: 30),
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Text(
+                  resultText,
+                  style: const TextStyle(
+                      color: Colors.green,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Text(
-                    resultText,
-                    style: const TextStyle(
-                        color: Colors.green,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                const SizedBox(
-                  height: 70,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 70),
+            ],
           ),
         ),
       ),
@@ -274,7 +245,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
                     width: 3,
                     color: currentIndex == index
                         ? color
-                        : Color.fromARGB(255, 0, 0, 0))),
+                        : const Color.fromARGB(255, 0, 0, 0))),
           ),
           child: buttonContent(index, value, color),
         ),
@@ -294,7 +265,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
           child: Image(
               color: currentIndex == index
                   ? color
-                  : Color.fromARGB(255, 255, 255, 255),
+                  : const Color.fromARGB(255, 255, 255, 255),
               image: index == 0
                   ? const AssetImage("assets/icons/male.png")
                   : const AssetImage("assets/icons/female.png"),

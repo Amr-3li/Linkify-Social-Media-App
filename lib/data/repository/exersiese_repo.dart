@@ -6,11 +6,11 @@ class ExersieseRepository {
 
   ExersieseRepository(this.exersiesesWebService);
 
-  Future<List<ExersieseModel>> getExersieses(
+  Future<List<ExersieseModelCalculator>> getExersieses(
       double weight, String activity, int time) async {
-    List<ExersieseModel> exersieses = await exersiesesWebService!
+    List<ExersieseModelCalculator> exersieses = await exersiesesWebService!
         .getExersieses(weight, activity, time)
-        .then((value) => value.map((e) => ExersieseModel.fromJson(e)).toList());
+        .then((value) => value.map((e) => ExersieseModelCalculator.fromJson(e)).toList());
     return exersieses;
   }
 }

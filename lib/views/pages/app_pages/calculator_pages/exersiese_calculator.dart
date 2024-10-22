@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/bloc/cubit/exersiese/exersiese_cubit.dart';
-import 'package:true_gym/data/repository/exersiese_repo.dart';
-import 'package:true_gym/data/web_ser/exersieses_calories.dart';
+import 'package:true_gym/bloc/cubit/exersiese_calculator/exersiese_cubit.dart';
 import 'package:true_gym/views/widgets/basic_bages_Color.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
@@ -89,7 +87,7 @@ class _ExersiesesCalculatorState extends State<ExersiesesCalculator> {
                     backgroundColor: WidgetStateProperty.all(
                         const Color.fromARGB(255, 65, 0, 0))),
                 onPressed: () {
-                  BlocProvider.of<ExersieseCubit>(context).getExersieses(
+                  BlocProvider.of<ExersieseCalculatorCubit>(context).getExersiesesCalculator(
                       weightValue, controller.text, timeValue.round());
                 },
                 child: const Text(
@@ -97,9 +95,9 @@ class _ExersiesesCalculatorState extends State<ExersiesesCalculator> {
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
-              BlocBuilder<ExersieseCubit, ExersieseState>(
+              BlocBuilder<ExersieseCalculatorCubit, ExersieseCalculatorState>(
                 builder: (context, state) {
-                  if (state is ExersieseLoaded) {
+                  if (state is ExersieseCalculatorLoaded) {
                     return Column(
                       children: [
                         const SizedBox(height: 20),
@@ -123,7 +121,7 @@ class _ExersiesesCalculatorState extends State<ExersiesesCalculator> {
                             )),
                       ],
                     );
-                  } else if (state is ExersieseError) {
+                  } else if (state is ExersieseCalculatorError) {
                     return Column(
                       children: [
                         const SizedBox(height: 20),
@@ -134,7 +132,7 @@ class _ExersiesesCalculatorState extends State<ExersiesesCalculator> {
                         ),
                       ],
                     );
-                  } else if (state is ExersieseLoading) {
+                  } else if (state is ExersieseCalculatorLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
