@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_appbar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
+import 'package:true_gym/lists.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
 import 'package:true_gym/views/widgets/home_page_body.dart';
 
@@ -13,12 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List navigationItems = [
-    Icons.home,
-    Icons.calculate,
-    Icons.person,
-  ];
-  List pages = const [HomePageBody(), SettingsPage(), ProfilePage()];
   int currentIndex = 0;
   late PageController pageController;
   @override
@@ -50,30 +45,29 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index) {
             return pages[index];
           }),
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          height: 50,
-          decoration: const BoxDecoration(
-              color: Color(0xFFE5E5E5),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: navigationItems.asMap().entries.map((e) {
-              return IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentIndex = e.key;
-                      pageController.animateToPage(currentIndex,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
-                    });
-                  },
-                  icon: Icon(e.value,
-                      color: currentIndex == e.key ? Colors.black : Colors.grey,
-                      size: 30));
-            }).toList(),
-          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
+        height: 60,
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+            borderRadius: const BorderRadius.all(Radius.circular(30))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: navigationItems.asMap().entries.map((e) {
+            return IconButton(
+                onPressed: () {
+                  setState(() {
+                    currentIndex = e.key;
+                    pageController.animateToPage(currentIndex,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut);
+                  });
+                },
+                icon: Icon(e.value,
+                    color: currentIndex == e.key ? Colors.white : Colors.grey,
+                    size: 40));
+          }).toList(),
         ),
       ),
     );

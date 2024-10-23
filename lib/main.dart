@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:true_gym/data/repository/exersiese_repo.dart';
 import 'package:true_gym/data/web_ser/exersieses_calories.dart';
 import 'package:true_gym/firebase_options.dart';
@@ -11,8 +12,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  ExersieseRepository(ExersiesesWebService()).getExersieses(70, "jump", 30);
-
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Color.fromARGB(200, 95, 95, 95),
+  //   statusBarIconBrightness: Brightness.light,
+  // ));
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const MyApp(),
