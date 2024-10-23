@@ -14,11 +14,17 @@ class PostHeader extends StatelessWidget {
         color: Colors.blueGrey,
       )),
       const SizedBox(width: 10),
-      Text(name,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          )),
+      Column(
+        children: [
+          Text(name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )),
+          const SizedBox(height: 5),
+          const Text("2h ago", style: TextStyle(fontSize: 15))
+        ],
+      ),
       const Spacer(),
       IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert, size: 30)),
     ]);

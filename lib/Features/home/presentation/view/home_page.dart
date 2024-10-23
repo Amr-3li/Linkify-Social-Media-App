@@ -4,7 +4,7 @@ import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dar
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/lists.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
-import 'package:true_gym/views/widgets/home_page_body.dart';
+import 'package:true_gym/Features/home/presentation/view/widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,7 +33,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: const HomeDrawer(),
-      appBar: const HomeAppbar(),
       body: PageView.builder(
           itemCount: pages.length,
           controller: pageController,
