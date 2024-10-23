@@ -18,11 +18,8 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
         height: 40,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              color: Colors.black,
-              width: 0.25,
-            )),
+          borderRadius: BorderRadius.circular(5),
+        ),
         child: Row(children: [
           const SizedBox(width: 10),
           PostReactionBarItem(
