@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/drawer_body.dart';
+import 'package:true_gym/consts.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -16,7 +17,7 @@ class HomeDrawer extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(250.0)),
       ),
-      backgroundColor: Color.fromARGB(255, 103, 103, 103),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       child: DrawerBody(),
     );
   }
