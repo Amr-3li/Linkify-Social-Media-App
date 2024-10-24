@@ -20,11 +20,10 @@ class _PostsListState extends State<PostsList> {
           return Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                padding: const EdgeInsets.only(bottom: 10, top: 10),
                 child: PostContainer(post: posts[index]),
               ),
-              const Divider(height: 10, thickness: 1, color: Colors.black),
+              const Divider(height: 10, thickness: 0.5, color: Colors.black),
             ],
           );
         });
