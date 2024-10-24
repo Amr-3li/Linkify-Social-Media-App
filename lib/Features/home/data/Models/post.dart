@@ -1,11 +1,10 @@
-
 class Post {
   final String name;
   final String image;
   final String content;
   final String time;
   final int likes;
-  List<String> comments;
+  final int comments;
   final int shares;
   Post({
     required this.name,
@@ -18,8 +17,8 @@ class Post {
   });
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      name: json['name'],
-      image: json['image_url'],
+      name: json['name'] ?? "",
+      image: json['image_url'] ?? "",
       content: json['caption_post'],
       time: json['created_at'],
       likes: json['likes'],
@@ -27,5 +26,4 @@ class Post {
       shares: json['shares'],
     );
   }
-  
 }
