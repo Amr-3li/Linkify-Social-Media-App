@@ -1,9 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:true_gym/data/repository/exersiese_repo.dart';
-import 'package:true_gym/data/web_ser/exersieses_calories.dart';
 import 'package:true_gym/firebase_options.dart';
 import 'package:true_gym/initial.dart';
 

@@ -7,7 +7,6 @@ import 'package:true_gym/data/models/user.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
-import 'package:true_gym/consts.dart';
 
 class DrawerBody extends StatelessWidget {
   const DrawerBody({

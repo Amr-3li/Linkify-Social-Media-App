@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/home_appbar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
-import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/lists.dart';
-import 'package:true_gym/views/pages/app_pages/settings.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/home_page_body.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,11 +39,11 @@ class _HomePageState extends State<HomePage> {
           },
           itemBuilder: (context, index) {
             return pages[index];
-          }),
+          },), 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-        height: 60,
+        margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 0),
+        height: 52,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
             borderRadius: const BorderRadius.all(Radius.circular(30))),
@@ -65,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(e.value,
                     color: currentIndex == e.key ? Colors.white : Colors.grey,
-                    size: 40));
+                    size: 35));
           }).toList(),
         ),
       ),
