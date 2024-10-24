@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PostHeader extends StatelessWidget {
-  const PostHeader({super.key, required this.name});
+  const PostHeader({super.key, required this.name, required this.time});
   final String name;
-
+  final String image = "assets/images/user.png";
+  final String time;
   @override
   Widget build(BuildContext context) {
     return Row(children: [
@@ -15,14 +16,15 @@ class PostHeader extends StatelessWidget {
       )),
       const SizedBox(width: 10),
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(name,
               style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
               )),
-          const SizedBox(height: 5),
-          const Text("2h ago", style: TextStyle(fontSize: 15))
+          const SizedBox(height: 2),
+          Text(time, style: const TextStyle(fontSize: 13, color: Colors.grey)),
         ],
       ),
       const Spacer(),

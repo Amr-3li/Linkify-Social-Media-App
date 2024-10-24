@@ -15,8 +15,6 @@ class _PostsListState extends State<PostsList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
         itemCount: posts.length,
         itemBuilder: (context, index) {
           return Column(
@@ -24,9 +22,7 @@ class _PostsListState extends State<PostsList> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-                child: PostContainer(
-                  post: posts[index]
-                ),
+                child: PostContainer(post: posts[index]),
               ),
               const Divider(height: 10, thickness: 1, color: Colors.black),
             ],

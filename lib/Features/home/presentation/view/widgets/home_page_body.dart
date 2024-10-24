@@ -6,23 +6,29 @@ class HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          floating: true,
-          actions: [
-            IconButton(
-              onPressed: null,
-              icon: Icon(Icons.search),
-            )
-          ],
-          title: Text(
-            "Home",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
-        SliverToBoxAdapter(child: PostsList()),
-      ],
-    );
+    return NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverAppBar(
+                floating: true,
+                snap: true,
+                leading: IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: const Icon(Icons.menu)),
+                actions: const [
+                  IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.search),
+                  )
+                ],
+                title: const Text(
+                  "Home",
+                  style:  TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+        body: const PostsList());
   }
 }

@@ -12,22 +12,18 @@ class PostContainer extends StatelessWidget {
   final Post post;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const PostHeader(name: "amr"),
-          const SizedBox(height: 10),
-          PostContent(
-            image: post.image,
-            text: post.content,
-          ),
-          const Divider(),
-          const ReactionContainerBar()
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        PostHeader(name: post.name, time: post.time),
+        const SizedBox(height: 10),
+        PostContent(
+          image: post.image,
+          text: post.content,
+        ),
+        const Divider(),
+        const ReactionContainerBar()
+      ],
     );
   }
 }
@@ -39,6 +35,7 @@ class PostContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -51,14 +48,14 @@ class PostContent extends StatelessWidget {
               ? const SizedBox()
               : ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxWidth: width - 100,
+                    maxWidth: width - 20,
                     maxHeight: 400,
                     minHeight: 200,
                     minWidth: 200,
                   ),
                   child: CachedNetworkImage(
                     imageUrl: image,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                   )),
         ],
       ),
