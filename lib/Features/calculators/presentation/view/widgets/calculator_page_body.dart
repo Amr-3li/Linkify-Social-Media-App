@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/Features/calculators/presentation/view/widgets/calculator_component.dart';
+import 'package:true_gym/lists.dart';
 
 class CalculatorsPageBody extends StatelessWidget {
   const CalculatorsPageBody({super.key});
@@ -8,33 +9,11 @@ class CalculatorsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 250,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                color: MyColors.calculatorContainerColor,
-                image: DecorationImage(
-                  image: AssetImage("assets/images/calculator.png"),
-                  fit: BoxFit.contain,
-                  opacity: 0.7,
-                )),
-            child: const Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 12.0),
-                child: Text("calories in day",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
-            ),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children:
+              calculatorList.map((e) => CalculatorComponent(model: e)).toList(),
+        ),
       ),
     );
   }
