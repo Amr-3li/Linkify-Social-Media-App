@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/calculators/presentation/view/widgets/calculator_page_body.dart';
 import 'package:true_gym/consts.dart';
 
 class CalculatorsPage extends StatelessWidget {
@@ -19,6 +20,6 @@ class CalculatorsPage extends StatelessWidget {
                 shadowColor: MyColors.shadowColor,
               )
             ],
-        body: const Center(child: Text("Calculators")));
+        body: const CalculatorsPageBody());
   }
 }
