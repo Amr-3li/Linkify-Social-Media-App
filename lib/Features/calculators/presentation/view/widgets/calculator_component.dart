@@ -9,27 +9,30 @@ class CalculatorComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
-      child: Container(
-        width: double.infinity,
-        height: 250,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
-            color: MyColors.calculatorContainerColor,
-            image: DecorationImage(
-              image: AssetImage(model.image),
-              fit: BoxFit.contain,
-              opacity: 0.7,
-            )),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Text(model.title,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
+      child: GestureDetector(
+        onTap: model.onTap,
+        child: Container(
+          width: double.infinity,
+          height: 250,
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+              color: MyColors.calculatorContainerColor,
+              image: DecorationImage(
+                image: AssetImage(model.image),
+                fit: BoxFit.contain,
+                opacity: 0.7,
+              )),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: Text(model.title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
           ),
         ),
       ),

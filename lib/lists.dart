@@ -13,7 +13,11 @@ List pages = const [HomePageBody(), CalculatorsPage(), ProfilePage()];
 
 List<CalculatorModel> calculatorList = [
   CalculatorModel(
-      title: "Calories Calculator", image: "assets/images/calculator.png"),
-  CalculatorModel(title: "Water Calculator", image: "assets/images/water.png"),
-  CalculatorModel(title: "Water Calculator", image: "assets/images/water.png"),
+      title: "Calories Calculator",
+      image: "assets/images/calculator.png",
+      onTap: () {}),
+  CalculatorModel(
+      title: "Water Calculator",
+      image: "assets/images/water.png",
+      onTap: () {}),
 ];

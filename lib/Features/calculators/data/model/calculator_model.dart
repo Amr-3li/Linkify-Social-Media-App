@@ -1,6 +1,6 @@
 class CalculatorModel {
   final String title;
   final String image;
-
-  CalculatorModel({required this.title, required this.image});
+  final Function()? onTap;
+  CalculatorModel( {required this.onTap,required this.title, required this.image});
 }
