@@ -34,7 +34,16 @@ class PostContainer extends StatelessWidget {
             text: post.content,
           ),
           const Divider(),
-          const ReactionContainerBar()
+          const ReactionContainerBar(),
+          const SizedBox(height: 10),
+          const Row(
+            children: [
+              SizedBox(width: 15),
+              Text("20 love", style: TextStyle(color: Colors.grey)),
+              SizedBox(width: 15),
+              Text("10 comments", style: TextStyle(color: Colors.grey)),
+            ],
+          )
         ],
       ),
     );

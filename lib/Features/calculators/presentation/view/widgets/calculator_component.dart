@@ -8,7 +8,7 @@ class CalculatorComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.only(bottom: 20.0),
       child: GestureDetector(
         onTap: model.onTap,
         child: Container(
@@ -16,7 +16,14 @@ class CalculatorComponent extends StatelessWidget {
           height: 250,
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(50)),
-              color: MyColors.calculatorContainerColor,
+              color: const Color.fromARGB(255, 255, 255, 255),
+              boxShadow: const [
+                BoxShadow(
+                  color: MyColors.shadowColor,
+                  blurRadius: 10,
+                  offset: Offset(0, 10),
+                ),
+              ],
               image: DecorationImage(
                 image: AssetImage(model.image),
                 fit: BoxFit.contain,

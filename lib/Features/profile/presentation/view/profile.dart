@@ -5,8 +5,22 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.deepPurple,
-    );
+    return NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverAppBar(
+                centerTitle: true,
+                title: const Text("User name"),
+                actions: [
+                  ClipOval(
+                      child: Container(
+                    width: 40,
+                    height: 40,
+                    color: Colors.green,
+                  )),
+                  const SizedBox(width: 10),
+                ],
+              )
+            ],
+        body: const Center(child: Text("Profile")));
   }
 }
