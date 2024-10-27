@@ -17,14 +17,9 @@ class _PostsListState extends State<PostsList> {
     return ListView.builder(
         itemCount: posts.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10, top: 10, left: 15),
-                child: PostContainer(post: posts[index]),
-              ),
-              const Divider(height: 10, thickness: 0.5, color: Colors.black),
-            ],
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+            child: PostContainer(post: posts[index]),
           );
         });
   }

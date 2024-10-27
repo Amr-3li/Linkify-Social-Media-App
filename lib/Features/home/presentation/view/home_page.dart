@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
+import 'package:true_gym/consts.dart';
 import 'package:true_gym/lists.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,26 +28,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 238, 247, 248),
       drawer: const HomeDrawer(),
       body: PageView.builder(
-          itemCount: pages.length,
-          controller: pageController,
-          onPageChanged: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          itemBuilder: (context, index) {
-            return pages[index];
-          },), 
+        itemCount: pages.length,
+        controller: pageController,
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        itemBuilder: (context, index) {
+          return pages[index];
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 0),
+        margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
         height: 52,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-            borderRadius: const BorderRadius.all(Radius.circular(30))),
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+            boxShadow: [
+              BoxShadow(
+                  color:
+                      const Color.fromARGB(255, 100, 100, 100).withOpacity(0.9),
+                  blurRadius: 10,
+                  offset: const Offset(0, 12),
+                  blurStyle: BlurStyle.normal)
+            ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: navigationItems.asMap().entries.map((e) {

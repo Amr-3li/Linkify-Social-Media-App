@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/data/Models/post.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/post_header.dart';
+import 'package:true_gym/consts.dart';
 
 class PostContainer extends StatelessWidget {
   const PostContainer({
@@ -12,18 +13,30 @@ class PostContainer extends StatelessWidget {
   final Post post;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PostHeader(name: post.name, time: post.time),
-        const SizedBox(height: 10),
-        PostContent(
-          image: post.image,
-          text: post.content,
-        ),
-        const Divider(),
-        const ReactionContainerBar()
-      ],
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: [
+            BoxShadow(
+                color: MyColors.shadowColor,
+                blurRadius: 2,
+                offset: Offset(0, 10))
+          ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PostHeader(name: post.name, time: post.time),
+          const SizedBox(height: 10),
+          PostContent(
+            image: post.image,
+            text: post.content,
+          ),
+          const Divider(),
+          const ReactionContainerBar()
+        ],
+      ),
     );
   }
 }
@@ -35,7 +48,7 @@ class PostContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
