@@ -9,19 +9,33 @@ class ProfilePage extends StatelessWidget {
     return NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverAppBar(
-                centerTitle: true,
-                title: const Text("User name"),
-                actions: [
-                  ClipOval(
-                      child: Container(
-                    width: 40,
-                    height: 40,
-                    color: Colors.green,
-                    
-                  )),
-                  const SizedBox(width: 10),
-                ],
-              )
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+                floating: true,
+                pinned: true,
+                expandedHeight: 300,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: const EdgeInsets.only(bottom: 10),
+                  title: const Text("User name"),
+                  centerTitle: true,
+                  background: Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                ),
+              ),
             ],
         body: const ProfileBody());
   }
