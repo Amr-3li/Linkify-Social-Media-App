@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/profile/presentation/view/widgets/profile_body.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -22,6 +23,6 @@ class ProfilePage extends StatelessWidget {
                 ],
               )
             ],
-        body: const Center(child: Text("Profile")));
+        body: const ProfileBody());
   }
 }
