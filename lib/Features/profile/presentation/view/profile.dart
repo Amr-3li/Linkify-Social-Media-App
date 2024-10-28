@@ -16,6 +16,7 @@ class ProfilePage extends StatelessWidget {
                     width: 40,
                     height: 40,
                     color: Colors.green,
+                    
                   )),
                   const SizedBox(width: 10),
                 ],
