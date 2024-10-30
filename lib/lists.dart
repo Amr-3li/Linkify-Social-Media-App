@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/calculators/data/model/calculator_model.dart';
 import 'package:true_gym/Features/calculators/presentation/view/calculators_page.dart';
-import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_page_body.dart';
+import 'package:true_gym/views/pages/app_pages/settings.dart';
 
 List navigationItems = [
   Icons.home,
   Icons.calculate,
-  Icons.person,
+  Icons.settings,
 ];
-List pages = const [HomePageBody(), CalculatorsPage(), ProfilePage()];
+List pages = const [HomePageBody(), CalculatorsPage(), SettingsPage()];

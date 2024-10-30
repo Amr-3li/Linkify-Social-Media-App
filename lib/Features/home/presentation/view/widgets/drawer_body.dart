@@ -21,15 +21,24 @@ class DrawerBody extends StatelessWidget {
           builder: (context, state) {
             if (state is UserLoaded) {
               UserModel user = state.user;
-              return UserAccountsDrawerHeader(
-                decoration: const BoxDecoration(color: MyColors.appBarColor),
-                accountName: Text(user.name.toString(),
-                    style: const TextStyle(color: Colors.black)),
-                accountEmail: Text(user.email.toString(),
-                    style: const TextStyle(color: Colors.black)),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
+                },
+                child: UserAccountsDrawerHeader(
+                  decoration: const BoxDecoration(color: MyColors.appBarColor),
+                  accountName: Text(user.name.toString(),
+                      style: const TextStyle(color: Colors.black)),
+                  accountEmail: Text(user.email.toString(),
+                      style: const TextStyle(color: Colors.black)),
+                  currentAccountPicture: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                  ),
                 ),
               );
             } else {
