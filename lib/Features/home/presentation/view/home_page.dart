@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
+import 'package:true_gym/consts.dart';
 import 'package:true_gym/lists.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 238, 247, 248),
+      backgroundColor: MyColors.backgroundColor,
       drawer: const HomeDrawer(),
       body: PageView.builder(
         itemCount: pages.length,

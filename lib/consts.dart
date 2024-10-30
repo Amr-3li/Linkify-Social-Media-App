@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 abstract class MyColors {
-  static const Color backgroundColor = Color.fromARGB(255, 204, 247, 249);
+  static const Color backgroundColor = Color.fromARGB(255, 238, 247, 248);
   static const Color shadowColor = Color.fromARGB(255, 155, 155, 155);
   static const Color fontColor = Color.fromARGB(255, 0, 0, 0);
   static const Color appBarColor = Color.fromARGB(199, 202, 202, 202);

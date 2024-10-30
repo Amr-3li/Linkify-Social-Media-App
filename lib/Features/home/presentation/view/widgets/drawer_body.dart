@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/bloc/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/consts.dart';
-import 'package:true_gym/data/models/user.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/views/pages/app_pages/settings.dart';
@@ -35,9 +35,13 @@ class DrawerBody extends StatelessWidget {
                       style: const TextStyle(color: Colors.black)),
                   accountEmail: Text(user.email.toString(),
                       style: const TextStyle(color: Colors.black)),
-                  currentAccountPicture: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                  currentAccountPicture: const Hero(
+                    transitionOnUserGestures: true,
+                    tag: 'profile-tag',
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                    ),
                   ),
                 ),
               );

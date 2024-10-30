@@ -1,4 +1,4 @@
-import 'package:true_gym/data/web_ser/user_auth/auth.dart';
+import 'package:true_gym/Features/register/data/web_servecies/auth.dart';
 
 class AuthRepository {
   final AuthWebservice _authWebservice;
