@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/profile/presentation/view/widgets/information_component.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/consts.dart';
 import 'package:true_gym/data/models/user.dart';
@@ -61,11 +62,26 @@ class _ProfileInformationState extends State<ProfileInformation> {
           return Column(
             children: [
               const SizedBox(height: 20),
-              Text("Email: ${user.email}"),
+              InformationComponent(
+                  type: "Email",
+                  text: user.email,
+                  icon: const Icon(Icons.email, color: Colors.red)),
               const SizedBox(height: 20),
-              Text("Name: ${user.name}"),
+              InformationComponent(
+                type: "Name",
+                text: user.name,
+                icon: const Icon(Icons.person, color: Colors.blueAccent),
+              ),
               const SizedBox(height: 20),
-              Text("phone: ${user.phone}"),
+              InformationComponent(
+                type: "Phone ",
+                text: user.phone,
+                icon: const Icon(
+                  Icons.phone,
+                  color: Colors.green,
+                ),
+              ),
+              const SizedBox(height: 20),
               // Add more user details here
             ],
           );
