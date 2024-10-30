@@ -21,37 +21,20 @@ class DrawerBody extends StatelessWidget {
           builder: (context, state) {
             if (state is UserLoaded) {
               UserModel user = state.user;
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
-                },
-                child: UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(color: MyColors.appBarColor),
-                  accountName: Text(user.name.toString()),
-                  accountEmail: Text(user.email.toString()),
-                  currentAccountPicture: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
-                  ),
+              return UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(color: MyColors.appBarColor),
+                accountName: Text(user.name.toString(),
+                    style: const TextStyle(color: Colors.black)),
+                accountEmail: Text(user.email.toString(),
+                    style: const TextStyle(color: Colors.black)),
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
                 ),
               );
             } else {
               return const CircularProgressIndicator();
             }
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.person, color: MyColors.iconColor),
-          title: const Text('Profile',
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProfilePage()));
           },
         ),
         ListTile(
@@ -88,6 +71,7 @@ class DrawerBody extends StatelessWidget {
         ),
         const Divider(),
         ListTile(
+          tileColor: MyColors.appBarColor,
           leading: const Icon(Icons.logout, color: MyColors.iconColor),
           title: const Text('Logout',
               style: TextStyle(color: MyColors.fontColor, fontSize: 20)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/profile_body.dart';
+import 'package:true_gym/consts.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,6 +10,7 @@ class ProfilePage extends StatelessWidget {
     return NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverAppBar(
+                backgroundColor: MyColors.appBarColor,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
