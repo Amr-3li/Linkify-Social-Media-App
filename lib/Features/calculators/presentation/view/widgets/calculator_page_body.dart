@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/calculators/data/model/calculator_model.dart';
-import 'package:true_gym/Features/calculators/presentation/model_view/calories_calculator_page.dart';
-import 'package:true_gym/Features/calculators/presentation/model_view/water_calculator.dart';
+import 'package:true_gym/Features/calculators/presentation/view/calories_calculator_page.dart';
+import 'package:true_gym/Features/calculators/presentation/view/water_calculator.dart';
 import 'package:true_gym/Features/calculators/presentation/view/widgets/calculator_component.dart';
 
 class CalculatorsPageBody extends StatelessWidget {
@@ -9,25 +9,24 @@ class CalculatorsPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-List<CalculatorModel> calculatorList = [
-  CalculatorModel(
-      title: "Calories Calculator",
-      image: "assets/images/calculator.png",
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const CaloriesCalculatorPage();
-        }));
-      }),
-  CalculatorModel(
-      title: "Water Calculator",
-      image: "assets/images/water.png",
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const WaterCalculator();
-        }));
-      }),
-];
+    List<CalculatorModel> calculatorList = [
+      CalculatorModel(
+          title: "Calories Calculator",
+          image: "assets/images/calculator.png",
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const CaloriesCalculatorPage();
+            }));
+          }),
+      CalculatorModel(
+          title: "Water Calculator",
+          image: "assets/images/water.png",
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const WaterCalculator();
+            }));
+          }),
+    ];
 
     return Padding(
       padding: const EdgeInsets.all(10),

@@ -127,7 +127,7 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
 
   DropdownButton<double> activityStat() {
     return DropdownButton(
-      iconEnabledColor: Colors.white,
+      iconEnabledColor: const Color.fromARGB(255, 0, 0, 0),
       value: dropDownValue,
       onChanged: (value) {
         dropDownValue = value as double;
@@ -136,44 +136,53 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
       borderRadius: BorderRadius.circular(20),
       dropdownColor: const Color.fromARGB(255, 69, 68, 68),
       isExpanded: true,
-      underline: const SizedBox(),
+      underline: Container(
+        height: 2,
+        color: const Color.fromARGB(255, 0, 0, 0),
+      ),
       iconSize: 30,
       icon: const Icon(Icons.keyboard_arrow_down),
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+      alignment: AlignmentDirectional.center,
       items: const [
         DropdownMenuItem(
           value: 1.25,
           child: Text(
             "sedentary",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style:
+                TextStyle(color: Color.fromARGB(255, 77, 255, 0), fontSize: 20),
           ),
         ),
         DropdownMenuItem(
           value: 1.375,
           child: Text(
             "light",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Color.fromARGB(255, 242, 255, 0), fontSize: 20),
           ),
         ),
         DropdownMenuItem(
           value: 1.550,
           child: Text(
             "medium",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Color.fromARGB(255, 255, 200, 0), fontSize: 20),
           ),
         ),
         DropdownMenuItem(
           value: 1.725,
           child: Text(
             "heavy",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Color.fromARGB(255, 255, 149, 0), fontSize: 20),
           ),
         ),
         DropdownMenuItem(
           value: 1.9,
           child: Text(
             "very heavy",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style:
+                TextStyle(color: Color.fromARGB(255, 255, 0, 0), fontSize: 20),
           ),
         ),
       ],
@@ -237,14 +246,14 @@ class _CaloriesCalculatorPageState extends State<CaloriesCalculatorPage> {
             chagngeIndex(index);
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
+            backgroundColor: const Color.fromARGB(180, 237, 237, 237),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 side: BorderSide(
                     width: 3,
                     color: currentIndex == index
                         ? color
-                        : const Color.fromARGB(255, 0, 0, 0))),
+                        : const Color.fromARGB(255, 140, 140, 140))),
           ),
           child: buttonContent(index, value, color),
         ),
