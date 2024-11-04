@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/consts.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
-import 'package:true_gym/views/pages/app_pages/settings.dart';
+import 'package:true_gym/Features/settings/presentation/view/settings.dart';
 
 class DrawerBody extends StatelessWidget {
   const DrawerBody({
@@ -29,38 +30,17 @@ class DrawerBody extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const ProfilePage()));
                 },
-                child: UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(color: MyColors.appBarColor),
-                  accountName: Text(user.name.toString(),
-                      style: const TextStyle(color: Colors.black)),
-                  accountEmail: Text(user.email.toString(),
-                      style: const TextStyle(color: Colors.black)),
-                  currentAccountPicture: const Hero(
-                    transitionOnUserGestures: true,
-                    tag: 'profile-tag',
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
-                    ),
-                  ),
-                ),
+                child: UserDrawerInformation(
+                    name: user.name,
+                    email: user.email,
+                    image:
+                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
               );
             } else {
               return const CircularProgressIndicator();
             }
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.settings, color: MyColors.iconColor),
-          title: const Text('Settings',
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()));
-          },
-        ),
-        const Divider(),
         const ListTile(
           leading: Icon(Icons.help, color: MyColors.iconColor),
           title: Text('Help',

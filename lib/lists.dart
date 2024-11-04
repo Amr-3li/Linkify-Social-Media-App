@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/calculators/presentation/view/calculators_page.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_page_body.dart';
-import 'package:true_gym/views/pages/app_pages/settings.dart';
+import 'package:true_gym/Features/settings/presentation/view/settings.dart';
 
 List navigationItems = [
   Icons.home,

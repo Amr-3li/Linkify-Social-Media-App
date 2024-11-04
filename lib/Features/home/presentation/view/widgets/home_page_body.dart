@@ -11,6 +11,7 @@ class HomePageBody extends StatelessWidget {
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverAppBar(
+                centerTitle: true,
                 backgroundColor: MyColors.appBarColor,
                 floating: true,
                 snap: true,
