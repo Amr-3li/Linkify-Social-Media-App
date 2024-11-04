@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppbar({super.key});

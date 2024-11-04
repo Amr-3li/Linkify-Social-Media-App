@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/consts.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/core/consts.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
-import 'package:true_gym/Features/settings/presentation/view/settings.dart';
 
 class DrawerBody extends StatelessWidget {
   const DrawerBody({

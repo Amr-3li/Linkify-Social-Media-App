@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/posts_list.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});

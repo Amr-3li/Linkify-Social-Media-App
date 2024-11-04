@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/settings/presentation/view/widgets/Settings_body.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

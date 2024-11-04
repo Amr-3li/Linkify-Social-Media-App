@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/calculators/data/model/calculator_model.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class CalculatorComponent extends StatelessWidget {
   const CalculatorComponent({super.key, required this.model});

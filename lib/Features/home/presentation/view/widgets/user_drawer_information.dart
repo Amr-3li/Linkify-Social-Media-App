@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class UserDrawerInformation extends StatelessWidget {
   const UserDrawerInformation({super.key, required this.name, required this.email, required this.image});

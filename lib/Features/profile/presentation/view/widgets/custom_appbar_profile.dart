@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:true_gym/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class CustomAppbarProfile extends StatelessWidget {
   const CustomAppbarProfile({
