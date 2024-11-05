@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/posts_list.dart';
 import 'package:true_gym/core/consts.dart';
 
@@ -22,7 +23,12 @@ class HomePageBody extends StatelessWidget {
                     icon: const Icon(Icons.menu)),
                 actions: [
                   IconButton(
-                    onPressed: null,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ChatHomePage()));
+                    },
                     icon: Badge.count(
                         count: 10,
                         child: const Icon(Icons.forum_outlined,
