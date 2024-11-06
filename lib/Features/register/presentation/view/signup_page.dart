@@ -123,10 +123,12 @@ class _SignupPageState extends State<SignupPage> {
                                               lname: lnameController.text,
                                               phone: phoneController.text,
                                               password: passwordController.text,
-                                              isPatient: true,
-                                              isMale: true,
-                                              weight: 0,
-                                              height: 0,
+                                              isPatient: !isTrainer,
+                                              isMale: isMale,
+                                              weight: double.parse(
+                                                  weightController.text),
+                                              height: double.parse(
+                                                  heightController.text),
                                               lastActive: DateTime.now(),
                                               image: image),
                                         );

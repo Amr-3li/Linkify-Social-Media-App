@@ -54,6 +54,7 @@ class _UserInformationsState extends State<UserInformations> {
             const SizedBox(height: 20),
           ],
         ),
+        const SizedBox(height: 30),
         Row(
           children: [
             Expanded(
@@ -111,7 +112,8 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Male"),
+            const Text("Male",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
             const SizedBox(width: 20),
             Checkbox(
               value: widget.isFemale,
@@ -121,9 +123,11 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Female"),
+            const Text("Female",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
           ],
-        )
+        ),
+        const SizedBox(height: 30),
       ],
     );
   }

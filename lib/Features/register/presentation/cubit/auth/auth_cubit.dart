@@ -12,7 +12,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
   FirebaseAuth auth = FirebaseAuth.instance;
-  CollectionReference collRef = FirebaseFirestore.instance.collection("users");
+  CollectionReference collRef = FirebaseFirestore.instance.collection("Users");
   late SharedPreferences prefs;
   Future<void> signin(String username, String password) async {
     prefs = await SharedPreferences.getInstance();
