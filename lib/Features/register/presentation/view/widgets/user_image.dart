@@ -32,16 +32,16 @@ class UserImage extends StatelessWidget {
                         Icons.person,
                         size: 80,
                       )),
-                  Positioned(
-                      child: CircleAvatar(
+                  CircleAvatar(
                     radius: 20,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: const Color.fromARGB(255, 15, 0, 101),
                     child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
                           Icons.add,
+                          color: Colors.white,
                         )),
-                  ))
+                  )
                 ]),
         );
       },

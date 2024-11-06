@@ -4,23 +4,42 @@ import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_informations.dart';
-import 'package:true_gym/views/widgets/input_text.dart';
 
 // ignore: must_be_immutable
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
   SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  bool isMale = false;
+
+  bool isFemale = false;
+
+  bool isTrainer = false;
+
   String image = "";
+
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController fnameController = TextEditingController();
+
   TextEditingController lnameController = TextEditingController();
 
   TextEditingController phoneController = TextEditingController();
+
   TextEditingController ageController = TextEditingController();
+
   TextEditingController heightController = TextEditingController();
+
   TextEditingController weightController = TextEditingController();
 
   final keyform = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -74,7 +93,11 @@ class SignupPage extends StatelessWidget {
                           children: [
                             const SizedBox(height: 30),
                             UserImage(image: image),
+                            const SizedBox(height: 20),
                             UserInformations(
+                                isFemale: isFemale,
+                                isMale: isMale,
+                                isTrainer: isTrainer,
                                 fnameController: fnameController,
                                 lnameController: lnameController,
                                 emailController: emailController,
