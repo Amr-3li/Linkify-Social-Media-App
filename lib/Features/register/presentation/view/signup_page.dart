@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
@@ -11,6 +12,10 @@ class SignupPage extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+
   final keyform = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -107,10 +112,21 @@ class SignupPage extends StatelessWidget {
                                         await BlocProvider.of<AuthCubit>(
                                                 context)
                                             .register(
-                                                nameController.text,
-                                                emailController.text.trim(),
-                                                phoneController.text,
-                                                passwordController.text);
+                                          UserModel(
+                                            email: emailController.text,
+                                            fname: nameController.text,
+                                            lname: nameController.text,
+                                            phone: phoneController.text,
+                                            password: passwordController.text,
+                                            isPatient: true,
+                                            isMale: true,
+                                            weight: 0,
+                                            height: 0,
+                                            lastActive: DateTime.now(),
+                                            image:
+                                                "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png",
+                                          ),
+                                        );
 
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(

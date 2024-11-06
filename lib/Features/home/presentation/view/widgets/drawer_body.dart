@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/consts.dart';
 import 'package:true_gym/initial.dart';
@@ -30,7 +30,7 @@ class DrawerBody extends StatelessWidget {
                           builder: (context) => const ProfilePage()));
                 },
                 child: UserDrawerInformation(
-                    name: user.name,
+                    name: "${user.fname} ${user.lname}",
                     email: user.email,
                     image:
                         'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),

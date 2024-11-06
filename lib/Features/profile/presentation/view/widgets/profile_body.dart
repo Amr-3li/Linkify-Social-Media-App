@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/information_component.dart';
-import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/consts.dart';
 
@@ -68,7 +68,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
               const SizedBox(height: 20),
               InformationComponent(
                 type: "Name",
-                text: user.name,
+                text: "${user.fname} ${user.lname}",
                 icon: const Icon(Icons.person, color: Colors.blueAccent),
               ),
               const SizedBox(height: 20),

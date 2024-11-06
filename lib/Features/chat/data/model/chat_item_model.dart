@@ -16,7 +16,7 @@ class ChatItemModel {
       name: json['name'],
       lastMessage: json['LastMessage'],
       time: json['time'],
-      imageUrl: json['imageUrl'] ?? "",
+      imageUrl: json['imageUrl'],
       unreadCount: json['unreadCount'],
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/bloc/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/home/presentation/view/home_page.dart';
 import 'package:true_gym/Features/register/presentation/view/login_page.dart';
 

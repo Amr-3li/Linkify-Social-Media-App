@@ -19,10 +19,31 @@ class UserCubit extends Cubit<UserState> {
           .then((value) =>
               UserModel.fromJson(value.data() as Map<String, dynamic>));
       if (user != null) {
-        emit(UserLoaded( user));
+        emit(UserLoaded(user));
       } else {
         emit(UserError('user not found'));
       }
+    } on FirebaseAuthException catch (e) {
+      emit(UserError(e.code.toString()));
+    }
+  }
+
+  Future<void> updateUser(UserModel user) async {
+    emit(UserLoading());
+    try {
+      await collRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+        'fname': user.fname,
+        'lname': user.lname,
+        'email': user.email,
+        'phone': user.phone,
+        'image': user.image,
+        'last_active': user.lastActive.toIso8601String(),
+        'isPatient': user.isPatient,
+        'weight': user.weight,
+        'height': user.height,
+        'isMale': user.isMale,
+      });
+      emit(UserLoaded(user));
     } on FirebaseAuthException catch (e) {
       emit(UserError(e.code.toString()));
     }
