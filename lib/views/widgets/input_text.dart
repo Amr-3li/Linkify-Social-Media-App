@@ -33,7 +33,7 @@ class InputTextField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: color!.withOpacity(0.2), width: 1),
+          borderSide: BorderSide(color: color!.withOpacity(0.3), width: 2),
           borderRadius: BorderRadius.circular(20),
         ),
         focusedBorder: OutlineInputBorder(

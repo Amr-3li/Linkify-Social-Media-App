@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
+import 'package:true_gym/Features/register/presentation/view/widgets/user_informations.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
 // ignore: must_be_immutable
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
-
+  String image = "";
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
+
   TextEditingController phoneController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController heightController = TextEditingController();
@@ -45,7 +49,7 @@ class SignupPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(
-                      height: 200,
+                      height: 40,
                     ),
                     const Text(
                       "Sign Up Page",
@@ -55,7 +59,7 @@ class SignupPage extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 100,
+                      height: 40,
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -68,39 +72,17 @@ class SignupPage extends StatelessWidget {
                         key: keyform,
                         child: Column(
                           children: [
-                            const SizedBox(
-                              height: 90,
-                            ),
-                            InputTextField(
-                              controller: nameController,
-                              hintText: "name",
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            InputTextField(
-                              controller: emailController,
-                              hintText: "Email",
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            InputTextField(
-                              controller: phoneController,
-                              hintText: "phone number",
-                              isnumber: true,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            InputTextField(
-                              controller: passwordController,
-                              hintText: "password",
-                              isPassword: true,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
+                            const SizedBox(height: 30),
+                            UserImage(image: image),
+                            UserInformations(
+                                fnameController: fnameController,
+                                lnameController: lnameController,
+                                emailController: emailController,
+                                phoneController: phoneController,
+                                ageController: ageController,
+                                heightController: heightController,
+                                weightController: weightController,
+                                passwordController: passwordController),
                             state is RegisterLoading
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
@@ -113,19 +95,17 @@ class SignupPage extends StatelessWidget {
                                                 context)
                                             .register(
                                           UserModel(
-                                            email: emailController.text,
-                                            fname: nameController.text,
-                                            lname: nameController.text,
-                                            phone: phoneController.text,
-                                            password: passwordController.text,
-                                            isPatient: true,
-                                            isMale: true,
-                                            weight: 0,
-                                            height: 0,
-                                            lastActive: DateTime.now(),
-                                            image:
-                                                "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png",
-                                          ),
+                                              email: emailController.text,
+                                              fname: fnameController.text,
+                                              lname: lnameController.text,
+                                              phone: phoneController.text,
+                                              password: passwordController.text,
+                                              isPatient: true,
+                                              isMale: true,
+                                              weight: 0,
+                                              height: 0,
+                                              lastActive: DateTime.now(),
+                                              image: image),
                                         );
 
                                         ScaffoldMessenger.of(context)
