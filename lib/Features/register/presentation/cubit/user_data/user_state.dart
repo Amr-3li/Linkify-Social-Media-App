@@ -12,6 +12,19 @@ final class UserLoaded extends UserState {
 }
 
 final class UserError extends UserState {
-   String message;
+  String message;
   UserError(this.message);
+}
+
+//==============image==================
+final class UploadImageLoading extends UserState {}
+
+final class UploadImageSuccess extends UserState {
+  File imageFile;
+  UploadImageSuccess(this.imageFile);
+}
+
+final class UploadImageError extends UserState {
+  String message;
+  UploadImageError(this.message);
 }

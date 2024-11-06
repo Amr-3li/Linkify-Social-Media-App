@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 
 class UserImage extends StatelessWidget {
   const UserImage({
@@ -8,24 +10,41 @@ class UserImage extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      const CircleAvatar(
-          radius: 60,
-          backgroundColor: Color.fromARGB(150, 188, 188, 188),
-          child: Icon(
-            Icons.person,
-            size: 80,
-          )),
-      Positioned(
-          child: CircleAvatar(
-        radius: 20,
-        backgroundColor: Colors.blue,
-        child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.add,
-            )),
-      ))
-    ]);
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () async {
+            await context.read<UserCubit>().getImage();
+          },
+          child: state is UploadImageSuccess
+              ? CircleAvatar(
+                  radius: 60,
+                  backgroundColor: const Color.fromARGB(255, 130, 130, 130),
+                  child: CircleAvatar(
+                      radius: 58,
+                      backgroundColor: Colors.white,
+                      backgroundImage: FileImage(state.imageFile)))
+              : Stack(children: [
+                  const CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Color.fromARGB(150, 188, 188, 188),
+                      child: Icon(
+                        Icons.person,
+                        size: 80,
+                      )),
+                  Positioned(
+                      child: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.blue,
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.add,
+                        )),
+                  ))
+                ]),
+        );
+      },
+    );
   }
 }

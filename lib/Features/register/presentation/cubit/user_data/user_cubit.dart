@@ -1,8 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 
 part 'user_state.dart';
@@ -47,5 +50,18 @@ class UserCubit extends Cubit<UserState> {
     } on FirebaseAuthException catch (e) {
       emit(UserError(e.code.toString()));
     }
+  }
+
+  File? imageFile;
+  Future<void> getImage() async {
+    emit(UploadImageLoading());
+    await ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
+      if (value != null) {
+        imageFile = File(value.path);
+        emit(UploadImageSuccess(imageFile!));
+      } else {
+        emit(UploadImageError('no image selected'));
+      }
+    });
   }
 }

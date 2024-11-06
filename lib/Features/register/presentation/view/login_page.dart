@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 import 'package:true_gym/Features/register/presentation/view/signup_page.dart';
@@ -126,11 +127,16 @@ class LoginPage extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  BlocProvider(
-                                                    create: (context) =>
-                                                        AuthCubit(),
-                                                    child: SignupPage(),
-                                                  )));
+                                                  MultiBlocProvider(providers: [
+                                                    BlocProvider(
+                                                      create: (context) =>
+                                                          AuthCubit(),
+                                                    ),
+                                                    BlocProvider(
+                                                      create: (context) =>
+                                                          UserCubit(),
+                                                    ),
+                                                  ], child: SignupPage())));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(500, 60),
