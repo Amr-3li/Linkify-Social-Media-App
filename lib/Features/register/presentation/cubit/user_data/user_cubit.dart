@@ -5,7 +5,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 
 part 'user_state.dart';
@@ -54,14 +56,20 @@ class UserCubit extends Cubit<UserState> {
 
   File? imageFile;
   Future<void> getImage() async {
-    emit(UploadImageLoading());
+    emit(SelectImageloading());
     await ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
       if (value != null) {
         imageFile = File(value.path);
-        emit(UploadImageSuccess(imageFile!));
+        emit(SelectImageSuccess(imageFile!));
       } else {
-        emit(UploadImageError('no image selected'));
+        emit(SelectImageError('no image selected'));
       }
     });
+  }
+
+  Future<String> uploadImageToFirebase() async {
+    Reference ref = FirebaseStorage.instance.ref(basename(imageFile!.path));
+    await ref.putFile(imageFile!);
+    return await ref.getDownloadURL();
   }
 }

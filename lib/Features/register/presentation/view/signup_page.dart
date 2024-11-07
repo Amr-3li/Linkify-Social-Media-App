@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_informations.dart';
 
 // ignore: must_be_immutable
 class SignupPage extends StatefulWidget {
-  SignupPage({super.key});
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -114,6 +115,16 @@ class _SignupPageState extends State<SignupPage> {
                                         if (!keyform.currentState!.validate()) {
                                           return;
                                         }
+                                        //to upload image before register and put url in image variable
+                                        if (BlocProvider.of<UserCubit>(context)
+                                                .imageFile !=
+                                            null) {
+                                          image =
+                                              await BlocProvider.of<UserCubit>(
+                                                      context)
+                                                  .uploadImageToFirebase();
+                                        }
+                                        //to register
                                         await BlocProvider.of<AuthCubit>(
                                                 context)
                                             .register(
@@ -132,7 +143,6 @@ class _SignupPageState extends State<SignupPage> {
                                               lastActive: DateTime.now(),
                                               image: image),
                                         );
-
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           const SnackBar(

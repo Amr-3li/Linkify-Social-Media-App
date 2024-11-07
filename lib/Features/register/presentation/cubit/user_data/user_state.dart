@@ -28,3 +28,16 @@ final class UploadImageError extends UserState {
   String message;
   UploadImageError(this.message);
 }
+
+//==============Selecte image==================
+final class SelectImageloading extends UserState {}
+
+final class SelectImageSuccess extends UserState {
+  File imageFile;
+  SelectImageSuccess(this.imageFile);
+}
+
+final class SelectImageError extends UserState {
+  String message;
+  SelectImageError(this.message);
+}

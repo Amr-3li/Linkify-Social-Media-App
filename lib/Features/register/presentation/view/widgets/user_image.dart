@@ -14,9 +14,9 @@ class UserImage extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () async {
-            await context.read<UserCubit>().getImage();
+            await BlocProvider.of<UserCubit>(context).getImage();
           },
-          child: state is UploadImageSuccess
+          child: state is SelectImageSuccess
               ? CircleAvatar(
                   radius: 60,
                   backgroundColor: const Color.fromARGB(255, 130, 130, 130),
