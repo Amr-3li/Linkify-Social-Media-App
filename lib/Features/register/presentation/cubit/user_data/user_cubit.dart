@@ -53,23 +53,4 @@ class UserCubit extends Cubit<UserState> {
       emit(UserError(e.code.toString()));
     }
   }
-
-  File? imageFile;
-  Future<void> getImage() async {
-    emit(SelectImageloading());
-    await ImagePicker().pickImage(source: ImageSource.gallery).then((value) {
-      if (value != null) {
-        imageFile = File(value.path);
-        emit(SelectImageSuccess(imageFile!));
-      } else {
-        emit(SelectImageError('no image selected'));
-      }
-    });
-  }
-
-  Future<String> uploadImageToFirebase() async {
-    Reference ref = FirebaseStorage.instance.ref(basename(imageFile!.path));
-    await ref.putFile(imageFile!);
-    return await ref.getDownloadURL();
-  }
 }
