@@ -7,7 +7,7 @@ class UserModel {
   String email;
   String password;
   String phone;
-  String image;
+  String? image;
   DateTime lastActive;
   bool isPatient;
   double weight;
@@ -22,7 +22,7 @@ class UserModel {
     required this.email,
     required this.password,
     required this.phone,
-    required this.image,
+    this.image,
     required this.lastActive,
     required this.isPatient,
     required this.weight,
@@ -36,7 +36,7 @@ class UserModel {
       lname: json['lname'],
       email: json['email'],
       phone: json['phone'],
-      image: json['image'],
+      image: json['image'] ?? "",
       lastActive: DateTime.parse(json['last_active']),
       isPatient: json['isPatient'],
       weight: json['weight'],

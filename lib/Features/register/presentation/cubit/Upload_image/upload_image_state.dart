@@ -22,10 +22,7 @@ final class UploadImageError extends UploadImageState {
 //==============Selecte image==================
 final class SelectImageloading extends UploadImageState {}
 
-final class SelectImageSuccess extends UploadImageState {
-  File imageFile;
-  SelectImageSuccess(this.imageFile);
-}
+final class SelectImageSuccess extends UploadImageState {}
 
 final class SelectImageError extends UploadImageState {
   String message;

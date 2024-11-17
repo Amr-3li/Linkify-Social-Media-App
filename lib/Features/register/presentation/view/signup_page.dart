@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/presentation/cubit/Upload_image/upload_image_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
@@ -21,7 +24,8 @@ class _SignupPageState extends State<SignupPage> {
 
   bool isTrainer = false;
 
-  String image = "";
+  String? image;
+  File? imageFile;
 
   TextEditingController emailController = TextEditingController();
 
@@ -93,7 +97,11 @@ class _SignupPageState extends State<SignupPage> {
                         child: Column(
                           children: [
                             const SizedBox(height: 30),
-                            UserImage(image: image),
+                            UserImage(
+                              image: (image) {
+                                imageFile = image;
+                              },
+                            ),
                             const SizedBox(height: 20),
                             UserInformations(
                                 isFemale: isFemale,
@@ -116,13 +124,11 @@ class _SignupPageState extends State<SignupPage> {
                                           return;
                                         }
                                         //to upload image before register and put url in image variable
-                                        if (BlocProvider.of<UserCubit>(context)
-                                                .imageFile !=
-                                            null) {
-                                          image =
-                                              await BlocProvider.of<UserCubit>(
-                                                      context)
-                                                  .uploadImageToFirebase();
+                                        if (imageFile != null) {
+                                          image = await BlocProvider.of<
+                                                  UploadImageCubit>(context)
+                                              .uploadImageToFirebase(
+                                                  imageFile!);
                                         }
                                         //to register
                                         await BlocProvider.of<AuthCubit>(

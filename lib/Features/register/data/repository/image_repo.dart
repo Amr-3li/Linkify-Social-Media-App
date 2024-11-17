@@ -2,7 +2,7 @@
 import 'dart:io';
 
 import 'package:true_gym/Features/register/data/web_servecies/fire_storage.dart';
-import 'package:true_gym/core/utils/backend_endpoints.dart';
+import 'package:true_gym/core/backend_endpoints.dart';
 
 class ImageRepo {
   FireStorage fireStorage;
