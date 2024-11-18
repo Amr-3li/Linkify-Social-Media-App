@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/profile_body.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

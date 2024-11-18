@@ -6,11 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit(this.imageRepo, this.user) : super(AuthInitial());
+  final ImageRepo imageRepo;
+  final UserModel user;
   FirebaseAuth auth = FirebaseAuth.instance;
   CollectionReference collRef = FirebaseFirestore.instance.collection("Users");
   late SharedPreferences prefs;
@@ -36,31 +39,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SignoutSuccess());
     } on FirebaseAuthException catch (e) {
       emit(SignoutFailed(e.code));
-    }
-  }
-
-  Future<void> register(UserModel user) async {
-    emit(RegisterLoading());
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-          email: user.email, password: user.password);
-      await collRef.doc(userCredential.user!.uid).set({
-        'email': user.email,
-        'fname': user.fname,
-        'lname': user.lname,
-        'image': user.image,
-        'last_active': user.lastActive.toIso8601String(),
-        'isPatient': user.isPatient,
-        'weight': user.weight,
-        'height': user.height,
-        'isMale': user.isMale,
-        'uid': userCredential.user!.uid,
-        'phone': user.phone,
-      });
-
-      emit(RegisterSuccess());
-    } on FirebaseException catch (e) {
-      emit(RegisterFailed(e.code));
     }
   }
 }

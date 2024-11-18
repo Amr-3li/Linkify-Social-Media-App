@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_appbar.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_home_body.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/consts.dart';
 
 class ChatHomePage extends StatelessWidget {
   const ChatHomePage({super.key});

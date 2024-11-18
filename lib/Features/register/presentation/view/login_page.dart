@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
+import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/initial.dart';
@@ -127,16 +129,22 @@ class LoginPage extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  MultiBlocProvider(providers: [
-                                                    BlocProvider(
-                                                      create: (context) =>
-                                                          AuthCubit(),
-                                                    ),
-                                                    BlocProvider(
-                                                      create: (context) =>
-                                                          UserCubit(),
-                                                    ),
-                                                  ], child: SignupPage())));
+                                                  MultiBlocProvider(
+                                                      providers: [
+                                                        BlocProvider(
+                                                          create: (context) =>
+                                                              AuthCubit(
+                                                            gitIt.get<
+                                                                ImageRepo>(),
+                                                          ),
+                                                        ),
+                                                        BlocProvider(
+                                                          create: (context) =>
+                                                              UserCubit(),
+                                                        ),
+                                                      ],
+                                                      child:
+                                                          const SignupPage())));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(500, 60),
