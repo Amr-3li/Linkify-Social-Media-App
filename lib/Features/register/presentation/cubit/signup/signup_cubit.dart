@@ -19,21 +19,30 @@ class SignUpCupit extends Cubit<SignUpState> {
   final ImageRepo imageRepo;
   final SignupRepo signupRepo;
 
-  Future<void> signup(UserModel user, File image) async {
+  Future<void> signup(UserModel user, File? image) async {
     emit(SignUpLoading());
-    var result = await imageRepo.uploadImageToFirebase(image);
-    result.fold(
-      (l) {
-        emit(SignUpError(l.errMessage));
-      },
-      (r) async {
-        var signupResult = await signupRepo.signup(user..image = r);
-        signupResult.fold((left) {
-          emit(SignUpError(left.errMessage));
-        }, (right) {
-          emit(SignUpSuccess());
-        });
-      },
-    );
+    if (image != null) {
+      var result = await imageRepo.uploadImageToFirebase(image);
+      result.fold(
+        (l) {
+          emit(SignUpError(l.errMessage));
+        },
+        (r) async {
+          var signupResult = await signupRepo.signup(user..image = r);
+          signupResult.fold((left) {
+            emit(SignUpError(left.errMessage));
+          }, (right) {
+            emit(SignUpSuccess());
+          });
+        },
+      );
+    } else {
+      var signupResult = await signupRepo.signup(user);
+      signupResult.fold((left) {
+        emit(SignUpError(left.errMessage));
+      }, (right) {
+        emit(SignUpSuccess());
+      });
+    }
   }
 }

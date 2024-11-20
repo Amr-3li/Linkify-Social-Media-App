@@ -143,7 +143,7 @@ class _SignupPageState extends State<SignupPage> {
                                                         heightController.text),
                                                     lastActive: DateTime.now(),
                                                     image: image),
-                                                imageFile!);
+                                                imageFile);
                                       } on Exception catch (e) {
                                         showSnackBar(e.toString());
                                       }

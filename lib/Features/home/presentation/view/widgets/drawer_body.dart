@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
@@ -19,6 +20,7 @@ class DrawerBody extends StatelessWidget {
       children: [
         BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
+            bool isLoaded = state is UserLoaded;
             if (state is UserLoaded) {
               UserModel user = state.user;
               return GestureDetector(
@@ -36,7 +38,12 @@ class DrawerBody extends StatelessWidget {
                         'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
               );
             } else {
-              return const CircularProgressIndicator();
+              return const Skeletonizer(
+                  child: UserDrawerInformation(
+                name: "",
+                email: "",
+                image: "",
+              ));
             }
           },
         ),
