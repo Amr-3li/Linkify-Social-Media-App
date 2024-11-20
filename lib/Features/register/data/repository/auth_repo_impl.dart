@@ -9,10 +9,11 @@ class AuthRepoImpelement implements AuthRepository {
 
   AuthRepoImpelement(this.authservice);
   @override
-  Future<Either<Failure, void>> signin(UserModel user) async {
+  Future<Either<Failure, String>> signin(
+      String username, String password) async {
     try {
-      await authservice.signin(user.email, user.password);
-      return const Right(null);
+      String id = await authservice.signin(username, password);
+      return Right(id);
     } catch (e) {
       return Left(ServerFailure("failed to signin"));
     }

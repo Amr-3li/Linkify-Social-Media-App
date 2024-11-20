@@ -1,19 +1,17 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/splash_screan/splash_screan.dart';
 import 'package:true_gym/firebase_options.dart';
-import 'package:true_gym/initial.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Color.fromARGB(200, 95, 95, 95),
-  //   statusBarIconBrightness: Brightness.light,
-  // ));
+  setUpGitIt();
+
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const MyApp(),

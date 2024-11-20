@@ -12,14 +12,15 @@ import 'package:true_gym/Features/register/data/web_servecies/signup_ser.dart';
 import 'package:true_gym/Features/register/data/web_servecies/signup_ser_imp.dart';
 import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
 
-final gitIt = GetIt.instance;
+final gitItAuth = GetIt.instance;
 void setUpGitIt() {
-  gitIt.registerSingleton<AuthService>(AuthWebServiceImplement());
-  gitIt.registerSingleton<AuthRepository>(
-      AuthRepoImpelement(gitIt<AuthService>()));
-  gitIt.registerSingleton<SignupService>(SignupSerImplementation());
-  gitIt.registerSingleton<SignupRepo>(
-      SignupRepoImplement(gitIt<SignupService>()));
-  gitIt.registerSingleton<StorageService>(FireStorage());
-  gitIt.registerSingleton<ImageRepo>(ImageRepoImpl(gitIt<StorageService>()));
+  gitItAuth.registerSingleton<AuthService>(AuthWebServiceImplement());
+  gitItAuth.registerSingleton<AuthRepository>(
+      AuthRepoImpelement(gitItAuth<AuthService>()));
+  gitItAuth.registerSingleton<SignupService>(SignupSerImplementation());
+  gitItAuth.registerSingleton<SignupRepo>(
+      SignupRepoImplement(gitItAuth<SignupService>()));
+  gitItAuth.registerSingleton<StorageService>(FireStorage());
+  gitItAuth
+      .registerSingleton<ImageRepo>(ImageRepoImpl(gitItAuth<StorageService>()));
 }

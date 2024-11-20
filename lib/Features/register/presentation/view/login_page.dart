@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
+import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
@@ -133,9 +135,11 @@ class LoginPage extends StatelessWidget {
                                                       providers: [
                                                         BlocProvider(
                                                           create: (context) =>
-                                                              AuthCubit(
-                                                            gitIt.get<
+                                                              SignUpCupit(
+                                                            gitItAuth.get<
                                                                 ImageRepo>(),
+                                                            gitItAuth.get<
+                                                                SignupRepo>(),
                                                           ),
                                                         ),
                                                         BlocProvider(

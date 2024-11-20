@@ -5,14 +5,12 @@ class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   AuthWebServiceImplement();
   @override
-  Future<void> signin(String username, String password) async {
-    try {
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: username, password: password);
-      if (userCredential.user != null) {}
-    } catch (e) {
-      print(e.toString());
-    }
+  Future<String> signin(String username, String password) async {
+    UserCredential userCredential = await auth.signInWithEmailAndPassword(
+        email: username, password: password);
+    String id = userCredential.user!.uid;
+    print("user id: $id");
+    return id;
   }
 
   @override

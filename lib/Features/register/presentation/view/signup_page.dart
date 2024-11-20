@@ -47,13 +47,14 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
-        if (state is RegisterSuccess) {
+        if (state is SignUpSuccess) {
+          showSnackBar("User created successfully");
           Navigator.pop(context);
-        } else if (state is RegisterFailed) {
+        } else if (state is SignUpError) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.error.toString())));
+              .showSnackBar(SnackBar(content: Text(state.message.toString())));
         }
       },
       builder: (context, state) {
@@ -123,44 +124,28 @@ class _SignupPageState extends State<SignupPage> {
                                         if (!keyform.currentState!.validate()) {
                                           return;
                                         }
-                                        //to upload image before register and put url in image variable
-                                        if (imageFile != null) {
-                                          image = await BlocProvider.of<
-                                                  UploadImageCubit>(context)
-                                              .uploadImageToFirebase(
-                                                  imageFile!);
-                                        }
-                                        //to register
-                                        await BlocProvider.of<AuthCubit>(
+
+                                        await BlocProvider.of<SignUpCupit>(
                                                 context)
-                                            .register(
-                                          UserModel(
-                                              email: emailController.text,
-                                              fname: fnameController.text,
-                                              lname: lnameController.text,
-                                              phone: phoneController.text,
-                                              password: passwordController.text,
-                                              isPatient: !isTrainer,
-                                              isMale: isMale,
-                                              weight: double.parse(
-                                                  weightController.text),
-                                              height: double.parse(
-                                                  heightController.text),
-                                              lastActive: DateTime.now(),
-                                              image: image),
-                                        );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          const SnackBar(
-                                            content: Text(
-                                                "user created successfully"),
-                                          ),
-                                        );
+                                            .signup(
+                                                UserModel(
+                                                    email: emailController.text,
+                                                    fname: fnameController.text,
+                                                    lname: lnameController.text,
+                                                    phone: phoneController.text,
+                                                    password:
+                                                        passwordController.text,
+                                                    isPatient: !isTrainer,
+                                                    isMale: isMale,
+                                                    weight: double.parse(
+                                                        weightController.text),
+                                                    height: double.parse(
+                                                        heightController.text),
+                                                    lastActive: DateTime.now(),
+                                                    image: image),
+                                                imageFile!);
                                       } on Exception catch (e) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content: Text(e.toString()),
-                                        ));
+                                        showSnackBar(e.toString());
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -201,5 +186,10 @@ class _SignupPageState extends State<SignupPage> {
         );
       },
     );
+  }
+
+  void showSnackBar(String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
