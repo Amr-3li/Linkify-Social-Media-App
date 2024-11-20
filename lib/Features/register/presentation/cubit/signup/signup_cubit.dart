@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
@@ -8,7 +7,9 @@ import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 part 'signup_state.dart';
 
 class SignUpCupit extends Cubit<SignUpState> {
-  SignUpCupit(this.imageRepo) : super(SignUpInitial());
+  SignUpCupit(
+    this.imageRepo,
+  ) : super(SignUpInitial());
 
   final ImageRepo imageRepo;
 

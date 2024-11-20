@@ -16,12 +16,7 @@ class AuthWebServiceImplement implements AuthService {
   }
 
   @override
-  Future<bool> signout() async {
-    try {
-      await auth.signOut();
-      return true;
-    } catch (e) {
-      return false;
-    }
+  Future<void> signout() async {
+    await auth.signOut();
   }
 }
