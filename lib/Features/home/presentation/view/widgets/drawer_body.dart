@@ -5,7 +5,7 @@ import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_inf
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/core/consts.dart';
+import 'package:true_gym/core/utils/consts.dart';
 import 'package:true_gym/initial.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 
@@ -20,7 +20,6 @@ class DrawerBody extends StatelessWidget {
       children: [
         BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
-            bool isLoaded = state is UserLoaded;
             if (state is UserLoaded) {
               UserModel user = state.user;
               return GestureDetector(
@@ -42,7 +41,8 @@ class DrawerBody extends StatelessWidget {
                   child: UserDrawerInformation(
                 name: "",
                 email: "",
-                image: "",
+                image:
+                    'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png',
               ));
             }
           },

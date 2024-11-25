@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
-import 'package:true_gym/core/backend_endpoints.dart';
+import 'package:true_gym/core/utils/backend_endpoints.dart';
 import 'package:true_gym/core/errors/failures.dart';
 
 class ImageRepoImpl implements ImageRepo {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/posts_list.dart';
-import 'package:true_gym/core/consts.dart';
+import 'package:true_gym/core/utils/consts.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});

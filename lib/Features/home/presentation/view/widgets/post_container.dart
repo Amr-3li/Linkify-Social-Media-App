@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/data/Models/post.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/post_header.dart';
-import 'package:true_gym/core/consts.dart';
+import 'package:true_gym/core/utils/consts.dart';
 
 class PostContainer extends StatelessWidget {
   const PostContainer({
@@ -21,7 +21,7 @@ class PostContainer extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 color: MyColors.shadowColor,
-                blurRadius: 2,
+                blurRadius: 20,
                 offset: Offset(0, 10))
           ]),
       child: Column(

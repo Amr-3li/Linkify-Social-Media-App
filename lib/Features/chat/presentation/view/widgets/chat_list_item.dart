@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/chat_item_model.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
-import 'package:true_gym/core/consts.dart';
+import 'package:true_gym/core/utils/consts.dart';
 
 class ChatListItem extends StatelessWidget {
   const ChatListItem({
@@ -33,7 +34,11 @@ class ChatListItem extends StatelessWidget {
         number: chatItem.unreadCount,
         time: chatItem.time,
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const ChatScrean();
+        }));
+      },
     );
   }
 }

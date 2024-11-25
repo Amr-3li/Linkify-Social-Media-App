@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/calculators/presentation/view/widgets/calculator_page_body.dart';
-import 'package:true_gym/core/consts.dart';
+import 'package:true_gym/core/utils/consts.dart';
 
 class CalculatorsPage extends StatelessWidget {
   const CalculatorsPage({super.key});

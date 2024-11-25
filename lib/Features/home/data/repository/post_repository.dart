@@ -1,5 +1,5 @@
 import 'package:true_gym/Features/home/data/Models/post.dart';
-import 'package:true_gym/core/test_data.dart';
+import 'package:true_gym/core/utils/test_data.dart';
 
 class PostRepository {
   List<Post> getPosts() {

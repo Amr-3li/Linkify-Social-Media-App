@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
@@ -30,29 +31,9 @@ class _MyWidgetState extends State<InitialPage> {
     prefs = await SharedPreferences.getInstance();
     loging = prefs!.getString('loging');
     if (loging == null) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                    create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
-                    child: const LoginPage(),
-                  )));
+      GoRouter.of(context).push('/loginPage');
     } else {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MultiBlocProvider(
-                    providers: [
-                      BlocProvider(
-                        create: (context) =>
-                            AuthCubit(gitItAuth<AuthRepository>()),
-                      ),
-                      BlocProvider(
-                        create: (_) => UserCubit()..getUserData(),
-                      ),
-                    ],
-                    child: const HomePage(),
-                  )));
+      GoRouter.of(context).push('/homePage');
     }
   }
 

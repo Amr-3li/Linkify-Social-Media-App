@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
-import 'package:true_gym/core/consts.dart';
-import 'package:true_gym/core/lists.dart';
+import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/utils/lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
