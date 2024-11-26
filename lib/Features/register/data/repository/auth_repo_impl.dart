@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/auth_ser.dart';
 import 'package:true_gym/core/errors/failures.dart';

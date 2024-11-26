@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
-import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/initial.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
-import 'package:true_gym/Features/register/presentation/view/signup_page.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
@@ -103,10 +96,15 @@ class LoginPage extends StatelessWidget {
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
                                     onPressed: () async {
-                                      formKey.currentState!.validate();
-                                      await BlocProvider.of<AuthCubit>(context)
-                                          .signin(emailController.text.trim(),
-                                              passwordController.text);
+                                      try {
+                                        formKey.currentState!.validate();
+                                        await BlocProvider.of<AuthCubit>(
+                                                context)
+                                            .signin(emailController.text.trim(),
+                                                passwordController.text);
+                                      } catch (e) {
+                                        print(e.toString());
+                                      }
                                     },
                                     style: ElevatedButton.styleFrom(
                                         fixedSize: const Size(500, 60),
@@ -125,20 +123,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             state is SigninLoading
                                 ? const SizedBox()
-                                : ElevatedButton(
-                                    onPressed: () {
-                                      GoRouter.of(context).push('/signupPage');
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(500, 60),
-                                      animationDuration:
-                                          const Duration(seconds: 2),
-                                    ),
-                                    child: const Text(
-                                      "Register",
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ),
+                                : signupButton(context),
                             const SizedBox(
                               height: 200,
                             ),
@@ -153,6 +138,22 @@ class LoginPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  ElevatedButton signupButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        GoRouter.of(context).push('/signupPage');
+      },
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(500, 60),
+        animationDuration: const Duration(seconds: 2),
+      ),
+      child: const Text(
+        "Register",
+        style: TextStyle(fontSize: 20),
+      ),
     );
   }
 }

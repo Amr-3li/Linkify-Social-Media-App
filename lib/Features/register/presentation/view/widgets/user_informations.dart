@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
+// ignore: must_be_immutable
 class UserInformations extends StatefulWidget {
   UserInformations({
     super.key,

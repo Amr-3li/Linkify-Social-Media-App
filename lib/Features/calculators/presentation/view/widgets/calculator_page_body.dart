@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/calculators/data/model/calculator_model.dart';
 import 'package:true_gym/Features/calculators/presentation/view/pages/calories_calculator_page.dart';
 import 'package:true_gym/Features/calculators/presentation/view/pages/water_calculator.dart';
@@ -14,17 +15,13 @@ class CalculatorsPageBody extends StatelessWidget {
           title: "Calories Calculator",
           image: "assets/images/calculator.png",
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const CaloriesCalculatorPage();
-            }));
+            GoRouter.of(context).push('/caloriesCalculatorPage');
           }),
       CalculatorModel(
           title: "Water Calculator",
           image: "assets/images/water.png",
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const WaterCalculator();
-            }));
+            GoRouter.of(context).push('/waterCalculatorPage');
           }),
     ];
 

@@ -24,7 +24,7 @@ class HomePageBody extends StatelessWidget {
                 actions: [
                   IconButton(
                     onPressed: () {
-                      GoRouter.of(context).push('/chatPage');
+                      GoRouter.of(context).push('/chatHomePage');
                     },
                     icon: Badge.count(
                         count: 10,

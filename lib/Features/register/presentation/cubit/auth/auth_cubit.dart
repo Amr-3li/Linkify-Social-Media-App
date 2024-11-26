@@ -19,24 +19,31 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signin(String email, String password) async {
     prefs = await SharedPreferences.getInstance();
     emit(SigninLoading());
-    try {
-      await authRepository.signin(email, password);
-      prefs.setString('loging', "is logged in");
-      emit(SigninSuccess());
-    } on FirebaseAuthException catch (e) {
-      emit(SigninFailed(e.code));
-    }
+
+    var result = await authRepository.signin(email, password);
+    result.fold(
+      (l) {
+        emit(SigninFailed(l.errMessage));
+      },
+      (r) {
+        emit(SigninSuccess());
+        prefs.setString('uid', r);
+      },
+    );
   }
 
   Future<void> signout() async {
+    prefs = await SharedPreferences.getInstance();
     emit(SignoutLoading());
-    try {
-      prefs = await SharedPreferences.getInstance();
-      await authRepository.signout();
-      prefs.remove('loging');
-      emit(SignoutSuccess());
-    } on FirebaseAuthException catch (e) {
-      emit(SignoutFailed(e.code));
-    }
+    var result = await authRepository.signout();
+    result.fold(
+      (l) {
+        emit(SignoutFailed(l.errMessage));
+      },
+      (r) {
+        emit(SignoutSuccess());
+        prefs.remove('uid');
+      },
+    );
   }
 }
