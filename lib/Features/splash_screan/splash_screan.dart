@@ -1,10 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/splash_screan/widgets/splash_body.dart';
-import 'package:true_gym/initial.dart';
 
 class SplashScrean extends StatefulWidget {
   const SplashScrean({super.key});
@@ -27,7 +24,7 @@ class _SplashScreanState extends State<SplashScrean> {
       },
     );
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 6),
       () {
         GoRouter.of(context).push('/initialPage');
       },

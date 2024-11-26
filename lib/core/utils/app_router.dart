@@ -7,8 +7,11 @@ import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart'
 import 'package:true_gym/Features/home/presentation/view/home_page.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
+import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/login_page.dart';
 import 'package:true_gym/Features/register/presentation/view/signup_page.dart';
@@ -39,8 +42,18 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/signup',
-        builder: (context, state) => const SignupPage(),
+        path: '/signupPage',
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider(
+            create: (context) => SignUpCupit(
+              gitItAuth.get<ImageRepo>(),
+              gitItAuth.get<SignupRepo>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => UserCubit(),
+          ),
+        ], child: const SignupPage()),
       ),
       GoRoute(
         path: '/homePage',

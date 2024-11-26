@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
@@ -24,8 +25,7 @@ class LoginPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SigninSuccess) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const InitialPage()));
+          GoRouter.of(context).push('/initialPage');
         } else if (state is SigninFailed) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error.toString())));
@@ -127,28 +127,7 @@ class LoginPage extends StatelessWidget {
                                 ? const SizedBox()
                                 : ElevatedButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MultiBlocProvider(
-                                                      providers: [
-                                                        BlocProvider(
-                                                          create: (context) =>
-                                                              SignUpCupit(
-                                                            gitItAuth.get<
-                                                                ImageRepo>(),
-                                                            gitItAuth.get<
-                                                                SignupRepo>(),
-                                                          ),
-                                                        ),
-                                                        BlocProvider(
-                                                          create: (context) =>
-                                                              UserCubit(),
-                                                        ),
-                                                      ],
-                                                      child:
-                                                          const SignupPage())));
+                                      GoRouter.of(context).push('/signupPage');
                                     },
                                     style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(500, 60),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
@@ -7,7 +8,6 @@ import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cub
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/utils/consts.dart';
 import 'package:true_gym/initial.dart';
-import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 
 class DrawerBody extends StatelessWidget {
   const DrawerBody({
@@ -25,10 +25,7 @@ class DrawerBody extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
+                  GoRouter.of(context).push('/profilePage');
                 },
                 child: UserDrawerInformation(
                     name: "${user.fname} ${user.lname}",
@@ -36,7 +33,7 @@ class DrawerBody extends StatelessWidget {
                     image:
                         'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
               );
-            } else {
+            } else if (state is UserLoading) {
               return const Skeletonizer(
                   child: UserDrawerInformation(
                 name: "",
@@ -44,6 +41,16 @@ class DrawerBody extends StatelessWidget {
                 image:
                     'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png',
               ));
+            } else if (state is UserError) {
+              return Container(
+                padding: const EdgeInsets.all(20),
+                alignment: Alignment.center,
+                child: Text(state.message.toString(),
+                    style: const TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+              );
+            } else {
+              return const SizedBox();
             }
           },
         ),
@@ -77,8 +84,7 @@ class DrawerBody extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
             BlocProvider.of<AuthCubit>(context).signout();
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const InitialPage()));
+            GoRouter.of(context).push('/initialPage');
           },
         ),
       ],

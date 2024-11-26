@@ -13,18 +13,26 @@ class UserCubit extends Cubit<UserState> {
   Future<void> getUserData() async {
     emit(UserLoading());
     try {
-      UserModel? user = await collRef
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get()
-          .then((value) =>
-              UserModel.fromJson(value.data() as Map<String, dynamic>));
-      if (user != null) {
+      // Get the current user's UID
+      final String? userId = FirebaseAuth.instance.currentUser?.uid;
+
+      if (userId == null) {
+        emit(UserError('User is not logged in'));
+        return;
+      }
+
+      // Fetch user data from Firestore
+      DocumentSnapshot snapshot = await collRef.doc(userId).get();
+      var data = snapshot.data();
+
+      if (data != null) {
+        UserModel user = UserModel.fromJson(data as Map<String, dynamic>);
         emit(UserLoaded(user));
       } else {
-        emit(UserError('user not found'));
+        emit(UserError('User not found in Firestore'));
       }
-    } on FirebaseAuthException catch (e) {
-      emit(UserError(e.code.toString()));
+    } catch (e) {
+      emit(UserError(e.toString())); // Handle any exception
     }
   }
 

@@ -43,37 +43,41 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-        height: 52,
-        decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-            boxShadow: [
-              BoxShadow(
-                  color:
-                      const Color.fromARGB(255, 100, 100, 100).withOpacity(0.9),
-                  blurRadius: 10,
-                  offset: const Offset(0, 12),
-                  blurStyle: BlurStyle.normal)
-            ]),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: navigationItems.asMap().entries.map((e) {
-            return IconButton(
-                onPressed: () {
-                  setState(() {
-                    currentIndex = e.key;
-                    pageController.animateToPage(currentIndex,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
-                  });
-                },
-                icon: Icon(e.value,
-                    color: currentIndex == e.key ? Colors.white : Colors.grey,
-                    size: 35));
-          }).toList(),
-        ),
+      floatingActionButton: bottomNavigationBar(),
+    );
+  }
+
+  Container bottomNavigationBar() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
+      height: 52,
+      decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+          borderRadius: const BorderRadius.all(Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+                color:
+                    const Color.fromARGB(255, 100, 100, 100).withOpacity(0.9),
+                blurRadius: 10,
+                offset: const Offset(0, 12),
+                blurStyle: BlurStyle.normal)
+          ]),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: navigationItems.asMap().entries.map((e) {
+          return IconButton(
+              onPressed: () {
+                setState(() {
+                  currentIndex = e.key;
+                  pageController.animateToPage(currentIndex,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut);
+                });
+              },
+              icon: Icon(e.value,
+                  color: currentIndex == e.key ? Colors.white : Colors.grey,
+                  size: 35));
+        }).toList(),
       ),
     );
   }
