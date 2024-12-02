@@ -1,12 +1,18 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/core/utils/app_router.dart';
+import 'package:true_gym/core/utils/project_endpoints.dart';
 import 'package:true_gym/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: ProjectEndpoints.storageUrl,
+    anonKey: ProjectEndpoints.storageSecretKey,
+  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/calculators/data/model/calculator_model.dart';
-import 'package:true_gym/Features/calculators/presentation/view/pages/calories_calculator_page.dart';
-import 'package:true_gym/Features/calculators/presentation/view/pages/water_calculator.dart';
 import 'package:true_gym/Features/calculators/presentation/view/widgets/calculator_component.dart';
 
 class CalculatorsPageBody extends StatelessWidget {
