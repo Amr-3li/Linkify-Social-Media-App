@@ -71,7 +71,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/profilePage',
-        builder: (context, state) => const ProfilePage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => UserCubit()..getUserData(),
+          child: const ProfilePage(),
+        ),
       ),
       GoRoute(
         path: '/caloriesCalculatorPage',

@@ -22,18 +22,16 @@ class DrawerBody extends StatelessWidget {
             if (state is UserLoaded) {
               UserModel user = state.user;
               return GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  GoRouter.of(context).push('/profilePage');
-                },
-                child: UserDrawerInformation(
-                  name: "${user.fname} ${user.lname}",
-                  email: user.email,
-                  image: user.image == null
-                      ? 'https://mfvrrzlxmlsayjebpjwa.supabase.co/storage/v1/object/sign/true_gym_assets/Image/UsersImages/wallpaperflare.com_wallpaper%20(13).jpg..jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cnVlX2d5bV9hc3NldHMvSW1hZ2UvVXNlcnNJbWFnZXMvd2FsbHBhcGVyZmxhcmUuY29tX3dhbGxwYXBlciAoMTMpLmpwZy4uanBnIiwiaWF0IjoxNzMzMjEzMTQ0LCJleHAiOjE3NjQ3NDkxNDR9.7YUzt77U5CL5DS4sThlW1aB0k7ux538mvU3hbcIiQUE&t=2024-12-03T08%3A05%3A41.274Z'
-                      : user.image!,
-                ),
-              );
+                  onTap: () {
+                    Navigator.pop(context);
+                    GoRouter.of(context).push('/profilePage');
+                  },
+                  child: UserDrawerInformation(
+                      name: "${user.fname} ${user.lname}",
+                      email: user.email,
+                      image: user.image == null
+                          ? 'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'
+                          : user.image!));
             } else if (state is UserLoading) {
               return const Skeletonizer(
                   child: UserDrawerInformation(

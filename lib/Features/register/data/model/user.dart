@@ -15,6 +15,7 @@ class UserModel {
   bool isMale;
 
 //  String image;
+
   UserModel({
     this.id,
     required this.fname,
