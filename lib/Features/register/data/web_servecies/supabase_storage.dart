@@ -10,9 +10,12 @@ class SupabaseStorage implements StorageService {
   Future<String> uploadImageToFirebase(File imageFile, String path) async {
     String fileName = p.basename(imageFile.path);
     String extension = p.extension(imageFile.path);
-    String result = await supabase.client.storage
+    await supabase.client.storage
         .from('true_gym_assets')
         .upload('$path/$fileName.$extension', imageFile);
-    return result;
+    String url = supabase.client.storage
+        .from('true_gym_assets')
+        .getPublicUrl('$path/$fileName.$extension');
+    return url;
   }
 }

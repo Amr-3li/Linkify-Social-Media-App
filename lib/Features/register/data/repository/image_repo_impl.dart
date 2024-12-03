@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
-import 'package:true_gym/core/utils/backend_endpoints.dart';
 import 'package:true_gym/core/errors/failures.dart';
+import 'package:true_gym/core/utils/project_endpoints.dart';
 
 class ImageRepoImpl implements ImageRepo {
   final StorageService storageService;
@@ -15,7 +15,7 @@ class ImageRepoImpl implements ImageRepo {
   Future<Either<Failure, String>> uploadImageToFirebase(File image) async {
     try {
       String url = await storageService.uploadImageToFirebase(
-          image, BackendEndpoints.ImageBath);
+          image, ProjectEndpoints.imageClientBath);
       return Right(url);
     } catch (e) {
       return Left(
