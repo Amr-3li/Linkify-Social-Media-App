@@ -42,8 +42,9 @@ class _ProfileBodyState extends State<ProfileBody> {
             CustomButton(
               title: "Edit Profile",
               color: const Color.fromARGB(159, 165, 165, 165),
-              onTap: () {
-                openDialog();
+              onTap: () async {
+                await openDialog();
+                setState(() {});
               },
             ),
             const SizedBox(height: 20),
