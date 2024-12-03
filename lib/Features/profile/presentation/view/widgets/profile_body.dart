@@ -63,7 +63,9 @@ class _ProfileBodyState extends State<ProfileBody> {
         builder: (context) => AlertDialog(
           content: BlocProvider(
             create: (context) => UserCubit(),
-            child: const DialogBody(),
+            child: DialogBody(
+              user: widget.user,
+            ),
           ),
         ),
       );

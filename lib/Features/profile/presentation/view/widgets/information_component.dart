@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class InformationComponent extends StatelessWidget {
@@ -23,11 +22,18 @@ class InformationComponent extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Row(
         children: [
-          Text(
-            " $type:   $text",
-            style: const TextStyle(fontSize: 18),
+          Expanded(
+            flex: 5,
+            child: Text(
+              " $type:   $text",
+              style: const TextStyle(fontSize: 18),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
           ),
-          const Spacer(),
+          const Spacer(
+            flex: 1,
+          ),
           icon
         ],
       ),

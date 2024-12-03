@@ -4,30 +4,35 @@ import 'package:flutter/material.dart';
 class InputDataWidgit extends StatelessWidget {
   const InputDataWidgit({
     super.key,
-    required this.controller,
     this.isnumber = false,
     this.color = Colors.black,
     required this.title,
     required this.text,
+    required this.onchanged,
   });
   final bool? isnumber;
   final String title, text;
-
-  final TextEditingController controller;
+  final ValueChanged<String>? onchanged;
   final Color? color;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: text,
+      onTapOutside: (event) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      onChanged: (value) {
+        onchanged!(value);
+      },
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter $title';
         }
         return null;
       },
-      controller: controller,
       keyboardType: isnumber! ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
-        labelText: text,
+        labelText: title,
         labelStyle: TextStyle(color: color!),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
