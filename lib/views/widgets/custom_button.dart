@@ -18,21 +18,21 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 50,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 255, 254, 254),
-          boxShadow: [
+        height: 55,
+        decoration: BoxDecoration(
+          color: color,
+          boxShadow: const [
             BoxShadow(
                 color: MyColors.shadowColor,
                 blurRadius: 20,
                 offset: Offset(0, 10))
           ],
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "Edit Profile",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            title,
+            style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
       ),

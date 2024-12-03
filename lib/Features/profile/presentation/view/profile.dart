@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/profile_body.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/core/utils/consts.dart';
 
