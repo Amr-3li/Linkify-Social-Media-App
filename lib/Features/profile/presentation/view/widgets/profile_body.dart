@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/dialog_body.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/profile_information.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
+import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
+import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/core/utils/consts.dart';
 import 'package:true_gym/views/widgets/custom_button.dart';
@@ -48,10 +51,22 @@ class _ProfileBodyState extends State<ProfileBody> {
               },
             ),
             const SizedBox(height: 20),
-            CustomButton(
-              title: "Log Out",
-              color: const Color.fromARGB(171, 112, 8, 1),
-              onTap: () => GoRouter.of(context).push('/editProfilePage'),
+            BlocProvider(
+              create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+              child: BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  return state is SigninLoading
+                      ? const CircularProgressIndicator()
+                      : CustomButton(
+                          title: "Log Out",
+                          color: const Color.fromARGB(171, 112, 8, 1),
+                          onTap: () async {
+                            await BlocProvider.of<AuthCubit>(context).signout();
+                            GoRouter.of(context).push('/loginPage');
+                          },
+                        );
+                },
+              ),
             ),
           ],
         ),
@@ -62,6 +77,8 @@ class _ProfileBodyState extends State<ProfileBody> {
   Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          contentPadding: const EdgeInsets.all(10),
           content: BlocProvider(
             create: (context) => UserCubit(),
             child: DialogBody(
