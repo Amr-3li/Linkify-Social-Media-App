@@ -12,9 +12,17 @@ class SplashBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
-        LottieBuilder.asset("assets/animations/Animation - 1729496229665.json"),
+        SizedBox(
+            height: MediaQuery.of(context).size.width,
+            width: double.infinity,
+            child: LottieBuilder.asset(
+              "assets/animations/dash_animation.json",
+              fit: BoxFit.fill,
+            )),
         AnimatedOpacity(
           opacity: opacity,
           duration: const Duration(milliseconds: 2000),
@@ -23,7 +31,7 @@ class SplashBody extends StatelessWidget {
             "Welcome",
             style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.05,
-              color: const Color(0xff6772E5),
+              color: const Color(0xff00D2C1),
               fontWeight: FontWeight.w900,
             ),
           ),
