@@ -9,6 +9,7 @@ part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
+
   CollectionReference collRef = FirebaseFirestore.instance.collection('Users');
   Future<void> getUserData() async {
     emit(UserLoading());
@@ -36,24 +37,28 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> updateUser(UserModel user) async {
-    emit(UserLoading());
-    try {
-      await collRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
-        'fname': user.fname,
-        'lname': user.lname,
-        'email': user.email,
-        'phone': user.phone,
-        'image': user.image,
-        'last_active': user.lastActive.toIso8601String(),
-        'isPatient': user.isPatient,
-        'weight': user.weight,
-        'height': user.height,
-        'isMale': user.isMale,
-      });
-      emit(UserLoaded(user));
-    } on FirebaseAuthException catch (e) {
-      emit(UserError(e.code.toString()));
-    }
+  getAllUsers() async {
+    // emit(UserLoading());
+    // try {
+    //   QuerySnapshot snapshot = await collRef.get();
+    //   List<UserModel> users = snapshot.docs
+    //       .map((doc) => UserModel.fromJson(doc.data() as Map<String, dynamic>))
+    //       .toList();
+    //   emit(AllUsersLoaded(users));
+    // } catch (e) {
+    //   emit(UserError(e.toString())); // Handle any exception
+    // }
+  }
+  searchUser(String name) async {
+    // emit(UserLoading());
+    // try {
+    //   QuerySnapshot snapshot = await collRef.where('fname', isEqualTo: name).get();
+    //   List<UserModel> users = snapshot.docs
+    //       .map((doc) => UserModel.fromJson(doc.data() as Map<String, dynamic>))
+    //       .toList();
+    //   emit(AllUsersLoaded(users));
+    // } catch (e) {
+    //   emit(UserError(e.toString())); // Handle any exception
+    // }
   }
 }

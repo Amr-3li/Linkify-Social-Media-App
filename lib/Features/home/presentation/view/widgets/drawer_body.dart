@@ -29,7 +29,7 @@ class DrawerBody extends StatelessWidget {
                   child: UserDrawerInformation(
                       name: "${user.fname} ${user.lname}",
                       email: user.email,
-                      image: user.image == null
+                      image: user.image == ""
                           ? 'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'
                           : user.image!));
             } else if (state is UserLoading) {

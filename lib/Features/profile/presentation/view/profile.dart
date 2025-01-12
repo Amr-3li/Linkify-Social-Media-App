@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       CustomAppbarProfile(
                         name: state.user.fname,
-                        image: state.user.image == null
+                        image: state.user.image == ""
                             ? "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png"
                             : state.user.image!,
                       ),

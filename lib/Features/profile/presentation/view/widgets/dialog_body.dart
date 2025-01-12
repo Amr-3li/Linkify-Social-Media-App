@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/profile/presentation/view/widgets/input_data_widgit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 
 class DialogBody extends StatelessWidget {
@@ -105,7 +106,8 @@ class DialogBody extends StatelessWidget {
                             ? const CircularProgressIndicator()
                             : ElevatedButton(
                                 onPressed: () async {
-                                  await BlocProvider.of<UserCubit>(context)
+                                  await BlocProvider.of<UpdateUserCubit>(
+                                          context)
                                       .updateUser(userModel);
                                   Navigator.pop(context);
                                 },

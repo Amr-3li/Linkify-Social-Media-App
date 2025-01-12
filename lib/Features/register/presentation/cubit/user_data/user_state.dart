@@ -15,3 +15,29 @@ final class UserError extends UserState {
   String message;
   UserError(this.message);
 }
+
+//================get all users states============================================
+final class AllUsersLoading extends UserState {}
+
+final class AllUsersLoaded extends UserState {
+  List<UserModel> users;
+  AllUsersLoaded(this.users);
+}
+
+final class AllUsersError extends UserState {
+  String message;
+  AllUsersError(this.message);
+}
+
+//================search user states============================================
+final class SearchUserLoading extends UserState {}
+
+final class SearchUserLoaded extends UserState {
+  List<UserModel> users;
+  SearchUserLoaded(this.users);
+}
+
+final class SearchUserError extends UserState {
+  String message;
+  SearchUserError(this.message);
+}
