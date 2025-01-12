@@ -38,7 +38,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
     var result = await imageRepo.uploadImageToFirebase(image);
     result.fold(
       (l) {
-        emit(UpdateUserError(l.errMessage));
+        emit(UpdateUserImageError(l.toString()));
       },
       (r) async {
         await collRef.doc(FirebaseAuth.instance.currentUser!.uid).update({

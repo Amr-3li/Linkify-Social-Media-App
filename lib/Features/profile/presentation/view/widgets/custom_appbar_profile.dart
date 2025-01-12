@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
+import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
+import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:true_gym/core/utils/consts.dart';
 
 class CustomAppbarProfile extends StatefulWidget {
@@ -20,44 +24,61 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
   File? imageFile;
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      actions: [
-        IconButton(
-          onPressed: () {
-            pickImage();
-          },
-          icon: const Icon(Icons.edit),
-        ),
-      ],
-      backgroundColor: MyColors.appBarColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-      ),
-      floating: true,
-      pinned: true,
-      expandedHeight: 280,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.only(bottom: 10),
-        title: Text(widget.name),
-        centerTitle: true,
-        background: Hero(
-          tag: "profile-page",
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(widget.image),
-                  fit: BoxFit.cover,
-                )),
+    return BlocConsumer<UpdateUserCubit, UpdateUserState>(
+      listener: (context, state) {
+        if (state is UpdateUserImageLoaded) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text("Image updated")));
+        } else if (state is UpdateUserImageError) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        } else if (state is UpdateUserImageLoading) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text("Loading...")));
+        }
+      },
+      builder: (context, state) {
+        return SliverAppBar(
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await pickImage();
+                context.read<UpdateUserCubit>().updateImage(imageFile!);
+              },
+              icon: const Icon(Icons.edit),
+            ),
+          ],
+          backgroundColor: MyColors.appBarColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
           ),
-        ),
-      ),
+          floating: true,
+          pinned: true,
+          expandedHeight: 280,
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: const EdgeInsets.only(bottom: 10),
+            title: Text(widget.name),
+            centerTitle: true,
+            background: Hero(
+              tag: "profile-page",
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage(widget.image),
+                      fit: BoxFit.cover,
+                    )),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
