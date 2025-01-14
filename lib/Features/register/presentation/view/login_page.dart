@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:true_gym/core/utils/icons.dart';
+import 'package:true_gym/core/utils/images.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
 // ignore: must_be_immutable
@@ -28,9 +30,13 @@ class LoginPage extends StatelessWidget {
         return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
+                color: Colors.black,
                 image: DecorationImage(
-                    image: AssetImage("assets/images/gym login.jpg"),
-                    fit: BoxFit.cover)),
+                  image: AssetImage(
+                    MyImages.imagesAppIcon,
+                  ),
+                  opacity: 0.9,
+                )),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -41,7 +47,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(
-                      height: 200,
+                      height: 50,
                     ),
                     const Text(
                       "Login Page",
@@ -51,7 +57,7 @@ class LoginPage extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 100,
+                      height: 30,
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -125,13 +131,14 @@ class LoginPage extends StatelessWidget {
                                 ? const SizedBox()
                                 : signupButton(context),
                             const SizedBox(
-                              height: 200,
+                              height: 20,
                             ),
-                            ElevatedButton(
-                                onPressed: () {},
-                                child: const Row(
-                                  children: [],
-                                ))
+                            state is SigninLoading
+                                ? const SizedBox()
+                                : googleButton(),
+                            const SizedBox(
+                              height: 40,
+                            ),
                           ],
                         ),
                       ),
@@ -143,6 +150,46 @@ class LoginPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  GestureDetector googleButton() {
+    return GestureDetector(
+      onDoubleTap: () {},
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(50),
+              ),
+              color: const Color.fromARGB(135, 143, 143, 143),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Image.asset(
+                  MyIcons.iconsGoogle,
+                  width: 50,
+                ),
+              ),
+              RichText(
+                text: const TextSpan(children: [
+                  TextSpan(
+                      text: "Sign in with ",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  TextSpan(
+                      text: "Google",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))
+                ]),
+              ),
+              const Spacer()
+            ],
+          )),
     );
   }
 

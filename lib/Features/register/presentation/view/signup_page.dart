@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/gym login.jpg"),
+                    image: AssetImage("assets/images/gymlogin.jpg"),
                     fit: BoxFit.cover)),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
