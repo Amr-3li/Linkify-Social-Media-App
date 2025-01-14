@@ -15,17 +15,7 @@ final class SigninFailed extends AuthState {
 
   SigninFailed(this.error);
 }
-// Register states =================================================================
 
-final class RegisterLoading extends AuthState {}
-
-final class RegisterSuccess extends AuthState {}
-
-final class RegisterFailed extends AuthState {
-  final String error; 
-
-  RegisterFailed(this.error);
-}
 // Logout states =================================================================
 
 final class SignoutLoading extends AuthState {}
@@ -38,3 +28,13 @@ final class SignoutFailed extends AuthState {
   SignoutFailed(this.error);
 }
 
+//======== sign in with google ====================
+final class SigninWithGoogleLoading extends AuthState {}
+
+final class SigninWithGoogleSuccess extends AuthState {}
+
+final class SigninWithGoogleFailed extends AuthState {
+  final String error;
+
+  SigninWithGoogleFailed(this.error);
+}

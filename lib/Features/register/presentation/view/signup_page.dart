@@ -115,7 +115,7 @@ class _SignupPageState extends State<SignupPage> {
                                 heightController: heightController,
                                 weightController: weightController,
                                 passwordController: passwordController),
-                            state is RegisterLoading
+                            state is SignUpLoading
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
                                     onPressed: () async {

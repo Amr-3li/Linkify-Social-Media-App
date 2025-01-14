@@ -46,4 +46,19 @@ class AuthCubit extends Cubit<AuthState> {
       },
     );
   }
+
+  Future<void> signInWithGoogle() async {
+    prefs = await SharedPreferences.getInstance();
+    emit(SigninWithGoogleLoading());
+    var result = await authRepository.signInWithGoogle();
+    result.fold(
+      (l) {
+        emit(SigninWithGoogleFailed(l.errMessage));
+      },
+      (r) {
+        emit(SigninWithGoogleSuccess());
+        prefs.setString("uid", "Google User");
+      },
+    );
+  }
 }
