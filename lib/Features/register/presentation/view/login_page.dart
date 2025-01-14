@@ -127,6 +127,11 @@ class LoginPage extends StatelessWidget {
                             const SizedBox(
                               height: 200,
                             ),
+                            ElevatedButton(
+                                onPressed: () {},
+                                child: Row(
+                                  children: [Image.asset("")],
+                                ))
                           ],
                         ),
                       ),
