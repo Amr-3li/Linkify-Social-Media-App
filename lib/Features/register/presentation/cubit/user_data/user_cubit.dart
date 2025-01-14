@@ -10,7 +10,7 @@ part 'user_state.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
 
-  CollectionReference collRef = FirebaseFirestore.instance.collection('Users');
+  CollectionReference collRef = FirebaseFirestore.instance.collection('users');
   Future<void> getUserData() async {
     emit(UserLoading());
     try {

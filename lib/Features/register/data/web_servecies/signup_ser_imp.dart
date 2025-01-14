@@ -5,7 +5,7 @@ import 'package:true_gym/Features/register/data/web_servecies/signup_ser.dart';
 
 class SignupSerImplementation implements SignupService {
   FirebaseAuth auth = FirebaseAuth.instance;
-  CollectionReference collRef = FirebaseFirestore.instance.collection("Users");
+  CollectionReference collRef = FirebaseFirestore.instance.collection("users");
 
   @override
   Future<void> register(UserModel user) async {
@@ -17,10 +17,6 @@ class SignupSerImplementation implements SignupService {
         'fname': user.fname,
         'lname': user.lname,
         'image': user.image,
-        'last_active': user.lastActive.toIso8601String(),
-        'isPatient': user.isPatient,
-        'weight': user.weight,
-        'height': user.height,
         'isMale': user.isMale,
         'uid': userCredential.user!.uid,
         'phone': user.phone,

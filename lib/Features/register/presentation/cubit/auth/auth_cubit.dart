@@ -14,7 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepository authRepository;
 
   FirebaseAuth auth = FirebaseAuth.instance;
-  CollectionReference collRef = FirebaseFirestore.instance.collection("Users");
+  CollectionReference collRef = FirebaseFirestore.instance.collection("users");
   late SharedPreferences prefs;
   Future<void> signin(String email, String password) async {
     prefs = await SharedPreferences.getInstance();

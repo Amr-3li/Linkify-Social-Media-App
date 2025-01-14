@@ -64,24 +64,6 @@ class DialogBody extends StatelessWidget {
               },
             ),
             const SizedBox(height: 20),
-            InputDataWidgit(
-              text: userModel.weight.toString(),
-              title: "weight",
-              isnumber: true,
-              onchanged: (value) {
-                userModel.weight = double.parse(value);
-              },
-            ),
-            const SizedBox(height: 20),
-            InputDataWidgit(
-              text: userModel.height.toString(),
-              title: "hight",
-              isnumber: true,
-              onchanged: (value) {
-                userModel.height = double.parse(value);
-              },
-            ),
-            const SizedBox(height: 20),
             Row(
               children: [
                 Expanded(

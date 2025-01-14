@@ -42,33 +42,7 @@ class ProfileInformation extends StatelessWidget {
             color: user.isMale ? Colors.blue : Colors.pink,
           ),
         ),
-        const SizedBox(height: 20),
-        InformationComponent(
-          type: "hight ",
-          text: user.height.toString(),
-          icon: const Icon(
-            Icons.height,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 20),
-        InformationComponent(
-          type: "weight ",
-          text: user.weight.toString(),
-          icon: const Icon(
-            Icons.accessibility_outlined,
-            color: Colors.green,
-          ),
-        ),
-        const SizedBox(height: 20),
-        InformationComponent(
-          type: "Date ",
-          text: user.lastActive.toString(),
-          icon: const Icon(
-            Icons.calendar_month,
-            color: Colors.black,
-          ),
-        ),
+
         const SizedBox(height: 20),
         // Add more user details here
       ],

@@ -11,7 +11,7 @@ part 'update_user_state.dart';
 class UpdateUserCubit extends Cubit<UpdateUserState> {
   UpdateUserCubit(this.imageRepo) : super(UpdateUserInitial());
   final ImageRepo imageRepo;
-  CollectionReference collRef = FirebaseFirestore.instance.collection('Users');
+  CollectionReference collRef = FirebaseFirestore.instance.collection('users');
   Future<void> updateUser(UserModel user) async {
     emit(UpdateUserImageLoading());
     try {
@@ -21,10 +21,6 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
         'email': user.email,
         'phone': user.phone,
         'image': user.image,
-        'last_active': user.lastActive.toIso8601String(),
-        'isPatient': user.isPatient,
-        'weight': user.weight,
-        'height': user.height,
         'isMale': user.isMale,
       });
       emit(UpdateUserImageLoaded());

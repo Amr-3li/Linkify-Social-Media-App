@@ -8,10 +8,7 @@ class UserModel {
   String password;
   String phone;
   String? image;
-  DateTime lastActive;
-  bool isPatient;
-  double weight;
-  double height;
+
   bool isMale;
 
 //  String image;
@@ -24,10 +21,6 @@ class UserModel {
     required this.password,
     required this.phone,
     this.image,
-    required this.lastActive,
-    required this.isPatient,
-    required this.weight,
-    required this.height,
     required this.isMale,
   });
 
@@ -38,13 +31,9 @@ class UserModel {
       email: json['email'],
       phone: json['phone'],
       image: json['image'] ?? "",
-      lastActive: DateTime.parse(json['last_active']),
-      isPatient: json['isPatient'],
-      weight: json['weight'],
-      height: json['height'],
-      isMale: json['isMale'],
       password: "",
       id: json['id'],
+      isMale: json['isMale'],
     );
   }
 
@@ -55,10 +44,6 @@ class UserModel {
       'email': email,
       'phone': phone,
       'image': image,
-      'last_active': lastActive.toIso8601String(),
-      'isPatient': isPatient,
-      'weight': weight,
-      'height': height,
       'isMale': isMale,
     };
   }

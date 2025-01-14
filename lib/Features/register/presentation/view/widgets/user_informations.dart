@@ -9,11 +9,7 @@ class UserInformations extends StatefulWidget {
     required this.lnameController,
     required this.emailController,
     required this.phoneController,
-    required this.ageController,
-    required this.heightController,
-    required this.weightController,
     required this.passwordController,
-    required this.isTrainer,
     required this.isMale,
     required this.isFemale,
   });
@@ -22,11 +18,9 @@ class UserInformations extends StatefulWidget {
   final TextEditingController lnameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
-  final TextEditingController ageController;
-  final TextEditingController heightController;
-  final TextEditingController weightController;
+
   final TextEditingController passwordController;
-  bool isTrainer, isMale, isFemale;
+  bool isMale, isFemale;
 
   @override
   State<UserInformations> createState() => _UserInformationsState();
@@ -37,22 +31,15 @@ class _UserInformationsState extends State<UserInformations> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        const Row(
           children: [
-            const Text("Iam a Trainer",
+            Text("Iam a Trainer",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold)),
-            const SizedBox(width: 20),
-            Switch(
-              value: widget.isTrainer,
-              onChanged: (value) {
-                widget.isTrainer = value;
-                setState(() {});
-              },
-            ),
-            const SizedBox(height: 20),
+            SizedBox(width: 20),
+            SizedBox(height: 20),
           ],
         ),
         const SizedBox(height: 30),
@@ -77,27 +64,6 @@ class _UserInformationsState extends State<UserInformations> {
             hintText: "phone number",
             isnumber: true),
         const SizedBox(height: 30),
-        widget.isTrainer
-            ? const SizedBox()
-            : InputTextField(
-                controller: widget.ageController,
-                hintText: "age",
-                isnumber: true),
-        widget.isTrainer ? const SizedBox() : const SizedBox(height: 30),
-        widget.isTrainer
-            ? const SizedBox()
-            : InputTextField(
-                controller: widget.heightController,
-                hintText: "height",
-                isnumber: true),
-        widget.isTrainer ? const SizedBox() : const SizedBox(height: 30),
-        widget.isTrainer
-            ? const SizedBox()
-            : InputTextField(
-                controller: widget.weightController,
-                hintText: "weight",
-                isnumber: true),
-        widget.isTrainer ? const SizedBox() : const SizedBox(height: 30),
         InputTextField(
             controller: widget.passwordController,
             hintText: "password",

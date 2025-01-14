@@ -36,12 +36,6 @@ class _SignupPageState extends State<SignupPage> {
 
   TextEditingController phoneController = TextEditingController();
 
-  TextEditingController ageController = TextEditingController();
-
-  TextEditingController heightController = TextEditingController();
-
-  TextEditingController weightController = TextEditingController();
-
   final keyform = GlobalKey<FormState>();
 
   @override
@@ -104,17 +98,14 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             const SizedBox(height: 20),
                             UserInformations(
-                                isFemale: isFemale,
-                                isMale: isMale,
-                                isTrainer: isTrainer,
-                                fnameController: fnameController,
-                                lnameController: lnameController,
-                                emailController: emailController,
-                                phoneController: phoneController,
-                                ageController: ageController,
-                                heightController: heightController,
-                                weightController: weightController,
-                                passwordController: passwordController),
+                              isFemale: isFemale,
+                              isMale: isMale,
+                              fnameController: fnameController,
+                              lnameController: lnameController,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                              phoneController: passwordController,
+                            ),
                             state is SignUpLoading
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
@@ -134,13 +125,7 @@ class _SignupPageState extends State<SignupPage> {
                                                     phone: phoneController.text,
                                                     password:
                                                         passwordController.text,
-                                                    isPatient: !isTrainer,
                                                     isMale: isMale,
-                                                    weight: double.parse(
-                                                        weightController.text),
-                                                    height: double.parse(
-                                                        heightController.text),
-                                                    lastActive: DateTime.now(),
                                                     image: image),
                                                 imageFile);
                                       } on Exception catch (e) {
