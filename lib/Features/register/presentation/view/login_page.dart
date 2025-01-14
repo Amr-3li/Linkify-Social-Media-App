@@ -129,8 +129,8 @@ class LoginPage extends StatelessWidget {
                             ),
                             ElevatedButton(
                                 onPressed: () {},
-                                child: Row(
-                                  children: [Image.asset("")],
+                                child: const Row(
+                                  children: [],
                                 ))
                           ],
                         ),

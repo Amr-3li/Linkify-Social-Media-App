@@ -71,3 +71,12 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
+
+flutter_assets:
+  assets_path:
+    - assets/animations/  
+  output_path: lib/core/utils/
+  filename: animation.dart
+  field_prefix:
+  classname: MyAnimation
+  ignore_comments: true
