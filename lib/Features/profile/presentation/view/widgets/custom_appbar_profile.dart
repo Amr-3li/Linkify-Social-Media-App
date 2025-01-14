@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:true_gym/core/utils/consts.dart';
 
