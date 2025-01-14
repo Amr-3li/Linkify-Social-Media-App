@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is SigninSuccess) {
+        if (state is SigninSuccess || state is SigninWithGoogleSuccess) {
           GoRouter.of(context).push('/initialPage');
         } else if (state is SigninFailed) {
           ScaffoldMessenger.of(context)
@@ -30,13 +30,14 @@ class LoginPage extends StatelessWidget {
         return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
-                color: Colors.black,
-                image: DecorationImage(
-                  image: AssetImage(
-                    MyImages.imagesAppIcon,
-                  ),
-                  opacity: 0.9,
-                )),
+              color: Color.fromARGB(255, 255, 255, 255),
+              // image: DecorationImage(
+              //   image: AssetImage(
+              //     MyImages.imagesAppIcon,
+              //   ),
+              //   opacity: 0.9,
+              // ),
+            ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -52,7 +53,7 @@ class LoginPage extends StatelessWidget {
                     const Text(
                       "Login Page",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 108, 108, 108),
                           fontSize: 60,
                           fontWeight: FontWeight.bold),
                     ),
@@ -95,9 +96,6 @@ class LoginPage extends StatelessWidget {
                                 onPressed: () {},
                               ),
                             ),
-                            const SizedBox(
-                              height: 30,
-                            ),
                             state is SigninLoading
                                 ? const CircularProgressIndicator()
                                 : ElevatedButton(
@@ -127,15 +125,17 @@ class LoginPage extends StatelessWidget {
                             const SizedBox(
                               height: 10,
                             ),
-                            state is SigninLoading
+                            state is SigninLoading ||
+                                    state is SigninWithGoogleLoading
                                 ? const SizedBox()
                                 : signupButton(context),
                             const SizedBox(
                               height: 20,
                             ),
-                            state is SigninLoading
+                            state is SigninLoading ||
+                                    state is SigninWithGoogleLoading
                                 ? const SizedBox()
-                                : googleButton(),
+                                : googleButton(context),
                             const SizedBox(
                               height: 40,
                             ),
@@ -153,9 +153,11 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  GestureDetector googleButton() {
+  GestureDetector googleButton(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {},
+      onDoubleTap: () async {
+        await BlocProvider.of<AuthCubit>(context).signInWithGoogle();
+      },
       child: Container(
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(
@@ -196,6 +198,7 @@ class LoginPage extends StatelessWidget {
   ElevatedButton signupButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        print("prressed");
         GoRouter.of(context).push('/signupPage');
       },
       style: ElevatedButton.styleFrom(

@@ -52,10 +52,11 @@ class _SignupPageState extends State<SignupPage> {
       builder: (context, state) {
         return Scaffold(
           body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/gymlogin.jpg"),
-                    fit: BoxFit.cover)),
+            decoration: const BoxDecoration(color: Colors.white
+                // image: DecorationImage(
+                //     image: AssetImage("assets/images/gymlogin.jpg"),
+                //     fit: BoxFit.cover)
+                ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -69,10 +70,10 @@ class _SignupPageState extends State<SignupPage> {
                       height: 40,
                     ),
                     const Text(
-                      "Sign Up Page",
+                      "SignUp Page",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 55,
+                          color: Color.fromARGB(255, 91, 91, 91),
+                          fontSize: 50,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(

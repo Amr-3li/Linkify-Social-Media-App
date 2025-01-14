@@ -31,18 +31,7 @@ class _UserInformationsState extends State<UserInformations> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Row(
-          children: [
-            Text("Iam a Trainer",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold)),
-            SizedBox(width: 20),
-            SizedBox(height: 20),
-          ],
-        ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 10),
         Row(
           children: [
             Expanded(

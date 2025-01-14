@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/web_servecies/auth_ser.dart';
 
 class AuthWebServiceImplement implements AuthService {
