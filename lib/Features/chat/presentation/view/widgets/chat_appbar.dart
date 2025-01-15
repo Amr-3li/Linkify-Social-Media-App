@@ -11,7 +11,6 @@ class ChatAppbar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: MyColors.appBarColor,
       titleSpacing: 0.0,
-      leading: const SizedBox(),
       title: const Text("Chats", style: TextStyle(fontWeight: FontWeight.bold)),
       elevation: 2,
       floating: true,

@@ -68,7 +68,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Male",
+            const Text("Female",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             const SizedBox(width: 20),
             Checkbox(
@@ -79,7 +79,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Female",
+            const Text("Male",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
           ],
         ),

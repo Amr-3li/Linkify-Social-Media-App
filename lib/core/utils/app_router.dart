@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/Features/calculators/presentation/view/pages/calories_calculator_page.dart';
-import 'package:true_gym/Features/calculators/presentation/view/pages/water_calculator.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart';
 import 'package:true_gym/Features/home/presentation/view/home_page.dart';
+import 'package:true_gym/Features/posts/presentation/view/add_post_page.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
@@ -77,12 +76,8 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/caloriesCalculatorPage',
-        builder: (context, state) => const CaloriesCalculatorPage(),
-      ),
-      GoRoute(
-        path: '/waterCalculatorPage',
-        builder: (context, state) => const WaterCalculator(),
+        path: '/addPost',
+        builder: (context, state) => const AddPostPage(),
       ),
       GoRoute(
         path: '/chatHomePage',
