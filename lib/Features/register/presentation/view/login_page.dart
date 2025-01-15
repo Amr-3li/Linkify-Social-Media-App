@@ -155,7 +155,7 @@ class LoginPage extends StatelessWidget {
 
   GestureDetector googleButton(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () async {
+      onTap: () async {
         await BlocProvider.of<AuthCubit>(context).signInWithGoogle();
       },
       child: Container(
