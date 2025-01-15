@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/core/utils/icons.dart';
-import 'package:true_gym/core/utils/images.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
 
 // ignore: must_be_immutable
@@ -53,19 +52,20 @@ class LoginPage extends StatelessWidget {
                     const Text(
                       "Login Page",
                       style: TextStyle(
-                          color: Color.fromARGB(255, 108, 108, 108),
-                          fontSize: 60,
+                          color: Color.fromARGB(200, 108, 108, 108),
+                          fontSize: 50,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: const Color.fromARGB(190, 20, 20, 20),
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color.fromARGB(100, 20, 20, 20),
                       ),
                       child: Form(
                         key: formKey,
@@ -137,7 +137,7 @@ class LoginPage extends StatelessWidget {
                                 ? const SizedBox()
                                 : googleButton(context),
                             const SizedBox(
-                              height: 40,
+                              height: 50,
                             ),
                           ],
                         ),
@@ -202,9 +202,9 @@ class LoginPage extends StatelessWidget {
         GoRouter.of(context).push('/signupPage');
       },
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(500, 60),
-        animationDuration: const Duration(seconds: 2),
-      ),
+          fixedSize: const Size(500, 60),
+          animationDuration: const Duration(seconds: 2),
+          backgroundColor: const Color.fromARGB(217, 255, 255, 255)),
       child: const Text(
         "Register",
         style: TextStyle(fontSize: 20),

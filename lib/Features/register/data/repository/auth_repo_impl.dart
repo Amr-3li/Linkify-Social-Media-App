@@ -31,8 +31,8 @@ class AuthRepoImpelement implements AuthRepository {
   @override
   Future<Either<Failure, void>> signInWithGoogle() async {
     try {
-      final result = await authservice.signinWithGoogle();
-      return Right(null);
+      await authservice.signinWithGoogle();
+      return const Right(null);
     } catch (e) {
       return Left(ServerFailure("failed to sign in with google"));
     }

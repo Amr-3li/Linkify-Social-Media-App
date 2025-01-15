@@ -72,19 +72,20 @@ class _SignupPageState extends State<SignupPage> {
                     const Text(
                       "SignUp Page",
                       style: TextStyle(
-                          color: Color.fromARGB(255, 91, 91, 91),
-                          fontSize: 50,
+                          color: Color.fromARGB(200, 91, 91, 91),
+                          fontSize: 45,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 40,
                     ),
                     Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: const Color.fromARGB(190, 20, 20, 20),
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color.fromARGB(100, 20, 20, 20),
                       ),
                       child: Form(
                         key: keyform,
@@ -104,7 +105,7 @@ class _SignupPageState extends State<SignupPage> {
                               lnameController: lnameController,
                               emailController: emailController,
                               passwordController: passwordController,
-                              phoneController: passwordController,
+                              phoneController: phoneController,
                             ),
                             state is SignUpLoading
                                 ? const CircularProgressIndicator()
@@ -156,7 +157,7 @@ class _SignupPageState extends State<SignupPage> {
                                   Navigator.pop(context);
                                 }),
                             const SizedBox(
-                              height: 200,
+                              height: 50,
                             ),
                           ],
                         ),

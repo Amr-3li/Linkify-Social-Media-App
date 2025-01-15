@@ -7,7 +7,6 @@ import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 
 class DialogBody extends StatelessWidget {
   const DialogBody({super.key, required this.user});
