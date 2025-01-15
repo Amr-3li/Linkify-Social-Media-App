@@ -57,7 +57,7 @@ class AuthCubit extends Cubit<AuthState> {
       },
       (r) {
         emit(SigninWithGoogleSuccess());
-        prefs.setString("uid", "Google User");
+        prefs.setString("uid", "google");
       },
     );
   }
