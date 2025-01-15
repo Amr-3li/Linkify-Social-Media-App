@@ -39,13 +39,13 @@ class AuthWebServiceImplement implements AuthService {
     var data = snapshot.data();
     if (data == null) {
       await refs.doc(userCredential.user!.uid).set({
-        'email': userCredential.user?.email,
-        'fname': userCredential.user?.displayName?.split(' ')[0],
-        'lname': userCredential.user?.displayName?.split(' ')[1],
-        'image': userCredential.user?.photoURL,
+        'email': userCredential.user?.email ?? "",
+        'fname': userCredential.user?.displayName?.split(' ')[0] ?? "",
+        'lname': userCredential.user?.displayName?.split(' ')[1] ?? "",
+        'image': userCredential.user?.photoURL ?? "",
         'isMale': true,
-        'uid': id,
-        'phone': userCredential.user?.phoneNumber,
+        'uid': id ?? "",
+        'phone': userCredential.user?.phoneNumber ?? "",
       });
     } else {
       print("the user already exist");
