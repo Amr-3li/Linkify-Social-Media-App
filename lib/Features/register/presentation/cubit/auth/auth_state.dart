@@ -38,3 +38,14 @@ final class SigninWithGoogleFailed extends AuthState {
 
   SigninWithGoogleFailed(this.error);
 }
+
+//==============reset password ===================
+final class ResetPasswordLoading extends AuthState {}
+
+final class ResetPasswordSuccess extends AuthState {}
+
+final class ResetPasswordfaild extends AuthState {
+  final String error;
+
+  ResetPasswordfaild({required this.error});
+}
