@@ -23,6 +23,12 @@ class LoginPage extends StatelessWidget {
         } else if (state is SigninFailed) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error.toString())));
+        } else if (state is ResetPasswordSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("the password reset successfully")));
+        } else if (state is ResetPasswordfaild) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("reset password faild")));
         }
       },
       builder: (context, state) {
@@ -93,7 +99,9 @@ class LoginPage extends StatelessWidget {
                                   "forget password?",
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  GoRouter.of(context).push("/forgotPassword");
+                                },
                               ),
                             ),
                             state is SigninLoading

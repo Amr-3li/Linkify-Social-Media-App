@@ -60,14 +60,15 @@ class AuthCubit extends Cubit<AuthState> {
         prefs.setString("uid", "google");
       },
     );
-    Future<void> resetPassword(String email) async {
-      emit(ResetPasswordLoading());
-      try {
-        await auth.sendPasswordResetEmail(email: email);
-        emit(ResetPasswordSuccess());
-      } catch (e) {
-        emit(ResetPasswordfaild(error: e.toString()));
-      }
+  }
+
+  Future<void> resetePassword(String email) async {
+    emit(ResetPasswordLoading());
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      emit(ResetPasswordSuccess());
+    } catch (e) {
+      emit(ResetPasswordfaild(error: e.toString()));
     }
   }
 }

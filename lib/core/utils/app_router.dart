@@ -12,6 +12,7 @@ import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/Features/register/presentation/view/forgot_password_page.dart';
 import 'package:true_gym/Features/register/presentation/view/login_page.dart';
 import 'package:true_gym/Features/register/presentation/view/signup_page.dart';
 import 'package:true_gym/Features/settings/presentation/view/settings.dart';
@@ -53,6 +54,13 @@ abstract class AppRouter {
             create: (context) => UserCubit(),
           ),
         ], child: const SignupPage()),
+      ),
+      GoRoute(
+        path: '/forgotPassword',
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+          child: const ForgotPasswordPage(),
+        ),
       ),
       GoRoute(
         path: '/homePage',
