@@ -6,6 +6,7 @@ import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_informations.dart';
+import 'package:true_gym/views/widgets/snack_bar_widget.dart';
 
 // ignore: must_be_immutable
 class SignupPage extends StatefulWidget {
@@ -42,11 +43,10 @@ class _SignupPageState extends State<SignupPage> {
     return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          showSnackBar("User created successfully");
+          SnackBarWidget.showSnack(context, "User created successfully");
           Navigator.pop(context);
         } else if (state is SignUpError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message.toString())));
+          SnackBarWidget.showSnack(context, state.message);
         }
       },
       builder: (context, state) {
@@ -130,7 +130,8 @@ class _SignupPageState extends State<SignupPage> {
                                                     image: image),
                                                 imageFile);
                                       } on Exception catch (e) {
-                                        showSnackBar(e.toString());
+                                        SnackBarWidget.showSnack(
+                                            context, e.toString());
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -171,10 +172,5 @@ class _SignupPageState extends State<SignupPage> {
         );
       },
     );
-  }
-
-  void showSnackBar(String message) {
-    final snackBar = SnackBar(content: Text(message));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

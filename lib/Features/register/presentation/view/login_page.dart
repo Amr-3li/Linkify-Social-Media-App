@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/core/utils/icons.dart';
 import 'package:true_gym/views/widgets/input_text.dart';
+import 'package:true_gym/views/widgets/snack_bar_widget.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
@@ -21,14 +22,11 @@ class LoginPage extends StatelessWidget {
         if (state is SigninSuccess || state is SigninWithGoogleSuccess) {
           GoRouter.of(context).push('/initialPage');
         } else if (state is SigninFailed) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.error.toString())));
+          SnackBarWidget.showSnack(context, state.error);
         } else if (state is ResetPasswordSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("the password reset successfully")));
+          SnackBarWidget.showSnack(context, "the password reset successfully");
         } else if (state is ResetPasswordfaild) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("reset password faild")));
+          SnackBarWidget.showSnack(context, "reset password faild");
         }
       },
       builder: (context, state) {
