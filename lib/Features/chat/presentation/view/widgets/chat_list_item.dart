@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/chat_item_model.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 
 class ChatListItem extends StatelessWidget {
   const ChatListItem({

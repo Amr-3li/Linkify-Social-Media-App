@@ -6,7 +6,7 @@ import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

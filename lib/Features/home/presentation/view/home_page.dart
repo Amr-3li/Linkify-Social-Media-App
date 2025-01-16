@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/home_drawer.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 import 'package:true_gym/core/utils/lists.dart';
 
 class HomePage extends StatefulWidget {
@@ -51,15 +51,14 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
       height: 52,
-      decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-          borderRadius: const BorderRadius.all(Radius.circular(30)),
+      decoration: const BoxDecoration(
+          color: Color.fromARGB(125, 0, 0, 0),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
           boxShadow: [
             BoxShadow(
-                color:
-                    const Color.fromARGB(255, 100, 100, 100).withOpacity(0.9),
+                color: Color.fromARGB(255, 100, 100, 100),
                 blurRadius: 10,
-                offset: const Offset(0, 12),
+                offset: Offset(0, 12),
                 blurStyle: BlurStyle.normal)
           ]),
       child: Row(

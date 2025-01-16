@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

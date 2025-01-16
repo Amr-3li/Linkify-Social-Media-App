@@ -85,7 +85,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/addPost',
-        builder: (context, state) => const AddPostPage(),
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider(create: (context) => UserCubit()..getUserData()),
+          // BlocProvider(create: (context) =>),
+        ], child: const AddPostPage()),
       ),
       GoRoute(
         path: '/chatHomePage',

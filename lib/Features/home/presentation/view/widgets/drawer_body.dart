@@ -6,7 +6,7 @@ import 'package:true_gym/Features/home/presentation/view/widgets/user_drawer_inf
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 
 class DrawerBody extends StatelessWidget {
   const DrawerBody({

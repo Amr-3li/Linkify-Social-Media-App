@@ -8,7 +8,7 @@ import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/core/utils/consts.dart';
+import 'package:true_gym/core/constants/consts.dart';
 import 'package:true_gym/views/widgets/custom_button.dart';
 
 class ProfileBody extends StatefulWidget {
