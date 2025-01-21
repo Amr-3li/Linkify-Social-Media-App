@@ -177,7 +177,7 @@ class LoginPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
-                  MyIcons.iconsGoogle,
+                  MyIcons.iconsGoogle2702602,
                   width: 50,
                 ),
               ),

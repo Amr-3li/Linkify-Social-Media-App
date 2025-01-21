@@ -72,6 +72,24 @@ flutter_launcher_icons:
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
 
+flutter_assets:
+  assets_path:
+    - assets/icons/  
+  output_path: lib/core/constants/
+  filename: icons.dart
+  field_prefix:
+  classname: MyIcons
+  ignore_comments: true
+
+# flutter_assets:
+#   assets_path:
+#     - assets/images/  
+#   output_path: lib/core/utils/
+#   filename: images.dart
+#   field_prefix:
+#   classname: MyImages
+#   ignore_comments: true
+
 # flutter_assets:
 #   assets_path:
 #     - assets/animations/  
