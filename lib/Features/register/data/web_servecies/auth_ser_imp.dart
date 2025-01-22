@@ -18,7 +18,11 @@ class AuthWebServiceImplement implements AuthService {
 
   @override
   Future<void> signout() async {
-    await auth.signOut();
+    if (await GoogleSignIn().isSignedIn()) {
+      await GoogleSignIn().signOut();
+    } else {
+      await auth.signOut();
+    }
   }
 
   CollectionReference refs = FirebaseFirestore.instance.collection("users");
