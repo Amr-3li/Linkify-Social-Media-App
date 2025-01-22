@@ -18,6 +18,7 @@ class SignupSerImplementation implements SignupService {
         'lname': user.lname,
         'image': user.image,
         'isMale': user.isMale,
+        'isActive': true,
         'uid': userCredential.user!.uid,
         'phone': user.phone,
       });

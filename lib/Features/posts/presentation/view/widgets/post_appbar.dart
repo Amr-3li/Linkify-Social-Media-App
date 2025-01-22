@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/core/constants/consts.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PostAppBar({super.key});
@@ -9,6 +10,7 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: MyColors.appBarColor,
       leadingWidth: double.infinity,
       leading: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {

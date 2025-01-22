@@ -8,32 +8,33 @@ class UserModel {
   String password;
   String phone;
   String? image;
-
   bool isMale;
+  bool isActive;
 
 //  String image;
 
-  UserModel({
-    this.id,
-    required this.fname,
-    required this.lname,
-    required this.email,
-    required this.password,
-    required this.phone,
-    this.image,
-    required this.isMale,
-  });
+  UserModel(
+      {this.id,
+      required this.fname,
+      required this.lname,
+      required this.email,
+      required this.password,
+      required this.phone,
+      this.image,
+      required this.isMale,
+      required this.isActive});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      fname: json['fname'],
-      lname: json['lname'],
-      email: json['email'],
-      phone: json['phone'],
+      fname: json['fname'] ?? "",
+      lname: json['lname'] ?? "",
+      email: json['email'] ?? "",
+      phone: json['phone'] ?? "",
       image: json['image'] ?? "",
       password: "",
-      id: json['id'],
-      isMale: json['isMale'],
+      id: json['id'] ?? "",
+      isMale: json['isMale'] ?? "",
+      isActive: json['isActive'] ?? false,
     );
   }
 
@@ -45,6 +46,7 @@ class UserModel {
       'phone': phone,
       'image': image,
       'isMale': isMale,
+      'isActive': isActive,
     };
   }
 }

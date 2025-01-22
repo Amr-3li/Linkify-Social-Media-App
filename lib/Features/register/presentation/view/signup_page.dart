@@ -127,7 +127,8 @@ class _SignupPageState extends State<SignupPage> {
                                                     password:
                                                         passwordController.text,
                                                     isMale: isMale,
-                                                    image: image),
+                                                    image: image,
+                                                    isActive: true),
                                                 imageFile);
                                       } on Exception catch (e) {
                                         SnackBarWidget.showSnack(

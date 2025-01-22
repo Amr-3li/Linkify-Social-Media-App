@@ -44,6 +44,7 @@ class AuthWebServiceImplement implements AuthService {
         'lname': userCredential.user?.displayName?.split(' ')[1] ?? "",
         'image': userCredential.user?.photoURL ?? "",
         'isMale': true,
+        'isActive': true,
         'uid': id ?? "",
         'phone': userCredential.user?.phoneNumber ?? "",
       });
