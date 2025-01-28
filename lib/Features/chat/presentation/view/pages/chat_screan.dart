@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
+import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container_body.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/text_message_container.dart';
 import 'package:true_gym/core/constants/consts.dart';
 
@@ -26,26 +28,8 @@ class ChatScrean extends StatelessWidget {
                 },
               ),
             ),
-            const InputMessageContainer(),
+            const InputMessageContainerBody(),
           ],
         ));
-  }
-}
-
-class InputMessageContainer extends StatelessWidget {
-  const InputMessageContainer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(200, 114, 114, 114),
-      ),
-    );
   }
 }
