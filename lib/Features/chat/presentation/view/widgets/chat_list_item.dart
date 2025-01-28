@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/chat/data/model/chat_item_model.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';

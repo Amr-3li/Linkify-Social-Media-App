@@ -11,11 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   late PageController pageController;
   @override
   void initState() {
-    pageController = PageController(initialPage: 0);
+    pageController = PageController(initialPage: 1);
     super.initState();
   }
 
