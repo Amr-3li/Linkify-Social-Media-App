@@ -25,7 +25,9 @@ class ChatScrean extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return TextMaessageContainer(
                       message: MessageModel(
-                          msg: "asdasd",
+                          msg:
+                              "asdaasdfasdf asdf sadf asdf asdf asd fasd fas dfa sd fsad fasd fasd fasd fas df asf asdf dsaf asd   gasf sad dsfsd",
+                          imageUrl: "",
                           fromId: "adas",
                           toId: "asdasd",
                           lastMessage: "asdasdasd",
