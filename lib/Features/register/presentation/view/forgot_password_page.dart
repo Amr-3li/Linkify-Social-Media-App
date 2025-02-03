@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/views/widgets/input_text.dart';
+import 'package:true_gym/core/widgets/input_text.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});

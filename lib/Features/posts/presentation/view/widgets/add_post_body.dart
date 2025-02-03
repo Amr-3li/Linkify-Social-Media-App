@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/posts/presentation/view/widgets/add_post_image.dart';
 import 'package:true_gym/Features/posts/presentation/view/widgets/post_text_field.dart';
-import 'package:true_gym/views/widgets/custom_button.dart';
+import 'package:true_gym/core/widgets/custom_button.dart';
 
 class AddPostBody extends StatelessWidget {
   const AddPostBody({

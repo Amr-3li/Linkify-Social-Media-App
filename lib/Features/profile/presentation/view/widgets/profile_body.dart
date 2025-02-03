@@ -9,7 +9,7 @@ import 'package:true_gym/get_it.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/core/constants/consts.dart';
-import 'package:true_gym/views/widgets/custom_button.dart';
+import 'package:true_gym/core/widgets/custom_button.dart';
 
 class ProfileBody extends StatefulWidget {
   const ProfileBody({super.key, required this.user});

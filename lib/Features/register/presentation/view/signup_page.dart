@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_image.dart';
 import 'package:true_gym/Features/register/presentation/view/widgets/user_informations.dart';
-import 'package:true_gym/views/widgets/snack_bar_widget.dart';
+import 'package:true_gym/core/widgets/snack_bar_widget.dart';
 
 // ignore: must_be_immutable
 class SignupPage extends StatefulWidget {

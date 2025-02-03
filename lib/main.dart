@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:true_gym/get_it.dart';
 import 'package:true_gym/core/utils/app_router.dart';
 import 'package:true_gym/core/utils/project_endpoints.dart';
 import 'package:true_gym/firebase_options.dart';
