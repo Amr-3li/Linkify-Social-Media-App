@@ -1,7 +1,7 @@
 class MessageModel {
   final String fromId;
   final String toId;
-  final String lastMessage;
+  final bool lastMessage;
   final String time;
   final String? imageUrl;
   final String? msg;
@@ -25,5 +25,17 @@ class MessageModel {
       unreadCount: json['unreadCount'],
       toId: json['toId'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'fromId': fromId,
+      'toId': toId,
+      'LastMessage': lastMessage,
+      'time': time,
+      'imageUrl': imageUrl ?? "",
+      'message': msg ?? "",
+      'unreadCount': unreadCount,
+    };
   }
 }

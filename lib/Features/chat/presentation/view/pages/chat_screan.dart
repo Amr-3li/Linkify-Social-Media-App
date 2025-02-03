@@ -30,7 +30,7 @@ class ChatScrean extends StatelessWidget {
                           imageUrl: "",
                           fromId: "adas",
                           toId: "asdasd",
-                          lastMessage: "asdasdasd",
+                          lastMessage: true,
                           time: "asdas",
                           unreadCount: 5),
                     );
