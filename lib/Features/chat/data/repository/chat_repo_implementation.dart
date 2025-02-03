@@ -8,7 +8,7 @@ import 'package:true_gym/core/errors/failures.dart';
 class ChatRepoImplementation extends ChatRepo {
   final ChatSer chatSer;
 
-  ChatRepoImplementation({required this.chatSer});
+  ChatRepoImplementation(this.chatSer);
   @override
   Either<Failure, Stream<QuerySnapshot<Map<String, dynamic>>>> getAllMessage(
       UserModel toUser) {

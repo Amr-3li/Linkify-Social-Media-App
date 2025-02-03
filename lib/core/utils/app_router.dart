@@ -8,7 +8,7 @@ import 'package:true_gym/Features/profile/presentation/view/profile.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
-import 'package:true_gym/Features/register/data/web_servecies/get_it_ser.dart';
+import 'package:true_gym/get_it.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';

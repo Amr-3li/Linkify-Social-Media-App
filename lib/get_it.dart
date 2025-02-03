@@ -1,4 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
+import 'package:true_gym/Features/chat/data/repository/chat_repo_implementation.dart';
+import 'package:true_gym/Features/chat/data/web_services/chat_ser.dart';
+import 'package:true_gym/Features/chat/data/web_services/chat_ser_implement.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo_impl.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
@@ -13,7 +17,9 @@ import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
 import 'package:true_gym/Features/register/data/web_servecies/supabase_storage.dart';
 
 final gitItAuth = GetIt.instance;
+final gitItChat = GetIt.instance;
 void setUpGitIt() {
+  //======================== Auth ===================================
   gitItAuth.registerSingleton<AuthService>(AuthWebServiceImplement());
   gitItAuth.registerSingleton<AuthRepository>(
       AuthRepoImpelement(gitItAuth<AuthService>()));
@@ -23,4 +29,10 @@ void setUpGitIt() {
   gitItAuth.registerSingleton<StorageService>(SupabaseStorage());
   gitItAuth
       .registerSingleton<ImageRepo>(ImageRepoImpl(gitItAuth<StorageService>()));
+
+  //======================= chat==============================================
+
+  gitItChat.registerSingleton<ChatSer>(ChatSerImplement());
+  gitItChat.registerSingleton<ChatRepo>(
+      ChatRepoImplementation(gitItChat<ChatSer>()));
 }

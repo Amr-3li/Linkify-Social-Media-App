@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/core/constants/consts.dart';
@@ -12,7 +13,10 @@ class TextMaessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _toMessage();
+    // ignore: unrelated_type_equality_checks
+    return FirebaseAuth.instance.currentUser == message.fromId
+        ? _fromMessage()
+        : _toMessage();
   }
 
   Widget _fromMessage() {
