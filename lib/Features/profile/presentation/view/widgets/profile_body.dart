@@ -5,11 +5,11 @@ import 'package:true_gym/Features/profile/presentation/view/widgets/dialog_body.
 import 'package:true_gym/Features/profile/presentation/view/widgets/profile_information.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
-import 'package:true_gym/get_it.dart';
 import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:true_gym/core/constants/consts.dart';
 import 'package:true_gym/core/widgets/custom_button.dart';
+import 'package:true_gym/get_it.dart';
 
 class ProfileBody extends StatefulWidget {
   const ProfileBody({super.key, required this.user});
@@ -52,7 +52,7 @@ class _ProfileBodyState extends State<ProfileBody> {
             ),
             const SizedBox(height: 20),
             BlocProvider(
-              create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+              create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
               child: BlocBuilder<AuthCubit, AuthState>(
                 builder: (context, state) {
                   return state is SigninLoading

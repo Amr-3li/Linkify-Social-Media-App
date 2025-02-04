@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       BlocProvider(
                         create: (context) =>
-                            UpdateUserCubit(gitItAuth<ImageRepo>()),
+                            UpdateUserCubit(gitItInstanse<ImageRepo>()),
                         child: CustomAppbarProfile(
                           name: state.user.fname,
                           image: state.user.image == ""

@@ -37,7 +37,7 @@ abstract class AppRouter {
       GoRoute(
         path: '/loginPage',
         builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+          create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
           child: const LoginPage(),
         ),
       ),
@@ -46,8 +46,8 @@ abstract class AppRouter {
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
             create: (context) => SignUpCupit(
-              gitItAuth.get<ImageRepo>(),
-              gitItAuth.get<SignupRepo>(),
+              gitItInstanse.get<ImageRepo>(),
+              gitItInstanse.get<SignupRepo>(),
             ),
           ),
           BlocProvider(
@@ -58,7 +58,7 @@ abstract class AppRouter {
       GoRoute(
         path: '/forgotPassword',
         builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+          create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
           child: const ForgotPasswordPage(),
         ),
       ),
@@ -67,7 +67,7 @@ abstract class AppRouter {
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => AuthCubit(gitItAuth<AuthRepository>()),
+              create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
             ),
             BlocProvider(
               create: (_) => UserCubit()..getUserData(),

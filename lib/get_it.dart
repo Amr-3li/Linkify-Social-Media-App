@@ -16,23 +16,23 @@ import 'package:true_gym/Features/register/data/web_servecies/signup_ser_imp.dar
 import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
 import 'package:true_gym/Features/register/data/web_servecies/supabase_storage.dart';
 
-final gitItAuth = GetIt.instance;
-final gitItChat = GetIt.instance;
+final gitItInstanse = GetIt.instance;
+
 void setUpGitIt() {
   //======================== Auth ===================================
-  gitItAuth.registerSingleton<AuthService>(AuthWebServiceImplement());
-  gitItAuth.registerSingleton<AuthRepository>(
-      AuthRepoImpelement(gitItAuth<AuthService>()));
-  gitItAuth.registerSingleton<SignupService>(SignupSerImplementation());
-  gitItAuth.registerSingleton<SignupRepo>(
-      SignupRepoImplement(gitItAuth<SignupService>()));
-  gitItAuth.registerSingleton<StorageService>(SupabaseStorage());
-  gitItAuth
-      .registerSingleton<ImageRepo>(ImageRepoImpl(gitItAuth<StorageService>()));
+  gitItInstanse.registerSingleton<AuthService>(AuthWebServiceImplement());
+  gitItInstanse.registerSingleton<AuthRepository>(
+      AuthRepoImpelement(gitItInstanse<AuthService>()));
+  gitItInstanse.registerSingleton<SignupService>(SignupSerImplementation());
+  gitItInstanse.registerSingleton<SignupRepo>(
+      SignupRepoImplement(gitItInstanse<SignupService>()));
+  gitItInstanse.registerSingleton<StorageService>(SupabaseStorage());
+  gitItInstanse.registerSingleton<ImageRepo>(
+      ImageRepoImpl(gitItInstanse<StorageService>()));
 
   //======================= chat==============================================
 
-  gitItChat.registerSingleton<ChatSer>(ChatSerImplement());
-  gitItChat.registerSingleton<ChatRepo>(
-      ChatRepoImplementation(gitItChat<ChatSer>()));
+  gitItInstanse.registerSingleton<ChatSer>(ChatSerImplement());
+  gitItInstanse.registerSingleton<ChatRepo>(
+      ChatRepoImplementation(gitItInstanse<ChatSer>()));
 }
