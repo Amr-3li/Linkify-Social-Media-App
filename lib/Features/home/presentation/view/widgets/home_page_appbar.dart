@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/core/constants/consts.dart';
+import 'package:true_gym/core/constants/colors.dart';
 
 class HomePageAppBar extends StatelessWidget {
   const HomePageAppBar({

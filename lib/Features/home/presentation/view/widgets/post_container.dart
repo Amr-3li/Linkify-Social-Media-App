@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/home/data/Models/post.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:true_gym/Features/home/presentation/view/widgets/post_header.dart';
-import 'package:true_gym/core/constants/consts.dart';
+import 'package:true_gym/core/constants/colors.dart';
 
 class PostContainer extends StatelessWidget {
   const PostContainer({

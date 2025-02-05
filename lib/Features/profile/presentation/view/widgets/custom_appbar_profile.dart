@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
-import 'package:true_gym/core/constants/consts.dart';
+import 'package:true_gym/core/constants/colors.dart';
 
 class CustomAppbarProfile extends StatefulWidget {
   const CustomAppbarProfile({

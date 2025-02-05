@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:true_gym/core/utils/app_router.dart';
 import 'package:true_gym/core/utils/project_endpoints.dart';
 import 'package:true_gym/firebase_options.dart';
+import 'package:true_gym/get_it.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ Future<void> main() async {
   await Supabase.initialize(
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
-
+  setUpGitIt();
   runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
 }
 

@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
-import 'package:true_gym/Features/chat/presentation/view/pages/chat_screan.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:true_gym/Features/home/presentation/view/home_page.dart';
 import 'package:true_gym/Features/posts/presentation/view/add_post_page.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
@@ -94,10 +96,10 @@ abstract class AppRouter {
         path: '/chatHomePage',
         builder: (context, state) => const ChatHomePage(),
       ),
-      GoRoute(
-        path: '/chatScrean',
-        builder: (context, state) => const ChatScrean(),
-      ),
+      // GoRoute(
+      //   path: '/chatScrean',
+      //   builder: (context, state) => const ChatPage(toUser: UserModel(),),
+      // ),
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsPage(),

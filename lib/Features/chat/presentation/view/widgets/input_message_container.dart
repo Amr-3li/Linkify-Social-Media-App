@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/constants/consts.dart';
+import 'package:true_gym/core/constants/colors.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({

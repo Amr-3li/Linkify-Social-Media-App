@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/constants/consts.dart';
+import 'package:true_gym/core/constants/colors.dart';
 
 class ChatItemTrailingComponent extends StatelessWidget {
   const ChatItemTrailingComponent({

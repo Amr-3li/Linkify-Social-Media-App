@@ -13,7 +13,6 @@ class ChatHomeBody extends StatefulWidget {
 class _ChatHomeBodyState extends State<ChatHomeBody> {
   @override
   Widget build(BuildContext context) {
-    
     List<UserModel> users = [];
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection("users").snapshots(),
@@ -24,21 +23,15 @@ class _ChatHomeBodyState extends State<ChatHomeBody> {
           users = data?.map((e) => UserModel.fromJson(e.data())).toList() ?? [];
         }
         if (users.isEmpty) {
-          return const Center(child: const Text("not user exist"));
+          return const Center(child: Text("not user exist"));
         }
         return ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
-            return ChatListItem(chatItem: users[index]);
+            return ChatListItem(toUser: users[index]);
           },
         );
       },
-      // child: ListView.builder(
-      //   itemCount: chatItemsTest.length,
-      //   itemBuilder: (context, index) {
-      //     return ChatListItem(chatItem: chatItemsTest[index]);
-      //   },
-      // ),
     );
   }
 }
