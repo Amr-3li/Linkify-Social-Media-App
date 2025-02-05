@@ -1,12 +1,16 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/cubit/chat_cubit.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/constants/colors.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({
     super.key,
+    required this.toUser,
   });
-
+  final UserModel toUser;
   @override
   State<InputMessageContainer> createState() => _InputMessageContainerState();
 }
@@ -56,10 +60,14 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
         textEditingController.text == ""
             ? const SizedBox()
             : IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<ChatCubit>(context)
+                      .sendMessage(widget.toUser, textEditingController.text);
+                  textEditingController.clear();
+                },
                 icon: const Icon(
                   Icons.send,
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 68, 126, 121),
                   size: 30,
                 ))
       ],

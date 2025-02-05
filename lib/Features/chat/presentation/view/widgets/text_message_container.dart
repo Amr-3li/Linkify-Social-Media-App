@@ -34,6 +34,7 @@ class TextMaessageContainer extends StatelessWidget {
                     topRight: Radius.circular(15),
                   )),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   message.imageUrl != ""
                       ? InkWell(
@@ -79,6 +80,7 @@ class TextMaessageContainer extends StatelessWidget {
                     topRight: Radius.circular(15),
                   )),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   message.imageUrl != ""
                       ? InkWell(

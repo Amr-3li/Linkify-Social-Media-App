@@ -17,11 +17,18 @@ class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: MyColors.appBarColor,
-      centerTitle: true,
+      titleSpacing: 0,
       title: Row(
         children: [
-          CachedNetworkImage(imageUrl: image ?? Constants.defaultUserImage),
-          Text(name),
+          ClipOval(
+              child: CachedNetworkImage(
+            imageUrl: image != "" ? image! : Constants.defaultUserImage,
+            width: 40,
+          )),
+          const SizedBox(width: 8),
+          Text(name,
+              style:
+                  const TextStyle(fontSize: 19, fontWeight: FontWeight.w500)),
         ],
       ),
     );

@@ -4,11 +4,14 @@ import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/cubit/chat_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/text_message_container.dart';
+import 'package:true_gym/Features/register/data/model/user.dart';
 
 class ChatPageBody extends StatelessWidget {
   const ChatPageBody({
     super.key,
+    required this.toUser,
   });
+  final UserModel toUser;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class ChatPageBody extends StatelessWidget {
             },
           ),
         ),
-        const InputMessageContainer(),
+        InputMessageContainer(toUser: toUser),
       ],
     );
   }
