@@ -1,7 +1,8 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/cubit/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/constants/colors.dart';
 
@@ -61,7 +62,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
             ? const SizedBox()
             : IconButton(
                 onPressed: () {
-                  BlocProvider.of<ChatCubit>(context)
+                  BlocProvider.of<SendMessageCubit>(context)
                       .sendMessage(widget.toUser, textEditingController.text);
                   textEditingController.clear();
                 },

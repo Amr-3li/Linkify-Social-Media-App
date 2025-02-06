@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/cubit/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
@@ -35,10 +36,14 @@ class ChatListItem extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return BlocProvider(
-            create: (context) => ChatCubit(gitItInstanse<ChatRepo>()),
-            child: ChatPage(toUser: toUser),
-          );
+          return MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => ChatCubit(gitItInstanse<ChatRepo>()),
+            ),
+            BlocProvider(
+              create: (context) => SendMessageCubit(gitItInstanse<ChatRepo>()),
+            )
+          ], child: ChatPage(toUser: toUser));
         }));
       },
     );

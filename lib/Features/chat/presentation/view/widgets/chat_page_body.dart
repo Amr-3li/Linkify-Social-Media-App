@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/cubit/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/text_message_container.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 
-class ChatPageBody extends StatelessWidget {
+class ChatPageBody extends StatefulWidget {
   const ChatPageBody({
     super.key,
     required this.toUser,
   });
   final UserModel toUser;
+
+  @override
+  State<ChatPageBody> createState() => _ChatPageBodyState();
+}
+
+class _ChatPageBodyState extends State<ChatPageBody> {
+  @override
+  void initState() {
+    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +32,14 @@ class ChatPageBody extends StatelessWidget {
             builder: (context, state) {
               if (state is GetAllMessageLoading) {
                 return const Center(child: CircularProgressIndicator());
+              }
+              if (state is GetAllMessageFaild) {
+                return const Center(
+                    child: Icon(
+                  Icons.do_not_disturb_outlined,
+                  size: 40,
+                  color: Colors.red,
+                ));
               } else if (state is GetAllMessageSuccess) {
                 return StreamBuilder(
                   stream: state.messages,
@@ -45,14 +63,13 @@ class ChatPageBody extends StatelessWidget {
                     );
                   },
                 );
-              } else if (state is GetAllMessageFaild) {
-                return Center(child: Text(state.message));
+              } else {
+                return const Center(child: Text("No messages yet"));
               }
-              return const Center(child: Text("Start a conversation"));
             },
           ),
         ),
-        InputMessageContainer(toUser: toUser),
+        InputMessageContainer(toUser: widget.toUser),
       ],
     );
   }

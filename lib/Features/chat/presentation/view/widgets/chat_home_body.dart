@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_list_item.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
@@ -28,7 +29,10 @@ class _ChatHomeBodyState extends State<ChatHomeBody> {
         return ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
-            return ChatListItem(toUser: users[index]);
+            print("id :  ${users[index].fname}   ");
+            return users[index].id != FirebaseAuth.instance.currentUser!.uid
+                ? ChatListItem(toUser: users[index])
+                : const SizedBox();
           },
         );
       },

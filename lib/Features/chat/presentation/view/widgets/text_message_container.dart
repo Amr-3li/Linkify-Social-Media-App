@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/core/constants/colors.dart';
+import 'package:true_gym/core/helper/time.dart';
 
 class TextMaessageContainer extends StatelessWidget {
   const TextMaessageContainer({
@@ -15,11 +16,11 @@ class TextMaessageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unrelated_type_equality_checks
     return FirebaseAuth.instance.currentUser == message.fromId
-        ? _fromMessage()
-        : _toMessage();
+        ? _fromMessage(context)
+        : _toMessage(context);
   }
 
-  Widget _fromMessage() {
+  Widget _fromMessage(BuildContext context) {
     return Row(
       children: [
         Flexible(
@@ -34,7 +35,7 @@ class TextMaessageContainer extends StatelessWidget {
                     topRight: Radius.circular(15),
                   )),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   message.imageUrl != ""
                       ? InkWell(
@@ -50,12 +51,10 @@ class TextMaessageContainer extends StatelessWidget {
                           style: const TextStyle(
                               color: Colors.black87, fontSize: 15),
                         ),
-                  Align(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      child: Text(
-                        message.time,
-                        style: const TextStyle(color: Colors.blueGrey),
-                      ))
+                  Text(
+                    MyTime.getFormattedTime(context, time: message.time),
+                    style: const TextStyle(color: Colors.blueGrey),
+                  )
                 ],
               )),
         ),
@@ -64,7 +63,7 @@ class TextMaessageContainer extends StatelessWidget {
     );
   }
 
-  Widget _toMessage() {
+  Widget _toMessage(BuildContext context) {
     return Row(
       children: [
         const SizedBox(width: 40),
@@ -99,7 +98,7 @@ class TextMaessageContainer extends StatelessWidget {
                   Align(
                       alignment: AlignmentDirectional.bottomEnd,
                       child: Text(
-                        message.time,
+                        MyTime.getFormattedTime(context, time: message.time),
                         style: const TextStyle(color: MyColors.time),
                       ))
                 ],

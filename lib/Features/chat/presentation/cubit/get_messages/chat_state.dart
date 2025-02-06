@@ -19,12 +19,3 @@ final class GetAllMessageFaild extends ChatState {
 }
 
 //=========== send message ===========================
-final class SendMessageLoading extends ChatState {}
-
-final class SendMessageSuccess extends ChatState {}
-
-final class SendMessageFaild extends ChatState {
-  final String message;
-
-  SendMessageFaild(this.message);
-}

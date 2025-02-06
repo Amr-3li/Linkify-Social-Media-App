@@ -32,7 +32,7 @@ class UserModel {
       phone: json['phone'] ?? "",
       image: json['image'] ?? "",
       password: "",
-      id: json['id'] ?? "",
+      id: json['uid'] ?? "",
       isMale: json['isMale'] ?? "",
       isActive: json['isActive'] ?? false,
     );

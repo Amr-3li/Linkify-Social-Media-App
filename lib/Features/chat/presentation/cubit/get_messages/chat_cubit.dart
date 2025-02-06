@@ -20,17 +20,4 @@ class ChatCubit extends Cubit<ChatState> {
       },
     );
   }
-
-  Future<void> sendMessage(UserModel toUser, String msg) async {
-    emit(SendMessageLoading());
-    final result = await chatRepo.sendMessage(toUser, msg);
-    result.fold(
-      (l) {
-        emit(SendMessageFaild(l.errMessage));
-      },
-      (r) {
-        emit(SendMessageSuccess());
-      },
-    );
-  }
 }
