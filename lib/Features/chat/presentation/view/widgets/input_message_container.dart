@@ -33,7 +33,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                   child: TextFormField(
                     controller: textEditingController,
                     minLines: 1,
-                    maxLines: 10,
+                    maxLines: 3,
                     style: const TextStyle(),
                     onTapOutside: (event) {
                       FocusManager.instance.primaryFocus?.unfocus();

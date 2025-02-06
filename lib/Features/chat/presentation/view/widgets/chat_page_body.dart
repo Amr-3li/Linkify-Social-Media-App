@@ -56,7 +56,7 @@ class _ChatPageBodyState extends State<ChatPageBody> {
                     return ListView.builder(
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
-                        return TextMaessageContainer(
+                        return TextMessageContainer(
                           message: messages[index],
                         );
                       },
