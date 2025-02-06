@@ -31,9 +31,10 @@ class TextMessageContainer extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: MyColors.fromMessage,
-              borderRadius: BorderRadius.only(
+              border: Border.all(color: MyColors.fromMessageBorder, width: 2),
+              borderRadius: const BorderRadius.only(
                   bottomRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20)),
@@ -60,7 +61,7 @@ class TextMessageContainer extends StatelessWidget {
                         child: Text(
                           message.msg ?? "",
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 16),
+                              color: Colors.black, fontSize: 16),
                         ),
                       ),
               ],
@@ -90,9 +91,10 @@ class TextMessageContainer extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: MyColors.toMessage,
-              borderRadius: BorderRadius.only(
+              border: Border.all(color: MyColors.toMessageBorder, width: 2),
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20)),
@@ -118,7 +120,7 @@ class TextMessageContainer extends StatelessWidget {
                         child: Text(
                           message.msg ?? "",
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 16),
+                              color: Color(0xff333333), fontSize: 16),
                         ),
                       ),
               ],
