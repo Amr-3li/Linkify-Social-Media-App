@@ -21,9 +21,9 @@ class ChatRepoImplementation extends ChatRepo {
 
   @override
   Future<Either<Failure, void>> sendMessage(
-      String toId, bool isImage, String msg) async {
+      String toId, String imageURL, String msg) async {
     try {
-      await chatSer.sendMessage(toId, isImage, msg);
+      await chatSer.sendMessage(toId, imageURL, msg);
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure("Failuer in send message "));

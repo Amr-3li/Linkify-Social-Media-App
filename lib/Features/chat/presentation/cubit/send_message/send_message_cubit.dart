@@ -8,10 +8,10 @@ class SendMessageCubit extends Cubit<SendMessageState> {
   final ChatRepo chatRepo;
   Future<void> sendMessage(
       {required String toId,
-      required bool isImage,
+      required String imageURL,
       required String msg}) async {
     emit(SendMessageLoading());
-    final result = await chatRepo.sendMessage(toId, isImage, msg);
+    final result = await chatRepo.sendMessage(toId, imageURL, msg);
     result.fold(
       (l) {
         emit(SendMessageFaild(l.errMessage));

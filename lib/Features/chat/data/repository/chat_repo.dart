@@ -6,5 +6,5 @@ abstract class ChatRepo {
   Either<Failure, Stream<QuerySnapshot<Map<String, dynamic>>>> getAllMessage(
       String toId);
   Future<Either<Failure, void>> sendMessage(
-      String toId, bool isImage, String msg);
+      String toId, String imageURL, String msg);
 }

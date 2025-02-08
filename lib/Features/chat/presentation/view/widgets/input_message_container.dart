@@ -63,7 +63,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                 onPressed: () {
                   BlocProvider.of<SendMessageCubit>(context).sendMessage(
                       toId: widget.toUser.id!,
-                      isImage: false,
+                      imageURL: "",
                       msg: textEditingController.text);
                   textEditingController.clear();
                 },

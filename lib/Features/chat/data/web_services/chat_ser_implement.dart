@@ -27,18 +27,17 @@ class ChatSerImplement extends ChatSer {
   }
 
   @override
-  Future<void> sendMessage(String toId, bool isImage, String msg) async {
+  Future<void> sendMessage(String toId, String imageURL, String msg) async {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     MessageModel messageModel = MessageModel(
-      fromId: user.uid,
-      toId: toId,
-      lastMessage: true,
-      imageExist: isImage,
-      time: time,
-      unreadCount: 0, // تبدأ بـ 0 وبعدها تزود حسب الحاجة
-      msg: msg,
-    );
+        fromId: user.uid,
+        toId: toId,
+        lastMessage: true,
+        time: time,
+        unreadCount: 0, // تبدأ بـ 0 وبعدها تزود حسب الحاجة
+        msg: msg,
+        imageUrl: imageURL);
 
     final chatPath = 'chat/${getConversationID(toId)}/messages';
 
