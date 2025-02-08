@@ -92,7 +92,7 @@ class TextMessageContainer extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: MyColors.toMessage,
+              color: MyColors.mainChat,
               border: Border.all(color: MyColors.toMessageBorder, width: 2),
               borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),

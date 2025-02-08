@@ -9,7 +9,7 @@ class ChatAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: MyColors.appBarColor,
+      backgroundColor: MyColors.mainChat,
       titleSpacing: 0.0,
       title: const Text("Chats", style: TextStyle(fontWeight: FontWeight.bold)),
       elevation: 2,

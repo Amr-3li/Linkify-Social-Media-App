@@ -9,7 +9,7 @@ abstract class MyColors {
       Color.fromARGB(255, 206, 206, 206);
   static const Color iconColor = Color.fromARGB(255, 156, 156, 156);
   static const Color light = Color.fromARGB(255, 255, 255, 255);
-  static const Color toMessage = Color.fromARGB(194, 135, 189, 183);
+  static const Color mainChat = Color.fromARGB(194, 135, 189, 183);
   static const Color toMessageBorder = Color.fromARGB(194, 9, 103, 124);
   static const Color fromMessage = Color.fromARGB(194, 230, 231, 231);
   static const Color fromMessageBorder = Color.fromARGB(194, 122, 122, 122);

@@ -16,7 +16,7 @@ class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColors.appBarColor,
+      backgroundColor: MyColors.mainChat,
       titleSpacing: 0,
       title: Row(
         children: [
