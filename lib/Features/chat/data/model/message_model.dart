@@ -2,13 +2,15 @@ class MessageModel {
   final String fromId;
   final String toId;
   final bool lastMessage;
+  final bool imageExist;
   final String time;
   final String? imageUrl;
   final String? msg;
   final int unreadCount;
 
   MessageModel(
-      {required this.fromId,
+      {required this.imageExist,
+      required this.fromId,
       required this.toId,
       required this.lastMessage,
       required this.time,
@@ -24,6 +26,7 @@ class MessageModel {
       imageUrl: json['imageUrl'] ?? "",
       unreadCount: json['unreadCount'],
       toId: json['toId'],
+      imageExist: json['imageExist'] ?? false,
     );
   }
 
@@ -32,6 +35,7 @@ class MessageModel {
       'fromId': fromId,
       'toId': toId,
       'LastMessage': lastMessage,
+      'imageExist': imageExist,
       'time': time,
       'imageUrl': imageUrl ?? "",
       'message': msg ?? "",

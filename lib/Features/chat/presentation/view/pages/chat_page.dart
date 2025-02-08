@@ -17,7 +17,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser);
+    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser.id!);
   }
 
   @override

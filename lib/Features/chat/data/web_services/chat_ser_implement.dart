@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/data/web_services/chat_ser.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
 
 class ChatSerImplement extends ChatSer {
   static FirebaseAuth auth = FirebaseAuth.instance;
@@ -15,10 +14,10 @@ class ChatSerImplement extends ChatSer {
       : '${id}_${user.uid}';
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessage(UserModel toUser) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessage(String toId) {
     try {
       return firestore
-          .collection('chat/${getConversationID(toUser.id!)}/messages')
+          .collection('chat/${getConversationID(toId)}/messages')
           .orderBy('time', descending: false) // ترتيب حسب الوقت الأحدث
           .snapshots();
     } catch (e) {
@@ -28,19 +27,20 @@ class ChatSerImplement extends ChatSer {
   }
 
   @override
-  Future<void> sendMessage(UserModel toUser, String msg) async {
+  Future<void> sendMessage(String toId, bool isImage, String msg) async {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     MessageModel messageModel = MessageModel(
       fromId: user.uid,
-      toId: toUser.id!,
+      toId: toId,
       lastMessage: true,
+      imageExist: isImage,
       time: time,
       unreadCount: 0, // تبدأ بـ 0 وبعدها تزود حسب الحاجة
       msg: msg,
     );
 
-    final chatPath = 'chat/${getConversationID(toUser.id!)}/messages';
+    final chatPath = 'chat/${getConversationID(toId)}/messages';
 
     try {
       await firestore.collection(chatPath).doc(time).set(messageModel.toJson());

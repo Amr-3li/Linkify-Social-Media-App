@@ -20,7 +20,8 @@ class ChatPageBody extends StatefulWidget {
 class _ChatPageBodyState extends State<ChatPageBody> {
   @override
   void initState() {
-    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser);
+    super.initState();
+    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser.id!);
   }
 
   @override
