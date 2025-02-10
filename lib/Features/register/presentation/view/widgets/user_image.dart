@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:true_gym/core/helper/pick_image.dart';
 
 class UserImage extends StatefulWidget {
   const UserImage({super.key, required this.image});
@@ -26,7 +26,7 @@ class _UserImageState extends State<UserImage> {
             isLoading = true;
             setState(() {});
             try {
-              await pickImage();
+              await PickImage().pickImage(widget.image);
             } catch (e) {
               isLoading = false;
               setState(() {});
@@ -67,11 +67,5 @@ class _UserImageState extends State<UserImage> {
         );
       },
     );
-  }
-
-  Future<void> pickImage() async {
-    XFile? ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
-    imageFile = File(ximage!.path);
-    widget.image(imageFile!);
   }
 }

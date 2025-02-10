@@ -60,6 +60,14 @@ class ToMessage extends StatelessWidget {
                         ),
                       )
                     : const SizedBox(),
+                Align(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: Text(
+                    MyTime.getFormattedTime(context, time: message.time),
+                    style:
+                        const TextStyle(color: Colors.blueGrey, fontSize: 13),
+                  ),
+                )
               ],
             ),
           ),

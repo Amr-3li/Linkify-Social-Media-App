@@ -49,11 +49,15 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                 textEditingController.text != ""
                     ? const SizedBox()
                     : IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.image)),
+                        onPressed: () {},
+                        icon: const Icon(Icons.image),
+                      ),
                 textEditingController.text != ""
                     ? const SizedBox()
                     : IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.camera_alt)),
+                        onPressed: () {},
+                        icon: const Icon(Icons.camera_alt),
+                      ),
               ],
             ),
           ),
