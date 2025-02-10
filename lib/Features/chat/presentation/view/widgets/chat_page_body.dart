@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/text_message_container.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 
@@ -18,10 +17,20 @@ class ChatPageBody extends StatefulWidget {
 }
 
 class _ChatPageBodyState extends State<ChatPageBody> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser.id!);
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      }
+    });
   }
 
   @override
@@ -51,10 +60,17 @@ class _ChatPageBodyState extends State<ChatPageBody> {
                     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                       return const Center(child: Text("No messages yet"));
                     }
+
                     final messages = snapshot.data!.docs
                         .map((doc) => MessageModel.fromJson(doc.data()))
                         .toList();
+
+                    // بعد تحديث الرسائل، ننقل السكرول للأسفل
+                    WidgetsBinding.instance
+                        .addPostFrameCallback((_) => _scrollToBottom());
+
                     return ListView.builder(
+                      controller: _scrollController,
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         return TextMessageContainer(
@@ -70,7 +86,6 @@ class _ChatPageBodyState extends State<ChatPageBody> {
             },
           ),
         ),
-        InputMessageContainer(toUser: widget.toUser),
       ],
     );
   }

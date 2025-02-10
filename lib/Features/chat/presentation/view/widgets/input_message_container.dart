@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/constants/colors.dart';
+import 'package:true_gym/core/widgets/snack_bar_widget.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({
@@ -61,10 +62,13 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
             ? const SizedBox()
             : IconButton(
                 onPressed: () {
-                  BlocProvider.of<SendMessageCubit>(context).sendMessage(
-                      toId: widget.toUser.id!,
-                      imageURL: "",
-                      msg: textEditingController.text);
+                  textEditingController.text == ""
+                      ? SnackBarWidget.showSnack(
+                          context, "please write message")
+                      : BlocProvider.of<SendMessageCubit>(context).sendMessage(
+                          toId: widget.toUser.id!,
+                          imageURL: "",
+                          msg: textEditingController.text);
                   textEditingController.clear();
                 },
                 icon: const Icon(
