@@ -1,9 +1,13 @@
 // import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/image_confirm_message.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/core/constants/colors.dart';
+import 'package:true_gym/core/helper/pick_image.dart';
 import 'package:true_gym/core/widgets/snack_bar_widget.dart';
 
 class InputMessageContainer extends StatefulWidget {
@@ -19,6 +23,7 @@ class InputMessageContainer extends StatefulWidget {
 class _InputMessageContainerState extends State<InputMessageContainer> {
   bool isTyping = false;
   bool isEmpty = true;
+  late File imageFile;
   TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -43,13 +48,23 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                         border: InputBorder.none,
                         hintText: "  type a message",
                         hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 127, 127, 127))),
+                            color: Color.fromARGB(255, 147, 147, 147))),
                   ),
                 ),
                 textEditingController.text != ""
                     ? const SizedBox()
                     : IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await PickImage().pickImage((value) {
+                            imageFile = value;
+                          });
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ImageConfirmMessage(
+                                      toUser: widget.toUser,
+                                      imageFile: imageFile)));
+                        },
                         icon: const Icon(Icons.image),
                       ),
                 textEditingController.text != ""
@@ -65,14 +80,15 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
         textEditingController.text == ""
             ? const SizedBox()
             : IconButton(
-                onPressed: () {
+                onPressed: () async {
                   textEditingController.text == ""
                       ? SnackBarWidget.showSnack(
                           context, "please write message")
-                      : BlocProvider.of<SendMessageCubit>(context).sendMessage(
-                          toId: widget.toUser.id!,
-                          imageURL: "",
-                          msg: textEditingController.text);
+                      : await BlocProvider.of<SendMessageCubit>(context)
+                          .sendMessage(
+                              toId: widget.toUser.id!,
+                              imageURL: "",
+                              msg: textEditingController.text);
                   textEditingController.clear();
                 },
                 icon: const Icon(

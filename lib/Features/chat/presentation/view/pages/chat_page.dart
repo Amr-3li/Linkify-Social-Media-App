@@ -31,7 +31,6 @@ class _ChatPageState extends State<ChatPage> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ChatPageBody(toUser: widget.toUser),
       ),
-      bottomNavigationBar: InputMessageContainer(toUser: widget.toUser),
     );
   }
 }
