@@ -7,6 +7,7 @@ import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_mess
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/core/constants/colors.dart';
 import 'package:true_gym/core/constants/constants.dart';
 import 'package:true_gym/get_it.dart';
@@ -41,7 +42,8 @@ class ChatListItem extends StatelessWidget {
               create: (context) => ChatCubit(gitItInstanse<ChatRepo>()),
             ),
             BlocProvider(
-              create: (context) => SendMessageCubit(gitItInstanse<ChatRepo>()),
+              create: (context) => SendMessageCubit(
+                  gitItInstanse<ChatRepo>(), gitItInstanse<ImageRepo>()),
             )
           ], child: ChatPage(toUser: toUser));
         }));

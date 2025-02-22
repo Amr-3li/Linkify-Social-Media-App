@@ -1,0 +1,2 @@
+C:/Amr/projects/flutter/true_gym/android/app/.cxx/Debug/4n4gj6t5/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Amr/projects/flutter/true_gym/android/app/.cxx/Debug/4n4gj6t5/arm64-v8a/CMakeFiles/rebuild_cache.dir
