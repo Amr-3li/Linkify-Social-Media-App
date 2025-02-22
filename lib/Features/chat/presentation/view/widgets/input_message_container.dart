@@ -3,12 +3,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/image_confirm_message.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
+import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/core/constants/colors.dart';
 import 'package:true_gym/core/helper/pick_image.dart';
 import 'package:true_gym/core/widgets/snack_bar_widget.dart';
+import 'package:true_gym/get_it.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({
@@ -61,9 +64,14 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ImageConfirmMessage(
-                                      toUser: widget.toUser,
-                                      imageFile: imageFile)));
+                                  builder: (context) => BlocProvider(
+                                        create: (context) => SendMessageCubit(
+                                            gitItInstanse<ChatRepo>(),
+                                            gitItInstanse<ImageRepo>()),
+                                        child: ImageConfirmMessage(
+                                            toUser: widget.toUser,
+                                            imageFile: imageFile),
+                                      )));
                         },
                         icon: const Icon(Icons.image),
                       ),
@@ -87,7 +95,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                       : await BlocProvider.of<SendMessageCubit>(context)
                           .sendMessage(
                               toId: widget.toUser.id!,
-                              imageURL: "",
+                              imageURL: null,
                               msg: textEditingController.text);
                   textEditingController.clear();
                 },

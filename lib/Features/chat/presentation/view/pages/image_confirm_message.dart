@@ -59,9 +59,8 @@ class _ImageConfirmMessageState extends State<ImageConfirmMessage> {
             IconButton(
                 onPressed: () async {
                   await BlocProvider.of<SendMessageCubit>(context).sendMessage(
-                    //ToDo handel send message cubit with usding image storage repo
                     toId: widget.toUser.id!,
-                    imageURL: "",
+                    imageURL: widget.imageFile,
                     msg: textEditingController.text,
                   );
                   textEditingController.clear();

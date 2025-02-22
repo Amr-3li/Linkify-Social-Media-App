@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/image_presentation_page.dart';
 import 'package:true_gym/core/constants/colors.dart';
 import 'package:true_gym/core/helper/time.dart';
 
@@ -38,7 +39,13 @@ class ToMessage extends StatelessWidget {
               children: [
                 message.imageUrl != ""
                     ? InkWell(
-                        onTap: () {}, // إضافة حدث عند الضغط على الصورة
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ImagePresentationPage(
+                                      image: message.imageUrl!)));
+                        }, // إضافة حدث عند الضغط على الصورة
                         child: CachedNetworkImage(
                           imageUrl: message.imageUrl!,
                           placeholder: (context, url) =>
