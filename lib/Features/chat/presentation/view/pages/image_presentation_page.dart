@@ -8,6 +8,19 @@ class ImagePresentationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color.fromARGB(255, 173, 173, 173),
+            size: 30,
+          ),
+        ),
+      ),
       body: InteractiveViewer(
         clipBehavior: Clip.none,
         maxScale: 5,

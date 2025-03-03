@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/image_confirm_message.dart';
+import 'package:true_gym/Features/chat/presentation/view/widgets/send_button.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
 import 'package:true_gym/Features/register/data/repository/image_repo.dart';
 import 'package:true_gym/core/constants/colors.dart';
 import 'package:true_gym/core/helper/pick_image.dart';
-import 'package:true_gym/core/widgets/snack_bar_widget.dart';
 import 'package:true_gym/get_it.dart';
 
 class InputMessageContainer extends StatefulWidget {
@@ -28,6 +28,12 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
   bool isEmpty = true;
   late File imageFile;
   TextEditingController textEditingController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    textEditingController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -87,23 +93,8 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
         ),
         textEditingController.text == ""
             ? const SizedBox()
-            : IconButton(
-                onPressed: () async {
-                  textEditingController.text == ""
-                      ? SnackBarWidget.showSnack(
-                          context, "please write message")
-                      : await BlocProvider.of<SendMessageCubit>(context)
-                          .sendMessage(
-                              toId: widget.toUser.id!,
-                              imageURL: null,
-                              msg: textEditingController.text);
-                  textEditingController.clear();
-                },
-                icon: const Icon(
-                  Icons.send,
-                  color: Color.fromARGB(255, 68, 126, 121),
-                  size: 30,
-                ))
+            : SendButton(
+                textEditingController: textEditingController, widget: widget)
       ],
     );
   }

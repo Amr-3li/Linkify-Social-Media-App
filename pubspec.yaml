@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   animated_splash_screen: ^1.3.0
+  audioplayers: ^6.2.0
   cached_network_image: ^3.4.1
   cloud_firestore: ^5.2.1
   connectivity_plus: ^6.1.0
@@ -29,11 +30,11 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   get_it: ^8.0.2
   go_router: ^14.6.1
-  google_nav_bar: ^5.0.6
   google_sign_in: ^6.2.2
   image_picker: ^1.1.2
   lottie: ^3.1.3
   path: 1.9.1
+  record: ^5.2.1
   shared_preferences: ^2.3.1
   sizer: ^3.0.0
   skeletonizer: ^1.4.2
@@ -71,28 +72,25 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
-
 # flutter_assets:
 #   assets_path:
-#     - assets/icons/  
+#     - assets/icons/
 #   output_path: lib/core/constants/
 #   filename: icons.dart
 #   field_prefix:
 #   classname: MyIcons
 #   ignore_comments: true
-
 # flutter_assets:
 #   assets_path:
-#     - assets/images/  
+#     - assets/images/
 #   output_path: lib/core/constants/
 #   filename: images.dart
 #   field_prefix:
 #   classname: MyImages
 #   ignore_comments: true
-
 # flutter_assets:
 #   assets_path:
-#     - assets/animations/  
+#     - assets/animations/
 #   output_path: lib/core/constants/
 #   filename: animation.dart
 #   field_prefix:

@@ -39,6 +39,16 @@ class _SignupPageState extends State<SignupPage> {
   final keyform = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    fnameController.dispose();
+    lnameController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
