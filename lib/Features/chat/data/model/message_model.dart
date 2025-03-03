@@ -4,11 +4,13 @@ class MessageModel {
   final bool lastMessage;
   final String time;
   final String? imageUrl;
+  final String? recordUrl;
   final String? msg;
   final int unreadCount;
 
   MessageModel(
-      {required this.fromId,
+      {required this.recordUrl,
+      required this.fromId,
       required this.toId,
       required this.lastMessage,
       required this.time,
@@ -24,6 +26,7 @@ class MessageModel {
       imageUrl: json['imageUrl'] ?? "",
       unreadCount: json['unreadCount'],
       toId: json['toId'],
+      recordUrl: json['recordUrl'],
     );
   }
 
@@ -34,6 +37,7 @@ class MessageModel {
       'LastMessage': lastMessage,
       'time': time,
       'imageUrl': imageUrl ?? "",
+      'recordUrl': recordUrl ?? "",
       'message': msg ?? "",
       'unreadCount': unreadCount,
     };

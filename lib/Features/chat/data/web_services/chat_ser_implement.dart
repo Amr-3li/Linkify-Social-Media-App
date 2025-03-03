@@ -27,7 +27,8 @@ class ChatSerImplement extends ChatSer {
   }
 
   @override
-  Future<void> sendMessage(String toId, String imageURL, String msg) async {
+  Future<void> sendMessage(
+      String toId, String imageURL, String record, String msg) async {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     MessageModel messageModel = MessageModel(
@@ -35,7 +36,8 @@ class ChatSerImplement extends ChatSer {
         toId: toId,
         lastMessage: true,
         time: time,
-        unreadCount: 0, // تبدأ بـ 0 وبعدها تزود حسب الحاجة
+        unreadCount: 0,
+        recordUrl: record,
         msg: msg,
         imageUrl: imageURL);
 

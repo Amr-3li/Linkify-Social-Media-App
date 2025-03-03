@@ -14,4 +14,9 @@ class FireStorage implements StorageService {
     await ref.putFile(imageFile);
     return ref.getDownloadURL();
   }
+
+  @override
+  Future<String> uploadaudioToFirebase(File audioFile, String path) {
+    throw UnimplementedError();
+  }
 }

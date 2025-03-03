@@ -18,4 +18,17 @@ class SupabaseStorage implements StorageService {
         .getPublicUrl('$path/$fileName.$extension');
     return url;
   }
+
+  @override
+  Future<String> uploadaudioToFirebase(File audioFile, String path) async {
+    String fileName = p.basename(audioFile.path);
+    String extension = p.extension(audioFile.path);
+    await supabase.client.storage
+        .from('true_gym_assets')
+        .upload('$path/$fileName.$extension', audioFile);
+    String url = supabase.client.storage
+        .from('true_gym_assets')
+        .getPublicUrl('$path/$fileName.$extension');
+    return url;
+  }
 }

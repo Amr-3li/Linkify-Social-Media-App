@@ -35,6 +35,7 @@ class RecordCubit extends Cubit<RecordState> {
   Future<void> cancelRecord(FlutterSoundRecorder audioRecorder) async {
     emit(RecordCancel());
     try {
+      await audioRecorder.closeRecorder();
       await audioRecorder.deleteRecord(fileName: 'audio_record.aac');
       emit(RecordCancel());
     } catch (e) {
