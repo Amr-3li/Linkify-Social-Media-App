@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:meta/meta.dart';
 import 'package:true_gym/core/helper/audio.dart';
@@ -21,14 +22,16 @@ class RecordCubit extends Cubit<RecordState> {
     }
   }
 
-  Future<void> stopRecord(
-      FlutterSoundRecorder audioRecorder, String? recordedFilePath) async {
+  Future<String> stopRecord(FlutterSoundRecorder audioRecorder) async {
     try {
-      recordedFilePath = await audioRecorder.stopRecorder();
+      String? recordedFilePath = await audioRecorder.stopRecorder();
+
       await audioRecorder.closeRecorder();
       emit(RecordSuccess(audioPath: recordedFilePath!));
+      return recordedFilePath;
     } catch (e) {
       emit(RecordFaild());
+      return "";
     }
   }
 
@@ -38,6 +41,15 @@ class RecordCubit extends Cubit<RecordState> {
       await audioRecorder.closeRecorder();
       await audioRecorder.deleteRecord(fileName: 'audio_record.aac');
       emit(RecordCancel());
+    } catch (e) {
+      emit(RecordFaild());
+    }
+  }
+
+  Future<void> playRecord(FlutterSoundPlayer audioPlayer) async {
+    try {
+      await audioPlayer.openPlayer();
+            await audioPlayer.startPlayer(fromURI: 'audio_record.aac');
     } catch (e) {
       emit(RecordFaild());
     }

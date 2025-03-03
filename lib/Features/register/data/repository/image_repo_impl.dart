@@ -28,7 +28,7 @@ class ImageRepoImpl implements ImageRepo {
   Future<Either<Failure, String>> uploadrecordToFirebase(File record) async {
     try {
       String url = await storageService.uploadImageToFirebase(
-          record, ProjectEndpoints.imageClientBath);
+          record, ProjectEndpoints.recordClientBath);
       return Right(url);
     } catch (e) {
       return Left(

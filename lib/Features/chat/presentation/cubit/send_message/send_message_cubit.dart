@@ -10,23 +10,35 @@ class SendMessageCubit extends Cubit<SendMessageState> {
   SendMessageCubit(this.chatRepo, this.imageRepo) : super(SendMessageInitial());
   final ChatRepo chatRepo;
   final ImageRepo imageRepo;
-  Future<void> sendMessage(
-      {required String toId,
-      File? imageURL,
-      File? recordURL,
-      required String msg}) async {
+  Future<void> sendMessage({
+    required String toId,
+    File? imageURL,
+    File? recordURL,
+    required String msg,
+  }) async {
     emit(SendMessageLoading());
-    if (imageURL == null) {
-      final result = await chatRepo.sendMessage(toId, "", "", msg);
+
+    if (imageURL != null) {
+      // Handle image upload
+      var result = await imageRepo.uploadImageToFirebase(imageURL);
       result.fold(
         (l) {
           emit(SendMessageFaild(l.errMessage));
         },
-        (r) {
-          emit(SendMessageSuccess());
+        (r) async {
+          final result = await chatRepo.sendMessage(toId, r, "", msg);
+          result.fold(
+            (l) {
+              emit(SendMessageFaild(l.errMessage));
+            },
+            (r) {
+              emit(SendMessageSuccess());
+            },
+          );
         },
       );
     } else if (recordURL != null) {
+      // Handle audio upload
       var result = await imageRepo.uploadrecordToFirebase(recordURL);
       result.fold(
         (l) {
@@ -45,21 +57,14 @@ class SendMessageCubit extends Cubit<SendMessageState> {
         },
       );
     } else {
-      var result = await imageRepo.uploadImageToFirebase(imageURL);
+      // Handle plain text message
+      final result = await chatRepo.sendMessage(toId, "", "", msg);
       result.fold(
         (l) {
           emit(SendMessageFaild(l.errMessage));
         },
-        (r) async {
-          final result = await chatRepo.sendMessage(toId, r, "", msg);
-          result.fold(
-            (l) {
-              emit(SendMessageFaild(l.errMessage));
-            },
-            (r) {
-              emit(SendMessageSuccess());
-            },
-          );
+        (r) {
+          emit(SendMessageSuccess());
         },
       );
     }

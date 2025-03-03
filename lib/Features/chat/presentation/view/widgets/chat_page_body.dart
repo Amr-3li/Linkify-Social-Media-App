@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/record/record_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/text_message_container.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
@@ -83,7 +84,10 @@ class _ChatPageBodyState extends State<ChatPageBody> {
             },
           ),
         ),
-        InputMessageContainer(toUser: widget.toUser)
+        BlocProvider(
+          create: (context) => RecordCubit(),
+          child: InputMessageContainer(toUser: widget.toUser),
+        )
       ],
     );
   }

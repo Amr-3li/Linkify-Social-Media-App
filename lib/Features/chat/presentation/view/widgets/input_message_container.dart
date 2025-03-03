@@ -1,4 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sound/public/flutter_sound_player.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/record/record_cubit.dart';
+import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/send_button.dart';
 import 'package:true_gym/Features/chat/presentation/view/widgets/send_image_icon.dart';
 import 'package:true_gym/Features/register/data/model/user.dart';
@@ -17,27 +24,45 @@ class InputMessageContainer extends StatefulWidget {
 class _InputMessageContainerState extends State<InputMessageContainer> {
   bool isTyping = false;
   bool isEmpty = true;
-  bool isRecording = false;
   TextEditingController textEditingController = TextEditingController();
+  late FlutterSoundRecorder _audioRecorder;
+  late FlutterSoundPlayer _audioPlayer;
+  bool isRecording = false;
+  late String recordedFilePath;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioRecorder = FlutterSoundRecorder();
+    _audioPlayer = FlutterSoundPlayer();
+    recordedFilePath = "";
+  }
+
   @override
   void dispose() {
     super.dispose();
     textEditingController.dispose();
+    _audioRecorder.closeRecorder();
+    _audioPlayer.closePlayer();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Card(
-            shadowColor: MyColors.shadowColor,
-            child: Row(
-              children: [
-                Expanded(
-                    child: isRecording
-                        ? const Text("Recording...")
-                        : TextFormField(
+    return BlocBuilder<RecordCubit, RecordState>(
+      builder: (context, state) {
+        return Row(
+          children: [
+            Expanded(
+              child: Card(
+                shadowColor: MyColors.shadowColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    state is RecordStart
+                        ? const Text("Recording...",
+                            style: TextStyle(color: Colors.red))
+                        : Expanded(
+                            child: TextFormField(
                             controller: textEditingController,
                             minLines: 1,
                             maxLines: 3,
@@ -52,32 +77,67 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                 hintStyle: TextStyle(
                                     color: Color.fromARGB(255, 147, 147, 147))),
                           )),
-                textEditingController.text != "" || isRecording
-                    ? const SizedBox()
-                    : SendImageIcon(
-                        toUser: widget.toUser,
-                      ),
-                textEditingController.text != ""
-                    ? const SizedBox()
-                    : IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isRecording = !isRecording;
-                          });
-                        },
-                        icon: isRecording
-                            ? const Icon(Icons.send, color: Colors.black)
-                            : const Icon(Icons.mic, color: Colors.red),
-                      ),
-              ],
+                    textEditingController.text != "" || state is RecordStart
+                        ? const SizedBox()
+                        : SendImageIcon(
+                            toUser: widget.toUser,
+                          ),
+                    textEditingController.text != ""
+                        ? const SizedBox()
+                        : state is RecordStart
+                            ? Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () async {
+                                        recordedFilePath =
+                                            await BlocProvider.of<RecordCubit>(
+                                                    context)
+                                                .stopRecord(_audioRecorder);
+
+                                        await BlocProvider.of<SendMessageCubit>(
+                                                context)
+                                            .sendMessage(
+                                                toId: widget.toUser.id!,
+                                                recordURL:
+                                                    File(recordedFilePath),
+                                                msg: "");
+                                      },
+                                      icon: const Icon(
+                                        Icons.send,
+                                        color: Colors.red,
+                                      )),
+                                  IconButton(
+                                      onPressed: () async {
+                                        await BlocProvider.of<RecordCubit>(
+                                                context)
+                                            .cancelRecord(_audioRecorder);
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      )),
+                                ],
+                              )
+                            : IconButton(
+                                onPressed: () async {
+                                  await BlocProvider.of<RecordCubit>(context)
+                                      .startRecord(_audioRecorder);
+                                },
+                                icon:
+                                     const Icon(Icons.mic, color: Colors.red),
+                              ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
-        textEditingController.text == ""
-            ? const SizedBox()
-            : SendButton(
-                textEditingController: textEditingController, widget: widget)
-      ],
+            textEditingController.text == ""
+                ? const SizedBox()
+                : SendButton(
+                    textEditingController: textEditingController,
+                    widget: widget)
+          ],
+        );
+      },
     );
   }
 }
