@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:true_gym/Features/chat/presentation/view/pages/test_sound.dart';
 import 'package:true_gym/Features/home/presentation/view/home_page.dart';
 import 'package:true_gym/Features/posts/presentation/view/add_post_page.dart';
 import 'package:true_gym/Features/profile/presentation/view/profile.dart';
@@ -23,7 +24,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashScrean(),
+        builder: (context, state) => AudioRecorder(),
       ),
       GoRoute(
         path: '/splashScrean',
