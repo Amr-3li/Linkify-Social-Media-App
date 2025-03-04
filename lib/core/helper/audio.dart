@@ -18,7 +18,7 @@ class Audio {
   Future<void> playRecording(String audioUrl) async {
     try {
       if (_isPlaying) {
-        await stopPlayback(); // Stop any currently playing audio
+        await stopPlayback();
       }
 
       await _audioPlayer.play(UrlSource(audioUrl));

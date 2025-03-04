@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/image_presentation_page.dart';
 import 'package:true_gym/core/constants/colors.dart';
-import 'package:true_gym/core/helper/audio.dart';
 import 'package:true_gym/core/helper/time.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 
@@ -77,16 +78,11 @@ class FromMessage extends StatelessWidget {
                     audioSrc: message.recordUrl!,
                     maxDuration: const Duration(minutes: 10),
                     isFile: false,
-                    onComplete: () {
-                      Audio().stopPlayback();
-                    },
-                    onPause: () {
-                      Audio().stopPlayback();
-                    },
+                    onComplete: () {},
+                    onPause: () {},
                     onPlaying: () async {},
                     onError: (err) {
-                      // Handle any errors during audio playback
-                      debugPrint('Audio playback error: $err');
+                      log(err.toString());
                     },
                   ),
                   circlesColor: const Color.fromARGB(194, 0, 66, 66),

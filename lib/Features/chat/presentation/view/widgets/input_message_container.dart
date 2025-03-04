@@ -60,7 +60,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                   children: [
                     state is RecordStart
                         ? const Text("Recording...",
-                            style: TextStyle(color: Colors.red))
+                            style: TextStyle(color: Colors.green))
                         : Expanded(
                             child: TextFormField(
                             controller: textEditingController,
@@ -115,7 +115,8 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                       },
                                       icon: const Icon(
                                         Icons.delete,
-                                        color: Colors.red,
+                                        color: Colors.blueGrey,
+                                        size: 25,
                                       )),
                                 ],
                               )
@@ -124,7 +125,8 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                   await BlocProvider.of<RecordCubit>(context)
                                       .startRecord(_audioRecorder);
                                 },
-                                icon: const Icon(Icons.mic, color: Colors.red),
+                                icon: const Icon(Icons.mic,
+                                    color: Color.fromARGB(255, 168, 11, 0)),
                               ),
                   ],
                 ),
