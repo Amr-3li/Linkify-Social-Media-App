@@ -101,6 +101,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                                 recordURL:
                                                     File(recordedFilePath),
                                                 msg: "");
+                                        print(recordedFilePath);
                                       },
                                       icon: const Icon(
                                         Icons.send,
@@ -123,8 +124,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                   await BlocProvider.of<RecordCubit>(context)
                                       .startRecord(_audioRecorder);
                                 },
-                                icon:
-                                     const Icon(Icons.mic, color: Colors.red),
+                                icon: const Icon(Icons.mic, color: Colors.red),
                               ),
                   ],
                 ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
@@ -40,36 +42,37 @@ class ToMessage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      message.imageUrl != ""
-                          ? InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => ImagePresentationPage(
-                                            image: message.imageUrl!)));
-                              }, // إضافة حدث عند الضغط على الصورة
-                              child: CachedNetworkImage(
-                                imageUrl: message.imageUrl!,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                fit: BoxFit.cover,
+                      if (message.imageUrl != null &&
+                          message.imageUrl!.isNotEmpty)
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ImagePresentationPage(
+                                    image: message.imageUrl!),
                               ),
-                            )
-                          : const SizedBox(),
-                      message.msg != ""
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5.0, vertical: 3),
-                              child: Text(
-                                message.msg ?? "",
-                                style: const TextStyle(
-                                    color: Color(0xff333333), fontSize: 16),
-                              ),
-                            )
-                          : const SizedBox(),
+                            );
+                          },
+                          child: CachedNetworkImage(
+                            imageUrl: message.imageUrl!,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      if (message.msg != null && message.msg!.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5.0, vertical: 3),
+                          child: Text(
+                            message.msg!,
+                            style: const TextStyle(
+                                color: Color(0xff333333), fontSize: 16),
+                          ),
+                        ),
                     ],
                   ),
                 )
@@ -78,12 +81,14 @@ class ToMessage extends StatelessWidget {
                     audioSrc: message.recordUrl!,
                     maxDuration: const Duration(minutes: 10),
                     isFile: false,
-                    onComplete: () {},
-                    onPause: () {},
-                    onPlaying: () {},
-                    onError: (err) {},
+                    onComplete: () async {},
+                    onPause: () async {},
+                    onPlaying: () async {},
+                    onError: (err) {
+                      log(err.toString());
+                    },
                   ),
-                  circlesColor: const Color(0xff333333),
+                  circlesColor: MyColors.toMessageBorder,
                   innerPadding: 12,
                   cornerRadius: 20,
                 ),

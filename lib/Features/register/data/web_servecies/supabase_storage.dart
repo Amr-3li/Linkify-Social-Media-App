@@ -8,27 +8,30 @@ class SupabaseStorage implements StorageService {
   Supabase supabase = Supabase.instance;
   @override
   Future<String> uploadImageToFirebase(File imageFile, String path) async {
+    int now = DateTime.now().microsecondsSinceEpoch;
     String fileName = p.basename(imageFile.path);
     String extension = p.extension(imageFile.path);
     await supabase.client.storage
         .from('true_gym_assets')
-        .upload('$path/$fileName.$extension', imageFile);
+        .upload('$path/$fileName$now', imageFile);
     String url = supabase.client.storage
         .from('true_gym_assets')
-        .getPublicUrl('$path/$fileName.$extension');
+        .getPublicUrl('$path/$fileName$now');
     return url;
   }
 
   @override
   Future<String> uploadaudioToFirebase(File audioFile, String path) async {
+    int now = DateTime.now().microsecondsSinceEpoch;
+
     String fileName = p.basename(audioFile.path);
     String extension = p.extension(audioFile.path);
     await supabase.client.storage
         .from('true_gym_assets')
-        .upload('$path/$fileName.$extension', audioFile);
+        .upload('$path/$fileName$now', audioFile);
     String url = supabase.client.storage
         .from('true_gym_assets')
-        .getPublicUrl('$path/$fileName.$extension');
+        .getPublicUrl('$path/$fileName$now.$extension');
     return url;
   }
 }

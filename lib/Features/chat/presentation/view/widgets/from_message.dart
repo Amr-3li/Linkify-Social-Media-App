@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:true_gym/Features/chat/data/model/message_model.dart';
 import 'package:true_gym/Features/chat/presentation/view/pages/image_presentation_page.dart';
 import 'package:true_gym/core/constants/colors.dart';
+import 'package:true_gym/core/helper/audio.dart';
 import 'package:true_gym/core/helper/time.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 
@@ -71,28 +72,24 @@ class FromMessage extends StatelessWidget {
                   ),
                 )
               : VoiceMessageView(
+                  backgroundColor: MyColors.fromMessage,
                   controller: VoiceController(
                     audioSrc: message.recordUrl!,
                     maxDuration: const Duration(minutes: 10),
                     isFile: false,
                     onComplete: () {
-                      // Handle when audio playback completes
-                      debugPrint('Audio playback completed');
+                      Audio().stopPlayback();
                     },
                     onPause: () {
-                      // Handle when audio playback is paused
-                      debugPrint('Audio playback paused');
+                      Audio().stopPlayback();
                     },
-                    onPlaying: () {
-                      // Handle when audio playback starts/resumes
-                      debugPrint('Audio playback started/resumed');
-                    },
+                    onPlaying: () async {},
                     onError: (err) {
                       // Handle any errors during audio playback
                       debugPrint('Audio playback error: $err');
                     },
                   ),
-                  circlesColor: const Color(0xff333333),
+                  circlesColor: const Color.fromARGB(194, 0, 66, 66),
                   innerPadding: 12,
                   cornerRadius: 20,
                 ),
