@@ -73,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.12.0"
+  audio_session:
+    dependency: transitive
+    description:
+      name: audio_session
+      sha256: "2b7fff16a552486d078bfc09a8cde19f426dc6d6329262b684182597bec5b1ac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.25"
   bloc:
     dependency: transitive
     description:
@@ -853,6 +861,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+  just_audio:
+    dependency: transitive
+    description:
+      name: just_audio
+      sha256: f978d5b4ccea08f267dae0232ec5405c1b05d3f3cd63f82097ea46c015d5c09e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.46"
+  just_audio_platform_interface:
+    dependency: transitive
+    description:
+      name: just_audio_platform_interface
+      sha256: "271b93b484c6f494ecd72a107fffbdb26b425f170c665b9777a0a24a726f2f24"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.0"
+  just_audio_web:
+    dependency: transitive
+    description:
+      name: just_audio_web
+      sha256: "58915be64509a7683c44bf11cd1a23c15a48de104927bee116e3c63c8eeea0d4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.14"
   jwt_decode:
     dependency: transitive
     description:
@@ -1482,6 +1514,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.8.3"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: e17dcc7a1d0701e84d0a83c0040503cdcc6c72e44db0d733ab4c706dd5b8b9f8
+      url: "https://pub.dev"
+    source: hosted
+    version: "25.2.7"
+  syncfusion_flutter_sliders:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_sliders
+      sha256: "842a452fd73fd61fbebbff72d726ffea4cdaacf088ca2738aeaf7f4454b3861e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "25.2.7"
   synchronized:
     dependency: transitive
     description:
@@ -1626,6 +1674,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.3.1"
+  voice_message_package:
+    dependency: "direct main"
+    description:
+      name: voice_message_package
+      sha256: cd7a717751e60908d37624309c6995c1c62c1bab6b54f7d15c2d71289f0b0cb6
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   web:
     dependency: transitive
     description:
