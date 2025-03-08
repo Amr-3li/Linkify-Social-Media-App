@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
-import 'package:true_gym/Features/register/data/web_servecies/signup_ser.dart';
-import 'package:true_gym/core/errors/failures.dart';
+import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/Features/register/data/web_servecies/signup_ser.dart';
+import 'package:linkify/core/errors/failures.dart';
 
 class SignupRepoImplement implements SignupRepo {
   final SignupService signupService;

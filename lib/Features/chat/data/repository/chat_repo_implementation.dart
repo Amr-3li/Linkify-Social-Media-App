@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
-import 'package:true_gym/Features/chat/data/web_services/chat_ser.dart';
-import 'package:true_gym/core/errors/failures.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
+import 'package:linkify/core/errors/failures.dart';
 
 class ChatRepoImplementation extends ChatRepo {
   final ChatSer chatSer;

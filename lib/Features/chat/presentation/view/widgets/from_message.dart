@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/chat/data/model/message_model.dart';
-import 'package:true_gym/Features/chat/presentation/view/pages/image_presentation_page.dart';
-import 'package:true_gym/core/constants/colors.dart';
-import 'package:true_gym/core/helper/time.dart';
+import 'package:linkify/Features/chat/data/model/message_model.dart';
+import 'package:linkify/Features/chat/presentation/view/pages/image_presentation_page.dart';
+import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/helper/time.dart';
 import 'package:voice_message_package/voice_message_package.dart';
 
 class FromMessage extends StatelessWidget {

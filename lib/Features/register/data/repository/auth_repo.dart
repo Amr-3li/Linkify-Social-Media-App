@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:true_gym/core/errors/failures.dart';
+import 'package:linkify/core/errors/failures.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, String>> signin(String username, String password);

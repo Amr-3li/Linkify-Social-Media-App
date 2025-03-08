@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/Features/profile/presentation/view/widgets/dialog_body.dart';
-import 'package:true_gym/Features/profile/presentation/view/widgets/profile_information.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
-import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/core/constants/colors.dart';
-import 'package:true_gym/core/widgets/custom_button.dart';
-import 'package:true_gym/get_it.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/dialog_body.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
+import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/Features/register/data/repository/auth_repo.dart';
+import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/widgets/custom_button.dart';
+import 'package:linkify/get_it.dart';
 
 class ProfileBody extends StatefulWidget {
   const ProfileBody({super.key, required this.user});

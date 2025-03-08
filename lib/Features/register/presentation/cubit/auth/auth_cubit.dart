@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
+import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 
 part 'auth_state.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/input_message_container.dart';
-import 'package:true_gym/core/widgets/snack_bar_widget.dart';
+import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
+import 'package:linkify/Features/chat/presentation/view/widgets/input_message_container.dart';
+import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
 class SendButton extends StatelessWidget {
   const SendButton({

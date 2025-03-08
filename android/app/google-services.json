@@ -1,45 +1,44 @@
 {
   "project_info": {
-    "project_number": "80016148150",
-    "project_id": "true-gym-f19a8",
-    "storage_bucket": "true-gym-f19a8.appspot.com"
+    "project_number": "879218773903",
+    "project_id": "linkify-63769",
+    "storage_bucket": "linkify-63769.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:80016148150:android:6cf2cba01e04f3d7f14817",
+        "mobilesdk_app_id": "1:879218773903:android:01a44064512234b10a85fa",
         "android_client_info": {
-          "package_name": "com.example.true_gym"
+          "package_name": "com.example.linkify"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.linkify",
+            "certificate_hash": "e8646bd37623979958fbc31ff591468d352ff8b8"
+          }
+        },
+        {
+          "client_id": "879218773903-tjdhg2tqka2iks2k1jle9sdh88c32pv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyA4DITdXL-zFMNqlEtSUnLxgGY97y9AtR0"
+          "current_key": "AIzaSyDBGn0gux6T8hL8fk1Xs6Ueb-Vf8hcCxRc"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:80016148150:android:c7b7843349257e7bf14817",
-        "android_client_info": {
-          "package_name": "come.true.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA4DITdXL-zFMNqlEtSUnLxgGY97y9AtR0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879218773903-tjdhg2tqka2iks2k1jle9sdh88c32pv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/Features/profile/presentation/view/widgets/input_data_widgit.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
-import 'package:true_gym/get_it.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/input_data_widgit.dart';
+import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
+import 'package:linkify/get_it.dart';
 
 class DialogBody extends StatelessWidget {
   const DialogBody({super.key, required this.user});

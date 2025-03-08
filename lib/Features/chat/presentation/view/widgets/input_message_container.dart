@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/record/record_cubit.dart';
-import 'package:true_gym/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/send_button.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/send_image_icon.dart';
-import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/core/constants/colors.dart';
+import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dart';
+import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
+import 'package:linkify/Features/chat/presentation/view/widgets/send_button.dart';
+import 'package:linkify/Features/chat/presentation/view/widgets/send_image_icon.dart';
+import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/constants/colors.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({

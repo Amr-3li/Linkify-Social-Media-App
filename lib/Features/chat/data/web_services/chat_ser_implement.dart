@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:true_gym/Features/chat/data/model/message_model.dart';
-import 'package:true_gym/Features/chat/data/web_services/chat_ser.dart';
+import 'package:linkify/Features/chat/data/model/message_model.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 
 class ChatSerImplement extends ChatSer {
   static FirebaseAuth auth = FirebaseAuth.instance;

@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Amr/projects/flutter/true_gym/linux",
-      "program": "c:/Amr/projects/flutter/true_gym/linux/build/Debug/outDebug",
+      "cwd": "c:/Amr/projects/flutter/linkify/linux",
+      "program": "c:/Amr/projects/flutter/linkify/linux/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/constants/icons.dart';
+import 'package:linkify/core/constants/icons.dart';
 
 class AddPostImage extends StatelessWidget {
   const AddPostImage({

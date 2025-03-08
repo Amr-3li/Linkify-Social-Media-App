@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "true_gym" "\0"
+            VALUE "FileDescription", "linkify" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "true_gym" "\0"
+            VALUE "InternalName", "linkify" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "true_gym.exe" "\0"
-            VALUE "ProductName", "true_gym" "\0"
+            VALUE "OriginalFilename", "linkify.exe" "\0"
+            VALUE "ProductName", "linkify" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

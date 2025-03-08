@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/constants/colors.dart';
+import 'package:linkify/core/constants/colors.dart';
 
 class ChatAppbar extends StatelessWidget {
   const ChatAppbar({

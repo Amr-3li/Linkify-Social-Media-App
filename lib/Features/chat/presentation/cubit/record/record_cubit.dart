@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:meta/meta.dart';
-import 'package:true_gym/core/helper/audio.dart';
+import 'package:linkify/core/helper/audio.dart';
 
 part 'record_state.dart';
 

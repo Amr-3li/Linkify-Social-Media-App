@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/Features/splash_screan/widgets/splash_body.dart';
+import 'package:linkify/Features/splash_screan/widgets/splash_body.dart';
 
 class SplashScrean extends StatefulWidget {
   const SplashScrean({super.key});

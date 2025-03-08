@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/home/data/Models/post.dart';
-import 'package:true_gym/Features/home/data/repository/post_repository.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/post_container.dart';
+import 'package:linkify/Features/home/data/Models/post.dart';
+import 'package:linkify/Features/home/data/repository/post_repository.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});

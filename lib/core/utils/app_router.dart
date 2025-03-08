@@ -1,22 +1,22 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:true_gym/Features/chat/presentation/view/pages/chat_home_page.dart';
-import 'package:true_gym/Features/home/presentation/view/home_page.dart';
-import 'package:true_gym/Features/posts/presentation/view/add_post_page.dart';
-import 'package:true_gym/Features/profile/presentation/view/profile.dart';
-import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
-import 'package:true_gym/get_it.dart';
-import 'package:true_gym/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/signup/signup_cubit.dart';
-import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/Features/register/presentation/view/pages/forgot_password_page.dart';
-import 'package:true_gym/Features/register/presentation/view/pages/login_page.dart';
-import 'package:true_gym/Features/register/presentation/view/pages/signup_page.dart';
-import 'package:true_gym/Features/settings/presentation/view/settings.dart';
-import 'package:true_gym/Features/splash_screan/splash_screan.dart';
-import 'package:true_gym/initial.dart';
+import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:linkify/Features/home/presentation/view/home_page.dart';
+import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
+import 'package:linkify/Features/register/data/repository/auth_repo.dart';
+import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/get_it.dart';
+import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:linkify/Features/register/presentation/cubit/signup/signup_cubit.dart';
+import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/Features/register/presentation/view/pages/forgot_password_page.dart';
+import 'package:linkify/Features/register/presentation/view/pages/login_page.dart';
+import 'package:linkify/Features/register/presentation/view/pages/signup_page.dart';
+import 'package:linkify/Features/settings/presentation/view/settings.dart';
+import 'package:linkify/Features/splash_screan/splash_screan.dart';
+import 'package:linkify/initial.dart';
 
 abstract class AppRouter {
   static final appRouter = GoRouter(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/home_page_appbar.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/posts_list.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/home_page_appbar.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/posts_list.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});

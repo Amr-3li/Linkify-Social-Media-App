@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:true_gym/Features/register/data/web_servecies/auth_ser.dart';
+import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
 
 class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -18,10 +18,14 @@ class AuthWebServiceImplement implements AuthService {
 
   @override
   Future<void> signout() async {
-    if (await GoogleSignIn().isSignedIn()) {
-      await GoogleSignIn().signOut();
-    } else {
+    try {
+      // Check if the user is signed in with Google
+      if (await GoogleSignIn().isSignedIn()) {
+        await GoogleSignIn().signOut();
+      }
       await auth.signOut();
+    } catch (e) {
+      print('Error during sign-out: $e');
     }
   }
 

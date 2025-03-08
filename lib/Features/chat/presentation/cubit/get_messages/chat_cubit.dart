@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 
 part 'chat_state.dart';
 

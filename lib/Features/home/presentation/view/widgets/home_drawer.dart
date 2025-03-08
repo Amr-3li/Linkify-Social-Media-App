@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/drawer_body.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/drawer_body.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({

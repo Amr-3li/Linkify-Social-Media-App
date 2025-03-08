@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:true_gym/Features/register/data/model/user.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/register/data/repository/signup_repo.dart';
 
 part 'signup_state.dart';
 

@@ -1,6 +1,6 @@
 {
-    "name": "true_gym",
-    "short_name": "true_gym",
+    "name": "linkify",
+    "short_name": "linkify",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

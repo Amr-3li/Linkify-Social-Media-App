@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/widgets/input_text.dart';
+import 'package:linkify/core/widgets/input_text.dart';
 
 // ignore: must_be_immutable
 class UserInformations extends StatefulWidget {

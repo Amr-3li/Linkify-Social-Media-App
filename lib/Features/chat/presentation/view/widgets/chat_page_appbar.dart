@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:true_gym/core/constants/colors.dart';
-import 'package:true_gym/core/constants/constants.dart';
+import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   const ChatPageAppbar({

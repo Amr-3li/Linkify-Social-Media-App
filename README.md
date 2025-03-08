@@ -1,4 +1,4 @@
-# true_gym
+# linkify
 
 A new Flutter project.
 

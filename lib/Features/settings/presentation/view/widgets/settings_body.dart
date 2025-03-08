@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/settings/presentation/view/widgets/settings_list_item.dart';
-import 'package:true_gym/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
+import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
+import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
 
 class SettingsBody extends StatelessWidget {
   const SettingsBody({super.key});

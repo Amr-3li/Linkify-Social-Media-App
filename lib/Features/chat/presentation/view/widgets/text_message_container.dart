@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/chat/data/model/message_model.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/from_message.dart';
-import 'package:true_gym/Features/chat/presentation/view/widgets/to_message.dart';
+import 'package:linkify/Features/chat/data/model/message_model.dart';
+import 'package:linkify/Features/chat/presentation/view/widgets/from_message.dart';
+import 'package:linkify/Features/chat/presentation/view/widgets/to_message.dart';
 
 class TextMessageContainer extends StatelessWidget {
   const TextMessageContainer({

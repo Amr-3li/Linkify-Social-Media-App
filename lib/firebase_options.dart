@@ -17,29 +17,17 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -52,11 +40,53 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDDN-pjAxSRpJVCEgPMZvXlEpTkIguD8qE',
+    appId: '1:879218773903:web:dfdf2e9b66404d160a85fa',
+    messagingSenderId: '879218773903',
+    projectId: 'linkify-63769',
+    authDomain: 'linkify-63769.firebaseapp.com',
+    storageBucket: 'linkify-63769.firebasestorage.app',
+    measurementId: 'G-6J5RLPCB75',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA4DITdXL-zFMNqlEtSUnLxgGY97y9AtR0',
-    appId: '1:80016148150:android:c7b7843349257e7bf14817',
-    messagingSenderId: '80016148150',
-    projectId: 'true-gym-f19a8',
-    storageBucket: 'true-gym-f19a8.appspot.com',
+    apiKey: 'AIzaSyDBGn0gux6T8hL8fk1Xs6Ueb-Vf8hcCxRc',
+    appId: '1:879218773903:android:01a44064512234b10a85fa',
+    messagingSenderId: '879218773903',
+    projectId: 'linkify-63769',
+    storageBucket: 'linkify-63769.firebasestorage.app',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBaj66XQapRqZcBnLrK8xfkF3TOIOfW5aM',
+    appId: '1:879218773903:ios:fe69c44ad9771c180a85fa',
+    messagingSenderId: '879218773903',
+    projectId: 'linkify-63769',
+    storageBucket: 'linkify-63769.firebasestorage.app',
+    androidClientId: '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
+    iosClientId: '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
+    iosBundleId: 'com.example.trueGym',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBaj66XQapRqZcBnLrK8xfkF3TOIOfW5aM',
+    appId: '1:879218773903:ios:fe69c44ad9771c180a85fa',
+    messagingSenderId: '879218773903',
+    projectId: 'linkify-63769',
+    storageBucket: 'linkify-63769.firebasestorage.app',
+    androidClientId: '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
+    iosClientId: '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
+    iosBundleId: 'com.example.trueGym',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDDN-pjAxSRpJVCEgPMZvXlEpTkIguD8qE',
+    appId: '1:879218773903:web:654ac89f7dde3edc0a85fa',
+    messagingSenderId: '879218773903',
+    projectId: 'linkify-63769',
+    authDomain: 'linkify-63769.firebaseapp.com',
+    storageBucket: 'linkify-63769.firebasestorage.app',
+    measurementId: 'G-353B8VF7ZV',
   );
 }

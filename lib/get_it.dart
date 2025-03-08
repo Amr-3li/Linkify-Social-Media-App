@@ -1,20 +1,20 @@
 import 'package:get_it/get_it.dart';
-import 'package:true_gym/Features/chat/data/repository/chat_repo.dart';
-import 'package:true_gym/Features/chat/data/repository/chat_repo_implementation.dart';
-import 'package:true_gym/Features/chat/data/web_services/chat_ser.dart';
-import 'package:true_gym/Features/chat/data/web_services/chat_ser_implement.dart';
-import 'package:true_gym/Features/register/data/repository/auth_repo.dart';
-import 'package:true_gym/Features/register/data/repository/auth_repo_impl.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo.dart';
-import 'package:true_gym/Features/register/data/repository/image_repo_impl.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo.dart';
-import 'package:true_gym/Features/register/data/repository/signup_repo_impl.dart';
-import 'package:true_gym/Features/register/data/web_servecies/auth_ser.dart';
-import 'package:true_gym/Features/register/data/web_servecies/auth_ser_imp.dart';
-import 'package:true_gym/Features/register/data/web_servecies/signup_ser.dart';
-import 'package:true_gym/Features/register/data/web_servecies/signup_ser_imp.dart';
-import 'package:true_gym/Features/register/data/web_servecies/storage_ser.dart';
-import 'package:true_gym/Features/register/data/web_servecies/supabase_storage.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo_implementation.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_ser_implement.dart';
+import 'package:linkify/Features/register/data/repository/auth_repo.dart';
+import 'package:linkify/Features/register/data/repository/auth_repo_impl.dart';
+import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/register/data/repository/image_repo_impl.dart';
+import 'package:linkify/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/Features/register/data/repository/signup_repo_impl.dart';
+import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
+import 'package:linkify/Features/register/data/web_servecies/auth_ser_imp.dart';
+import 'package:linkify/Features/register/data/web_servecies/signup_ser.dart';
+import 'package:linkify/Features/register/data/web_servecies/signup_ser_imp.dart';
+import 'package:linkify/Features/register/data/web_servecies/storage_ser.dart';
+import 'package:linkify/Features/register/data/web_servecies/supabase_storage.dart';
 
 final gitItInstanse = GetIt.instance;
 

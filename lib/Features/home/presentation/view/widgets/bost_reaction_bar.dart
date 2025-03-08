@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:true_gym/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
 
 class ReactionContainerBar extends StatefulWidget {
   const ReactionContainerBar({

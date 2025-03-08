@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:true_gym/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:true_gym/core/helper/pick_image.dart';
+import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/core/helper/pick_image.dart';
 
 class UserImage extends StatefulWidget {
   const UserImage({super.key, required this.image});

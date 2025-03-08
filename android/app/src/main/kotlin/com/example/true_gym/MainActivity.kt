@@ -1,4 +1,4 @@
-package com.example.true_gym
+package com.example.linkify
 
 import io.flutter.embedding.android.FlutterActivity
 
