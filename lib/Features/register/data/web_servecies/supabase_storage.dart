@@ -10,7 +10,6 @@ class SupabaseStorage implements StorageService {
   Future<String> uploadImageToFirebase(File imageFile, String path) async {
     int now = DateTime.now().microsecondsSinceEpoch;
     String fileName = p.basenameWithoutExtension(imageFile.path); // بدون امتداد
-    String extension = p.extension(imageFile.path); // الامتداد فقط
 
     await supabase.client.storage
         .from('true_gym_assets')
@@ -27,7 +26,6 @@ class SupabaseStorage implements StorageService {
   Future<String> uploadaudioToFirebase(File audioFile, String path) async {
     int now = DateTime.now().microsecondsSinceEpoch;
     String fileName = p.basenameWithoutExtension(audioFile.path); // بدون امتداد
-    String extension = p.extension(audioFile.path);
     await supabase.client.storage
         .from('true_gym_assets')
         .upload('$path/$fileName$now', audioFile);

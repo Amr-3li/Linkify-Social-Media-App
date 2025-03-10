@@ -1,7 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:linkify/disconnected_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:linkify/core/utils/app_router.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';
@@ -10,7 +12,7 @@ import 'package:linkify/get_it.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -29,8 +31,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.appRouter,
-      title: 'True Gym',
+      title: 'Linkify',
       debugShowCheckedModeBanner: false,
+      builder: (context, child) {
+        return StreamBuilder<List<ConnectivityResult>>(
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data!.contains(ConnectivityResult.none)) {
+                  return const DisconnectedPage();
+                }
+              }
+              return child!;
+            });
+      },
     );
   }
 }

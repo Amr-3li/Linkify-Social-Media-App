@@ -10,4 +10,6 @@ class MyAnimation {
 
   static const String animationsDashAnimation =
       "assets/animations/dash_animation.json";
+  static const String animationsDisconnected =
+      "assets/animations/disconnected.json";
 }

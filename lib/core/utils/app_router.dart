@@ -7,6 +7,7 @@ import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/disconnected_page.dart';
 import 'package:linkify/get_it.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/signup/signup_cubit.dart';
@@ -28,6 +29,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/splashScrean',
         builder: (context, state) => const SplashScrean(),
+      ),
+      GoRoute(
+        path: '/disconnectPage',
+        builder: (context, state) => const DisconnectedPage(),
       ),
       GoRoute(
         path: '/initialPage',
