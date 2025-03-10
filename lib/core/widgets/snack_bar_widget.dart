@@ -5,7 +5,14 @@ class SnackBarWidget {
   static void showSnack(BuildContext context, String messge) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Center(child: Text(messge)),
+        behavior: SnackBarBehavior.floating,
+        shape: const StadiumBorder(),
+        margin:  const EdgeInsets.all(50),
+        elevation:  3,
+        duration: const Duration(milliseconds: 1500),
+        content:  Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(child: Text(messge))),
         backgroundColor: MyColors.mainChat,
         padding: const EdgeInsets.symmetric(horizontal: 10),
       ),

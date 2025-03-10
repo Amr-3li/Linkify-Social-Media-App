@@ -3,6 +3,8 @@ import 'package:linkify/Features/chat/presentation/view/widgets/chat_appbar.dart
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_home_body.dart';
 import 'package:linkify/core/constants/colors.dart';
 
+import '../../../../../core/widgets/snack_bar_widget.dart';
+
 class ChatHomePage extends StatelessWidget {
   const ChatHomePage({super.key});
 
@@ -15,6 +17,14 @@ class ChatHomePage extends StatelessWidget {
                 const ChatAppbar(),
               ],
           body: const ChatHomeBody()),
+      floatingActionButton: FloatingActionButton(onPressed:  () {
+        showDialog( context: context, builder: (context) => const AddChatDialog());
+      },
+        child: Icon( Icons.add),backgroundColor: MyColors.mainChat,
+
+      ),
+
+
     );
   }
 }
