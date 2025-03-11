@@ -67,17 +67,18 @@ class ChatSerImplement extends ChatSer {
     }
   }
 
-  Future<int> countUnreadMessage(String toId) async {
+  Stream<QuerySnapshot<Map<String, dynamic>>> countUnreadMessage(String toId) {
     try {
-      final unreadMessageCount = await firestore
+      final unreadMessageCount = firestore
           .collection('chat/${getConversationID(toId)}/messages')
           .where('toId', isEqualTo: user.uid)
           .where('isRead', isEqualTo: false)
-          .get();
-      return unreadMessageCount.size;
+          .snapshots();
+
+      return unreadMessageCount;
     } catch (e) {
       print("Error fetching unread messages count: $e");
-      return 0; // في حالة حدوث خطأ، نُرجع 0
+      return const Stream.empty();
     }
   }
 }

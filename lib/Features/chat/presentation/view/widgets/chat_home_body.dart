@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
+import 'package:linkify/Features/chat/presentation/cubit/message_count/message_count_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_list_item.dart';
 import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/get_it.dart';
 
 class ChatHomeBody extends StatefulWidget {
   const ChatHomeBody({super.key});
@@ -30,7 +34,12 @@ class _ChatHomeBodyState extends State<ChatHomeBody> {
           itemCount: users.length,
           itemBuilder: (context, index) {
             return users[index].id != FirebaseAuth.instance.currentUser!.uid
-                ? ChatListItem(toUser: users[index])
+                ? BlocProvider(
+                    create: (context) =>
+                        MessageCountCubit(gitItInstanse<ChatRepo>())
+                          ..countUnreadMessage(users[index].id!),
+                    child: ChatListItem(toUser: users[index]),
+                  )
                 : const SizedBox();
           },
         );

@@ -32,7 +32,6 @@ class ChatListItem extends StatelessWidget {
         style: const TextStyle(color: MyColors.fontColor, fontSize: 15),
       ),
       trailing: const ChatItemTrailingComponent(
-        number: 10,
         time: "dasdasd",
       ),
       onTap: () {
