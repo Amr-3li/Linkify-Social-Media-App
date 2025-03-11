@@ -7,4 +7,5 @@ abstract class ChatRepo {
       String toId);
   Future<Either<Failure, void>> sendMessage(
       String toId, String imageURL, String record, String msg);
+  Future<Either<Failure, int>> countUnreadMessage(String toId);
 }

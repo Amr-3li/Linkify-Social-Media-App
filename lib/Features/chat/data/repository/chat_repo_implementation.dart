@@ -29,4 +29,14 @@ class ChatRepoImplementation extends ChatRepo {
       return Left(ServerFailure("Failuer in send message "));
     }
   }
+
+  @override
+  Future<Either<Failure, int>> countUnreadMessage(String toId) async {
+    try {
+      final result = await chatSer.countUnreadMessage(toId);
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure("Failuer in send message "));
+    }
+  }
 }

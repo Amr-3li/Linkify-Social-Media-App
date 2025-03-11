@@ -14,15 +14,32 @@ class ChatSerImplement extends ChatSer {
       : '${id}_${user.uid}';
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessage(String toId) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessage(
+      String toId) async* {
     try {
-      return firestore
+      // Query all unread messages in the conversation that were sent to the current user
+      final unreadMessages = await firestore
           .collection('chat/${getConversationID(toId)}/messages')
-          .orderBy('time', descending: false) // ترتيب حسب الوقت الأحدث
+          .where('toId',
+              isEqualTo:
+                  user.uid) // Ensure only the receiver's messages are updated
+          .get();
+
+      // Update all unread messages to "isRead: true" for the receiver
+      final batch = firestore.batch();
+      for (final doc in unreadMessages.docs) {
+        batch.update(doc.reference, {'isRead': true});
+      }
+      await batch.commit();
+
+      // Return a stream of all messages in the conversation, ordered by time
+      yield* firestore
+          .collection('chat/${getConversationID(toId)}/messages')
+          .orderBy('time', descending: false)
           .snapshots();
     } catch (e) {
       print("Error fetching messages: $e");
-      return const Stream.empty();
+      yield* const Stream.empty();
     }
   }
 
@@ -36,7 +53,7 @@ class ChatSerImplement extends ChatSer {
         toId: toId,
         lastMessage: true,
         time: time,
-        unreadCount: 0,
+        isRead: false,
         recordUrl: record,
         msg: msg,
         imageUrl: imageURL);
@@ -47,6 +64,20 @@ class ChatSerImplement extends ChatSer {
       await firestore.collection(chatPath).doc(time).set(messageModel.toJson());
     } catch (e) {
       print("Error sending message: $e");
+    }
+  }
+
+  Future<int> countUnreadMessage(String toId) async {
+    try {
+      final unreadMessageCount = await firestore
+          .collection('chat/${getConversationID(toId)}/messages')
+          .where('toId', isEqualTo: user.uid)
+          .where('isRead', isEqualTo: false)
+          .get();
+      return unreadMessageCount.size;
+    } catch (e) {
+      print("Error fetching unread messages count: $e");
+      return 0; // في حالة حدوث خطأ، نُرجع 0
     }
   }
 }

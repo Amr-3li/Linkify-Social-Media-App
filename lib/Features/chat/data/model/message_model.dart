@@ -6,7 +6,7 @@ class MessageModel {
   final String? imageUrl;
   final String? recordUrl;
   final String? msg;
-  final int unreadCount;
+  final bool isRead;
 
   MessageModel(
       {required this.recordUrl,
@@ -16,7 +16,7 @@ class MessageModel {
       required this.time,
       this.imageUrl,
       this.msg,
-      required this.unreadCount});
+      required this.isRead});
   factory MessageModel.fromJson(Map<String, dynamic> json) {
     return MessageModel(
       msg: json['message'] ?? "",
@@ -24,7 +24,7 @@ class MessageModel {
       lastMessage: json['LastMessage'],
       time: json['time'],
       imageUrl: json['imageUrl'] ?? "",
-      unreadCount: json['unreadCount'],
+      isRead: json['isRead'] ?? false,
       toId: json['toId'],
       recordUrl: json['recordUrl'],
     );
@@ -39,7 +39,7 @@ class MessageModel {
       'imageUrl': imageUrl ?? "",
       'recordUrl': recordUrl ?? "",
       'message': msg ?? "",
-      'unreadCount': unreadCount,
+      'isRead': isRead,
     };
   }
 }
