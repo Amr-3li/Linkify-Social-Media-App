@@ -1,0 +1,2 @@
+C:/Amr/projects/flutter/linkify/android/app/.cxx/Debug/1p6y4x5m/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Amr/projects/flutter/linkify/android/app/.cxx/Debug/1p6y4x5m/armeabi-v7a/CMakeFiles/rebuild_cache.dir
