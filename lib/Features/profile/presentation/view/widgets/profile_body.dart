@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';

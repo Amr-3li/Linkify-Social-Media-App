@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_page_appbar.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_page_body.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key, required this.toUser});

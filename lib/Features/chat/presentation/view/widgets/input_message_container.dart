@@ -8,7 +8,7 @@ import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dar
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/send_button.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/send_image_icon.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/constants/colors.dart';
 
 class InputMessageContainer extends StatefulWidget {

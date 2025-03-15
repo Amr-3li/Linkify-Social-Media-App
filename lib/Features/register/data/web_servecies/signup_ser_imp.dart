@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/web_servecies/signup_ser.dart';
 
 class SignupSerImplementation implements SignupService {

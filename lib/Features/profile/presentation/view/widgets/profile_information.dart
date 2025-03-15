@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/information_component.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class ProfileInformation extends StatelessWidget {
   const ProfileInformation({

@@ -6,7 +6,7 @@ import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';

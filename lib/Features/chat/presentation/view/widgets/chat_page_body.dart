@@ -5,7 +5,7 @@ import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit
 import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/text_message_container.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class ChatPageBody extends StatefulWidget {
   const ChatPageBody({

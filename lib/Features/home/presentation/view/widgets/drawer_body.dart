@@ -5,7 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:linkify/Features/register/data/model/user.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/constants/colors.dart';
 
 class DrawerBody extends StatelessWidget {
