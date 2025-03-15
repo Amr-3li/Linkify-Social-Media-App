@@ -3,6 +3,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/connectivity/disconnected_page.dart';
+import 'package:linkify/core/shared_logic/data/services/user_data_impl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:linkify/core/utils/app_router.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';
@@ -14,7 +15,7 @@ Future<void> main() async {
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  UserDataImpl().getUsersBySearch(' ');
   await Supabase.initialize(
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
