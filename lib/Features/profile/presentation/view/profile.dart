@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_body.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
-import 'package:linkify/get_it.dart';
+import 'package:linkify/core/gitit/get_it.dart';
 import 'package:linkify/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';

@@ -6,7 +6,7 @@ import 'package:linkify/Features/profile/presentation/view/widgets/input_data_wi
 import 'package:linkify/Features/register/data/model/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
-import 'package:linkify/get_it.dart';
+import 'package:linkify/core/gitit/get_it.dart';
 
 class DialogBody extends StatelessWidget {
   const DialogBody({super.key, required this.user});

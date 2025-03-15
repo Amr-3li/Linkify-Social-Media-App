@@ -6,7 +6,7 @@ import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/presentation/cubit/message_count/message_count_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_list_item.dart';
 import 'package:linkify/Features/register/data/model/user.dart';
-import 'package:linkify/get_it.dart';
+import 'package:linkify/core/gitit/get_it.dart';
 
 class ChatHomeBody extends StatefulWidget {
   const ChatHomeBody({super.key});
@@ -21,7 +21,6 @@ class _ChatHomeBodyState extends State<ChatHomeBody> {
     List<UserModel> users = [];
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection("users").snapshots(),
-      //that called in Auth web ser class
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final data = snapshot.data?.docs;

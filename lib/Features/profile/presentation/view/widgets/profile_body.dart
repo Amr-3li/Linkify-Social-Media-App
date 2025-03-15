@@ -9,7 +9,7 @@ import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dar
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
-import 'package:linkify/get_it.dart';
+import 'package:linkify/core/gitit/get_it.dart';
 
 class ProfileBody extends StatefulWidget {
   const ProfileBody({super.key, required this.user});
