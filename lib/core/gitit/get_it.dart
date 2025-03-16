@@ -15,11 +15,22 @@ import 'package:linkify/Features/register/data/web_servecies/signup_ser.dart';
 import 'package:linkify/Features/register/data/web_servecies/signup_ser_imp.dart';
 import 'package:linkify/Features/register/data/web_servecies/storage_ser.dart';
 import 'package:linkify/Features/register/data/web_servecies/supabase_storage.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo_impl.dart';
+import 'package:linkify/core/shared_logic/data/services/user_data_impl.dart';
+import 'package:linkify/core/shared_logic/data/services/users_data.dart';
 
 final gitItInstanse = GetIt.instance;
 
 void setUpGitIt() {
+  //========================User data ===============================
+
+  gitItInstanse.registerSingleton<UsersData>(UserDataImpl());
+  gitItInstanse.registerSingleton<UserDataRepo>(
+      UserDataRepoImpl(gitItInstanse<UsersData>()));
+
   //======================== Auth ===================================
+
   gitItInstanse.registerSingleton<AuthService>(AuthWebServiceImplement());
   gitItInstanse.registerSingleton<AuthRepository>(
       AuthRepoImpelement(gitItInstanse<AuthService>()));

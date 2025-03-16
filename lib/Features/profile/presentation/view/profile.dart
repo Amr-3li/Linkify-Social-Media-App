@@ -4,9 +4,10 @@ import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_body.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/gitit/get_it.dart';
-import 'package:linkify/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
+import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -26,8 +27,9 @@ class _ProfilePageState extends State<ProfilePage> {
             return NestedScrollView(
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       BlocProvider(
-                        create: (context) =>
-                            UpdateUserCubit(gitItInstanse<ImageRepo>()),
+                        create: (context) => UpdateUserCubit(
+                            gitItInstanse<ImageRepo>(),
+                            gitItInstanse<UserDataRepo>()),
                         child: CustomAppbarProfile(
                           name: state.user.fname,
                           image: state.user.image == ""

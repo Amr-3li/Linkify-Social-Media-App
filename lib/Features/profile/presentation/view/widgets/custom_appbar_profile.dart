@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:linkify/Features/register/presentation/cubit/update_user/update_user_cubit.dart';
+import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
 
 class CustomAppbarProfile extends StatefulWidget {

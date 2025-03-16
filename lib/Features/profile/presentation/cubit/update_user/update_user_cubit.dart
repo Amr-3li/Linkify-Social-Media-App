@@ -5,28 +5,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
 part 'update_user_state.dart';
 
 class UpdateUserCubit extends Cubit<UpdateUserState> {
-  UpdateUserCubit(this.imageRepo) : super(UpdateUserInitial());
+  UpdateUserCubit(this.imageRepo, this.userDataRepo)
+      : super(UpdateUserInitial());
+  final UserDataRepo userDataRepo;
   final ImageRepo imageRepo;
   CollectionReference collRef = FirebaseFirestore.instance.collection('users');
   Future<void> updateUser(UserModel user) async {
     emit(UpdateUserImageLoading());
-    try {
-      await collRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
-        'fname': user.fname,
-        'lname': user.lname,
-        'email': user.email,
-        'phone': user.phone,
-        'image': user.image,
-        'isMale': user.isMale,
-      });
-      emit(UpdateUserImageLoaded());
-    } on FirebaseAuthException catch (e) {
-      emit(UpdateUserError(e.code.toString()));
-    }
+    final result = await userDataRepo.updateUser(user);
+    result.fold((l) {
+      emit(UpdateUserError(l.errMessage));
+    }, (r) {
+      emit(UpdateUserLoaded());
+    });
   }
 
   updateImage(File image) async {

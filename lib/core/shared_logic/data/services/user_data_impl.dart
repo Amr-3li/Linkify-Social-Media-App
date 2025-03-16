@@ -54,13 +54,8 @@ class UserDataImpl extends UsersData {
               user.lname.toLowerCase().startsWith(lastName.toLowerCase()))
           .toList();
 
-      print('==============================================');
-      print('Number of users found: ${users.length}');
-      print('==============================================');
-
       return users;
     } catch (e) {
-      print('--------------- Error searching users: $e');
       return []; // Return empty list in case of error
     }
   }
