@@ -9,20 +9,17 @@ class PostServImpl implements PostServ {
   User get user => auth.currentUser!;
 
   @override
-  Future<void> addPost(PostModel postModel) async {
+  Future<void> addPost(PostModel post) async {
     int now = DateTime.now().microsecondsSinceEpoch;
     await firestore
         .collection('posts/${user.uid}')
         .doc('$now')
-        .set(postModel.toJson());
+        .set(post.toJson());
   }
 
   @override
-  Future<void> deletePost(PostModel postModel) async {
-    await firestore
-        .collection('posts/${user.uid}')
-        .doc(postModel.time)
-        .delete();
+  Future<void> deletePost(PostModel post) async {
+    await firestore.collection('posts/${user.uid}').doc(post.time).delete();
   }
 
   @override
@@ -44,10 +41,10 @@ class PostServImpl implements PostServ {
   }
 
   @override
-  Future<void> updatePost(PostModel postModel) async {
+  Future<void> updatePost(PostModel post) async {
     await firestore
         .collection('posts/${user.uid}')
-        .doc(postModel.time)
-        .update({'description': postModel.description});
+        .doc(post.time)
+        .update({'description': post.description});
   }
 }
