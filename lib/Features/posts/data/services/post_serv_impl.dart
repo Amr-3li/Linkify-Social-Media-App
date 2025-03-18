@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' show FirebaseFirestore;
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
 import 'package:linkify/Features/posts/data/model/post_model.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
 
@@ -9,32 +9,45 @@ class PostServImpl implements PostServ {
   User get user => auth.currentUser!;
 
   @override
-  Future<void> addPost(PostModel postModel) {
-    // TODO: implement addPost
-    throw UnimplementedError();
+  Future<void> addPost(PostModel postModel) async {
+    int now = DateTime.now().microsecondsSinceEpoch;
+    await firestore
+        .collection('posts/${user.uid}')
+        .doc('$now')
+        .set(postModel.toJson());
   }
 
   @override
-  Future<void> deletePost(PostModel postModel) {
-    // TODO: implement deletePost
-    throw UnimplementedError();
+  Future<void> deletePost(PostModel postModel) async {
+    await firestore
+        .collection('posts/${user.uid}')
+        .doc(postModel.time)
+        .delete();
   }
 
   @override
-  Future<List<PostModel>> getAllPosts() {
-    // TODO: implement getAllPosts
-    throw UnimplementedError();
+  Future<List<PostModel>> getAllPosts() async {
+    List<PostModel> posts = [];
+    await firestore.collection('posts').get().then((value) {
+      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
+    });
+    return posts;
   }
 
   @override
-  Future<List<PostModel>> getUserPosts(String id) {
-    // TODO: implement getUserPosts
-    throw UnimplementedError();
+  Future<List<PostModel>> getUserPosts(String id) async {
+    List<PostModel> posts = [];
+    await firestore.collection('posts/$id').get().then((value) {
+      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
+    });
+    return posts;
   }
 
   @override
-  Future<void> updatePost(PostModel postModel) {
-    // TODO: implement updatePost
-    throw UnimplementedError();
+  Future<void> updatePost(PostModel postModel) async {
+    await firestore
+        .collection('posts/${user.uid}')
+        .doc(postModel.time)
+        .update({'description': postModel.description});
   }
 }
