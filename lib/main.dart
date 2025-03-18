@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:linkify/Features/connectivity/disconnected_page.dart';
-import 'package:linkify/core/gitit/get_it.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/services/user_data_impl.dart';
 import 'package:linkify/core/utils/app_router.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';

@@ -10,7 +10,7 @@ import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
-import 'package:linkify/core/gitit/get_it.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class ChatListItem extends StatelessWidget {
   const ChatListItem({

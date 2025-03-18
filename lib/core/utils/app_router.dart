@@ -8,7 +8,7 @@ import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/Features/register/data/repository/signup_repo.dart';
 import 'package:linkify/Features/connectivity/disconnected_page.dart';
-import 'package:linkify/core/gitit/get_it.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';

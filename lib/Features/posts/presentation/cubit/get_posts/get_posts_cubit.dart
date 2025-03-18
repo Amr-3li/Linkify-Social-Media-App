@@ -1,0 +1,31 @@
+import 'package:bloc/bloc.dart';
+import 'package:linkify/Features/posts/data/model/post_model.dart';
+import 'package:linkify/Features/posts/data/repository/post_repo.dart';
+import 'package:meta/meta.dart';
+
+part 'get_posts_state.dart';
+
+class GetPostsCubit extends Cubit<GetPostsState> {
+  GetPostsCubit(this.postRepo) : super(GetPostsInitial());
+  final PostRepo postRepo;
+
+  Future<void> getAllPosts() async {
+    emit(GetPostsloading());
+    final response = await postRepo.getAllPosts();
+    response.fold((l) {
+      emit(GetPostsFailure(l.errMessage));
+    }, (r) {
+      emit(GetPostsSuccess(r));
+    });
+  }
+
+  Future<void> getUserPosts(String id) async {
+    emit(GetPostsloading());
+    final response = await postRepo.getUserPosts(id);
+    response.fold((l) {
+      emit(GetPostsFailure(l.errMessage));
+    }, (r) {
+      emit(GetPostsSuccess(r));
+    });
+  }
+}

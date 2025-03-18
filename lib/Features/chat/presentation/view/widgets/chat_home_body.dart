@@ -6,7 +6,7 @@ import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/presentation/cubit/message_count/message_count_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_list_item.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/core/gitit/get_it.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class ChatHomeBody extends StatefulWidget {
   const ChatHomeBody({super.key});

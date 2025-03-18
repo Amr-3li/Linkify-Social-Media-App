@@ -8,7 +8,7 @@ import 'package:linkify/Features/chat/presentation/view/pages/image_confirm_mess
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/helper/pick_image.dart';
-import 'package:linkify/core/gitit/get_it.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class SendImageIcon extends StatelessWidget {
   const SendImageIcon({super.key, required this.toUser});

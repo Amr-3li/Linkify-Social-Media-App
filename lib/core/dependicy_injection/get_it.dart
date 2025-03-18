@@ -3,6 +3,10 @@ import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo_implementation.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser_implement.dart';
+import 'package:linkify/Features/posts/data/repository/post_repo.dart';
+import 'package:linkify/Features/posts/data/repository/post_repo_impl.dart';
+import 'package:linkify/Features/posts/data/services/post_serv.dart';
+import 'package:linkify/Features/posts/data/services/post_serv_impl.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo_impl.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
@@ -46,4 +50,8 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<ChatSer>(ChatSerImplement());
   gitItInstanse.registerSingleton<ChatRepo>(
       ChatRepoImplementation(gitItInstanse<ChatSer>()));
+  //======================= Posts ===========================================
+  gitItInstanse.registerSingleton<PostServ>(PostServImpl());
+  gitItInstanse
+      .registerSingleton<PostRepo>(PostRepoImpl(gitItInstanse<PostServ>()));
 }
