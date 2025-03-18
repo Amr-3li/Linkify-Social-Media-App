@@ -4,7 +4,7 @@ import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 import 'package:linkify/core/errors/failures.dart';
 
-class ChatRepoImplementation extends ChatRepo {
+class ChatRepoImplementation implements ChatRepo {
   final ChatSer chatSer;
 
   ChatRepoImplementation(this.chatSer);

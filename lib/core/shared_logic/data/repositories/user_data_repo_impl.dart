@@ -4,7 +4,7 @@ import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 import 'package:linkify/core/shared_logic/data/services/users_data.dart';
 
-class UserDataRepoImpl extends UserDataRepo {
+class UserDataRepoImpl implements UserDataRepo {
   final UsersData usersData;
 
   UserDataRepoImpl(this.usersData);

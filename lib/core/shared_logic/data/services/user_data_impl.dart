@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/shared_logic/data/services/users_data.dart';
 
-class UserDataImpl extends UsersData {
+class UserDataImpl implements UsersData {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   User get user => auth.currentUser!;

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/Features/chat/data/model/message_model.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 
-class ChatSerImplement extends ChatSer {
+class ChatSerImplement implements ChatSer {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
