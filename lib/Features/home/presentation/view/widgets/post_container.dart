@@ -27,7 +27,8 @@ class PostContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PostHeader(name: post.userName, time: post.time),
+          PostHeader(
+              name: post.userName, time: post.time, image: post.userImage),
           const SizedBox(height: 10),
           PostContent(
             image: post.imageUrl,
