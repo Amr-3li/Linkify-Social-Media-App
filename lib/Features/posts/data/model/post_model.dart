@@ -3,8 +3,6 @@
 import 'package:linkify/Features/posts/data/model/comment_model.dart';
 
 class PostModel {
-  final String id;
-  final String title;
   final String imageUrl;
   final String description;
   final String time;
@@ -13,8 +11,6 @@ class PostModel {
   final List<CommentModel> comments;
   final int shares;
   PostModel({
-    required this.id,
-    required this.title,
     required this.imageUrl,
     required this.description,
     required this.time,
@@ -26,8 +22,6 @@ class PostModel {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': id,
-      'title': title,
       'imageUrl': imageUrl,
       'description': description,
       'time': time,
@@ -40,8 +34,6 @@ class PostModel {
 
   factory PostModel.fromJson(Map<String, dynamic> map) {
     return PostModel(
-      id: map['id'] as String,
-      title: map['title'] as String,
       imageUrl: map['imageUrl'] as String,
       description: map['description'] as String,
       time: map['time'] as String,

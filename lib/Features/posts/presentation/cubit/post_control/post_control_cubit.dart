@@ -8,15 +8,6 @@ part 'post_control_state.dart';
 class PostControlCubit extends Cubit<PostControlState> {
   PostControlCubit(this.postRepo) : super(PostControlInitial());
   final PostRepo postRepo;
-  Future<void> addPosts(PostModel post) async {
-    emit(PostControlLoading());
-    final response = await postRepo.addPost(post);
-    response.fold((l) {
-      emit(PostControlFailure(l.errMessage));
-    }, (r) {
-      emit(PostControlSuccess());
-    });
-  }
 
   Future<void> deletePosts(PostModel post) async {
     emit(PostControlLoading());

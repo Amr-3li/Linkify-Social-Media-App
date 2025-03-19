@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PostTextField extends StatelessWidget {
-  const PostTextField({super.key});
-
+  const PostTextField({super.key, required this.controller});
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,6 +10,7 @@ class PostTextField extends StatelessWidget {
       width: double.infinity,
       height: 200,
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(fontSize: 20),
         decoration: const InputDecoration(
           hintText: "write post",

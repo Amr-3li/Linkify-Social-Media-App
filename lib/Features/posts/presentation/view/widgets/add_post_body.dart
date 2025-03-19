@@ -1,61 +1,88 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/posts/presentation/cubit/post_control/post_control_cubit.dart';
+import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/posts/presentation/view/widgets/add_post_image.dart';
 import 'package:linkify/Features/posts/presentation/view/widgets/post_text_field.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
-class AddPostBody extends StatelessWidget {
+class AddPostBody extends StatefulWidget {
   const AddPostBody({
     super.key,
   });
 
   @override
+  State<AddPostBody> createState() => _AddPostBodyState();
+}
+
+class _AddPostBodyState extends State<AddPostBody> {
+  File? imageFile;
+  TextEditingController postController = TextEditingController();
+
+  @override
+  void dispose() {
+    postController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostControlCubit, PostControlState>(
-      builder: (context, state) {
-        if (state is PostControlLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is PostControlFailure) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            SnackBarWidget.showSnack(context, state.error);
+    return BlocListener<AddPostCubit, AddPostState>(
+      listener: (context, state) {
+        if (state is AddPostFailure) {
+          SnackBarWidget.showSnack(context, state.errMessage);
+        } else if (state is AddPostSuccess) {
+          SnackBarWidget.showSnack(context, "Post added successfully");
+          postController.clear();
+          setState(() {
+            imageFile = null;
           });
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                const PostTextField(),
-                const AddPostImage(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(
-                    title: "Post",
-                    color: const Color.fromARGB(139, 0, 67, 35),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                const PostTextField(),
-                const AddPostImage(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(
-                    title: "Post",
-                    color: const Color.fromARGB(139, 0, 67, 35),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-          );
         }
       },
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            PostTextField(controller: postController),
+            AddPostImage(
+              onImagePicked: (value) {
+                setState(() {
+                  imageFile = value; // تحديث imageFile هنا
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: BlocBuilder<AddPostCubit, AddPostState>(
+                builder: (context, state) {
+                  return CustomButton(
+                    title: state is AddPostLoading ? "Posting..." : "Post",
+                    color: const Color.fromARGB(139, 0, 67, 35),
+                    onTap: state is AddPostLoading
+                        ? () => null
+                        : () {
+                            if (postController.text.isEmpty) {
+                              SnackBarWidget.showSnack(
+                                  context, "Post can't be empty");
+                              return;
+                            }
+                            print(
+                                "Image Path: ${imageFile?.path ?? 'No image'}");
+                            BlocProvider.of<AddPostCubit>(context).addPosts(
+                              postController.text,
+                              imageFile,
+                            );
+                            imageFile = null;
+                          },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
