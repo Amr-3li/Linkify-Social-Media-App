@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
 
-class PostServImpl implements PostServ {
+class AddPostImpl implements AddPost {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   User get user => auth.currentUser!;

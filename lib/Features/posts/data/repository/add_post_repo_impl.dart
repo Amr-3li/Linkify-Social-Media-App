@@ -4,8 +4,8 @@ import 'package:linkify/Features/posts/data/repository/add_post_repo.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
 import 'package:linkify/core/errors/failures.dart';
 
-class AddPostRepoImpl implements PostRepo {
-  final PostServ postServ;
+class AddPostRepoImpl implements AddPostRepo {
+  final AddPost postServ;
 
   AddPostRepoImpl(this.postServ);
   @override

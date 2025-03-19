@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:meta/meta.dart';
 
 import 'package:linkify/Features/home/data/Models/post_model.dart';
@@ -12,15 +15,20 @@ part 'add_post_state.dart';
 
 class AddPostCubit extends Cubit<AddPostState> {
   AddPostCubit(this.postRepo, this.imageRepo) : super(AddPostInitial());
-  final PostRepo postRepo;
+  final AddPostRepo postRepo;
   final ImageRepo imageRepo;
-
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User get user => auth.currentUser!;
 
   Future<void> addPosts(String description, File? image) async {
     emit(AddPostLoading());
     try {
+      UserModel userModel = await firestore
+          .collection('users')
+          .doc(user.uid)
+          .get()
+          .then((value) => UserModel.fromJson(value.data()!));
       if (image != null) {
         final response1 = await imageRepo.uploadImageToFirebase(image);
         response1.fold(
@@ -32,6 +40,8 @@ class AddPostCubit extends Cubit<AddPostState> {
                 description: description,
                 imageUrl: r,
                 userId: user.uid,
+                userName: "${userModel.fname} ${userModel.lname}",
+                userImage: userModel.image ?? "",
                 likes: 0,
                 comments: [],
                 shares: 0,
@@ -50,6 +60,8 @@ class AddPostCubit extends Cubit<AddPostState> {
             description: description,
             imageUrl: '',
             userId: user.uid,
+            userName: "${userModel.fname} ${userModel.lname}",
+            userImage: userModel.image ?? "",
             likes: 0,
             comments: [],
             shares: 0,

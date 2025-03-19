@@ -7,6 +7,8 @@ class PostModel {
   final String description;
   final String time;
   final String userId;
+  final String userName;
+  final String userImage;
   final int likes;
   final List<CommentModel> comments;
   final int shares;
@@ -15,6 +17,8 @@ class PostModel {
     required this.description,
     required this.time,
     required this.userId,
+    required this.userName,
+    required this.userImage,
     required this.likes,
     required this.comments,
     required this.shares,
@@ -26,6 +30,8 @@ class PostModel {
       'description': description,
       'time': time,
       'userId': userId,
+      'userName': userName,
+      'userImage': userImage,
       'likes': likes,
       'comments': comments.map((x) => x.toMap()).toList(),
       'shares': shares,
@@ -38,6 +44,8 @@ class PostModel {
       description: map['description'] as String,
       time: map['time'] as String,
       userId: map['userId'] as String,
+      userName: map['userName'] as String,
+      userImage: map['userImage'] as String,
       likes: map['likes'] as int,
       comments: List<CommentModel>.from(
         (map['comments'] as List<int>).map<CommentModel>(

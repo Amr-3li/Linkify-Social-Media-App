@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/Features/home/data/Models/post.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -10,7 +10,7 @@ class PostContainer extends StatelessWidget {
     super.key,
     required this.post,
   });
-  final Post post;
+  final PostModel post;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,11 +27,11 @@ class PostContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PostHeader(name: post.name, time: post.time),
+          PostHeader(name: post.userName, time: post.time),
           const SizedBox(height: 10),
           PostContent(
-            image: post.image,
-            text: post.content,
+            image: post.imageUrl,
+            text: post.description,
           ),
           const Divider(),
           const ReactionContainerBar(),
