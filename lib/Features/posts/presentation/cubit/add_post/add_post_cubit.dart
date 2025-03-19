@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
-import 'package:linkify/Features/posts/data/model/post_model.dart';
-import 'package:linkify/Features/posts/data/repository/post_repo.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/Features/posts/data/repository/add_post_repo.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 
 part 'add_post_state.dart';

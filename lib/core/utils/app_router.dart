@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/presentation/view/home_page.dart';
-import 'package:linkify/Features/posts/presentation/cubit/post_control/post_control_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
 import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo.dart';

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:linkify/Features/posts/data/model/comment_model.dart';
+import 'package:linkify/Features/home/data/Models/comment_model.dart';
 
 class PostModel {
   final String imageUrl;

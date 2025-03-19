@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart' show FirebaseFirestore;
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
-import 'package:linkify/Features/posts/data/model/post_model.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
 
 class PostServImpl implements PostServ {
@@ -11,40 +11,5 @@ class PostServImpl implements PostServ {
   @override
   Future<void> addPost(PostModel post) async {
     await firestore.collection('posts').doc(post.time).set(post.toJson());
-  }
-
-  @override
-  Future<void> deletePost(PostModel post) async {
-    await firestore.collection('posts').doc(post.time).delete();
-  }
-
-  @override
-  Future<List<PostModel>> getAllPosts() async {
-    List<PostModel> posts = [];
-    await firestore.collection('posts').get().then((value) {
-      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
-    });
-    return posts;
-  }
-
-  @override
-  Future<List<PostModel>> getUserPosts(String id) async {
-    List<PostModel> posts = [];
-    await firestore
-        .collection('posts')
-        .where('uid', isEqualTo: id)
-        .get()
-        .then((value) {
-      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
-    });
-    return posts;
-  }
-
-  @override
-  Future<void> updatePost(PostModel post) async {
-    await firestore
-        .collection('posts')
-        .doc(post.time)
-        .update({'description': post.description});
   }
 }

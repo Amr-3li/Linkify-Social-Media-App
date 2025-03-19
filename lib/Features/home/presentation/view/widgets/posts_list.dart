@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post.dart';
-import 'package:linkify/Features/home/data/repository/post_repository.dart';
+import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 
 class PostsList extends StatefulWidget {
