@@ -11,11 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 1;
+  int currentIndex = 0;
   late PageController pageController;
   @override
   void initState() {
-    pageController = PageController(initialPage: 1);
+    pageController = PageController(initialPage: 0);
     super.initState();
   }
 
@@ -43,24 +43,19 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: bottomNavigationBar(),
+      bottomNavigationBar: bottomNavigationBar(),
     );
   }
 
   Container bottomNavigationBar() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-      height: 52,
+      margin: const EdgeInsets.symmetric(),
+      height: 60,
       decoration: const BoxDecoration(
-          color: Color.fromARGB(125, 0, 0, 0),
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromARGB(255, 100, 100, 100),
-                blurRadius: 10,
-                offset: Offset(0, 12),
-                blurStyle: BlurStyle.normal)
-          ]),
+        color: MyColors.appBarColor,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: navigationItems.asMap().entries.map((e) {
@@ -74,7 +69,9 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               icon: Icon(e.value,
-                  color: currentIndex == e.key ? Colors.white : Colors.grey,
+                  color: currentIndex == e.key
+                      ? MyColors.iconActiveColor
+                      : MyColors.iconColor,
                   size: 35));
         }).toList(),
       ),

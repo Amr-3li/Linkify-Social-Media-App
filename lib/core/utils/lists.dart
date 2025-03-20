@@ -4,8 +4,8 @@ import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
 import 'package:linkify/Features/settings/presentation/view/settings.dart';
 
 List navigationItems = [
-  Icons.post_add,
   Icons.home,
+  Icons.post_add,
   Icons.settings,
 ];
-List pages = const [AddPostPage(), HomePageBody(), SettingsPage()];
+List pages = const [HomePageBody(), AddPostPage(), SettingsPage()];

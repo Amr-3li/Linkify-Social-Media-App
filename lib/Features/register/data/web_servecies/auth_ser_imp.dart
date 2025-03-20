@@ -51,7 +51,6 @@ class AuthWebServiceImplement implements AuthService {
             print("Unsupported provider: $provider");
         }
       }
-
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
 
