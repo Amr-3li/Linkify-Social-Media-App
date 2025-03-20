@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/images.dart';
 
 class HomePageAppBar extends StatelessWidget {
   const HomePageAppBar({
@@ -11,7 +12,6 @@ class HomePageAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      centerTitle: true,
       backgroundColor: MyColors.appBarColor,
       floating: true,
       snap: true,
@@ -19,20 +19,31 @@ class HomePageAppBar extends StatelessWidget {
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
-          icon: const Icon(Icons.menu)),
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+            size: 30,
+          )),
       actions: [
         IconButton(
           onPressed: () {
             GoRouter.of(context).push('/chatHomePage');
           },
-          icon: Badge.count(
-              count: 10,
-              child: const Icon(Icons.forum_outlined, color: Colors.black)),
+          icon: const Badge(
+              smallSize: 8,
+              child: Icon(Icons.forum_outlined,
+                  color: MyColors.fontColor, size: 30)),
         )
       ],
-      title: const Text(
-        "Home",
-        style: TextStyle(color: Colors.black),
+      title: Row(
+        children: [
+          Image.asset(MyImages.imagesAppIcon, height: 30, width: 30),
+          const SizedBox(width: 10),
+          const Text(
+            "Linkify",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }

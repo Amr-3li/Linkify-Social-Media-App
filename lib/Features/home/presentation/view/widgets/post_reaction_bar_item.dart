@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/colors.dart';
 
 class PostReactionBarItem extends StatelessWidget {
   const PostReactionBarItem(
@@ -16,24 +17,23 @@ class PostReactionBarItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(7),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: isLove
-              ? const Color.fromARGB(150, 114, 89, 87)
-              : const Color.fromARGB(100, 98, 98, 98),
         ),
         child: Row(children: [
-          isLove
-              ? Icon(icon, color: Colors.red)
-              : Icon(
-                  icon,
-                  color: Colors.black,
-                ),
-          const SizedBox(width: 5),
+          Icon(
+            icon,
+            color:
+                isLove ? Colors.red : const Color.fromARGB(255, 111, 111, 111),
+            size: 25,
+          ),
+          const SizedBox(width: 8),
           Text(
             text,
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(
+                color: MyColors.fromMessageBorder,
+                fontSize: 16,
+                fontWeight: FontWeight.w600),
           ),
         ]),
       ),

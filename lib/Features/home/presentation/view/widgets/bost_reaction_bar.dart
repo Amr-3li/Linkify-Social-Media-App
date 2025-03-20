@@ -20,8 +20,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
         ),
-        child: Row(children: [
-          const SizedBox(width: 10),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           PostReactionBarItem(
             onTap: () {
               setState(() {
@@ -32,12 +31,9 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
             text: "Like",
             isLove: isLove,
           ),
-          const Spacer(),
           PostReactionBarItem(
               onTap: () {}, icon: Icons.comment, text: "Comment"),
-          const Spacer(),
           PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),
-          const SizedBox(width: 10),
         ]));
   }
 }
