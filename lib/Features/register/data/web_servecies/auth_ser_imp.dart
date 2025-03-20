@@ -5,33 +5,66 @@ import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
 
 class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
-
+  User? get currentUser => auth.currentUser;
   AuthWebServiceImplement();
   @override
   Future<String> signin(String username, String password) async {
     UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: username, password: password);
     String id = userCredential.user!.uid;
-    print("user id: $id");
+
     return id;
   }
 
   @override
   Future<void> signout() async {
     try {
-      // Check if the user is signed in with Google
-      if (await GoogleSignIn().isSignedIn()) {
-        await GoogleSignIn().signOut();
+      List<String> userProviders = currentUser!.providerData
+          .map((userInfo) => userInfo.providerId)
+          .toList();
+
+      // التعامل مع كل provider
+      for (String provider in userProviders) {
+        switch (provider) {
+          case 'google.com':
+            // تسجيل الخروج من Google
+            if (await GoogleSignIn().isSignedIn()) {
+              await GoogleSignIn().signOut();
+            }
+            break;
+
+          // case 'facebook.com':
+          //   // تسجيل الخروج من Facebook
+          //   await FacebookAuth.instance.logOut();
+          //   break;
+
+          case 'password':
+            // Email/Password لا يحتاج sign out منفصل لأن Firebase Auth بيتولاه
+            break;
+
+          // لو عندك providers تانية (مثل Twitter أو GitHub)
+          case 'twitter.com':
+            // أضف منطق تسجيل الخروج من Twitter هنا
+            break;
+
+          default:
+            print("Unsupported provider: $provider");
+        }
       }
+
+      // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
+
+      print("User signed out successfully.");
     } catch (e) {
       print('Error during sign-out: $e');
+      rethrow;
     }
   }
 
   CollectionReference refs = FirebaseFirestore.instance.collection("users");
   @override
-  Future<void> signinWithGoogle() async {
+  Future<String> signinWithGoogle() async {
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
     AuthCredential credential = GoogleAuthProvider.credential(
@@ -56,8 +89,7 @@ class AuthWebServiceImplement implements AuthService {
         'uid': id ?? "",
         'phone': userCredential.user?.phoneNumber ?? "",
       });
-    } else {
-      print("the user already exist");
     }
+    return id!;
   }
 }
