@@ -61,15 +61,14 @@ class _AddPostBodyState extends State<AddPostBody> {
                     title: state is AddPostLoading ? "Posting..." : "Post",
                     color: const Color.fromARGB(139, 0, 67, 35),
                     onTap: state is AddPostLoading
-                        ? () => null
+                        ? () {}
                         : () {
                             if (postController.text.isEmpty) {
                               SnackBarWidget.showSnack(
                                   context, "Post can't be empty");
                               return;
                             }
-                            print(
-                                "Image Path: ${imageFile?.path ?? 'No image'}");
+
                             BlocProvider.of<AddPostCubit>(context).addPosts(
                               postController.text,
                               imageFile,

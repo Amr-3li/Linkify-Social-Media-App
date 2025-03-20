@@ -7,7 +7,11 @@ class GetPostsServImpl implements GetPostsServ {
   @override
   Future<List<PostModel>> getAllPosts() async {
     List<PostModel> posts = [];
-    await firestore.collection('posts').get().then((value) {
+    await firestore
+        .collection('posts')
+        .orderBy('time', descending: true)
+        .get()
+        .then((value) {
       posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
     });
     return posts;

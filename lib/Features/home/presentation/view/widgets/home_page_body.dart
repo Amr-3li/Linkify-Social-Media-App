@@ -11,17 +11,20 @@ class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-              const HomePageAppBar(),
-            ],
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-                create: (context) =>
-                    gitItInstanse<GetPostsCubit>()..getAllPosts())
-          ],
-          child: const PostsList(),
-        ));
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        const HomePageAppBar(),
+      ],
+      body: RefreshIndicator(
+        color: Colors.black,
+        backgroundColor: Colors.white,
+        strokeWidth: 2,
+        displacement: 10,
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
+        onRefresh: () async =>
+            BlocProvider.of<GetPostsCubit>(context).getAllPosts(),
+        child: const PostsList(),
+      ),
+    );
   }
 }
