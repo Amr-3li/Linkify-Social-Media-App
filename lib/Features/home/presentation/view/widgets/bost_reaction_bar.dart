@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/comment_widget.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
 
 class ReactionContainerBar extends StatefulWidget {
@@ -31,8 +32,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
             text: "Like",
             isLove: isLove,
           ),
-          PostReactionBarItem(
-              onTap: () {}, icon: Icons.comment, text: "Comment"),
+          const CommentWidget(),
           PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),
         ]));
   }

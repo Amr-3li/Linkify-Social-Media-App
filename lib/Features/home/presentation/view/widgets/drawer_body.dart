@@ -76,8 +76,8 @@ class DrawerBody extends StatelessWidget {
         ),
         const Divider(),
         ListTile(
-          tileColor: MyColors.appBarColor,
-          leading: const Icon(Icons.logout, color: MyColors.iconColor),
+          leading:
+              const Icon(Icons.logout, color: Color.fromARGB(255, 198, 0, 0)),
           title: const Text('Logout',
               style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
           onTap: () {

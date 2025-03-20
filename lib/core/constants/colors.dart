@@ -7,7 +7,8 @@ abstract class MyColors {
   static const Color appBarColor = Color(0xFF6CD4C4);
   static const Color mainColor = Color(0xFF6CD4C4);
 
-  static const Color iconColor = Color(0xFFEAEAEA);
+  static const Color iconColor = Color.fromARGB(255, 174, 174, 174);
+  static const Color iconNavColor = Color(0xFFEAEAEA);
   static const Color iconActiveColor = Color(0xFF4A6FA5);
   static const Color textColor = Color(0xFFE0E0E0);
   static const Color buttonColor = Color(0xFF009688);

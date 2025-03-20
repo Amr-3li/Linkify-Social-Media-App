@@ -15,7 +15,10 @@ class _HomePageState extends State<HomePage> {
   late PageController pageController;
   @override
   void initState() {
-    pageController = PageController(initialPage: 0);
+    pageController = PageController(
+      initialPage: 0,
+      viewportFraction: 1,
+    );
     super.initState();
   }
 
@@ -71,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(e.value,
                   color: currentIndex == e.key
                       ? MyColors.iconActiveColor
-                      : MyColors.iconColor,
+                      : MyColors.iconNavColor,
                   size: 35));
         }).toList(),
       ),

@@ -28,4 +28,24 @@ class PostControlCubit extends Cubit<PostControlState> {
       emit(PostControlSuccess());
     });
   }
+
+  Future<void> likePosts(PostModel post) async {
+    emit(PostControlLoading());
+    final response = await postRepo.likePost(post);
+    response.fold((l) {
+      emit(PostControlFailure(l.errMessage));
+    }, (r) {
+      emit(PostControlSuccess());
+    });
+  }
+
+  Future<void> addComment(PostModel post) async {
+    emit(PostControlLoading());
+    final response = await postRepo.addComment(post);
+    response.fold((l) {
+      emit(PostControlFailure(l.errMessage));
+    }, (r) {
+      emit(PostControlSuccess());
+    });
+  }
 }

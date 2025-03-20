@@ -86,6 +86,9 @@ abstract class AppRouter {
             BlocProvider(
               create: (_) => gitItInstanse<AddPostCubit>(),
             ),
+            BlocProvider(
+              create: (_) => gitItInstanse<PostControlCubit>(),
+            ),
           ],
           child: const HomePage(),
         ),
