@@ -29,9 +29,9 @@ class PostControlCubit extends Cubit<PostControlState> {
     });
   }
 
-  Future<void> likePosts(PostModel post) async {
+  Future<void> addRemoveLike(PostModel post) async {
     emit(PostControlLoading());
-    final response = await postRepo.likePost(post);
+    final response = await postRepo.addRemoveLike(post);
     response.fold((l) {
       emit(PostControlFailure(l.errMessage));
     }, (r) {
@@ -42,6 +42,16 @@ class PostControlCubit extends Cubit<PostControlState> {
   Future<void> addComment(PostModel post) async {
     emit(PostControlLoading());
     final response = await postRepo.addComment(post);
+    response.fold((l) {
+      emit(PostControlFailure(l.errMessage));
+    }, (r) {
+      emit(PostControlSuccess());
+    });
+  }
+
+  Future<void> deleteComment(PostModel post) async {
+    emit(PostControlLoading());
+    final response = await postRepo.deleteComment(post);
     response.fold((l) {
       emit(PostControlFailure(l.errMessage));
     }, (r) {
