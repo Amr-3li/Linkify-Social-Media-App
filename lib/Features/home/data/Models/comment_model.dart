@@ -1,15 +1,14 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 class CommentModel {
   final String comment;
-  final String user;
+  final String userName;
+  final String userImage;
   final String userId;
   final String postId;
   final String time;
   CommentModel({
     required this.comment,
-    required this.user,
+    required this.userName,
+    required this.userImage,
     required this.userId,
     required this.postId,
     required this.time,
@@ -18,7 +17,9 @@ class CommentModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'comment': comment,
-      'user': user,
+      'userName': userName,
+      'userImage': userImage,
+      'time': time,
       'userId': userId,
       'postId': postId,
     };
@@ -27,7 +28,8 @@ class CommentModel {
   factory CommentModel.fromMap(Map<String, dynamic> map) {
     return CommentModel(
         comment: map['comment'] as String,
-        user: map['user'] as String,
+        userName: map['userName'] as String,
+        userImage: map['userImage'] as String,
         userId: map['userId'] as String,
         postId: map['postId'] as String,
         time: map['time'] as String);

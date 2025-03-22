@@ -17,9 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   CollectionReference collRef = FirebaseFirestore.instance.collection("users");
   late SharedPreferences prefs;
   Future<void> signin(String email, String password) async {
-    prefs = await SharedPreferences.getInstance();
     emit(SigninLoading());
-
     var result = await authRepository.signin(email, password);
     result.fold(
       (l) {
@@ -27,13 +25,11 @@ class AuthCubit extends Cubit<AuthState> {
       },
       (r) {
         emit(SigninSuccess());
-        prefs.setString('uid', r);
       },
     );
   }
 
   Future<void> signout() async {
-    prefs = await SharedPreferences.getInstance();
     emit(SignoutLoading());
     var result = await authRepository.signout();
     result.fold(
@@ -42,13 +38,11 @@ class AuthCubit extends Cubit<AuthState> {
       },
       (r) {
         emit(SignoutSuccess());
-        prefs.remove('uid');
       },
     );
   }
 
   Future<void> signInWithGoogle() async {
-    prefs = await SharedPreferences.getInstance();
     emit(SigninWithGoogleLoading());
     var result = await authRepository.signInWithGoogle();
     result.fold(
@@ -57,7 +51,6 @@ class AuthCubit extends Cubit<AuthState> {
       },
       (r) {
         emit(SigninWithGoogleSuccess());
-        prefs.setString("uid", r);
       },
     );
   }

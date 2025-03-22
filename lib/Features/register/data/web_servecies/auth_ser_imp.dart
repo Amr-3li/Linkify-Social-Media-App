@@ -2,61 +2,50 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? get currentUser => auth.currentUser;
+  SharedPreferences? prefs;
   AuthWebServiceImplement();
   @override
   Future<String> signin(String username, String password) async {
+    prefs = await SharedPreferences.getInstance();
     UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: username, password: password);
     String id = userCredential.user!.uid;
-
+    prefs!.setString('uid', id);
+    prefs!.setString('username', userCredential.user!.displayName!);
+    prefs!.setString('userImage', userCredential.user!.photoURL!);
     return id;
   }
 
   @override
   Future<void> signout() async {
+    prefs = await SharedPreferences.getInstance();
     try {
       List<String> userProviders = currentUser!.providerData
           .map((userInfo) => userInfo.providerId)
           .toList();
-
-      // التعامل مع كل provider
       for (String provider in userProviders) {
         switch (provider) {
           case 'google.com':
-            // تسجيل الخروج من Google
             if (await GoogleSignIn().isSignedIn()) {
               await GoogleSignIn().signOut();
             }
             break;
-
-          // case 'facebook.com':
-          //   // تسجيل الخروج من Facebook
-          //   await FacebookAuth.instance.logOut();
-          //   break;
-
           case 'password':
-            // Email/Password لا يحتاج sign out منفصل لأن Firebase Auth بيتولاه
             break;
-
-          // لو عندك providers تانية (مثل Twitter أو GitHub)
           case 'twitter.com':
-            // أضف منطق تسجيل الخروج من Twitter هنا
             break;
-
           default:
-            print("Unsupported provider: $provider");
         }
       }
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
-
-      print("User signed out successfully.");
+      prefs!.remove('uid');
     } catch (e) {
-      print('Error during sign-out: $e');
       rethrow;
     }
   }
@@ -72,7 +61,7 @@ class AuthWebServiceImplement implements AuthService {
     );
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-
+    prefs = await SharedPreferences.getInstance();
     String? id = userCredential.user?.uid;
     //مهمه to ensure that the user not exist in firebase if not exist add it
     DocumentSnapshot snapshot = await refs.doc(id).get();
@@ -89,6 +78,9 @@ class AuthWebServiceImplement implements AuthService {
         'phone': userCredential.user?.phoneNumber ?? "",
       });
     }
-    return id!;
+    prefs!.setString('uid', id!);
+    prefs!.setString('userName', userCredential.user!.displayName!);
+    prefs!.setString('userImage', userCredential.user!.photoURL!);
+    return id;
   }
 }
