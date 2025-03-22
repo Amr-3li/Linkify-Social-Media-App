@@ -9,7 +9,7 @@ class PostModel {
   final String userId;
   final String userName;
   final String userImage;
-  final List<String> likes;
+  final List likes;
   final List<CommentModel> comments;
   final int shares;
   PostModel({
@@ -46,7 +46,7 @@ class PostModel {
       userId: map['userId'] as String,
       userName: map['userName'] as String,
       userImage: map['userImage'] as String,
-      likes: map['likes'] as List<String>,
+      likes: map['likes'] as List,
       comments: List<CommentModel>.from(
         (map['comments'] as List).map<CommentModel>(
           (x) => CommentModel.fromMap(x as Map<String, dynamic>),
