@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/posts/presentation/view/widgets/add_post_image.dart';
 import 'package:linkify/Features/posts/presentation/view/widgets/post_text_field.dart';
+import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
@@ -59,7 +60,7 @@ class _AddPostBodyState extends State<AddPostBody> {
                 builder: (context, state) {
                   return CustomButton(
                     title: state is AddPostLoading ? "Posting..." : "Post",
-                    color: const Color.fromARGB(139, 0, 67, 35),
+                    color: MyColors.toMessageBorder,
                     onTap: state is AddPostLoading
                         ? () {}
                         : () {
@@ -73,7 +74,10 @@ class _AddPostBodyState extends State<AddPostBody> {
                               postController.text,
                               imageFile,
                             );
-                            imageFile = null;
+
+                            setState(() {
+                              imageFile = null;
+                            });
                           },
                   );
                 },

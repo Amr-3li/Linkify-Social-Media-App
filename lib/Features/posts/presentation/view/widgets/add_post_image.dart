@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/icons.dart';
 import 'package:linkify/core/helper/pick_image.dart';
 
@@ -34,11 +35,12 @@ class _AddPostImageState extends State<AddPostImage> {
               width: double.infinity,
               height: 200,
               decoration: const BoxDecoration(
+                color: MyColors.iconNavColor,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Color.fromARGB(100, 199, 199, 199),
-                image: DecorationImage(
-                  image: AssetImage(MyIcons.iconsAddImage),
-                ),
+              ),
+              child: Image.asset(
+                MyIcons.iconsAddImage,
+                color: MyColors.toMessageBorder,
               ),
             ),
           )
