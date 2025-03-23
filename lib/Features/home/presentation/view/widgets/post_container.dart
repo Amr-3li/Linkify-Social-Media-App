@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
@@ -41,7 +42,9 @@ class PostContainer extends StatelessWidget {
             children: [
               const SizedBox(width: 15),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push('/lovesPage');
+                },
                 child: Text("${post.likes.length}  love",
                     style: const TextStyle(color: Colors.grey)),
               ),

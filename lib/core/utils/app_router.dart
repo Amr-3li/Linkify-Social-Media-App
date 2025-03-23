@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
+import 'package:linkify/Features/home/presentation/view/pages/loves_page.dart';
 import 'package:linkify/Features/navigation_bar/navigation_page.dart';
 import 'package:linkify/Features/home/presentation/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
@@ -118,6 +119,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: '/lovesPage',
+        builder: (context, state) => const LovesPage(),
       ),
     ],
   );
