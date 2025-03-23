@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_widget.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
-import 'package:linkify/core/constants/constants.dart';
 
 class ReactionContainerBar extends StatefulWidget {
   const ReactionContainerBar({
