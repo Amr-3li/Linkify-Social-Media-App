@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class LovesPage extends StatelessWidget {
   const LovesPage({super.key});
@@ -23,18 +24,23 @@ class LovesPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return const Column(
+          return Column(
             children: [
               ListTile(
                 onTap: null,
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(
-                    "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png",
+                    Constants.defaultUserImage,
                   ),
                 ),
-                title: Text("User Name"),
+                title: const Text("User Name"),
               ),
-              Divider(),
+              const Divider(
+                  color: MyColors.fromMessageBorder,
+                  indent: 15,
+                  endIndent: 15,
+                  height: 5,
+                  thickness: 0.6),
             ],
           );
         },
