@@ -48,7 +48,7 @@ class PostHeader extends StatelessWidget {
                     child: const Text("Delete",
                         style: TextStyle(
                             color: Colors.red,
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600))),
                 const PopupMenuItem(
                   height: 1,
@@ -62,7 +62,7 @@ class PostHeader extends StatelessWidget {
                     child: const Text("edit",
                         style: TextStyle(
                             color: MyColors.iconActiveColor,
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600))),
               ],
             );

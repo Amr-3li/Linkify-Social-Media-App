@@ -11,7 +11,9 @@ class UserDrawerInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UserAccountsDrawerHeader(
-      decoration: const BoxDecoration(color: MyColors.appBarColor),
+      decoration: const BoxDecoration(
+        color: MyColors.appBarColor,
+      ),
       accountName:
           Text(name.toString(), style: const TextStyle(color: Colors.black)),
       accountEmail:

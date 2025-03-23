@@ -40,10 +40,13 @@ class PostContainer extends StatelessWidget {
           Row(
             children: [
               const SizedBox(width: 15),
-              Text("${post.likes} love",
-                  style: const TextStyle(color: Colors.grey)),
-              const SizedBox(width: 15),
-              Text("${post.comments.length} comments",
+              InkWell(
+                onTap: () {},
+                child: Text("${post.likes.length}  love",
+                    style: const TextStyle(color: Colors.grey)),
+              ),
+              const Spacer(),
+              Text("${post.comments.length}  comments",
                   style: const TextStyle(color: Colors.grey)),
             ],
           )

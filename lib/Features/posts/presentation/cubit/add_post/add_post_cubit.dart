@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:meta/meta.dart';
 

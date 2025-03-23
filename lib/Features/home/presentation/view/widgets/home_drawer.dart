@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/drawer_body.dart';
+import 'package:linkify/core/constants/colors.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -16,7 +17,7 @@ class HomeDrawer extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(250.0)),
       ),
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: MyColors.backgroundColor,
       child: DrawerBody(),
     );
   }

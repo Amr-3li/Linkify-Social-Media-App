@@ -5,8 +5,8 @@ import 'package:linkify/Features/home/presentation/view/widgets/home_page_appbar
 import 'package:linkify/Features/home/presentation/view/widgets/posts_list.dart';
 import 'package:linkify/core/constants/colors.dart';
 
-class HomePageBody extends StatelessWidget {
-  const HomePageBody({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
