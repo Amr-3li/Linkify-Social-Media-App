@@ -11,6 +11,8 @@ import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv_impl.dart';
 import 'package:linkify/Features/home/data/wep_serveice/post_control.dart';
 import 'package:linkify/Features/home/data/wep_serveice/post_control_impl.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/Features/posts/data/repository/add_post_repo.dart';
 import 'package:linkify/Features/posts/data/repository/add_post_repo_impl.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
@@ -78,4 +80,8 @@ void setUpGitIt() {
       PostControlCubit(gitItInstanse<PostControlRepo>()));
   gitItInstanse.registerSingleton<AddPostCubit>(
       AddPostCubit(gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()));
+  gitItInstanse.registerSingleton<GetPostLoversCubit>(
+      GetPostLoversCubit(gitItInstanse<GetPostRepo>()));
+  gitItInstanse.registerSingleton<GetPostCommentsCubit>(
+      GetPostCommentsCubit(gitItInstanse<GetPostRepo>()));
 }

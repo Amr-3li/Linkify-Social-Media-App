@@ -18,14 +18,4 @@ class GetPostsCubit extends Cubit<GetPostsState> {
       emit(GetPostsSuccess(r));
     });
   }
-
-  Future<void> getUserPosts(String id) async {
-    emit(GetPostsloading());
-    final response = await postRepo.getUserPosts(id);
-    response.fold((l) {
-      emit(GetPostsFailure(l.errMessage));
-    }, (r) {
-      emit(GetPostsSuccess(r));
-    });
-  }
 }

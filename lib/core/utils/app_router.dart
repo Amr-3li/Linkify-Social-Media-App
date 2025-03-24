@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/pages/comments_page.dart';
 import 'package:linkify/Features/home/presentation/view/pages/loves_page.dart';
@@ -123,11 +125,17 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/lovesPage',
-        builder: (context, state) => const LovesPage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => gitItInstanse<GetPostLoversCubit>(),
+          child: const LovesPage(),
+        ),
       ),
       GoRoute(
         path: '/commentsPage',
-        builder: (context, state) => const CommentsPage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => gitItInstanse<GetPostCommentsCubit>(),
+          child: const CommentsPage(),
+        ),
       ),
     ],
   );
