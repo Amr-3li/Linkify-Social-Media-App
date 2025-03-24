@@ -5,8 +5,9 @@ import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_ba
 class ReactionContainerBar extends StatefulWidget {
   const ReactionContainerBar({
     super.key,
+    required this.postTime,
   });
-
+  final String postTime;
   @override
   State<ReactionContainerBar> createState() => _ReactionContainerStateBar();
 }
@@ -32,7 +33,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
             text: "Like",
             isLove: isLove,
           ),
-          const CommenstWidget(),
+          CommenstWidget(postTime: widget.postTime),
           PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),
         ]));
   }

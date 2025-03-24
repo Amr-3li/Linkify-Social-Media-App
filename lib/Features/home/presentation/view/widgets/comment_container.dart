@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class CommentContainer extends StatelessWidget {
   const CommentContainer({
     super.key,
+    required this.commentModel,
   });
+  final CommentModel commentModel;
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = DateTime.parse(commentModel.time);
+    final DateFormat formatter = DateFormat('dd-MMM-yyyy', 'en_US');
+    String formattedDate = formatter.format(dateTime);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,25 +30,25 @@ class CommentContainer extends StatelessWidget {
               ),
             ),
           ),
-          title: const Column(
+          title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "User Name",
-                style: TextStyle(
+                commentModel.userName,
+                style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 16),
               ),
               Text(
-                "time",
-                style: TextStyle(color: MyColors.time),
+                formattedDate,
+                style: const TextStyle(color: MyColors.time),
               ),
             ],
           ),
-          subtitle: const Text(
-            "Comment asggsagjn sdjasdhg jsadgn sdjg sdjgn sjbg sajdgb sadjgsdgsalg lsabdg asdgjbnsad gjsdabng asdjgasdjgbasdgjbasjghlasbdjgbasdng s gs gjsbdg js bgjsb jgsljbg s",
-            style: TextStyle(color: Colors.black),
+          subtitle: Text(
+            commentModel.comment,
+            style: const TextStyle(color: Colors.black),
             maxLines: 15,
             overflow: TextOverflow.ellipsis,
           ),

@@ -42,24 +42,6 @@ class PostControlCubit extends Cubit<PostControlState> {
     });
   }
 
-  Future<void> addComment(String postTime, String comment) async {
-    emit(PostControlLoading());
-    prefs = await SharedPreferences.getInstance();
-    final commentModel = CommentModel(
-        comment: comment,
-        userId: prefs!.getString("uid")!,
-        postId: postTime,
-        time: DateTime.now().microsecondsSinceEpoch.toString(),
-        userImage: prefs!.getString("userImage")!,
-        userName: prefs!.getString("userName")!);
-    final response = await postRepo.addComment(postTime, commentModel);
-    response.fold((l) {
-      emit(PostControlFailure(l.errMessage));
-    }, (r) {
-      emit(PostControlSuccess());
-    });
-  }
-
   Future<void> deleteComment(String postTime, CommentModel comment) async {
     emit(PostControlLoading());
     final response = await postRepo.removeComment(postTime, comment);

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:linkify/Features/home/presentation/cubit/cubit/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
@@ -124,18 +125,27 @@ abstract class AppRouter {
         builder: (context, state) => const SettingsPage(),
       ),
       GoRoute(
-        path: '/lovesPage',
+        path: '/lovesPage/:postTime',
         builder: (context, state) => BlocProvider(
-          create: (context) => gitItInstanse<GetPostLoversCubit>(),
+          create: (context) => gitItInstanse<GetPostLoversCubit>()
+            ..getLoversPost("${state.pathParameters['postTime']}"),
           child: const LovesPage(),
         ),
       ),
       GoRoute(
-        path: '/commentsPage',
-        builder: (context, state) => BlocProvider(
-          create: (context) => gitItInstanse<GetPostCommentsCubit>(),
-          child: const CommentsPage(),
-        ),
+        path: '/commentsPage/:postTime',
+        builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => gitItInstanse<AddCommentCubit>(),
+              ),
+              BlocProvider(
+                create: (context) => gitItInstanse<GetPostCommentsCubit>()
+                  ..getComments("${state.pathParameters['postTime']}"),
+              )
+            ],
+            child:
+                CommentsPage(postTime: "${state.pathParameters['postTime']}")),
       ),
     ],
   );

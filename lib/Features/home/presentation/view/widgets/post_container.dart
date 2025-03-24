@@ -36,14 +36,16 @@ class PostContainer extends StatelessWidget {
             text: post.description,
           ),
           const Divider(),
-          const ReactionContainerBar(),
+          ReactionContainerBar(
+            postTime: post.time,
+          ),
           const SizedBox(height: 10),
           Row(
             children: [
               const SizedBox(width: 15),
               InkWell(
                 onTap: () {
-                  GoRouter.of(context).push('/lovesPage');
+                  GoRouter.of(context).push('/lovesPage/${post.time}');
                 },
                 child: Text("${post.likes.length}  love",
                     style: const TextStyle(color: Colors.grey)),

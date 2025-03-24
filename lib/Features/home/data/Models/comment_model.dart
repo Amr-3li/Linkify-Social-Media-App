@@ -3,14 +3,13 @@ class CommentModel {
   final String userName;
   final String userImage;
   final String userId;
-  final String postId;
+
   final String time;
   CommentModel({
     required this.comment,
     required this.userName,
     required this.userImage,
     required this.userId,
-    required this.postId,
     required this.time,
   });
 
@@ -21,7 +20,6 @@ class CommentModel {
       'userImage': userImage,
       'time': time,
       'userId': userId,
-      'postId': postId,
     };
   }
 
@@ -31,7 +29,6 @@ class CommentModel {
         userName: map['userName'] as String,
         userImage: map['userImage'] as String,
         userId: map['userId'] as String,
-        postId: map['postId'] as String,
         time: map['time'] as String);
   }
 }

@@ -5,13 +5,14 @@ import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_ba
 class CommenstWidget extends StatelessWidget {
   const CommenstWidget({
     super.key,
+    required this.postTime,
   });
-
+  final String postTime;
   @override
   Widget build(BuildContext context) {
     return PostReactionBarItem(
       onTap: () {
-        GoRouter.of(context).push('/commentsPage');
+        GoRouter.of(context).push('/commentsPage/$postTime');
       },
       icon: Icons.comment,
       text: "Comment",

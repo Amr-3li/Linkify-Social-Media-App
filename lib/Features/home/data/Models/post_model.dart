@@ -47,7 +47,11 @@ class PostModel {
       userId: map['userId'] as String,
       userName: map['userName'] as String,
       userImage: map['userImage'] as String,
-      likes: map['likes'] as List<LoverModel>,
+      likes: List<LoverModel>.from(
+        (map['likes'] as List).map<LoverModel>(
+          (x) => LoverModel.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
       comments: List<CommentModel>.from(
         (map['comments'] as List).map<CommentModel>(
           (x) => CommentModel.fromMap(x as Map<String, dynamic>),

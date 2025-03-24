@@ -3,8 +3,8 @@ import 'package:linkify/Features/home/presentation/view/widgets/comments_page_bo
 import 'package:linkify/core/constants/colors.dart';
 
 class CommentsPage extends StatelessWidget {
-  const CommentsPage({super.key});
-
+  const CommentsPage({super.key, required this.postTime});
+  final String postTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,9 @@ class CommentsPage extends StatelessWidget {
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
           ),
           backgroundColor: MyColors.appBarColor),
-      body: const CommentsPageBody(),
+      body: CommentsPageBody(
+        postTime: postTime,
+      ),
     );
   }
 }
