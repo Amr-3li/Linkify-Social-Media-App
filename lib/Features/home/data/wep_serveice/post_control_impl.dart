@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
+import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/data/wep_serveice/post_control.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PostControlImpl implements PostControl {
   final firestore = FirebaseFirestore.instance;
-
+  SharedPreferences? prefs;
   @override
   Future<void> deletePost(PostModel post) async {
     await firestore.collection('posts').doc(post.time).delete();
@@ -34,16 +36,20 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> addRemoveLike(String postTime, String userId) async {
+    prefs = await SharedPreferences.getInstance();
+    LoverModel lover = LoverModel(
+        id: userId,
+        name: prefs!.getString('name')!,
+        image: prefs!.getString('image')!);
     firestore.collection('posts').doc(postTime).get().then((value) async {
       PostModel post = PostModel.fromJson(value.data()!);
-      if (post.likes.contains(userId)) {
-        post.likes.remove(userId);
-      } else {
-        post.likes.add(userId);
+      if (post.likes.contains(lover)) {
+        post.likes.remove(lover);
       }
+      post.likes.add(lover);
       await firestore
           .collection('posts')
-          .doc(postTime)
+          .doc(post.time)
           .update({'likes': post.likes});
     });
   }

@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:linkify/Features/home/data/Models/comment_model.dart';
+import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
@@ -23,6 +25,28 @@ class GetPostsRepoImpl implements GetPostRepo {
     try {
       List<PostModel> posts = await postServ.getUserPosts(id);
       return Right(posts);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CommentModel>>> getComments(
+      String postTime) async {
+    try {
+      final response = await postServ.getComments(postTime);
+      return Right(response);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<LoverModel>>> getLoversPost(
+      String postTime) async {
+    try {
+      final response = await postServ.getLoversPost(postTime);
+      return Right(response);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

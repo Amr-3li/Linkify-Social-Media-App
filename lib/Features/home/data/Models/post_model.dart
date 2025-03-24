@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
+import 'package:linkify/Features/home/data/Models/lover_model.dart';
 
 class PostModel {
   final String imageUrl;
@@ -9,7 +10,7 @@ class PostModel {
   final String userId;
   final String userName;
   final String userImage;
-  final List likes;
+  final List<LoverModel> likes;
   final List<CommentModel> comments;
   final int shares;
   PostModel({
@@ -32,7 +33,7 @@ class PostModel {
       'userId': userId,
       'userName': userName,
       'userImage': userImage,
-      'likes': likes,
+      'likes': likes.map((x) => x.toMap()).toList(),
       'comments': comments.map((x) => x.toMap()).toList(),
       'shares': shares,
     };
@@ -46,7 +47,7 @@ class PostModel {
       userId: map['userId'] as String,
       userName: map['userName'] as String,
       userImage: map['userImage'] as String,
-      likes: map['likes'] as List,
+      likes: map['likes'] as List<LoverModel>,
       comments: List<CommentModel>.from(
         (map['comments'] as List).map<CommentModel>(
           (x) => CommentModel.fromMap(x as Map<String, dynamic>),
