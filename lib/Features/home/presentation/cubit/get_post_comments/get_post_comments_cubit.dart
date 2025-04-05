@@ -10,12 +10,14 @@ class GetPostCommentsCubit extends Cubit<GetPostCommentsState> {
   final GetPostRepo postRepo;
 
   Future<void> getComments(String postTime) async {
+    if (isClosed) return;
     emit(GetPostCommentsloading());
     final response = await postRepo.getComments(postTime);
+    if (isClosed) return;
     response.fold((l) {
-      emit(GetPostCommentsFailure(l.errMessage));
+      if (!isClosed) emit(GetPostCommentsFailure(l.errMessage));
     }, (r) {
-      emit(GetPostCommentsSuccess(r));
+      if (!isClosed) emit(GetPostCommentsSuccess(r));
     });
   }
 }

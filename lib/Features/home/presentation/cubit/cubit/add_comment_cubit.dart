@@ -16,7 +16,7 @@ class AddCommentCubit extends Cubit<AddCommentState> {
     final commentModel = CommentModel(
         comment: comment,
         userId: prefs!.getString("uid")!,
-        time: DateTime.now().microsecondsSinceEpoch.toString(),
+        time: DateTime.now().millisecondsSinceEpoch.toString(),
         userImage: prefs!.getString("userImage")!,
         userName: prefs!.getString("userName")!);
     final response = await postControlRepo.addComment(postTime, commentModel);

@@ -13,7 +13,9 @@ class CommentContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime = DateTime.parse(commentModel.time);
+    DateTime dateTime = DateTime.parse(
+        DateTime.fromMillisecondsSinceEpoch(int.parse(commentModel.time))
+            .toString());
     final DateFormat formatter = DateFormat('dd-MMM-yyyy', 'en_US');
     String formattedDate = formatter.format(dateTime);
     return Column(
@@ -42,14 +44,14 @@ class CommentContainer extends StatelessWidget {
               ),
               Text(
                 formattedDate,
-                style: const TextStyle(color: MyColors.time),
+                style: const TextStyle(color: MyColors.time, fontSize: 12),
               ),
             ],
           ),
           subtitle: Text(
             commentModel.comment,
             style: const TextStyle(color: Colors.black),
-            maxLines: 15,
+            maxLines: 17,
             overflow: TextOverflow.ellipsis,
           ),
         ),

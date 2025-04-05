@@ -34,12 +34,12 @@ class GetPostsServImpl implements GetPostsServ {
 
   @override
   Future<List<CommentModel>> getComments(String postTime) async {
-    List<CommentModel> comments = [];
-    firestore.collection('posts').doc(postTime).get().then((value) async {
-      PostModel post = PostModel.fromJson(value.data()!);
-      comments = post.comments;
-    });
-    return comments;
+    final docSnapshot = await firestore.collection('posts').doc(postTime).get();
+    if (!docSnapshot.exists) {
+      throw Exception('Post not found');
+    }
+    final post = PostModel.fromJson(docSnapshot.data()!);
+    return post.comments;
   }
 
   @override

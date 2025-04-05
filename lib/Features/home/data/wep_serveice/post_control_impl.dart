@@ -23,14 +23,17 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> addComment(String postTime, CommentModel comment) async {
-    late PostModel post;
-    await firestore.collection('posts').doc(postTime).get().then((value) async {
-      post = PostModel.fromJson(value.data()!);
-      post.comments.add(comment);
-      await firestore
-          .collection('posts')
-          .doc(post.time)
-          .update({'comments': post.comments});
+    final docRef = firestore.collection('posts').doc(postTime);
+    final docSnapshot = await docRef.get();
+    if (!docSnapshot.exists) {
+      throw Exception('Post Not Found');
+    }
+    final data = docSnapshot.data();
+    final post = PostModel.fromJson(data!);
+    final updatedComments = post.comments.map((e) => e.toMap()).toList();
+    updatedComments.add(comment.toMap());
+    await docRef.update({
+      'comments': updatedComments,
     });
   }
 
