@@ -3,8 +3,8 @@ class CommentModel {
   final String userName;
   final String userImage;
   final String userId;
-
   final String time;
+
   CommentModel({
     required this.comment,
     required this.userName,
@@ -14,21 +14,22 @@ class CommentModel {
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'comment': comment,
       'userName': userName,
       'userImage': userImage,
-      'time': time,
       'userId': userId,
+      'time': time,
     };
   }
 
   factory CommentModel.fromMap(Map<String, dynamic> map) {
     return CommentModel(
-        comment: map['comment'] as String,
-        userName: map['userName'] as String,
-        userImage: map['userImage'] as String,
-        userId: map['userId'] as String,
-        time: map['time'] as String);
+      comment: map['comment']?.toString() ?? '',
+      userName: map['userName']?.toString() ?? '',
+      userImage: map['userImage']?.toString() ?? '',
+      userId: map['userId']?.toString() ?? '',
+      time: map['time']?.toString() ?? '',
+    );
   }
 }
