@@ -32,16 +32,6 @@ class PostControlCubit extends Cubit<PostControlState> {
     });
   }
 
-  Future<void> addRemoveLike(String postTime, String userId) async {
-    emit(PostControlLoading());
-    final response = await postRepo.addRemoveLike(postTime, userId);
-    response.fold((l) {
-      emit(PostControlFailure(l.errMessage));
-    }, (r) {
-      emit(PostControlSuccess());
-    });
-  }
-
   Future<void> deleteComment(String postTime, CommentModel comment) async {
     emit(PostControlLoading());
     final response = await postRepo.removeComment(postTime, comment);

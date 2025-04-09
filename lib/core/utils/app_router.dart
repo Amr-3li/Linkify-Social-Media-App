@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
-import 'package:linkify/Features/home/presentation/cubit/cubit/add_comment_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';

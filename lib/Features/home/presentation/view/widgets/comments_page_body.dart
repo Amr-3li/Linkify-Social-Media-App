@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/home/presentation/cubit/cubit/add_comment_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comment_container.dart';
 import 'package:linkify/core/constants/animation.dart';

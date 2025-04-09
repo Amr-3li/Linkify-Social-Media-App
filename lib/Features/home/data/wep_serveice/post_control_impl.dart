@@ -38,22 +38,37 @@ class PostControlImpl implements PostControl {
   }
 
   @override
+  @override
   Future<void> addRemoveLike(String postTime, String userId) async {
-    prefs = await SharedPreferences.getInstance();
-    LoverModel lover = LoverModel(
-        id: userId,
-        name: prefs!.getString('name')!,
-        image: prefs!.getString('image')!);
-    firestore.collection('posts').doc(postTime).get().then((value) async {
-      PostModel post = PostModel.fromJson(value.data()!);
-      if (post.likes.contains(lover)) {
-        post.likes.remove(lover);
+    final prefs = await SharedPreferences.getInstance();
+
+    final lover = LoverModel(
+      id: userId,
+      name: prefs.getString('name')!,
+      image: prefs.getString('image')!,
+    );
+
+    final docRef = firestore.collection('posts').doc(postTime);
+
+    await firestore.runTransaction((transaction) async {
+      final snapshot = await transaction.get(docRef);
+
+      if (!snapshot.exists) return;
+
+      final post = PostModel.fromJson(snapshot.data()!);
+      final likes = List<LoverModel>.from(post.likes);
+
+      final isLiked = likes.any((element) => element.id == userId);
+
+      if (isLiked) {
+        likes.removeWhere((element) => element.id == userId);
+      } else {
+        likes.add(lover);
       }
-      post.likes.add(lover);
-      await firestore
-          .collection('posts')
-          .doc(post.time)
-          .update({'likes': post.likes});
+
+      transaction.update(docRef, {
+        'likes': likes.map((e) => e.toMap()).toList(),
+      });
     });
   }
 
