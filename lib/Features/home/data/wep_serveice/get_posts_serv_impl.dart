@@ -45,7 +45,7 @@ class GetPostsServImpl implements GetPostsServ {
   @override
   Future<List<LoverModel>> getLoversPost(String postTime) async {
     List<LoverModel> lovers = [];
-    firestore.collection('posts').doc(postTime).get().then((value) async {
+    await firestore.collection('posts').doc(postTime).get().then((value) async {
       PostModel post = PostModel.fromJson(value.data()!);
       lovers = post.likes;
     });

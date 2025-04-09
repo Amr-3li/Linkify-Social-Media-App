@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/lovers_body.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
 
 class LovesPage extends StatelessWidget {
   const LovesPage({super.key});
@@ -21,30 +21,7 @@ class LovesPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              ListTile(
-                onTap: null,
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    Constants.defaultUserImage,
-                  ),
-                ),
-                title: const Text("User Name"),
-              ),
-              const Divider(
-                  color: MyColors.fromMessageBorder,
-                  indent: 15,
-                  endIndent: 15,
-                  height: 5,
-                  thickness: 0.6),
-            ],
-          );
-        },
-      ),
+      body: const LoversBody(),
     );
   }
 }
