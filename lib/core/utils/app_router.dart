@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
+import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
 import 'package:linkify/Features/home/presentation/cubit/cubit/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
@@ -109,7 +111,9 @@ abstract class AppRouter {
         path: '/addPost',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(create: (context) => UserCubit()..getUserData()),
-          BlocProvider(create: (context) => gitItInstanse<PostControlCubit>()),
+          BlocProvider(
+              create: (context) =>
+                  PostControlCubit(gitItInstanse<PostControlRepo>())),
         ], child: const AddPostPage()),
       ),
       GoRoute(
@@ -127,7 +131,7 @@ abstract class AppRouter {
       GoRoute(
         path: '/lovesPage/:postTime',
         builder: (context, state) => BlocProvider(
-          create: (context) => gitItInstanse<GetPostLoversCubit>()
+          create: (context) => GetPostLoversCubit(gitItInstanse<GetPostRepo>())
             ..getLoversPost("${state.pathParameters['postTime']}"),
           child: const LovesPage(),
         ),
@@ -137,11 +141,13 @@ abstract class AppRouter {
         builder: (context, state) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => gitItInstanse<AddCommentCubit>(),
+                create: (context) =>
+                    AddCommentCubit(gitItInstanse<PostControlRepo>()),
               ),
               BlocProvider(
-                create: (context) => gitItInstanse<GetPostCommentsCubit>()
-                  ..getComments("${state.pathParameters['postTime']}"),
+                create: (context) =>
+                    GetPostCommentsCubit(gitItInstanse<GetPostRepo>())
+                      ..getComments("${state.pathParameters['postTime']}"),
               )
             ],
             child:

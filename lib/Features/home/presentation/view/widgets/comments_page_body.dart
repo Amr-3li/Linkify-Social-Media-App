@@ -36,17 +36,25 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
         BlocBuilder<GetPostCommentsCubit, GetPostCommentsState>(
           builder: (context, state) {
             if (state is GetPostCommentsloading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Expanded(
+                child: Center(child: CircularProgressIndicator()),
+              );
             } else if (state is GetPostCommentsSuccess) {
               return Expanded(
-                child: ListView.builder(
-                  itemCount: state.comments.length,
-                  itemBuilder: (context, index) {
-                    return CommentContainer(
-                      commentModel: state.comments[index],
-                    );
-                  },
-                ),
+                child: state.comments.isEmpty
+                    ? Center(
+                        child: Lottie.asset(MyAnimation.animationsNotExist),
+                      )
+                    : ListView.separated(
+                        itemCount: state.comments.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 10),
+                        itemBuilder: (context, index) {
+                          return CommentContainer(
+                            commentModel: state.comments[index],
+                          );
+                        },
+                      ),
               );
             } else {
               return Expanded(
@@ -82,48 +90,46 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
                 ),
               ),
               const SizedBox(width: 10),
-              BlocBuilder<AddCommentCubit, AddCommentState>(
-                builder: (context, state) {
+              BlocListener<AddCommentCubit, AddCommentState>(
+                listener: (context, state) {
                   if (state is AddCommentSuccess) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) async {
-                      _commentController.clear();
-                      setState(() {
-                        comment = "";
-                      });
-                      await BlocProvider.of<GetPostCommentsCubit>(context)
-                          .getComments(widget.postTime);
+                    _commentController.clear();
+                    setState(() {
+                      comment = "";
                     });
+                    BlocProvider.of<GetPostCommentsCubit>(context)
+                        .getComments(widget.postTime);
+                  } else if (state is AddCommentFailure) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errMessage)),
+                    );
                   }
-
-                  if (state is AddCommentFailure) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errMessage)),
-                      );
-                    });
-                  }
-
-                  return comment.isNotEmpty
-                      ? IconButton(
-                          onPressed: state is AddCommentLoading
-                              ? null
-                              : () async {
-                                  await BlocProvider.of<AddCommentCubit>(
-                                          context)
-                                      .addComment(widget.postTime, comment);
-                                },
-                          icon: state is AddCommentLoading
-                              ? const SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child:
-                                      CircularProgressIndicator(strokeWidth: 2),
-                                )
-                              : const Icon(Icons.send,
-                                  color: MyColors.iconActiveColor),
-                        )
-                      : const SizedBox.shrink();
                 },
+                child: BlocBuilder<AddCommentCubit, AddCommentState>(
+                  builder: (context, state) {
+                    return comment.isNotEmpty
+                        ? IconButton(
+                            onPressed: state is AddCommentLoading
+                                ? null
+                                : () async {
+                                    await BlocProvider.of<AddCommentCubit>(
+                                            context)
+                                        .addComment(widget.postTime, comment);
+                                  },
+                            icon: state is AddCommentLoading
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Icon(Icons.send,
+                                    color: MyColors.iconActiveColor),
+                          )
+                        : const SizedBox.shrink();
+                  },
+                ),
               ),
             ],
           ),
