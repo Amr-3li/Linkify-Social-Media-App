@@ -45,6 +45,8 @@ class AuthWebServiceImplement implements AuthService {
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
       prefs!.remove('uid');
+      prefs!.remove('username');
+      prefs!.remove('userImage');
     } catch (e) {
       rethrow;
     }

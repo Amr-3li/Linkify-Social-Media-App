@@ -38,38 +38,46 @@ class PostControlImpl implements PostControl {
   }
 
   @override
-  @override
   Future<void> addRemoveLike(String postTime, String userId) async {
-    final prefs = await SharedPreferences.getInstance();
+    try {
+      final prefs = await SharedPreferences.getInstance();
 
-    final lover = LoverModel(
-      id: userId,
-      name: prefs.getString('name')!,
-      image: prefs.getString('image')!,
-    );
+      final lover = {
+        'id': userId,
+        'name': prefs.getString('userName') ?? '',
+        'image': prefs.getString('userImage') ?? '',
+      };
 
-    final docRef = firestore.collection('posts').doc(postTime);
+      final docRef =
+          FirebaseFirestore.instance.collection('posts').doc(postTime);
 
-    await firestore.runTransaction((transaction) async {
-      final snapshot = await transaction.get(docRef);
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        final snapshot = await transaction.get(docRef);
 
-      if (!snapshot.exists) return;
+        if (!snapshot.exists) {
+          print("Post not found.");
+          return;
+        }
 
-      final post = PostModel.fromJson(snapshot.data()!);
-      final likes = List<LoverModel>.from(post.likes);
+        final data = snapshot.data()!;
+        final likes = List<Map<String, dynamic>>.from(data['likes'] ?? []);
+        final currentIndex = likes.indexWhere((e) => e['id'] == userId);
 
-      final isLiked = likes.any((element) => element.id == userId);
+        if (currentIndex != -1) {
+          // موجود بالفعل، هنشيله
+          likes.removeAt(currentIndex);
+          print("Like removed");
+        } else {
+          // مش موجود، نضيفه
+          likes.add(lover);
+          print("Like added");
+        }
 
-      if (isLiked) {
-        likes.removeWhere((element) => element.id == userId);
-      } else {
-        likes.add(lover);
-      }
-
-      transaction.update(docRef, {
-        'likes': likes.map((e) => e.toMap()).toList(),
+        transaction.update(docRef, {'likes': likes});
       });
-    });
+    } catch (e) {
+      print("Error in addRemoveLike: $e");
+    }
   }
 
   @override

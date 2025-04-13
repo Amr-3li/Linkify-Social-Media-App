@@ -4,6 +4,7 @@ import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dar
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
+import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
@@ -95,6 +96,10 @@ abstract class AppRouter {
             ),
             BlocProvider(
               create: (_) => gitItInstanse<PostControlCubit>(),
+            ),
+            BlocProvider(
+              create: (_) =>
+                  AddRemoveLoveCubit(gitItInstanse<PostControlRepo>()),
             ),
           ],
           child: const HomePage(),
