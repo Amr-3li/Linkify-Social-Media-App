@@ -14,7 +14,7 @@ class AuthRepoImpelement implements AuthRepository {
       String id = await authservice.signin(username, password);
       return Right(id);
     } catch (e) {
-      return Left(ServerFailure("failed to signin"));
+      return Left(ServerFailure(e.toString()));
     }
   }
 

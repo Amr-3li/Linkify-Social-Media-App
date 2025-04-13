@@ -8,16 +8,25 @@ class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? get currentUser => auth.currentUser;
   SharedPreferences? prefs;
+
   AuthWebServiceImplement();
+
   @override
   Future<String> signin(String username, String password) async {
     prefs = await SharedPreferences.getInstance();
     UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: username, password: password);
-    String id = userCredential.user!.uid;
+      email: username,
+      password: password,
+    );
+    final user = userCredential.user;
+    if (user == null) {
+      throw Exception("User not found after sign in.");
+    }
+    String id = user.uid;
     prefs!.setString('uid', id);
-    prefs!.setString('username', userCredential.user!.displayName!);
-    prefs!.setString('userImage', userCredential.user!.photoURL!);
+    prefs!.setString('username', user.displayName ?? 'No Name');
+    prefs!.setString('userImage', user.photoURL ?? '');
+
     return id;
   }
 

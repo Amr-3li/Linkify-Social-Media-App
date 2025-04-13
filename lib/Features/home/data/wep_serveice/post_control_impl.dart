@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
-import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/data/wep_serveice/post_control.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,26 +52,20 @@ class PostControlImpl implements PostControl {
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         final snapshot = await transaction.get(docRef);
-
         if (!snapshot.exists) {
           print("Post not found.");
           return;
         }
-
         final data = snapshot.data()!;
         final likes = List<Map<String, dynamic>>.from(data['likes'] ?? []);
         final currentIndex = likes.indexWhere((e) => e['id'] == userId);
-
         if (currentIndex != -1) {
-          // موجود بالفعل، هنشيله
           likes.removeAt(currentIndex);
           print("Like removed");
         } else {
-          // مش موجود، نضيفه
           likes.add(lover);
           print("Like added");
         }
-
         transaction.update(docRef, {'likes': likes});
       });
     } catch (e) {
