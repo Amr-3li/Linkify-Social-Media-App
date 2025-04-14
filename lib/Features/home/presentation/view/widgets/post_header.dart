@@ -44,7 +44,31 @@ class PostHeader extends StatelessWidget {
               context: context,
               items: [
                 PopupMenuItem(
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text("Delete Post"),
+                          content: const Text(
+                              "Are you sure you want to delete this post?"),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cancel")),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ))
+                          ],
+                        ),
+                      );
+                    },
                     child: const Text("Delete",
                         style: TextStyle(
                             color: Colors.red,
