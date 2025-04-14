@@ -1,17 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_widget.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReactionContainerBar extends StatefulWidget {
   const ReactionContainerBar({
     super.key,
-    required this.postTime,
-    required this.userId,
+    required this.post,
   });
-  final String userId, postTime;
+
+  final PostModel post;
+
   @override
   State<ReactionContainerBar> createState() => _ReactionContainerStateBar();
 }
@@ -19,31 +22,48 @@ class ReactionContainerBar extends StatefulWidget {
 class _ReactionContainerStateBar extends State<ReactionContainerBar> {
   bool isLove = false;
   bool isLoading = true;
+  String userId = '';
+  String userName = '';
 
   @override
   void initState() {
     super.initState();
-    _checkIfUserLoved();
+    _initUser();
+  }
+
+  Future<void> _initUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userId = prefs.getString('uid') ?? '';
+
+    await _checkIfUserLoved();
   }
 
   Future<void> _checkIfUserLoved() async {
-    // جِب الدوكومنت من Firestore وتأكد إذا كان الـ userId موجود في قائمة اللايكات
-    final doc = await FirebaseFirestore.instance
-        .collection('posts')
-        .doc(widget.postTime)
-        .get();
+    try {
+      final doc = await FirebaseFirestore.instance
+          .collection('posts')
+          .doc(widget.post.time)
+          .get();
 
-    if (doc.exists) {
-      final data = doc.data();
-      final likes = data?['likes'] as List<dynamic>?;
+      if (doc.exists) {
+        final data = doc.data();
+        final likes = data?['likes'] as List<dynamic>?;
 
-      if (likes != null) {
-        final loved = likes.any((like) => like['id'] == widget.userId);
-        setState(() {
-          isLove = loved;
-          isLoading = false;
-        });
+        if (likes != null) {
+          final loved = likes.any(
+              (like) => like is Map<String, dynamic> && like['id'] == userId);
+
+          setState(() {
+            isLove = loved;
+          });
+        }
       }
+    } catch (e) {
+      debugPrint("Error checking love status: $e");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -62,17 +82,15 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
               ? const CircularProgressIndicator()
               : PostReactionBarItem(
                   onTap: () async {
+                    setState(() => isLove = !isLove); // تغيير محلي سريع
                     await BlocProvider.of<AddRemoveLoveCubit>(context)
-                        .addRemoveLike(widget.postTime, widget.userId);
-
-                    await _checkIfUserLoved();
-                    // نرجع نحدث الحالة بعد اللايك
+                        .addRemoveLike(widget.post.time, userId);
                   },
                   icon: Icons.favorite,
                   text: "Like",
                   isLove: isLove,
                 ),
-          CommenstWidget(postTime: widget.postTime),
+          CommenstWidget(postTime: widget.post.time),
           PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),
         ],
       ),

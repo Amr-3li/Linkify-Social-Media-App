@@ -47,6 +47,8 @@ class PostControlImpl implements PostControl {
         'image': prefs.getString('userImage') ?? '',
       };
 
+      print(lover.toString());
+
       final docRef =
           FirebaseFirestore.instance.collection('posts').doc(postTime);
 

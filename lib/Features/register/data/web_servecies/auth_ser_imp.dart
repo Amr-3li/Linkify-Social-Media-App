@@ -24,9 +24,17 @@ class AuthWebServiceImplement implements AuthService {
     }
     String id = user.uid;
     prefs!.setString('uid', id);
-    prefs!.setString('username', user.displayName ?? 'No Name');
-    prefs!.setString('userImage', user.photoURL ?? '');
-
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(id)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        prefs!.setString('userName',
+            "${value.data()!['fname']} ${value.data()!['lname']}" ?? "");
+        prefs!.setString('userImage', value.data()!['image'] ?? "");
+      }
+    });
     return id;
   }
 
@@ -54,7 +62,7 @@ class AuthWebServiceImplement implements AuthService {
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
       prefs!.remove('uid');
-      prefs!.remove('username');
+      prefs!.remove('userName');
       prefs!.remove('userImage');
     } catch (e) {
       rethrow;

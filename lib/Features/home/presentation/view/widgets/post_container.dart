@@ -37,8 +37,7 @@ class PostContainer extends StatelessWidget {
           ),
           const Divider(),
           ReactionContainerBar(
-            postTime: post.time,
-            userId: post.userId,
+            post: post,
           ),
           const SizedBox(height: 10),
           Row(
