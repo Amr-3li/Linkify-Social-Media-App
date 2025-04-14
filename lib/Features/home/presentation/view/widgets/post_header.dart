@@ -4,7 +4,6 @@ import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
-import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/widgets/dialogs.dart';
 
 class PostHeader extends StatelessWidget {
@@ -52,15 +51,7 @@ class PostHeader extends StatelessWidget {
                     color: MyColors.fontColor,
                   ),
                 ),
-                PopupMenuItem(
-                    onTap: () {
-                      Dialogs.editPostDialog(context, post.description);
-                    },
-                    child: const Text("edit",
-                        style: TextStyle(
-                            color: MyColors.iconActiveColor,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600))),
+                editItem(context),
               ],
             );
           },
@@ -68,10 +59,22 @@ class PostHeader extends StatelessWidget {
     ]);
   }
 
+  PopupMenuItem<dynamic> editItem(BuildContext context) {
+    return PopupMenuItem(
+        onTap: () {
+          Dialogs.editPostDialog(context, post.description);
+        },
+        child: const Text("edit",
+            style: TextStyle(
+                color: MyColors.iconActiveColor,
+                fontSize: 17,
+                fontWeight: FontWeight.w600)));
+  }
+
   PopupMenuItem<dynamic> deleteItem(BuildContext context) {
     return PopupMenuItem(
         onTap: () {
-          Dialogs.deletePostDialog(context);
+          Dialogs.deletePostDialog(context, post.userId, post.time);
         },
         child: const Text("Delete",
             style: TextStyle(

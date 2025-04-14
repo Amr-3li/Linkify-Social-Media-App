@@ -6,7 +6,7 @@ import 'package:linkify/Features/chat/data/web_services/chat_ser_implement.dart'
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/repository/get_posts_repo_impl.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
-import 'package:linkify/core/shared_logic/data/services/post_control_repo_impl.dart';
+import 'package:linkify/core/shared_logic/data/repositories/post_control_repo_impl.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv_impl.dart';
 import 'package:linkify/core/shared_logic/data/services/post_control.dart';

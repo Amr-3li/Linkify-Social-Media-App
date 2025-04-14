@@ -8,11 +8,11 @@ class PostControlImpl implements PostControl {
   final firestore = FirebaseFirestore.instance;
   SharedPreferences? prefs;
   @override
-  Future<void> deletePost(PostModel post) async {
+  Future<void> deletePost(String userId, String time) async {
     prefs = await SharedPreferences.getInstance();
     String id = prefs!.getString('uid')!;
-    if (post.userId == id) {
-      await firestore.collection('posts').doc(post.time).delete();
+    if (userId == id) {
+      await firestore.collection('posts').doc(time).delete();
     } else {
       throw Exception("You can't delete this post");
     }

@@ -10,9 +10,9 @@ class PostControlRepoImpl implements PostControlRepo {
 
   PostControlRepoImpl(this.postControl);
   @override
-  Future<Either<Failure, void>> deletePost(PostModel post) async {
+  Future<Either<Failure, void>> deletePost(String userId, String time) async {
     try {
-      await postControl.deletePost(post);
+      await postControl.deletePost(userId, time);
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));

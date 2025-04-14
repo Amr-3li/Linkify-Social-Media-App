@@ -12,9 +12,9 @@ class PostControlCubit extends Cubit<PostControlState> {
   final PostControlRepo postRepo;
   SharedPreferences? prefs;
 
-  Future<void> deletePosts(PostModel post) async {
+  Future<void> deletePosts(String userId, String time) async {
     emit(PostControlLoading());
-    final response = await postRepo.deletePost(post);
+    final response = await postRepo.deletePost(userId, time);
     response.fold((l) {
       emit(PostControlFailure(l.errMessage));
     }, (r) {
