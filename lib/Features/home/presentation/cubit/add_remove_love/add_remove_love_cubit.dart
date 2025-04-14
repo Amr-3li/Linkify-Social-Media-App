@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
+import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'add_remove_love_state.dart';

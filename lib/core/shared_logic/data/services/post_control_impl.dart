@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
-import 'package:linkify/Features/home/data/wep_serveice/post_control.dart';
+import 'package:linkify/core/shared_logic/data/services/post_control.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostControlImpl implements PostControl {
@@ -9,15 +9,27 @@ class PostControlImpl implements PostControl {
   SharedPreferences? prefs;
   @override
   Future<void> deletePost(PostModel post) async {
-    await firestore.collection('posts').doc(post.time).delete();
+    prefs = await SharedPreferences.getInstance();
+    String id = prefs!.getString('uid')!;
+    if (post.userId == id) {
+      await firestore.collection('posts').doc(post.time).delete();
+    } else {
+      throw Exception("You can't delete this post");
+    }
   }
 
   @override
   Future<void> updatePost(PostModel post) async {
-    await firestore
-        .collection('posts')
-        .doc(post.time)
-        .update({'description': post.description});
+    prefs = await SharedPreferences.getInstance();
+    String id = prefs!.getString('uid')!;
+    if (post.userId == id) {
+      await firestore
+          .collection('posts')
+          .doc(post.time)
+          .update({'description': post.description});
+    } else {
+      throw Exception("You can't edit this post");
+    }
   }
 
   @override

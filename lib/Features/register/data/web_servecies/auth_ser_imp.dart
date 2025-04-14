@@ -30,8 +30,8 @@ class AuthWebServiceImplement implements AuthService {
         .get()
         .then((value) {
       if (value.exists) {
-        prefs!.setString('userName',
-            "${value.data()!['fname']} ${value.data()!['lname']}" ?? "");
+        prefs!.setString(
+            'userName', "${value.data()!['fname']}${value.data()!['lname']}");
         prefs!.setString('userImage', value.data()!['image'] ?? "");
       }
     });

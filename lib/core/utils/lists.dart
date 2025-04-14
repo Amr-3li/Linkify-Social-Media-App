@@ -8,7 +8,7 @@ import 'package:linkify/Features/settings/presentation/view/settings.dart';
 List navigationItems = [
   Icons.home,
   Icons.group_add_outlined,
-  Icons.post_add,
+  Icons.add_box_outlined,
   Icons.settings,
   Icons.person
 ];

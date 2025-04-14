@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
-import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
-import 'package:linkify/Features/home/data/wep_serveice/post_control.dart';
+import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
+import 'package:linkify/core/shared_logic/data/services/post_control.dart';
 import 'package:linkify/core/errors/failures.dart';
 
 class PostControlRepoImpl implements PostControlRepo {

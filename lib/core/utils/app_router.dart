@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
-import 'package:linkify/Features/home/data/repository/post_control_repo.dart';
+import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_post_comments_cubit.dart';
@@ -95,7 +95,7 @@ abstract class AppRouter {
               create: (_) => gitItInstanse<AddPostCubit>(),
             ),
             BlocProvider(
-              create: (_) => gitItInstanse<PostControlCubit>(),
+              create: (_) => PostControlCubit(gitItInstanse<PostControlRepo>()),
             ),
             BlocProvider(
               create: (_) =>
