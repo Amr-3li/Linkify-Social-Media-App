@@ -1,26 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/widgets/custom_button.dart';
+import 'package:linkify/core/widgets/dialogs.dart';
 
 class PostHeader extends StatelessWidget {
-  const PostHeader(
-      {super.key, required this.name, required this.time, required this.image});
-  final String name;
-  final String image;
-  final String time;
+  const PostHeader({super.key, required this.post});
+  final PostModel post;
   @override
   Widget build(BuildContext context) {
     final GlobalKey iconButtonKey = GlobalKey();
     return Row(children: [
       ClipOval(
           child: CachedNetworkImage(
-        imageUrl: image != "" ? image : Constants.defaultUserImage,
+        imageUrl:
+            post.imageUrl != "" ? post.imageUrl : Constants.defaultUserImage,
         width: 45,
       )),
       const SizedBox(width: 10),
-      PostUserData(name: name, time: time),
+      PostUserData(name: post.userName, time: post.time),
       const Spacer(),
       IconButton(
           key: iconButtonKey,
@@ -43,37 +44,7 @@ class PostHeader extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               context: context,
               items: [
-                PopupMenuItem(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Delete Post"),
-                          content: const Text(
-                              "Are you sure you want to delete this post?"),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text(
-                                  "Delete",
-                                  style: TextStyle(color: Colors.red),
-                                ))
-                          ],
-                        ),
-                      );
-                    },
-                    child: const Text("Delete",
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600))),
+                deleteItem(context),
                 const PopupMenuItem(
                   height: 1,
                   child: Divider(
@@ -82,7 +53,9 @@ class PostHeader extends StatelessWidget {
                   ),
                 ),
                 PopupMenuItem(
-                    onTap: () {},
+                    onTap: () {
+                      Dialogs.editPostDialog(context, post.description);
+                    },
                     child: const Text("edit",
                         style: TextStyle(
                             color: MyColors.iconActiveColor,
@@ -93,5 +66,15 @@ class PostHeader extends StatelessWidget {
           },
           icon: const Icon(Icons.more_vert, size: 30)),
     ]);
+  }
+
+  PopupMenuItem<dynamic> deleteItem(BuildContext context) {
+    return PopupMenuItem(
+        onTap: () {
+          Dialogs.deletePostDialog(context);
+        },
+        child: const Text("Delete",
+            style: TextStyle(
+                color: Colors.red, fontSize: 17, fontWeight: FontWeight.w600)));
   }
 }
