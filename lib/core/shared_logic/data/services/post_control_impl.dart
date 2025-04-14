@@ -19,14 +19,15 @@ class PostControlImpl implements PostControl {
   }
 
   @override
-  Future<void> updatePost(PostModel post) async {
+  Future<void> updatePost(
+      String description, String userId, String time) async {
     prefs = await SharedPreferences.getInstance();
     String id = prefs!.getString('uid')!;
-    if (post.userId == id) {
+    if (userId == id) {
       await firestore
           .collection('posts')
-          .doc(post.time)
-          .update({'description': post.description});
+          .doc(time)
+          .update({'description': description});
     } else {
       throw Exception("You can't edit this post");
     }

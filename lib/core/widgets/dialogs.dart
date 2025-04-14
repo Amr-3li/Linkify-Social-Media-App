@@ -14,73 +14,102 @@ class Dialogs {
       context: context,
       builder: (context) => BlocProvider(
         create: (context) => PostControlCubit(gitItInstanse<PostControlRepo>()),
-        child: BlocBuilder<PostControlCubit, PostControlState>(
-          builder: (context, state) {
+        child: BlocListener<PostControlCubit, PostControlState>(
+          listener: (context, state) {
             if (state is PostControlFailure) {
               SnackBarWidget.showSnack(context, state.error);
-              Navigator.pop(context);
+              Navigator.pop(context); // دي كده تضمن إنها تتنفذ برا build
             }
-            return AlertDialog(
-              title: const Text("Delete Post"),
-              content: const Text("Are you sure you want to delete this post?"),
-              actions: state is PostControlLoading
-                  ? const [CircularProgressIndicator()]
-                  : [
-                      TextButton(
+            if (state is PostControlSuccess) {
+              Navigator.pop(context); // لو نجح الحذف أو التعديل نقفل الـ dialog
+            }
+          },
+          child: BlocBuilder<PostControlCubit, PostControlState>(
+            builder: (context, state) {
+              return AlertDialog(
+                title: const Text("Delete Post"),
+                content:
+                    const Text("Are you sure you want to delete this post?"),
+                actions: state is PostControlLoading
+                    ? const [CircularProgressIndicator()]
+                    : [
+                        TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text("Cancel")),
-                      TextButton(
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
                           onPressed: () async {
                             await BlocProvider.of<PostControlCubit>(context)
                                 .deletePosts(userId, time);
-                            Navigator.pop(context);
                           },
-                          child: const Text(
-                            "Delete",
-                            style: TextStyle(color: Colors.red),
-                          ))
-                    ],
-            );
-          },
+                          child: const Text("Delete",
+                              style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
 
   static Future<dynamic> editPostDialog(
-      BuildContext context, String description) {
+      BuildContext context, String description, String userId, String time) {
+    TextEditingController controller = TextEditingController(text: description);
     return showDialog(
-        context: context,
-        builder: (context) => BlocBuilder<PostControlCubit, PostControlState>(
-              builder: (context, state) {
-                return AlertDialog(
-                  content: TextFormField(
-                      style: const TextStyle(fontSize: 12),
-                      maxLines: 5,
-                      minLines: 1,
-                      controller: TextEditingController(text: description),
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                      )),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          "Edit",
-                          style: TextStyle(color: Colors.red),
-                        ))
-                  ],
-                );
-              },
-            ));
+      context: context,
+      builder: (context) => BlocProvider(
+        create: (context) => PostControlCubit(gitItInstanse<PostControlRepo>()),
+        child: BlocListener<PostControlCubit, PostControlState>(
+          listener: (context, state) {
+            if (state is PostControlFailure) {
+              SnackBarWidget.showSnack(context, state.error);
+              Navigator.pop(context);
+            }
+            if (state is PostControlSuccess) {
+              Navigator.pop(context); // نقفل الـ dialog لما العملية تنجح
+            }
+          },
+          child: BlocBuilder<PostControlCubit, PostControlState>(
+            builder: (context, state) {
+              return AlertDialog(
+                content: TextFormField(
+                  style: const TextStyle(fontSize: 12),
+                  maxLines: 5,
+                  minLines: 1,
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      BlocProvider.of<PostControlCubit>(context)
+                          .updatePosts(controller.text, userId, time);
+                    },
+                    child: state is PostControlLoading
+                        ? const CircularProgressIndicator()
+                        : const Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

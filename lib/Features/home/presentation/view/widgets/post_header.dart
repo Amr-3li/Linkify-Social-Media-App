@@ -62,7 +62,8 @@ class PostHeader extends StatelessWidget {
   PopupMenuItem<dynamic> editItem(BuildContext context) {
     return PopupMenuItem(
         onTap: () {
-          Dialogs.editPostDialog(context, post.description);
+          Dialogs.editPostDialog(
+              context, post.description, post.userId, post.time);
         },
         child: const Text("edit",
             style: TextStyle(

@@ -7,10 +7,10 @@ class SnackBarWidget {
       SnackBar(
         behavior: SnackBarBehavior.floating,
         shape: const StadiumBorder(),
-        margin:  const EdgeInsets.all(50),
-        elevation:  3,
+        margin: const EdgeInsets.all(50),
+        elevation: 3,
         duration: const Duration(milliseconds: 1500),
-        content:  Padding(
+        content: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(child: Text(messge))),
         backgroundColor: MyColors.mainChat,

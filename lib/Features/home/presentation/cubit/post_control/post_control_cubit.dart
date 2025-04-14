@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
-import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,9 +21,10 @@ class PostControlCubit extends Cubit<PostControlState> {
     });
   }
 
-  Future<void> updatePosts(PostModel post) async {
+  Future<void> updatePosts(
+      String description, String userId, String time) async {
     emit(PostControlLoading());
-    final response = await postRepo.updatePost(post);
+    final response = await postRepo.updatePost(description, userId, time);
     response.fold((l) {
       emit(PostControlFailure(l.errMessage));
     }, (r) {

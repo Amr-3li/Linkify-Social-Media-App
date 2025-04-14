@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
-import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/core/shared_logic/data/services/post_control.dart';
 import 'package:linkify/core/errors/failures.dart';
@@ -20,9 +19,10 @@ class PostControlRepoImpl implements PostControlRepo {
   }
 
   @override
-  Future<Either<Failure, void>> updatePost(PostModel post) async {
+  Future<Either<Failure, void>> updatePost(
+      String description, String userId, String time) async {
     try {
-      await postControl.updatePost(post);
+      await postControl.updatePost(description, userId, time);
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
