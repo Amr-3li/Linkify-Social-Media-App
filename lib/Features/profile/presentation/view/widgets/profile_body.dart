@@ -8,6 +8,7 @@ import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 
@@ -80,7 +81,7 @@ class _ProfileBodyState extends State<ProfileBody> {
           backgroundColor: Colors.white,
           contentPadding: const EdgeInsets.all(10),
           content: BlocProvider(
-            create: (context) => UserCubit(),
+            create: (context) => UserCubit(gitItInstanse<UserDataRepo>()),
             child: DialogBody(
               user: widget.user,
             ),

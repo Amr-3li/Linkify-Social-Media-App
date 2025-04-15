@@ -5,6 +5,10 @@ import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser_implement.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/repository/get_posts_repo_impl.dart';
+import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
+import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo_impl.dart';
+import 'package:linkify/Features/profile/data/services/get_user_posts.dart';
+import 'package:linkify/Features/profile/data/services/get_user_posts_impl.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo_impl.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
@@ -19,7 +23,6 @@ import 'package:linkify/Features/posts/data/services/post_serv.dart';
 import 'package:linkify/Features/posts/data/services/post_serv_impl.dart';
 import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
-import 'package:linkify/core/shared_logic/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo.dart';
 import 'package:linkify/Features/register/data/repository/auth_repo_impl.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
@@ -68,20 +71,24 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<AddPost>(AddPostImpl());
   gitItInstanse.registerSingleton<AddPostRepo>(
       AddPostRepoImpl(gitItInstanse<AddPost>()));
+  gitItInstanse.registerSingleton<AddPostCubit>(
+      AddPostCubit(gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()));
+
   gitItInstanse.registerSingleton<PostControl>(PostControlImpl());
   gitItInstanse.registerSingleton<PostControlRepo>(
       PostControlRepoImpl(gitItInstanse<PostControl>()));
+
   gitItInstanse.registerSingleton<GetPostsServ>(GetPostsServImpl());
   gitItInstanse.registerSingleton<GetPostRepo>(
       GetPostsRepoImpl(gitItInstanse<GetPostsServ>()));
   gitItInstanse.registerSingleton<GetPostsCubit>(
       GetPostsCubit(gitItInstanse<GetPostRepo>()));
-  gitItInstanse.registerSingleton<PostControlCubit>(
-      PostControlCubit(gitItInstanse<PostControlRepo>()));
-  gitItInstanse.registerSingleton<AddPostCubit>(
-      AddPostCubit(gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()));
   gitItInstanse.registerSingleton<GetPostLoversCubit>(
       GetPostLoversCubit(gitItInstanse<GetPostRepo>()));
   gitItInstanse.registerLazySingleton<GetPostCommentsCubit>(
       () => GetPostCommentsCubit(gitItInstanse<GetPostRepo>()));
+
+  gitItInstanse.registerSingleton<GetUserPosts>(GetUserPostsImpl());
+  gitItInstanse.registerSingleton<GetUserPostsRepo>(
+      GetUserPostsRepoImpl(gitItInstanse<GetUserPosts>()));
 }

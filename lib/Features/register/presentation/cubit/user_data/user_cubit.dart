@@ -2,39 +2,26 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
 part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  UserCubit() : super(UserInitial());
-
+  UserCubit(this.userDataRepo) : super(UserInitial());
+  final UserDataRepo userDataRepo;
   CollectionReference collRef = FirebaseFirestore.instance.collection('users');
-  Future<void> getUserData() async {
+  Future<void> getUserData(String userId) async {
     emit(UserLoading());
-    try {
-      // Get the current user's UID
-      final String? userId = FirebaseAuth.instance.currentUser?.uid;
-
-      if (userId == null) {
-        emit(UserError('User is not logged in'));
-        return;
-      }
-
-      // Fetch user data from Firestore
-      DocumentSnapshot snapshot = await collRef.doc(userId).get();
-      var data = snapshot.data();
-
-      if (data != null) {
-        UserModel user = UserModel.fromJson(data as Map<String, dynamic>);
-        emit(UserLoaded(user));
-      } else {
-        emit(UserError('User not found in Firestore'));
-      }
-    } catch (e) {
-      emit(UserError(e.toString())); // Handle any exception
-    }
+    final result = await userDataRepo.getUserById(userId);
+    result.fold(
+      (l) {
+        UserError(l.errMessage);
+      },
+      (r) {
+        UserLoaded(r);
+      },
+    );
   }
 
   getAllUsers() async {
