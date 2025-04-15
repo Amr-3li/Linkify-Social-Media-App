@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: MyColors.backgroundColor,
       body: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
-          if (state is UserLoaded) {
+          if (state is CurrentUserLoaded) {
             return NestedScrollView(
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       BlocProvider(
@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                 body: ProfileBody(
                   user: state.user,
                 ));
-          } else if (state is UserLoading) {
+          } else if (state is CurrentUserLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );

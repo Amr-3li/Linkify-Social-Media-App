@@ -3,19 +3,20 @@ import 'package:linkify/Features/add_friend/presentation/view/add_friend_page.da
 import 'package:linkify/Features/home/presentation/view/pages/home_page.dart';
 import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
 import 'package:linkify/Features/profile/presentation/view/profile.dart';
+import 'package:linkify/Features/search/presentation/views/search_page.dart';
 import 'package:linkify/Features/settings/presentation/view/settings.dart';
 
 List navigationItems = [
   Icons.home,
-  Icons.group_add_outlined,
+  Icons.search,
   Icons.add_box_outlined,
-  Icons.settings,
-  Icons.person
+  Icons.group_add_outlined,
+  Icons.settings
 ];
 List pages = const [
   HomePage(),
-  AddFriendPage(),
+  SearchPage(),
   AddPostPage(),
+  AddFriendPage(),
   SettingsPage(),
-  ProfilePage()
 ];
