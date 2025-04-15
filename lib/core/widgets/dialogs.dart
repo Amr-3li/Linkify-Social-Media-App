@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/home/presentation/cubit/post_control/post_control_cubit.dart';
+import 'package:linkify/core/shared_logic/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';

@@ -6,7 +6,6 @@ import 'package:linkify/core/errors/failures.dart';
 
 abstract class GetPostRepo {
   Future<Either<Failure, List<PostModel>>> getAllPosts();
-  Future<Either<Failure, List<PostModel>>> getUserPosts(String id);
   Future<Either<Failure, List<CommentModel>>> getComments(String postTime);
   Future<Either<Failure, List<LoverModel>>> getLoversPost(String postTime);
 }

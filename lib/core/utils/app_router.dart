@@ -11,7 +11,7 @@ import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cub
 import 'package:linkify/Features/home/presentation/view/pages/comments_page.dart';
 import 'package:linkify/Features/home/presentation/view/pages/loves_page.dart';
 import 'package:linkify/Features/navigation_bar/navigation_page.dart';
-import 'package:linkify/Features/home/presentation/cubit/post_control/post_control_cubit.dart';
+import 'package:linkify/core/shared_logic/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
 import 'package:linkify/Features/profile/presentation/view/profile.dart';

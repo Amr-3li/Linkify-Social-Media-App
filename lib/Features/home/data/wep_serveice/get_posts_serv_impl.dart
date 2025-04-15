@@ -20,19 +20,6 @@ class GetPostsServImpl implements GetPostsServ {
   }
 
   @override
-  Future<List<PostModel>> getUserPosts(String id) async {
-    List<PostModel> posts = [];
-    await firestore
-        .collection('posts')
-        .where('uid', isEqualTo: id)
-        .get()
-        .then((value) {
-      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
-    });
-    return posts;
-  }
-
-  @override
   Future<List<CommentModel>> getComments(String postTime) async {
     final docSnapshot = await firestore.collection('posts').doc(postTime).get();
     if (!docSnapshot.exists) {
