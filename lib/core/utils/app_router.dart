@@ -30,6 +30,7 @@ import 'package:linkify/Features/register/presentation/view/pages/login_page.dar
 import 'package:linkify/Features/register/presentation/view/pages/signup_page.dart';
 import 'package:linkify/Features/settings/presentation/view/settings.dart';
 import 'package:linkify/Features/splash_screan/splash_screan.dart';
+import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 import 'package:linkify/initial.dart';
 
 abstract class AppRouter {
@@ -69,7 +70,7 @@ abstract class AppRouter {
             ),
           ),
           BlocProvider(
-            create: (context) => UserCubit(),
+            create: (context) => UserCubit(gitItInstanse<UserDataRepo>()),
           ),
         ], child: const SignupPage()),
       ),
@@ -88,13 +89,12 @@ abstract class AppRouter {
               create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
             ),
             BlocProvider(
-              create: (_) => UserCubit()..getUserData(),
+              create: (context) => UserCubit(gitItInstanse<UserDataRepo>())
+                ..getCurrentUserData(),
             ),
+            BlocProvider(create: (_) => gitItInstanse<AddPostCubit>()),
             BlocProvider(
               create: (_) => gitItInstanse<GetPostsCubit>()..getAllPosts(),
-            ),
-            BlocProvider(
-              create: (_) => gitItInstanse<AddPostCubit>(),
             ),
             BlocProvider(
               create: (_) => PostControlCubit(gitItInstanse<PostControlRepo>()),
@@ -111,8 +111,8 @@ abstract class AppRouter {
         path: '/profilePage/:userId',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
-              create: (context) =>
-                  UserCubit()..getUserData(state.pathParameters['userId']!)),
+              create: (context) => UserCubit(gitItInstanse<UserDataRepo>())
+                ..getUserData(state.pathParameters['userId']!)),
           BlocProvider(
               create: (context) =>
                   GetUserPostsCubit(gitItInstanse<GetUserPostsRepo>())
@@ -122,7 +122,6 @@ abstract class AppRouter {
       GoRoute(
         path: '/addPost',
         builder: (context, state) => MultiBlocProvider(providers: [
-          BlocProvider(create: (context) => UserCubit()..getUserData()),
           BlocProvider(
               create: (context) =>
                   PostControlCubit(gitItInstanse<PostControlRepo>())),

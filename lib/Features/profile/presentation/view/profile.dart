@@ -10,14 +10,9 @@ import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubi
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

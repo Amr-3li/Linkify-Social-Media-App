@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'user_state.dart';
 
@@ -16,10 +17,26 @@ class UserCubit extends Cubit<UserState> {
     final result = await userDataRepo.getUserById(userId);
     result.fold(
       (l) {
-        UserError(l.errMessage);
+        emit(UserError(l.errMessage));
       },
       (r) {
-        UserLoaded(r);
+        emit(UserLoaded(r));
+      },
+    );
+  }
+
+  Future<void> getCurrentUserData() async {
+    emit(CurrentUserLoading());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString('uid') ?? '';
+
+    final result = await userDataRepo.getUserById(userId);
+    result.fold(
+      (l) {
+        emit(CurrentUserError(l.errMessage));
+      },
+      (r) {
+        emit(CurrentUserLoaded(r));
       },
     );
   }

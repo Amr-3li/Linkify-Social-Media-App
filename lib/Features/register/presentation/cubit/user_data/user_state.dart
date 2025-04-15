@@ -16,6 +16,19 @@ final class UserError extends UserState {
   UserError(this.message);
 }
 
+//===================current user states=======================================
+final class CurrentUserLoading extends UserState {}
+
+final class CurrentUserLoaded extends UserState {
+  UserModel user;
+  CurrentUserLoaded(this.user);
+}
+
+final class CurrentUserError extends UserState {
+  String message;
+  CurrentUserError(this.message);
+}
+
 //================get all users states============================================
 final class AllUsersLoading extends UserState {}
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
@@ -19,8 +20,9 @@ class DrawerBody extends StatelessWidget {
       children: [
         BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
-            if (state is UserLoaded) {
+            if (state is CurrentUserLoaded) {
               UserModel user = state.user;
+              print("++++++++++++++++ ${user.fname} ${user.lname}");
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
@@ -30,17 +32,16 @@ class DrawerBody extends StatelessWidget {
                       name: "${user.fname} ${user.lname}",
                       email: user.email,
                       image: user.image == ""
-                          ? 'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'
+                          ? Constants.defaultUserImage
                           : user.image!));
-            } else if (state is UserLoading) {
-              return const Skeletonizer(
+            } else if (state is CurrentUserLoading) {
+              return Skeletonizer(
                   child: UserDrawerInformation(
-                name: "",
-                email: "",
-                image:
-                    'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png',
+                name: " sdf sdgf ",
+                email: "sagsdf sdf sdfgh gh sh d",
+                image: Constants.defaultUserImage,
               ));
-            } else if (state is UserError) {
+            } else if (state is CurrentUserError) {
               return Container(
                 padding: const EdgeInsets.all(20),
                 alignment: Alignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -14,14 +15,14 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: double.infinity,
       leading: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {
-          if (state is UserLoaded) {
+          if (state is CurrentUserLoaded) {
             return SizedBox(
               width: 400,
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(
                     state.user.image == ""
-                        ? "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png"
+                        ? Constants.defaultUserImage
                         : state.user.image!,
                   ),
                 ),

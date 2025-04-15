@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/shared_logic/data/services/users_data.dart';
 
@@ -25,11 +26,19 @@ class UserDataImpl implements UsersData {
 
   @override
   Future<UserModel> getUserById(String id) async {
-    late UserModel user;
-    await firestore.collection('users').doc(id).get().then((value) {
-      user = UserModel.fromJson(value.data()!);
-    });
-    return user;
+    try {
+      final docSnapshot = await firestore.collection('users').doc(id).get();
+
+      if (!docSnapshot.exists || docSnapshot.data() == null) {
+        throw Exception("User not found or data is null for ID: $id");
+      }
+      final userData = docSnapshot.data()!;
+      UserModel user = UserModel.fromJson(userData);
+      return user;
+    } catch (e) {
+      debugPrint("Error in getUserById: $e");
+      rethrow; // علشان نرمي الخطأ ونخليه يوصل للطبقة اللي فوق
+    }
   }
 
   @override
