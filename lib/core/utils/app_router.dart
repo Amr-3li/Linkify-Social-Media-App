@@ -117,7 +117,7 @@ abstract class AppRouter {
               create: (context) =>
                   GetUserPostsCubit(gitItInstanse<GetUserPostsRepo>())
                     ..getUserPosts(state.pathParameters['userId']!)),
-        ], child: const ProfilePage()),
+        ], child: ProfilePage(userId: state.pathParameters['userId']!)),
       ),
       GoRoute(
         path: '/addPost',

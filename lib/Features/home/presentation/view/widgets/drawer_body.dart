@@ -26,7 +26,7 @@ class DrawerBody extends StatelessWidget {
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    GoRouter.of(context).push('/profilePage');
+                    GoRouter.of(context).push('/profilePage/${user.id}');
                   },
                   child: UserDrawerInformation(
                       name: "${user.fname} ${user.lname}",

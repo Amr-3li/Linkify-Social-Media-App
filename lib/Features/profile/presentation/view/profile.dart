@@ -11,8 +11,8 @@ import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
+  const ProfilePage({super.key, required this.userId});
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

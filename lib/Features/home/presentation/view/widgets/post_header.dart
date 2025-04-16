@@ -16,7 +16,7 @@ class PostHeader extends StatelessWidget {
       ClipOval(
           child: CachedNetworkImage(
         imageUrl:
-            post.imageUrl != "" ? post.imageUrl : Constants.defaultUserImage,
+            post.userImage != "" ? post.userImage : Constants.defaultUserImage,
         width: 45,
       )),
       const SizedBox(width: 10),
