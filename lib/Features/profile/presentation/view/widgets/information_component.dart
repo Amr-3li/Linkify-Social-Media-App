@@ -13,13 +13,8 @@ class InformationComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(150, 208, 208, 208),
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-      ),
-      margin: const EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(10.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           Expanded(

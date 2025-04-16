@@ -17,7 +17,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  bool isMale = false;
+  bool isMale = true;
 
   bool isFemale = false;
 
