@@ -14,14 +14,14 @@ class PostsUserList extends StatelessWidget {
     return BlocBuilder<GetUserPostsCubit, GetUserPostsState>(
       builder: (context, state) {
         if (state is GetUserPostsLoaded && state.posts.isNotEmpty) {
-          return ListView.builder(
-            primary: false,
+          return SliverList.builder(
+            itemBuilder: (context, index) {
+              return PostContainer(post: state.posts[index]);
+            },
             itemCount: state.posts.length,
-            itemBuilder: (context, index) =>
-                PostContainer(post: state.posts[index]),
           );
         } else if (state is GetUserPostsloading) {
-          return SingleChildScrollView(
+          return SliverToBoxAdapter(
             child: Skeletonizer(
                 child: Column(
               children: [
@@ -39,12 +39,16 @@ class PostsUserList extends StatelessWidget {
             )),
           );
         } else if (state is GetUserPostsFailure) {
-          return const Center(
-            child: Text("Error"),
+          return const SliverToBoxAdapter(
+            child: Center(
+              child: Text("Error"),
+            ),
           );
         } else {
-          return const Center(
-            child: Text("Not Posts Exist"),
+          return const SliverToBoxAdapter(
+            child: Center(
+              child: Text("Not Posts Exist"),
+            ),
           );
         }
       },

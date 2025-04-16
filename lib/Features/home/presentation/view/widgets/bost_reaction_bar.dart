@@ -79,7 +79,12 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           isLoading
-              ? const CircularProgressIndicator()
+              ? PostReactionBarItem(
+                  onTap: () => null,
+                  icon: Icons.favorite,
+                  text: "Like",
+                  isLove: isLove,
+                )
               : PostReactionBarItem(
                   onTap: () async {
                     setState(() => isLove = !isLove); // تغيير محلي سريع

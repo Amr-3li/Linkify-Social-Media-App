@@ -49,12 +49,10 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
           backgroundColor: MyColors.appBarColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
             ),
           ),
-          floating: true,
-          pinned: true,
           expandedHeight: 280,
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: const EdgeInsets.only(bottom: 10),
@@ -65,8 +63,8 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
                     ),
                     image: DecorationImage(
                       image: NetworkImage(widget.image),

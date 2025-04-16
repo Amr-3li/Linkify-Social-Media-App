@@ -18,10 +18,7 @@ class PostsList extends StatelessWidget {
           return ListView.builder(
             itemCount: state.posts.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
-                child: PostContainer(post: state.posts[index]),
-              );
+              return PostContainer(post: state.posts[index]);
             },
           );
         } else if (state is GetPostsFailure) {

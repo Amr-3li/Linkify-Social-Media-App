@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_user_data_cubit.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
-import 'package:linkify/Features/profile/presentation/view/widgets/profile_body.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/posts_user_list.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -21,39 +21,38 @@ class ProfilePage extends StatelessWidget {
       body: BlocBuilder<GetUserDataCubit, GetUserDataState>(
         builder: (context, state) {
           if (state is GetUserDataLoaded) {
-            return NestedScrollView(
-                headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                      BlocProvider(
-                        create: (context) => UpdateUserCubit(
-                            gitItInstanse<ImageRepo>(),
-                            gitItInstanse<UserDataRepo>()),
-                        child: CustomAppbarProfile(
-                            name: state.user.fname,
-                            image: state.user.image == ""
-                                ? Constants.defaultUserImage
-                                : state.user.image!),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: MyColors.shadowColor,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 10))
-                            ],
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: ProfileInformation(user: state.user),
-                        ),
-                      ),
-                    ],
-                body: ProfileBody(
-                  user: state.user,
-                ));
+            return CustomScrollView(
+              slivers: [
+                BlocProvider(
+                  create: (context) => UpdateUserCubit(
+                      gitItInstanse<ImageRepo>(),
+                      gitItInstanse<UserDataRepo>()),
+                  child: CustomAppbarProfile(
+                      name: state.user.fname,
+                      image: state.user.image == ""
+                          ? Constants.defaultUserImage
+                          : state.user.image!),
+                ),
+                SliverToBoxAdapter(
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: MyColors.shadowColor,
+                            blurRadius: 10,
+                            offset: Offset(0, 10))
+                      ],
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: ProfileInformation(user: state.user),
+                  ),
+                ),
+                const PostsUserList(),
+              ],
+            );
           } else if (state is GetUserDataLoading) {
             return const Center(
               child: CircularProgressIndicator(),
