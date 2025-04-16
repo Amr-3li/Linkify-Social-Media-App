@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_user_data_cubit.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_body.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
-import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 
@@ -17,9 +17,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.backgroundColor,
-      body: BlocBuilder<UserCubit, UserState>(
+      body: BlocBuilder<GetUserDataCubit, GetUserDataState>(
         builder: (context, state) {
-          if (state is CurrentUserLoaded) {
+          if (state is GetUserDataLoaded) {
             return NestedScrollView(
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                       BlocProvider(
@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                 body: ProfileBody(
                   user: state.user,
                 ));
-          } else if (state is CurrentUserLoading) {
+          } else if (state is GetUserDataLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
