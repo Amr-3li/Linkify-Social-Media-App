@@ -5,15 +5,22 @@ import 'package:linkify/Features/profile/data/services/get_user_posts.dart';
 class GetUserPostsImpl implements GetUserPosts {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<List<PostModel>> getUserPosts(String id) async {
-    List<PostModel> posts = [];
-    await firestore
-        .collection('posts')
-        .where('uid', isEqualTo: id)
-        .get()
-        .then((value) {
-      posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
-    });
-    return posts;
+  Future<List<PostModel>> getUserPosts(String userId) async {
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('posts')
+          .where('userId', isEqualTo: userId)
+          .orderBy('time',
+              descending: true) // optional لو عايزهم من الأحدث للأقدم
+          .get();
+
+      return querySnapshot.docs.map((doc) {
+        print(doc.data().toString());
+        return PostModel.fromJson(doc.data());
+      }).toList();
+    } catch (e) {
+      print('Error getting user posts: $e');
+      return [];
+    }
   }
 }
