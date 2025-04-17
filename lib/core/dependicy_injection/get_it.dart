@@ -9,6 +9,10 @@ import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.d
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo_impl.dart';
 import 'package:linkify/Features/profile/data/services/get_user_posts.dart';
 import 'package:linkify/Features/profile/data/services/get_user_posts_impl.dart';
+import 'package:linkify/Features/search/data/repositories/get_search_users_repo.dart';
+import 'package:linkify/Features/search/data/repositories/get_search_users_repo_impl.dart';
+import 'package:linkify/Features/search/data/services/get_search_users.dart';
+import 'package:linkify/Features/search/data/services/get_search_users_impl.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo_impl.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
@@ -91,4 +95,8 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<GetUserPosts>(GetUserPostsImpl());
   gitItInstanse.registerSingleton<GetUserPostsRepo>(
       GetUserPostsRepoImpl(gitItInstanse<GetUserPosts>()));
+//======================= Search ===========================================
+  gitItInstanse.registerSingleton<GetSearchUsers>(GetSearchUsersImpl());
+  gitItInstanse.registerSingleton<GetSearchUsersRepo>(
+      GetSearchUsersRepoImpl(gitItInstanse<GetSearchUsers>()));
 }
