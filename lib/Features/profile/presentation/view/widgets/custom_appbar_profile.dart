@@ -37,6 +37,13 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
       },
       builder: (context, state) {
         return SliverAppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: MyColors.light,
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
           actions: [
             IconButton(
               onPressed: () async {
@@ -46,7 +53,7 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
               icon: const Icon(Icons.edit),
             ),
           ],
-          backgroundColor: MyColors.appBarColor,
+          backgroundColor: MyColors.light,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),

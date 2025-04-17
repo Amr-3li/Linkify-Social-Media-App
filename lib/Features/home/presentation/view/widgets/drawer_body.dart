@@ -22,7 +22,7 @@ class DrawerBody extends StatelessWidget {
           builder: (context, state) {
             if (state is CurrentUserLoaded) {
               UserModel user = state.user;
-              print("++++++++++++++++ ${user.fname} ${user.lname}");
+              print("++++++++++++++++ ${user.image}");
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);

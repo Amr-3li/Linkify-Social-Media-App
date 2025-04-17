@@ -53,6 +53,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
           final loved = likes.any(
               (like) => like is Map<String, dynamic> && like['id'] == userId);
 
+          if (!mounted) return; // ✅ added line
           setState(() {
             isLove = loved;
           });
@@ -61,6 +62,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
     } catch (e) {
       debugPrint("Error checking love status: $e");
     } finally {
+      if (!mounted) return;
       setState(() {
         isLoading = false;
       });
