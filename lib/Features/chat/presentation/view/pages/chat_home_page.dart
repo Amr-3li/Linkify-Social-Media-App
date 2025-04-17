@@ -21,8 +21,8 @@ class ChatHomePage extends StatelessWidget {
           showDialog(
               context: context, builder: (context) => const AddChatDialog());
         },
-        child: Icon(Icons.add),
         backgroundColor: MyColors.mainChat,
+        child: const Icon(Icons.add),
       ),
     );
   }
