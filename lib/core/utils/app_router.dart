@@ -42,18 +42,22 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScrean(),
       ),
+
       GoRoute(
         path: '/splashScrean',
         builder: (context, state) => const SplashScrean(),
       ),
+
       GoRoute(
         path: '/disconnectPage',
         builder: (context, state) => const DisconnectedPage(),
       ),
+
       GoRoute(
         path: '/initialPage',
         builder: (context, state) => const InitialPage(),
       ),
+
       GoRoute(
         path: '/loginPage',
         builder: (context, state) => BlocProvider(
@@ -61,6 +65,7 @@ abstract class AppRouter {
           child: const LoginPage(),
         ),
       ),
+
       GoRoute(
         path: '/signupPage',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -75,6 +80,7 @@ abstract class AppRouter {
           ),
         ], child: const SignupPage()),
       ),
+
       GoRoute(
         path: '/forgotPassword',
         builder: (context, state) => BlocProvider(
@@ -82,6 +88,7 @@ abstract class AppRouter {
           child: const ForgotPasswordPage(),
         ),
       ),
+
       GoRoute(
         path: '/homePage',
         builder: (context, state) => MultiBlocProvider(
@@ -108,6 +115,7 @@ abstract class AppRouter {
           child: const HomePage(),
         ),
       ),
+
       GoRoute(
         path: '/profilePage/:userId',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -125,6 +133,7 @@ abstract class AppRouter {
                     ..getUserPosts(state.pathParameters['userId']!)),
         ], child: const ProfilePage()),
       ),
+
       GoRoute(
         path: '/addPost',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -133,6 +142,7 @@ abstract class AppRouter {
                   PostControlCubit(gitItInstanse<PostControlRepo>())),
         ], child: const AddPostPage()),
       ),
+
       GoRoute(
         path: '/chatHomePage',
         builder: (context, state) => const ChatHomePage(),
@@ -141,10 +151,12 @@ abstract class AppRouter {
       //   path: '/chatScrean',
       //   builder: (context, state) => const ChatPage(toUser: UserModel(),),
       // ),
+
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsPage(),
       ),
+
       GoRoute(
         path: '/lovesPage/:postTime',
         builder: (context, state) => BlocProvider(
@@ -153,6 +165,7 @@ abstract class AppRouter {
           child: const LovesPage(),
         ),
       ),
+
       GoRoute(
         path: '/commentsPage/:postTime',
         builder: (context, state) => MultiBlocProvider(
