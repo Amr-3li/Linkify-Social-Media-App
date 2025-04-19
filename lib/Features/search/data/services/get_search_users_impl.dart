@@ -8,12 +8,14 @@ class GetSearchUsersImpl implements GetSearchUsers {
   Future<List<UserModel>> getUsersBySearch(String search) async {
     final querySnapshot = await firestore
         .collection('users')
-        .where('fname', isGreaterThanOrEqualTo: search)
+        .where('name', isGreaterThanOrEqualTo: search)
         .get();
     if (querySnapshot.docs.isNotEmpty) {
-      return querySnapshot.docs
-          .map((doc) => UserModel.fromJson(doc.data()))
-          .toList();
+      return search == ""
+          ? []
+          : querySnapshot.docs
+              .map((doc) => UserModel.fromJson(doc.data()))
+              .toList();
     } else {
       return [];
     }
