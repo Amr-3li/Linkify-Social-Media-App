@@ -3,7 +3,7 @@
 class UserModel {
   String? id;
   String name;
-
+  List searchWords;
   String email;
   String password;
   String phone;
@@ -15,6 +15,7 @@ class UserModel {
 
   UserModel(
       {this.id,
+      required this.searchWords,
       required this.name,
       required this.email,
       required this.password,
@@ -29,6 +30,7 @@ class UserModel {
       email: json['email'] ?? "",
       phone: json['phone'] ?? "",
       image: json['image'] ?? "",
+      searchWords: json['searchWords'] ?? [],
       password: "",
       id: json['uid'] ?? "",
       isMale: json['isMale'] ?? "",
@@ -42,6 +44,7 @@ class UserModel {
       'email': email,
       'phone': phone,
       'image': image,
+      'searchWords': searchWords,
       'isMale': isMale,
       'isActive': isActive,
     };

@@ -136,6 +136,7 @@ class _SignupPageState extends State<SignupPage> {
                                                     phone: phoneController.text,
                                                     password:
                                                         passwordController.text,
+                                                    searchWords: [],
                                                     isMale: isMale,
                                                     image: image,
                                                     isActive: true),

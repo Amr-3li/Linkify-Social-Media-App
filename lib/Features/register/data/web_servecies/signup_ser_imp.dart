@@ -17,6 +17,12 @@ class SignupSerImplementation implements SignupService {
         'name': user.name,
         'image': user.image,
         'isMale': user.isMale,
+        'searchWords': [
+          user.name.split(' ')[0].toLowerCase(),
+          user.name.split(' ')[1].toLowerCase(),
+          user.name.toLowerCase(),
+          user.email
+        ],
         'isActive': true,
         'uid': userCredential.user!.uid,
         'phone': user.phone,
