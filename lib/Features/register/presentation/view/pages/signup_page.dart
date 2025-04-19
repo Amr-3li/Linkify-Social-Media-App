@@ -131,8 +131,8 @@ class _SignupPageState extends State<SignupPage> {
                                             .signup(
                                                 UserModel(
                                                     email: emailController.text,
-                                                    fname: fnameController.text,
-                                                    lname: lnameController.text,
+                                                    name:
+                                                        "${fnameController.text} ${lnameController.text}",
                                                     phone: phoneController.text,
                                                     password:
                                                         passwordController.text,

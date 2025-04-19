@@ -28,7 +28,7 @@ class ChatListItem extends StatelessWidget {
             : CachedNetworkImageProvider(toUser.image!),
       ),
       title: Text(
-        toUser.fname,
+        toUser.name,
         style: const TextStyle(color: MyColors.fontColor, fontSize: 15),
       ),
       trailing: const ChatItemTrailingComponent(

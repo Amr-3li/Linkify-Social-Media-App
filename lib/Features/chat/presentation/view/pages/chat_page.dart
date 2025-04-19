@@ -23,9 +23,8 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChatPageAppbar(
-          name: "${widget.toUser.fname} ${widget.toUser.lname}",
-          image: widget.toUser.image),
+      appBar:
+          ChatPageAppbar(name: widget.toUser.name, image: widget.toUser.image),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ChatPageBody(toUser: widget.toUser),

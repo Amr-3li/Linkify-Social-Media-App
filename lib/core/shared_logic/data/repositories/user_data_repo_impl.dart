@@ -40,17 +40,6 @@ class UserDataRepoImpl implements UserDataRepo {
   }
 
   @override
-  Future<Either<Failure, List<UserModel>>> getUsersBySearch(
-      String search) async {
-    try {
-      List<UserModel> users = await usersData.getUsersBySearch(search);
-      return Right(users);
-    } catch (e) {
-      return Left(ServerFailure("failed to get users"));
-    }
-  }
-
-  @override
   Future<Either<Failure, List<UserModel>>> getUsersFrind(String id) {
     // TODO: implement getUsersFrind
     throw UnimplementedError();

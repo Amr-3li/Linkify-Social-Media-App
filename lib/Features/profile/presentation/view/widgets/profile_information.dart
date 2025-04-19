@@ -28,7 +28,7 @@ class ProfileInformation extends StatelessWidget {
 
         InformationComponent(
           type: "Name",
-          text: "${user.fname} ${user.lname}",
+          text: user.name,
           icon: const Icon(Icons.person, color: Colors.blueAccent),
         ),
 

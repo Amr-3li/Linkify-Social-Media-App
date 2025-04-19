@@ -30,8 +30,7 @@ class AuthWebServiceImplement implements AuthService {
         .get()
         .then((value) {
       if (value.exists) {
-        prefs!.setString(
-            'userName', "${value.data()!['fname']}${value.data()!['lname']}");
+        prefs!.setString('userName', "${value.data()!['name']}");
         prefs!.setString('userImage', value.data()!['image'] ?? "");
       }
     });
@@ -88,8 +87,7 @@ class AuthWebServiceImplement implements AuthService {
     if (data == null) {
       await refs.doc(userCredential.user!.uid).set({
         'email': userCredential.user?.email ?? "",
-        'fname': userCredential.user?.displayName?.split(' ')[0] ?? "",
-        'lname': userCredential.user?.displayName?.split(' ')[1] ?? "",
+        'name': userCredential.user?.displayName ?? "",
         'image': userCredential.user?.photoURL ?? "",
         'isMale': true,
         'isActive': true,

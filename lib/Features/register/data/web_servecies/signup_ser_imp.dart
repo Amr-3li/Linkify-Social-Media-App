@@ -14,8 +14,7 @@ class SignupSerImplementation implements SignupService {
           email: user.email, password: user.password);
       await collRef.doc(userCredential.user!.uid).set({
         'email': user.email,
-        'fname': user.fname,
-        'lname': user.lname,
+        'name': user.name,
         'image': user.image,
         'isMale': user.isMale,
         'isActive': true,

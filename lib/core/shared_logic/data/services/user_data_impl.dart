@@ -42,34 +42,6 @@ class UserDataImpl implements UsersData {
   }
 
   @override
-  Future<List<UserModel>> getUsersBySearch(String search) async {
-    try {
-      final searchParts = search.split(' ');
-      List<UserModel> users = [];
-
-      final firstName = search.contains(' ') ? searchParts[0] : search;
-      final lastName = search.contains(' ') ? searchParts[1] : "";
-
-      // Query Firestore for first name
-      final firstNameQuery = firestore
-          .collection('users')
-          .where('fname', isGreaterThanOrEqualTo: firstName)
-          .where('fname', isLessThanOrEqualTo: '$firstName\uf8ff');
-
-      final firstNameResults = await firstNameQuery.get();
-      users = firstNameResults.docs
-          .map((e) => UserModel.fromJson(e.data()))
-          .where((user) =>
-              user.lname.toLowerCase().startsWith(lastName.toLowerCase()))
-          .toList();
-
-      return users;
-    } catch (e) {
-      return []; // Return empty list in case of error
-    }
-  }
-
-  @override
   Future<List<UserModel>> getUsersFrind(String id) {
     // TODO: implement getUsersFrind
     throw UnimplementedError();

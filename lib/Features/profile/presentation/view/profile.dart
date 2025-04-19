@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
                       gitItInstanse<ImageRepo>(),
                       gitItInstanse<UserDataRepo>()),
                   child: CustomAppbarProfile(
-                      name: state.user.fname,
+                      name: state.user.name,
                       image: state.user.image == ""
                           ? Constants.defaultUserImage
                           : state.user.image!),

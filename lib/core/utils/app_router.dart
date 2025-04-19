@@ -124,10 +124,6 @@ abstract class AppRouter {
                   GetUserDataCubit(gitItInstanse<UserDataRepo>())
                     ..getUserData(state.pathParameters['userId']!)),
           BlocProvider(
-            create: (context) =>
-                UserCubit(gitItInstanse<UserDataRepo>())..getCurrentUserData(),
-          ),
-          BlocProvider(
               create: (context) =>
                   GetUserPostsCubit(gitItInstanse<GetUserPostsRepo>())
                     ..getUserPosts(state.pathParameters['userId']!)),

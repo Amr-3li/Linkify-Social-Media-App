@@ -20,7 +20,7 @@ class SearchPage extends StatelessWidget {
             if (state is GetSearchUserSuccess && state.users.isNotEmpty) {
               return ListView.builder(
                 itemCount: state.users.length,
-                itemBuilder: (context, index) => Text(state.users[index].fname),
+                itemBuilder: (context, index) => Text(state.users[index].name),
               );
             } else if (state is GetSearchUserLoading) {
               return const Center(

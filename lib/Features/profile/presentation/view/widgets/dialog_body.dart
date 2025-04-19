@@ -16,6 +16,8 @@ class DialogBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserModel userModel = user;
+    String fname = userModel.name.split(' ')[0],
+        lname = userModel.name.split(' ')[1];
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -34,18 +36,20 @@ class DialogBody extends StatelessWidget {
             const Divider(thickness: 1, color: Colors.black),
             const SizedBox(height: 10),
             InputDataWidgit(
-              text: userModel.fname,
+              text: fname,
               title: "first name",
               onchanged: (value) {
-                userModel.fname = value;
+                fname = value;
+                userModel.name = "$fname $lname";
               },
             ),
             const SizedBox(height: 20),
             InputDataWidgit(
-              text: userModel.lname,
+              text: lname,
               title: "last name",
               onchanged: (value) {
-                userModel.lname = value;
+                lname = value;
+                userModel.name = "$fname $lname";
               },
             ),
             const SizedBox(height: 20),

@@ -22,14 +22,15 @@ class DrawerBody extends StatelessWidget {
           builder: (context, state) {
             if (state is CurrentUserLoaded) {
               UserModel user = state.user;
-              print("++++++++++++++++ ${user.image}");
+              print(" ${user.id}    ${user.name}");
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
+                    print(user.id);
                     GoRouter.of(context).push('/profilePage/${user.id}');
                   },
                   child: UserDrawerInformation(
-                      name: "${user.fname} ${user.lname}",
+                      name: user.name,
                       email: user.email,
                       image: user.image == ""
                           ? Constants.defaultUserImage

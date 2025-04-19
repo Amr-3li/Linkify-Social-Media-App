@@ -26,7 +26,7 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
                         : state.user.image!,
                   ),
                 ),
-                title: Text("${state.user.fname} ${state.user.lname}"),
+                title: Text(state.user.name),
               ),
             );
           } else {
