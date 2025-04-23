@@ -10,6 +10,7 @@ class GetPostsRepoImpl implements GetPostRepo {
   final GetPostsServ postServ;
 
   GetPostsRepoImpl(this.postServ);
+
   @override
   Future<Either<Failure, List<PostModel>>> getAllPosts() async {
     try {

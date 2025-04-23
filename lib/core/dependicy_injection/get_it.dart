@@ -85,6 +85,7 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<GetPostsServ>(GetPostsServImpl());
   gitItInstanse.registerSingleton<GetPostRepo>(
       GetPostsRepoImpl(gitItInstanse<GetPostsServ>()));
+
   gitItInstanse.registerSingleton<GetPostsCubit>(
       GetPostsCubit(gitItInstanse<GetPostRepo>()));
   gitItInstanse.registerSingleton<GetPostLoversCubit>(
