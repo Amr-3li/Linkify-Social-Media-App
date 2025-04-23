@@ -1,18 +1,78 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:linkify/Features/add_friend/data/model/friend_request_model.dart';
 import 'package:linkify/Features/add_friend/data/service/add_friend_serv.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddFriendServImpl implements AddFriendServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  SharedPreferences? prefs;
+  List<UserModel> _globalfriends = [];
+  List<UserModel> _globalYourRequests = [];
+  List<UserModel> _globalFriendRequests = [];
+  int friendsCount = 0;
+  int yourRequestsCount = 0;
+  int friendRequestsCount = 0;
   @override
-  Future<List<UserModel>> getUserFrinds(String id) async {
-    final friendIds = await getFriendIds(id);
-    final snapshot = await firestore.collection('users').get();
-    return snapshot.docs
-        .where((doc) => friendIds.contains(doc['uid']))
-        .map((doc) => UserModel.fromJson(doc.data()))
-        .toList();
+  Future<List<UserModel>> getUserFrinds() async {
+    final friendIds = await _getFriendIds();
+    List<String> localfriendIds = [];
+    for (int i = friendsCount; i < (friendsCount + 10); i++) {
+      if (i < friendIds.length) {
+        localfriendIds.add(friendIds[i]);
+      } else {
+        break;
+      }
+    }
+    final snapshot = await firestore
+        .collection('users')
+        .where('uid', whereIn: localfriendIds)
+        .get();
+    _globalfriends
+        .addAll(snapshot.docs.map((doc) => UserModel.fromJson(doc.data())));
+    friendsCount += 10;
+    return _globalfriends;
+  }
+
+  @override
+  Future<List<UserModel>> getYourRequests() async {
+    final friendIds = await _getYourRequestIds();
+    List<String> localfriendIds = [];
+    for (int i = yourRequestsCount; i < (yourRequestsCount + 10); i++) {
+      if (i < friendIds.length) {
+        localfriendIds.add(friendIds[i]);
+      } else {
+        break;
+      }
+    }
+    final snapshot = await firestore
+        .collection('users')
+        .where('uid', whereIn: localfriendIds)
+        .get();
+    _globalYourRequests
+        .addAll(snapshot.docs.map((doc) => UserModel.fromJson(doc.data())));
+    yourRequestsCount += 10;
+    return _globalYourRequests;
+  }
+
+  @override
+  Future<List<UserModel>> getFriendRequests() async {
+    final friendIds = await _getFriendRequestIds();
+    List<String> localfriendIds = [];
+    for (int i = friendRequestsCount; i < (friendRequestsCount + 10); i++) {
+      if (i < friendIds.length) {
+        localfriendIds.add(friendIds[i]);
+      } else {
+        break;
+      }
+    }
+    final snapshot = await firestore
+        .collection('users')
+        .where('uid', whereIn: localfriendIds)
+        .get();
+    _globalFriendRequests
+        .addAll(snapshot.docs.map((doc) => UserModel.fromJson(doc.data())));
+    friendRequestsCount += 10;
+    return _globalFriendRequests;
   }
 
   @override
@@ -27,13 +87,9 @@ class AddFriendServImpl implements AddFriendServ {
     throw UnimplementedError();
   }
 
-  @override
-  Future<List<UserModel>> getUserRequests(String id) {
-    // TODO: implement getUserRequests
-    throw UnimplementedError();
-  }
-
-  Future<List<String>> getFriendIds(String currentUserId) async {
+  Future<List<String>> _getFriendIds() async {
+    prefs = await SharedPreferences.getInstance();
+    final currentUserId = prefs!.getString('uid');
     final firestore = FirebaseFirestore.instance;
     final sent = await firestore
         .collection('friendships')
@@ -52,12 +108,12 @@ class AddFriendServImpl implements AddFriendServ {
     for (var doc in received.docs) {
       friendIds.add(doc['senderId']);
     }
-    friendIds.add(currentUserId); // استبعد نفسك كمان
     return friendIds.toList();
   }
 
-  Future<List<String>> getYourRequest(String currentUserId) async {
-    final firestore = FirebaseFirestore.instance;
+  Future<List<String>> _getYourRequestIds() async {
+    prefs = await SharedPreferences.getInstance();
+    final currentUserId = prefs!.getString('uid');
     final sent = await firestore
         .collection('friendships')
         .where('senderId', isEqualTo: currentUserId)
@@ -67,12 +123,12 @@ class AddFriendServImpl implements AddFriendServ {
     for (var doc in sent.docs) {
       friendIds.add(doc['receiverId']);
     }
-    friendIds.add(currentUserId); // استبعد نفسك كمان
     return friendIds.toList();
   }
 
-  Future<List<String>> getFriendRequestIds(String currentUserId) async {
-    final firestore = FirebaseFirestore.instance;
+  Future<List<String>> _getFriendRequestIds() async {
+    prefs = await SharedPreferences.getInstance();
+    final currentUserId = prefs!.getString('uid');
     final received = await firestore
         .collection('friendships')
         .where('receiverId', isEqualTo: currentUserId)
@@ -82,7 +138,7 @@ class AddFriendServImpl implements AddFriendServ {
     for (var doc in received.docs) {
       friendIds.add(doc['senderId']);
     }
-    friendIds.add(currentUserId); // استبع نفسك كمان
+
     return friendIds.toList();
   }
 }
