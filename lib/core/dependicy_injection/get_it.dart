@@ -1,4 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
+import 'package:linkify/Features/add_friend/data/repository/friernds_repo_impl.dart';
+import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo.dart';
+import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo_impl.dart';
+import 'package:linkify/Features/add_friend/data/service/friend_serv.dart';
+import 'package:linkify/Features/add_friend/data/service/friend_serv_impl.dart';
+import 'package:linkify/Features/add_friend/data/service/get_friends_or_requests.dart';
+import 'package:linkify/Features/add_friend/data/service/get_friends_or_requests_impl.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo_implementation.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
@@ -97,7 +105,19 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<GetUserPostsRepo>(
       GetUserPostsRepoImpl(gitItInstanse<GetUserPosts>()));
 //======================= Search ===========================================
+
   gitItInstanse.registerSingleton<GetSearchUsers>(GetSearchUsersImpl());
   gitItInstanse.registerSingleton<GetSearchUsersRepo>(
       GetSearchUsersRepoImpl(gitItInstanse<GetSearchUsers>()));
+
+  //=========================== friends ===============================================
+
+  gitItInstanse.registerSingleton<FriendServ>(AddFriendServImpl());
+  gitItInstanse.registerSingleton<FriendsRepo>(
+      FrierndsRepoImpl(gitItInstanse<FriendServ>()));
+
+  gitItInstanse
+      .registerSingleton<GetFriendsOrRequests>(GetFriendsOrRequestsImpl());
+  gitItInstanse.registerSingleton<GetFriendsOrRequestsRepo>(
+      GetFriendsOrRequestsRepoImpl(gitItInstanse<GetFriendsOrRequests>()));
 }

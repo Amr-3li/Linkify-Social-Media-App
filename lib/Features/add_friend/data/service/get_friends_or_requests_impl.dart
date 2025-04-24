@@ -5,7 +5,7 @@ import 'package:linkify/Features/add_friend/data/service/get_friends_or_requests
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class GetFriendsOrRequestsInpl implements GetFriendsOrRequests {
+class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   SharedPreferences? prefs;
