@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo.dart';
 import 'package:linkify/Features/add_friend/data/service/get_friends_or_requests.dart';
 import 'package:linkify/core/errors/failures.dart';

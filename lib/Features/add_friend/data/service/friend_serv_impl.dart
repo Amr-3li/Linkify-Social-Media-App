@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/add_friend/data/model/friend_request_model.dart';
-import 'package:linkify/Features/add_friend/data/service/add_friend_serv.dart';
+import 'package:linkify/Features/add_friend/data/service/friend_serv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddFriendServImpl implements AddFriendServ {
+class AddFriendServImpl implements FriendServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   SharedPreferences? prefs;
