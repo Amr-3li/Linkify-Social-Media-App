@@ -27,6 +27,7 @@ class AddFriendServImpl implements AddFriendServ {
     await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
   }
 
+  @override
   Future<void> acceptFriendRequest(String fromId) async {
     prefs = await SharedPreferences.getInstance();
     final toId = prefs!.getString("uid");
@@ -36,7 +37,8 @@ class AddFriendServImpl implements AddFriendServ {
         .update({"status": "accepted"});
   }
 
-  Future<void> rejectFriendRequest(String fromId, String toId) async {
+  @override
+  Future<void> rejectFriendRequest(String fromId) async {
     prefs = await SharedPreferences.getInstance();
     final toId = prefs!.getString("uid");
     await firestore.collection("friendRequests").doc("$fromId-$toId").delete();
