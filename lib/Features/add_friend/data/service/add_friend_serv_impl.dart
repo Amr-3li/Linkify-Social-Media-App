@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:linkify/Features/add_friend/data/model/friend_request_model.dart';
 import 'package:linkify/Features/add_friend/data/service/add_friend_serv.dart';
-import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddFriendServImpl implements AddFriendServ {
@@ -11,15 +9,36 @@ class AddFriendServImpl implements AddFriendServ {
   SharedPreferences? prefs;
 
   @override
-  Future<void> sendFriendRequest(String fromId, String toId) {
-    // TODO: implement sendFriendRequest
-    throw UnimplementedError();
+  Future<void> sendFriendRequest(String toId) async {
+    prefs = await SharedPreferences.getInstance();
+    final fromId = prefs!.getString('uid');
+    final friendRequest =
+        FriendRequestModel(fromId: fromId!, toId: toId, status: 'requested');
+    await firestore
+        .collection('friendRequests')
+        .doc("$fromId-$toId")
+        .set(friendRequest.toJson());
   }
 
   @override
-  Future<void> unSendFriendRequest(String toId) {}
-  Future<void> SendFriendRequest(String toId) async {}
+  Future<void> unSendFriendRequest(String toId) async {
+    prefs = await SharedPreferences.getInstance();
+    final fromId = prefs!.getString("uid");
+    await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
+  }
 
-  Future<void> acceptFriendRequest(String fromId, String toId) async {}
-  Future<void> rejectFriendRequest(String fromId, String toId) async {}
+  Future<void> acceptFriendRequest(String fromId) async {
+    prefs = await SharedPreferences.getInstance();
+    final toId = prefs!.getString("uid");
+    await firestore
+        .collection("friendRequests")
+        .doc("$fromId-$toId")
+        .update({"status": "accepted"});
+  }
+
+  Future<void> rejectFriendRequest(String fromId, String toId) async {
+    prefs = await SharedPreferences.getInstance();
+    final toId = prefs!.getString("uid");
+    await firestore.collection("friendRequests").doc("$fromId-$toId").delete();
+  }
 }
