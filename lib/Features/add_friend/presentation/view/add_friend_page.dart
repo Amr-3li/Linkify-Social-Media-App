@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_list.dart';
 import 'package:linkify/core/constants/colors.dart';
 
 class AddFriendPage extends StatefulWidget {
@@ -13,19 +14,30 @@ class _AddFriendPageState extends State<AddFriendPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: MyColors.backgroundColor,
         body: Column(children: [
-      Container(
-          padding: const EdgeInsets.all(10),
-          width: double.infinity,
-          color: MyColors.appBarColor,
-          margin: const EdgeInsets.only(top: 50),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            tapNavigateItem(0, "My Friends"),
-            tapNavigateItem(1, "Friend requests"),
-            tapNavigateItem(2, "My requests")
-          ])),
-    ]));
+          Container(
+              padding: const EdgeInsets.all(10),
+              width: double.infinity,
+              color: MyColors.appBarColor,
+              margin: const EdgeInsets.only(top: 50),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    tapNavigateItem(0, "My Friends"),
+                    tapNavigateItem(1, "Friend requests"),
+                    tapNavigateItem(2, "My requests")
+                  ])),
+          Expanded(
+              child: IndexedStack(
+            index: currentIndex,
+            children: const [
+              MyFriendList(),
+              Center(child: Text("Friend requests")),
+              Center(child: Text("My requests"))
+            ],
+          ))
+        ]));
   }
 
   GestureDetector tapNavigateItem(int index, String title) {

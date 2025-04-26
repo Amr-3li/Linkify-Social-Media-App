@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
       body: PageView.builder(
         itemCount: pages.length,
         controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             currentIndex = index;
