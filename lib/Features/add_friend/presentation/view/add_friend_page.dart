@@ -62,13 +62,13 @@ class _AddFriendPageState extends State<AddFriendPage> {
               style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black)),
+                  color: MyColors.iconActiveColor)),
           currentIndex == index
               ? Container(
                   margin: const EdgeInsets.only(top: 7),
                   width: 70,
                   height: 2.5,
-                  color: Colors.grey)
+                  color: Colors.black)
               : const SizedBox(),
         ],
       ),
