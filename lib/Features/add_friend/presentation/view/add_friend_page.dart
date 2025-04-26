@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/add_friend/presentation/view/widgets/friend_requests_list.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_list.dart';
 import 'package:linkify/core/constants/colors.dart';
 
@@ -33,7 +34,7 @@ class _AddFriendPageState extends State<AddFriendPage> {
             index: currentIndex,
             children: const [
               MyFriendList(),
-              Center(child: Text("Friend requests")),
+              FriendsRequestsList(),
               Center(child: Text("My requests"))
             ],
           ))

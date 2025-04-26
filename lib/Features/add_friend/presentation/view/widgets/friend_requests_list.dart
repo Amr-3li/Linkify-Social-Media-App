@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_item.dart';
+import 'package:linkify/Features/add_friend/presentation/view/widgets/friend_requests_item.dart';
 
-class MyFriendList extends StatelessWidget {
-  const MyFriendList({super.key});
+class FriendsRequestsList extends StatelessWidget {
+  const FriendsRequestsList({
+    super.key,
+  });
   Future<void> _onRefresh() async {
     // هنا تحط لوجيك الريفرش اللي انت عايزه
     await Future.delayed(const Duration(seconds: 1));
@@ -17,11 +19,8 @@ class MyFriendList extends StatelessWidget {
       strokeWidth: 2,
       onRefresh: _onRefresh,
       child: ListView.builder(
-        padding: const EdgeInsets.all(8),
         itemCount: 15,
-        itemBuilder: (context, index) {
-          return const MyFriendItem();
-        },
+        itemBuilder: (context, index) => const FriendRequestsItem(),
       ),
     );
   }
