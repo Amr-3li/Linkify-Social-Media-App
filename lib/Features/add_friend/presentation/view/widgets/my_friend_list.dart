@@ -1,9 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class MyFriendList extends StatelessWidget {
-  const MyFriendList({
-    super.key,
-  });
+  const MyFriendList({super.key});
+
+  Future<void> _onRefresh() async {
+    // هنا تحط لوجيك الريفرش اللي انت عايزه
+    await Future.delayed(const Duration(seconds: 1));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,34 +16,61 @@ class MyFriendList extends StatelessWidget {
       color: Colors.green,
       backgroundColor: Colors.white,
       strokeWidth: 2,
-      onRefresh: () async {},
+      onRefresh: _onRefresh,
       child: ListView.builder(
-        scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.all(8),
         itemCount: 15,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.all(10),
-            width: double.infinity,
-            height: 50,
-            color: Colors.white,
-            child: Row(children: [
-              const CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(
-                    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-              ),
-              const SizedBox(width: 10),
-              const Text(
-                "User Name",
-                style: TextStyle(fontSize: 17, color: Colors.black),
-              ),
-              const Spacer(),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_vert,
-                  ))
-            ]),
+            margin: const EdgeInsets.symmetric(vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                const CircleAvatar(
+                  radius: 25,
+                  backgroundImage: CachedNetworkImageProvider(
+                    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Expanded(
+                  child: Text(
+                    "User Name",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                PopupMenuButton<String>(
+                  onSelected: (value) {
+                    if (value == 'unfriend') {
+                      // هنا تحط لوجيك الـ unfriend
+                      debugPrint('Unfriend Clicked');
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    const PopupMenuItem<String>(
+                      value: 'unfriend',
+                      child: Text("Unfriend"),
+                    ),
+                  ],
+                  icon: const Icon(Icons.more_vert),
+                ),
+              ],
+            ),
           );
         },
       ),
