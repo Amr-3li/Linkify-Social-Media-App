@@ -16,13 +16,20 @@ class _AddFriendPageState extends State<AddFriendPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: MyColors.appBarColor,
+          leading: const SizedBox(),
+          centerTitle: true,
+          title: const Text("Friends",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        ),
         backgroundColor: MyColors.backgroundColor,
         body: Column(children: [
           Container(
               padding: const EdgeInsets.all(10),
               width: double.infinity,
-              color: MyColors.appBarColor,
-              margin: const EdgeInsets.only(top: 50),
+              color: MyColors.backgroundColor,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -55,13 +62,13 @@ class _AddFriendPageState extends State<AddFriendPage> {
               style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white)),
+                  color: Colors.black)),
           currentIndex == index
               ? Container(
                   margin: const EdgeInsets.only(top: 7),
                   width: 70,
                   height: 2.5,
-                  color: Colors.white)
+                  color: Colors.grey)
               : const SizedBox(),
         ],
       ),
