@@ -67,8 +67,8 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   currentIndex = e.key;
                   pageController.animateToPage(currentIndex,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut);
+                      duration: const Duration(milliseconds: 70),
+                      curve: Curves.easeInCirc);
                 });
               },
               icon: Icon(e.value,
