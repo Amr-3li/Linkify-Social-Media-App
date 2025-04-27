@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/friend_requests_item.dart';
 import 'package:linkify/core/constants/animation.dart';
@@ -26,7 +25,7 @@ class FriendsRequestsList extends StatelessWidget {
       onRefresh: _onRefresh,
       child: BlocBuilder<GetFriendsRequestsCubit, GetFriendsRequestsState>(
         builder: (context, state) {
-          if (state is GetFriendsLoading) {
+          if (state is GetFriendsRequestsLoading) {
             return Skeletonizer(
               child: ListView.builder(
                 padding: const EdgeInsets.all(8),
@@ -51,8 +50,7 @@ class FriendsRequestsList extends StatelessWidget {
             );
           } else {
             return Center(
-              child: LottieBuilder.asset(MyAnimation.animationsNotExist,
-                  repeat: false),
+              child: LottieBuilder.asset(MyAnimation.animationsNotExist),
             );
           }
         },

@@ -47,8 +47,7 @@ class MyFriendList extends StatelessWidget {
             );
           } else {
             return Center(
-              child: LottieBuilder.asset(MyAnimation.animationsNotExist,
-                  repeat: false),
+              child: LottieBuilder.asset(MyAnimation.animationsNotExist),
             );
           }
         },

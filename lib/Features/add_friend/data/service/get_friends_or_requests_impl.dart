@@ -44,6 +44,9 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   @override
   Future<List<UserModel>> getYourRequests() async {
     final friendIds = await _getYourRequestIds();
+    if (friendIds.isEmpty) {
+      return _globalYourRequests;
+    }
     List<String> localfriendIds = [];
     for (int i = yourRequestsCount; i < (yourRequestsCount + 10); i++) {
       if (i < friendIds.length) {
