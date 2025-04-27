@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/view/widgets/custom_ftiend_button.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -41,21 +44,22 @@ class FriendRequestsItem extends StatelessWidget {
               ),
             ),
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(100, 10),
-              padding: const EdgeInsets.all(1),
-              backgroundColor: Colors.green,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: const Text("Accept",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600)),
-            onPressed: () {},
+          BlocBuilder<FriendsCubit, FriendsState>(
+            builder: (context, state) {
+              if (state is FriendsLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is FriendsLoaded) {
+                return const SizedBox();
+              } else {
+                return CustomFreindsButton(
+                  title: "UnSend",
+                  color: const Color.fromARGB(149, 151, 0, 0),
+                  onTap: () {
+                    context.read<FriendsCubit>().unSendFriendRequest(user.id!);
+                  },
+                );
+              }
+            },
           ),
         ],
       ),
