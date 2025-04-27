@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
+import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/friend_requests_list.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_list.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/my_requests_list.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class AddFriendPage extends StatefulWidget {
   const AddFriendPage({super.key});
@@ -37,15 +45,33 @@ class _AddFriendPageState extends State<AddFriendPage> {
                     tapNavigateItem(1, "Friend requests"),
                     tapNavigateItem(2, "My requests")
                   ])),
-          Expanded(
-              child: IndexedStack(
-            index: currentIndex,
-            children: const [
-              MyFriendList(),
-              FriendsRequestsList(),
-              MyRequestsList()
-            ],
-          ))
+          BlocProvider(
+            create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>()),
+            child: Expanded(
+                child: IndexedStack(
+              index: currentIndex,
+              children: [
+                BlocProvider(
+                  create: (context) =>
+                      GetFriendsCubit(gitItInstanse<GetFriendsOrRequestsRepo>())
+                        ..getUserFrinds(),
+                  child: const MyFriendList(),
+                ),
+                BlocProvider(
+                  create: (context) => GetFriendsRequestsCubit(
+                      gitItInstanse<GetFriendsOrRequestsRepo>())
+                    ..getFriendRequests(),
+                  child: const FriendsRequestsList(),
+                ),
+                BlocProvider(
+                  create: (context) => GetYourRequestsCubit(
+                      gitItInstanse<GetFriendsOrRequestsRepo>())
+                    ..getYourRequests(),
+                  child: const MyRequestsList(),
+                ),
+              ],
+            )),
+          )
         ]));
   }
 

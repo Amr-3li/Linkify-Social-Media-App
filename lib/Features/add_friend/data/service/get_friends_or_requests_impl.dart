@@ -16,6 +16,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   int friendsCount = 0;
   int yourRequestsCount = 0;
   int friendRequestsCount = 0;
+
   @override
   Future<List<UserModel>> getUserFrinds() async {
     final friendIds = await _getFriendIds();
@@ -26,6 +27,9 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
       } else {
         break;
       }
+    }
+    if (localfriendIds.isEmpty) {
+      return _globalfriends;
     }
     final snapshot = await firestore
         .collection('users')
@@ -61,6 +65,9 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   @override
   Future<List<UserModel>> getFriendRequests() async {
     final friendIds = await _getFriendRequestIds();
+    if (friendIds.isEmpty) {
+      return _globalFriendRequests;
+    }
     List<String> localfriendIds = [];
     for (int i = friendRequestsCount; i < (friendRequestsCount + 10); i++) {
       if (i < friendIds.length) {

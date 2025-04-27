@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_item.dart';
+import 'package:linkify/core/constants/animation.dart';
+import 'package:lottie/lottie.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class MyFriendList extends StatelessWidget {
   const MyFriendList({super.key});
   Future<void> _onRefresh() async {
-    // هنا تحط لوجيك الريفرش اللي انت عايزه
     await Future.delayed(const Duration(seconds: 1));
   }
 
@@ -16,11 +20,37 @@ class MyFriendList extends StatelessWidget {
       backgroundColor: Colors.white,
       strokeWidth: 2,
       onRefresh: _onRefresh,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: 15,
-        itemBuilder: (context, index) {
-          return const MyFriendItem();
+      child: BlocBuilder<GetFriendsCubit, GetFriendsState>(
+        builder: (context, state) {
+          if (state is GetFriendsLoading) {
+            return Skeletonizer(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const ListTile(
+                      leading: CircleAvatar(radius: 20),
+                      title: Text(" asf asdf asdf "));
+                },
+              ),
+            );
+          }
+          if (state is GetFriendsLoaded && state.friends.isNotEmpty) {
+            return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: state.friends.length,
+              itemBuilder: (context, index) {
+                return MyFriendItem(
+                  user: state.friends[index],
+                );
+              },
+            );
+          } else {
+            return Center(
+              child: LottieBuilder.asset(MyAnimation.animationsNotExist,
+                  repeat: false),
+            );
+          }
         },
       ),
     );

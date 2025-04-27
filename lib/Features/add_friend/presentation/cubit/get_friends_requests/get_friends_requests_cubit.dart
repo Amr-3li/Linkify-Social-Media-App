@@ -9,9 +9,9 @@ class GetFriendsRequestsCubit extends Cubit<GetFriendsRequestsState> {
   GetFriendsRequestsCubit(this.repo) : super(GetFriendsRequestsInitial());
   final GetFriendsOrRequestsRepo repo;
 
-  Future<void> getUserFrinds() async {
+  Future<void> getFriendRequests() async {
     emit(GetFriendsRequestsLoading());
-    final result = await repo.getUserFrinds();
+    final result = await repo.getFriendRequests();
     result.fold(
       (l) => emit(GetFriendsRequestsError(l.errMessage)),
       (r) => emit(GetFriendsRequestsLoaded(r)),

@@ -14,5 +14,6 @@ class MyAnimation {
   static const String animationsDisconnected =
       "assets/animations/disconnected.json";
 
-  static const String animationsNotExist = "assets/animations/not_exist.json";
+  static const String animationsNotExist =
+      "assets/animations/not_exist_with_person.json";
 }

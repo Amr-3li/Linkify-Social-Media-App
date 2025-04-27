@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class FriendRequestsItem extends StatelessWidget {
-  const FriendRequestsItem({super.key});
-
+  const FriendRequestsItem({super.key, required this.user});
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,17 +24,17 @@ class FriendRequestsItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 25,
             backgroundImage: CachedNetworkImageProvider(
-              "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+              user.image == "" ? Constants.defaultUserImage : user.image!,
             ),
           ),
           const SizedBox(width: 10),
-          const Expanded(
+          Expanded(
             child: Text(
-              "User Name",
-              style: TextStyle(
+              user.name,
+              style: const TextStyle(
                 fontSize: 17,
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
