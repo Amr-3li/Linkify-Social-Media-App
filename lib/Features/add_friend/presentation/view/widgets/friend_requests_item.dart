@@ -51,12 +51,28 @@ class FriendRequestsItem extends StatelessWidget {
               } else if (state is FriendsLoaded) {
                 return const SizedBox();
               } else {
-                return CustomFreindsButton(
-                  title: "UnSend",
-                  color: const Color.fromARGB(149, 151, 0, 0),
-                  onTap: () {
-                    context.read<FriendsCubit>().unSendFriendRequest(user.id!);
-                  },
+                return Row(
+                  children: [
+                    CustomFreindsButton(
+                      title: "reject",
+                      color: const Color.fromARGB(149, 151, 0, 0),
+                      onTap: () {
+                        context
+                            .read<FriendsCubit>()
+                            .unSendFriendRequest(user.id!);
+                      },
+                    ),
+                    const SizedBox(width: 10),
+                    CustomFreindsButton(
+                      title: "accept",
+                      color: const Color.fromARGB(255, 68, 126, 121),
+                      onTap: () {
+                        context
+                            .read<FriendsCubit>()
+                            .acceptFriendRequest(user.id!);
+                      },
+                    ),
+                  ],
                 );
               }
             },

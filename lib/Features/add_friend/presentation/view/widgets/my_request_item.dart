@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/custom_ftiend_button.dart';
+import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -11,73 +13,65 @@ class MyRequestItem extends StatelessWidget {
   final UserModel user;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 25,
-            backgroundImage: CachedNetworkImageProvider(
-              user.image == "" ? Constants.defaultUserImage : user.image!,
+    return RefreshIndicator(
+      onRefresh: () async {
+        await BlocProvider.of<GetYourRequestsCubit>(context).getYourRequests();
+      },
+      color: MyColors.iconActiveColor,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              user.name,
-              style: const TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
+          ],
+        ),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundImage: CachedNetworkImageProvider(
+                user.image == "" ? Constants.defaultUserImage : user.image!,
               ),
             ),
-          ),
-          BlocBuilder<FriendsCubit, FriendsState>(
-            builder: (context, state) {
-              if (state is FriendsLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is FriendsLoaded) {
-                return const SizedBox();
-              } else {
-                return Row(
-                  children: [
-                    CustomFreindsButton(
-                      title: "reject",
-                      color: const Color.fromARGB(149, 151, 0, 0),
-                      onTap: () {
-                        context
-                            .read<FriendsCubit>()
-                            .unSendFriendRequest(user.id!);
-                      },
-                    ),
-                    const SizedBox(width: 10),
-                    CustomFreindsButton(
-                      title: "accept",
-                      color: const Color.fromARGB(255, 68, 126, 121),
-                      onTap: () {
-                        context
-                            .read<FriendsCubit>()
-                            .acceptFriendRequest(user.id!);
-                      },
-                    ),
-                  ],
-                );
-              }
-            },
-          ),
-        ],
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                user.name,
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            BlocBuilder<FriendsCubit, FriendsState>(
+              builder: (context, state) {
+                if (state is FriendsLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is FriendsLoaded) {
+                  return const SizedBox();
+                } else {
+                  return CustomFreindsButton(
+                    title: "UnSend",
+                    color: const Color.fromARGB(149, 151, 0, 0),
+                    onTap: () {
+                      context
+                          .read<FriendsCubit>()
+                          .unSendFriendRequest(user.id!);
+                    },
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
