@@ -3,8 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
+import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_user_data_cubit.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_posts/get_user_posts_cubit.dart';
+import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
@@ -117,6 +119,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/profilePage/:userId',
         builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider(
+              create: (context) =>
+                  GetUserStatusCubit(gitItInstanse<GetUserStatusRepo>())
+                    ..userStatus(state.pathParameters['userId']!)),
           BlocProvider(
               create: (context) =>
                   GetUserDataCubit(gitItInstanse<UserDataRepo>())

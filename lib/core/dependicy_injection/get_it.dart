@@ -15,8 +15,12 @@ import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/home/data/repository/get_posts_repo_impl.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo_impl.dart';
+import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
+import 'package:linkify/Features/profile/data/repositories/get_user_status_repo_impl.dart';
 import 'package:linkify/Features/profile/data/services/get_user_posts.dart';
 import 'package:linkify/Features/profile/data/services/get_user_posts_impl.dart';
+import 'package:linkify/Features/profile/data/services/get_user_status.dart';
+import 'package:linkify/Features/profile/data/services/get_user_status_impl.dart';
 import 'package:linkify/Features/search/data/repositories/get_search_users_repo.dart';
 import 'package:linkify/Features/search/data/repositories/get_search_users_repo_impl.dart';
 import 'package:linkify/Features/search/data/services/get_search_users.dart';
@@ -120,4 +124,8 @@ void setUpGitIt() {
       .registerSingleton<GetFriendsOrRequests>(GetFriendsOrRequestsImpl());
   gitItInstanse.registerSingleton<GetFriendsOrRequestsRepo>(
       GetFriendsOrRequestsRepoImpl(gitItInstanse<GetFriendsOrRequests>()));
+
+  gitItInstanse.registerSingleton<GetUserStatus>(GetUserStatusImpl());
+  gitItInstanse.registerSingleton<GetUserStatusRepo>(
+      GetUserStatusRepoImpl(gitItInstanse<GetUserStatus>()));
 }

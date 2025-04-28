@@ -4,6 +4,7 @@ import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_us
 import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/posts_user_list.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/user_relation_status_bar.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
@@ -32,6 +33,9 @@ class ProfilePage extends StatelessWidget {
                       image: state.user.image == ""
                           ? Constants.defaultUserImage
                           : state.user.image!),
+                ),
+                SliverToBoxAdapter(
+                  child: UserRelationStatusBar(userId: state.user.id!),
                 ),
                 SliverToBoxAdapter(
                   child: Container(
