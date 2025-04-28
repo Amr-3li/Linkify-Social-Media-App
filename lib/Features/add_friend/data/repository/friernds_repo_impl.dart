@@ -47,4 +47,14 @@ class FrierndsRepoImpl implements FriendsRepo {
       return Left(ServerFailure(e.message.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> removeFriend(String toId) async {
+    try {
+      await services.removeFriend(toId);
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure(e.message.toString()));
+    }
+  }
 }

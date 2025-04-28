@@ -23,6 +23,14 @@ class FriendsCubit extends Cubit<FriendsState> {
     );
   }
 
+  Future<void> removeFriend(String toId) async {
+    final result = await repo.removeFriend(toId);
+    result.fold(
+      (l) => emit(FriendsError(l.errMessage)),
+      (r) => emit(FriendsLoaded()),
+    );
+  }
+
   Future<void> rejectFriendRequest(String fromId) async {
     final result = await repo.sendFriendRequest(fromId);
     result.fold(

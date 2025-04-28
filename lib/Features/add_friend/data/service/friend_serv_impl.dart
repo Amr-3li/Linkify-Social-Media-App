@@ -43,4 +43,24 @@ class AddFriendServImpl implements FriendServ {
     final toId = prefs!.getString("uid");
     await firestore.collection("friendRequests").doc("$fromId-$toId").delete();
   }
+
+  @override
+  Future<void> removeFriend(String toId) async {
+    prefs = await SharedPreferences.getInstance();
+    final fromId = prefs!.getString("uid");
+    final response =
+        await firestore.collection("friendRequests").doc("$fromId-$toId").get();
+
+    if (response.exists) {
+      await firestore
+          .collection("friendRequests")
+          .doc("$toId-$fromId")
+          .delete();
+    } else {
+      await firestore
+          .collection("friendRequests")
+          .doc("$fromId-$toId")
+          .delete();
+    }
+  }
 }
