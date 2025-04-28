@@ -1,26 +1,26 @@
 class FriendRequestModel {
-  final String fromId;
-  final String toId;
+  final String senderId;
+  final String receiverId;
   final String status; // pending, accepted, rejected
 
   FriendRequestModel({
-    required this.fromId,
-    required this.toId,
+    required this.senderId,
+    required this.receiverId,
     required this.status,
   });
 
   factory FriendRequestModel.fromJson(Map<String, dynamic> json) {
     return FriendRequestModel(
-      fromId: json['fromId'] ?? '',
-      toId: json['toId'] ?? '',
+      senderId: json['senderId'] ?? '',
+      receiverId: json['receiverId'] ?? '',
       status: json['status'] ?? 'pending', // pending, accepted, requested
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'fromId': fromId,
-      'toId': toId,
+      'senderId': senderId,
+      'receiverId': receiverId,
       'status': status,
     };
   }

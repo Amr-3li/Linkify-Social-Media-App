@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
@@ -123,6 +125,8 @@ abstract class AppRouter {
               create: (context) =>
                   GetUserStatusCubit(gitItInstanse<GetUserStatusRepo>())
                     ..userStatus(state.pathParameters['userId']!)),
+          BlocProvider(
+              create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>())),
           BlocProvider(
               create: (context) =>
                   GetUserDataCubit(gitItInstanse<UserDataRepo>())

@@ -28,11 +28,26 @@ class UserRelationStatusBar extends StatelessWidget {
                         : state.response == Constants.friendSendRequest
                             ? const FriendSendRequestComponent()
                             : state.response == Constants.noRelation
-                                ? const NoRelationComponent()
-                                : const SizedBox(),
-              )
+                                ? NoRelationComponent(
+                                    userId: userId,
+                                  )
+                                : state.response == Constants.myAccount
+                                    ? const MyProfileStatusComponent()
+                                    : const SizedBox())
             : const CircularProgressIndicator();
       },
+    );
+  }
+}
+
+class MyProfileStatusComponent extends StatelessWidget {
+  const MyProfileStatusComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      "My Profile ",
+      style: TextStyle(fontSize: 20),
     );
   }
 }

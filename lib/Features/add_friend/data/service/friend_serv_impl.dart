@@ -14,7 +14,7 @@ class AddFriendServImpl implements FriendServ {
     prefs = await SharedPreferences.getInstance();
     final fromId = prefs!.getString('uid');
     final friendRequest = FriendRequestModel(
-        fromId: fromId!, toId: toId, status: Constants.requested);
+        senderId: fromId!, receiverId: toId, status: Constants.requested);
     await firestore
         .collection('friendRequests')
         .doc("$fromId-$toId")

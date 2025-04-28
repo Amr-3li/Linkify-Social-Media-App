@@ -8,4 +8,5 @@ class Constants {
   static String friendSendRequest = "FriendSendRequest";
   static String friends = "Friends";
   static String noRelation = "NoRelation";
+  static String myAccount = "MyAccount";
 }

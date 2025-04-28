@@ -12,7 +12,7 @@ class GetUserStatusImpl implements GetUserStatus {
     prefs = await SharedPreferences.getInstance();
     final myId = prefs!.getString('uid');
     if (equals(toId, myId!)) {
-      return "MyAccount";
+      return Constants.myAccount;
     } else {
       final response1 =
           await firestore.collection('friendRequests').doc("$myId-$toId").get();
