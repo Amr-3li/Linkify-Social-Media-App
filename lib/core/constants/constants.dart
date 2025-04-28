@@ -2,4 +2,10 @@ class Constants {
   Constants._();
   static String defaultUserImage =
       "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png";
+  static String accepted = "Accepted";
+  static String requested = "Requested";
+  static String youSendRequest = "YouSendRequest";
+  static String friendSendRequest = "FriendSendRequest";
+  static String friends = "Friends";
+  static String noRelation = "NoRelation";
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/add_friend/data/model/friend_request_model.dart';
 import 'package:linkify/Features/add_friend/data/service/friend_serv.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddFriendServImpl implements FriendServ {
@@ -12,8 +13,8 @@ class AddFriendServImpl implements FriendServ {
   Future<void> sendFriendRequest(String toId) async {
     prefs = await SharedPreferences.getInstance();
     final fromId = prefs!.getString('uid');
-    final friendRequest =
-        FriendRequestModel(fromId: fromId!, toId: toId, status: 'requested');
+    final friendRequest = FriendRequestModel(
+        fromId: fromId!, toId: toId, status: Constants.requested);
     await firestore
         .collection('friendRequests')
         .doc("$fromId-$toId")
@@ -34,7 +35,7 @@ class AddFriendServImpl implements FriendServ {
     await firestore
         .collection("friendRequests")
         .doc("$fromId-$toId")
-        .update({"status": "accepted"});
+        .update({"status": Constants.accepted});
   }
 
   @override
