@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/images.dart';
 
 class UserDrawerInformation extends StatelessWidget {
   const UserDrawerInformation(
@@ -22,7 +24,9 @@ class UserDrawerInformation extends StatelessWidget {
         transitionOnUserGestures: true,
         tag: 'profile-tag',
         child: CircleAvatar(
-          backgroundImage: NetworkImage(image),
+          backgroundImage: image == ""
+              ? const AssetImage(MyImages.imagesUserImage)
+              : CachedNetworkImageProvider(image),
         ),
       ),
     );

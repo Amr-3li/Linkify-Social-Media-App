@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/widgets/dialogs.dart';
 
 class PostHeader extends StatelessWidget {
@@ -13,12 +13,11 @@ class PostHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey iconButtonKey = GlobalKey();
     return Row(children: [
-      ClipOval(
-          child: CachedNetworkImage(
-        imageUrl:
-            post.userImage != "" ? post.userImage : Constants.defaultUserImage,
-        width: 45,
-      )),
+      CircleAvatar(
+        backgroundImage: post.userImage == ""
+            ? const AssetImage(MyImages.imagesUserImage)
+            : CachedNetworkImageProvider(post.userImage),
+      ),
       const SizedBox(width: 10),
       PostUserData(name: post.userName, time: post.time),
       const Spacer(),

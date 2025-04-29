@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/core/constants/constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
@@ -30,17 +29,13 @@ class DrawerBody extends StatelessWidget {
                     GoRouter.of(context).push('/profilePage/${user.id}');
                   },
                   child: UserDrawerInformation(
-                      name: user.name,
-                      email: user.email,
-                      image: user.image == ""
-                          ? Constants.defaultUserImage
-                          : user.image!));
+                      name: user.name, email: user.email, image: user.image!));
             } else if (state is CurrentUserLoading) {
-              return Skeletonizer(
+              return const Skeletonizer(
                   child: UserDrawerInformation(
                 name: " sdf sdgf ",
                 email: "sagsdf sdf sdfgh gh sh d",
-                image: Constants.defaultUserImage,
+                image: "",
               ));
             } else if (state is CurrentUserError) {
               return Container(

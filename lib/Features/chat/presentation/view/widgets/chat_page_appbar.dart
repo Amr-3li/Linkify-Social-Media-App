@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 
 class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   const ChatPageAppbar({
@@ -20,11 +20,12 @@ class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       title: Row(
         children: [
-          ClipOval(
-              child: CachedNetworkImage(
-            imageUrl: image != "" ? image! : Constants.defaultUserImage,
-            width: 40,
-          )),
+          CircleAvatar(
+            radius: 20,
+            backgroundImage: image == ""
+                ? const AssetImage(MyImages.imagesUserImage)
+                : CachedNetworkImageProvider(image!),
+          ),
           const SizedBox(width: 8),
           Text(name,
               style:

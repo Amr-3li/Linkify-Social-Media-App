@@ -24,9 +24,9 @@ class _MyWidgetState extends State<InitialPage> {
     prefs = await SharedPreferences.getInstance();
     loging = prefs!.getString('uid');
     if (loging == null) {
-      GoRouter.of(context).push('/loginPage');
+      GoRouter.of(context).pushReplacement('/loginPage');
     } else {
-      GoRouter.of(context).push('/homePage');
+      GoRouter.of(context).pushReplacement('/homePage');
     }
   }
 

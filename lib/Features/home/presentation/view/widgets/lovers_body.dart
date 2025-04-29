@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -22,18 +23,16 @@ class LoversBody extends StatelessWidget {
                   child: ListView.builder(
             itemCount: 5,
             itemBuilder: (context, index) {
-              return Column(
+              return const Column(
                 children: [
                   ListTile(
                     onTap: null,
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        Constants.defaultUserImage,
-                      ),
+                      backgroundImage: AssetImage(MyImages.imagesUserImage),
                     ),
-                    title: const Text("User Name"),
+                    title: Text("User Name"),
                   ),
-                  const Divider(
+                  Divider(
                       color: MyColors.fromMessageBorder,
                       indent: 15,
                       endIndent: 15,
@@ -52,11 +51,10 @@ class LoversBody extends StatelessWidget {
                   ListTile(
                     onTap: null,
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        state.lovers[index].image == ""
-                            ? Constants.defaultUserImage
-                            : state.lovers[index].image,
-                      ),
+                      backgroundImage: state.lovers[index].image == ""
+                          ? const AssetImage(MyImages.imagesUserImage)
+                          : CachedNetworkImageProvider(
+                              state.lovers[index].image),
                     ),
                     title: Text(state.lovers[index].name),
                   ),

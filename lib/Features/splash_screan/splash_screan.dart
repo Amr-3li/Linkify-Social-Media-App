@@ -26,7 +26,7 @@ class _SplashScreanState extends State<SplashScrean> {
     Future.delayed(
       const Duration(seconds: 5),
       () {
-        GoRouter.of(context).push('/initialPage');
+        GoRouter.of(context).pushReplacement('/initialPage');
       },
     );
   }

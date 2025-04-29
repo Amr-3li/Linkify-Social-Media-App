@@ -85,19 +85,19 @@ flutter_launcher_icons:
 #   field_prefix:
 #   classname: MyIcons
 #   ignore_comments: true
-# flutter_assets:
-#   assets_path:
-#     - assets/images/
-#   output_path: lib/core/constants/
-#   filename: images.dart
-#   field_prefix:
-#   classname: MyImages
-#   ignore_comments: true
 flutter_assets:
   assets_path:
-    - assets/animations/
+    - assets/images/
   output_path: lib/core/constants/
-  filename: animation.dart
+  filename: images.dart
   field_prefix:
-  classname: MyAnimation
+  classname: MyImages
   ignore_comments: true
+# flutter_assets:
+#   assets_path:
+#     - assets/animations/
+#   output_path: lib/core/constants/
+#   filename: animation.dart
+#   field_prefix:
+#   classname: MyAnimation
+#   ignore_comments: true

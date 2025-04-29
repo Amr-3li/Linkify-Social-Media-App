@@ -5,7 +5,7 @@ import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_c
 import 'package:linkify/Features/add_friend/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/custom_ftiend_button.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class MyRequestItem extends StatelessWidget {
@@ -35,10 +35,10 @@ class MyRequestItem extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 25,
-              backgroundImage: CachedNetworkImageProvider(
-                user.image == "" ? Constants.defaultUserImage : user.image!,
-              ),
+              radius: 20,
+              backgroundImage: user.image == ""
+                  ? const AssetImage(MyImages.imagesUserImage)
+                  : CachedNetworkImageProvider(user.image!),
             ),
             const SizedBox(width: 10),
             Expanded(

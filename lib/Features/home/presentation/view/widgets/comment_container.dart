@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 
 class CommentContainer extends StatelessWidget {
   const CommentContainer({
@@ -28,7 +29,9 @@ class CommentContainer extends StatelessWidget {
             child: Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(Constants.defaultUserImage),
+                backgroundImage: commentModel.userImage == ""
+                    ? const AssetImage(MyImages.imagesUserImage)
+                    : CachedNetworkImageProvider(commentModel.userImage),
               ),
             ),
           ),

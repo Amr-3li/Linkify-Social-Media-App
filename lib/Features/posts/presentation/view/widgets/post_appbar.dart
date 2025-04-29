@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -20,11 +21,9 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 400,
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    state.user.image == ""
-                        ? Constants.defaultUserImage
-                        : state.user.image!,
-                  ),
+                  backgroundImage: state.user.image == ""
+                      ? const AssetImage(MyImages.imagesUserImage)
+                      : CachedNetworkImageProvider(state.user.image!),
                 ),
                 title: Text(state.user.name),
               ),

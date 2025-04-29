@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/images.dart';
 
 class CustomAppbarProfile extends StatefulWidget {
   const CustomAppbarProfile({
@@ -74,7 +76,9 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
                       bottomRight: Radius.circular(50),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(widget.image),
+                      image: widget.image == ""
+                          ? const AssetImage(MyImages.imagesUserImage)
+                          : CachedNetworkImageProvider(widget.image),
                       fit: BoxFit.cover,
                     )),
               ),
