@@ -16,7 +16,7 @@ class FriendsCubit extends Cubit<FriendsState> {
   }
 
   Future<void> unSendFriendRequest(String toId) async {
-    final result = await repo.sendFriendRequest(toId);
+    final result = await repo.unSendFriendRequest(toId);
     result.fold(
       (l) => emit(FriendsError(l.errMessage)),
       (r) => emit(FriendsLoaded()),
@@ -32,7 +32,7 @@ class FriendsCubit extends Cubit<FriendsState> {
   }
 
   Future<void> rejectFriendRequest(String fromId) async {
-    final result = await repo.sendFriendRequest(fromId);
+    final result = await repo.rejectFriendRequest(fromId);
     result.fold(
       (l) => emit(FriendsError(l.errMessage)),
       (r) => emit(FriendsLoaded()),
@@ -40,7 +40,7 @@ class FriendsCubit extends Cubit<FriendsState> {
   }
 
   Future<void> acceptFriendRequest(String fromId) async {
-    final result = await repo.sendFriendRequest(fromId);
+    final result = await repo.acceptFriendRequest(fromId);
     result.fold(
       (l) => emit(FriendsError(l.errMessage)),
       (r) => emit(FriendsLoaded()),

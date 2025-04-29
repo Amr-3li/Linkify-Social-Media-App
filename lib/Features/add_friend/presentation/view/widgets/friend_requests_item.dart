@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/custom_ftiend_button.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
@@ -56,20 +57,26 @@ class FriendRequestsItem extends StatelessWidget {
                     CustomFreindsButton(
                       title: "reject",
                       color: const Color.fromARGB(149, 151, 0, 0),
-                      onTap: () {
-                        context
+                      onTap: () async {
+                        await context
                             .read<FriendsCubit>()
-                            .unSendFriendRequest(user.id!);
+                            .rejectFriendRequest(user.id!);
+                        await context
+                            .read<GetFriendsRequestsCubit>()
+                            .getFriendRequests();
                       },
                     ),
                     const SizedBox(width: 10),
                     CustomFreindsButton(
                       title: "accept",
                       color: const Color.fromARGB(255, 68, 126, 121),
-                      onTap: () {
-                        context
+                      onTap: () async {
+                        await context
                             .read<FriendsCubit>()
                             .acceptFriendRequest(user.id!);
+                        await context
+                            .read<GetFriendsRequestsCubit>()
+                            .getFriendRequests();
                       },
                     ),
                   ],

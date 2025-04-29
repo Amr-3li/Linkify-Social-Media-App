@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -49,10 +50,12 @@ class MyFriendItem extends StatelessWidget {
               return state is FriendsLoading
                   ? const CircularProgressIndicator()
                   : PopupMenuButton<String>(
-                      onSelected: (value) {
+                      onSelected: (value) async {
                         if (value == 'unfriend') {
-                          BlocProvider.of<FriendsCubit>(context)
+                          await BlocProvider.of<FriendsCubit>(context)
                               .removeFriend(user.id!);
+                          await BlocProvider.of<GetFriendsCubit>(context)
+                              .getUserFrinds();
                         }
                       },
                       itemBuilder: (context) => [

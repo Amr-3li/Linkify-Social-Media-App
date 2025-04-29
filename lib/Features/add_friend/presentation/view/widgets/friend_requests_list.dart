@@ -32,14 +32,19 @@ class FriendsRequestsList extends StatelessWidget {
           );
         }
         if (state is GetFriendsRequestsLoaded && state.users.isNotEmpty) {
-          return ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: state.users.length,
-            itemBuilder: (context, index) {
-              return FriendRequestsItem(
-                user: state.users[index],
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              await _onRefresh(context);
             },
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: state.users.length,
+              itemBuilder: (context, index) {
+                return FriendRequestsItem(
+                  user: state.users[index],
+                );
+              },
+            ),
           );
         } else {
           return Column(

@@ -6,15 +6,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AddFriendServImpl implements FriendServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   SharedPreferences? prefs;
+
+  Future<String> _getCurrentUserId() async {
+    prefs ??= await SharedPreferences.getInstance();
+    return prefs!.getString("uid")!;
+  }
 
   @override
   Future<void> sendFriendRequest(String toId) async {
-    prefs = await SharedPreferences.getInstance();
-    final fromId = prefs!.getString('uid');
+    final fromId = await _getCurrentUserId();
     final friendRequest = FriendRequestModel(
-        senderId: fromId!, receiverId: toId, status: Constants.requested);
+      senderId: fromId,
+      receiverId: toId,
+      status: Constants.requested,
+    );
+
     await firestore
         .collection('friendRequests')
         .doc("$fromId-$toId")
@@ -23,44 +30,41 @@ class AddFriendServImpl implements FriendServ {
 
   @override
   Future<void> unSendFriendRequest(String toId) async {
-    prefs = await SharedPreferences.getInstance();
-    final fromId = prefs!.getString("uid");
+    final fromId = await _getCurrentUserId();
     await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
   }
 
   @override
   Future<void> acceptFriendRequest(String fromId) async {
-    prefs = await SharedPreferences.getInstance();
-    final toId = prefs!.getString("uid");
+    final toId = await _getCurrentUserId();
     await firestore
-        .collection("friendRequests")
+        .collection('friendRequests')
         .doc("$fromId-$toId")
         .update({"status": Constants.accepted});
   }
 
   @override
   Future<void> rejectFriendRequest(String fromId) async {
-    prefs = await SharedPreferences.getInstance();
-    final toId = prefs!.getString("uid");
-    await firestore.collection("friendRequests").doc("$fromId-$toId").delete();
+    final toId = await _getCurrentUserId();
+    await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
   }
 
   @override
   Future<void> removeFriend(String toId) async {
-    prefs = await SharedPreferences.getInstance();
-    final fromId = prefs!.getString("uid");
-    final response =
+    final fromId = await _getCurrentUserId();
+
+    final doc1 =
         await firestore.collection("friendRequests").doc("$fromId-$toId").get();
 
-    if (response.exists) {
+    if (doc1.exists) {
       await firestore
           .collection("friendRequests")
-          .doc("$toId-$fromId")
+          .doc("$fromId-$toId")
           .delete();
     } else {
       await firestore
           .collection("friendRequests")
-          .doc("$fromId-$toId")
+          .doc("$toId-$fromId")
           .delete();
     }
   }

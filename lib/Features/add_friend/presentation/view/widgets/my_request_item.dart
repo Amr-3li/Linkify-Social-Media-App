@@ -61,10 +61,13 @@ class MyRequestItem extends StatelessWidget {
                   return CustomFreindsButton(
                     title: "UnSend",
                     color: const Color.fromARGB(149, 151, 0, 0),
-                    onTap: () {
-                      context
+                    onTap: () async {
+                      await context
                           .read<FriendsCubit>()
                           .unSendFriendRequest(user.id!);
+                      await context
+                          .read<GetYourRequestsCubit>()
+                          .getYourRequests();
                     },
                   );
                 }

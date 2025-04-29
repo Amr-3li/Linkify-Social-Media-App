@@ -30,14 +30,19 @@ class MyFriendList extends StatelessWidget {
           );
         }
         if (state is GetFriendsLoaded && state.friends.isNotEmpty) {
-          return ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: state.friends.length,
-            itemBuilder: (context, index) {
-              return MyFriendItem(
-                user: state.friends[index],
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              () => _onRefresh(context);
             },
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: state.friends.length,
+              itemBuilder: (context, index) {
+                return MyFriendItem(
+                  user: state.friends[index],
+                );
+              },
+            ),
           );
         } else {
           return Column(
