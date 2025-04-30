@@ -1,16 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
-import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
-import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
-import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/colors.dart';
-import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class ChatListItem extends StatelessWidget {
   const ChatListItem({
@@ -35,17 +29,7 @@ class ChatListItem extends StatelessWidget {
         time: "dasdasd",
       ),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return MultiBlocProvider(providers: [
-            BlocProvider(
-              create: (context) => ChatCubit(gitItInstanse<ChatRepo>()),
-            ),
-            BlocProvider(
-              create: (context) => SendMessageCubit(
-                  gitItInstanse<ChatRepo>(), gitItInstanse<ImageRepo>()),
-            )
-          ], child: ChatPage(toUser: toUser));
-        }));
+        GoRouter.of(context).push('/chatScrean/${toUser.id}');
       },
     );
   }

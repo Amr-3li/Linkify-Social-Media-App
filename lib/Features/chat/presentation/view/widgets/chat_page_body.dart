@@ -5,30 +5,14 @@ import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit
 import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/text_message_container.dart';
-import 'package:linkify/core/shared_logic/data/models/user.dart';
 
-class ChatPageBody extends StatefulWidget {
-  const ChatPageBody({
-    super.key,
-    required this.toUser,
-  });
-  final UserModel toUser;
-
-  @override
-  State<ChatPageBody> createState() => _ChatPageBodyState();
-}
-
-class _ChatPageBodyState extends State<ChatPageBody> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<ChatCubit>(context).getAllMessages(widget.toUser.id!);
-  }
+class ChatPageBody extends StatelessWidget {
+  const ChatPageBody({super.key, required this.toUserId});
+  final String toUserId;
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController = ScrollController();
     return Column(
       children: [
         Expanded(
@@ -86,7 +70,7 @@ class _ChatPageBodyState extends State<ChatPageBody> {
         ),
         BlocProvider(
           create: (context) => RecordCubit(),
-          child: InputMessageContainer(toUser: widget.toUser),
+          child: InputMessageContainer(toUserId: toUserId),
         )
       ],
     );

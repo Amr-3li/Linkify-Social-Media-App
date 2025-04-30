@@ -3,13 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
-import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class ImageConfirmMessage extends StatefulWidget {
   const ImageConfirmMessage(
-      {super.key, required this.imageFile, required this.toUser});
+      {super.key, required this.imageFile, required this.toUserId});
   final File? imageFile;
-  final UserModel toUser;
+  final String toUserId;
 
   @override
   State<ImageConfirmMessage> createState() => _ImageConfirmMessageState();
@@ -59,7 +58,7 @@ class _ImageConfirmMessageState extends State<ImageConfirmMessage> {
             IconButton(
                 onPressed: () async {
                   await BlocProvider.of<SendMessageCubit>(context).sendMessage(
-                    toId: widget.toUser.id!,
+                    toId: widget.toUserId,
                     imageURL: widget.imageFile,
                     msg: textEditingController.text,
                   );

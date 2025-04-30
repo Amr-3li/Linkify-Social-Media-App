@@ -21,7 +21,7 @@ class SendButton extends StatelessWidget {
           textEditingController.text == ""
               ? SnackBarWidget.showSnack(context, "please write message")
               : await BlocProvider.of<SendMessageCubit>(context).sendMessage(
-                  toId: widget.toUser.id!,
+                  toId: widget.toUserId,
                   imageURL: null,
                   msg: textEditingController.text);
           textEditingController.clear();

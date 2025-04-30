@@ -8,15 +8,14 @@ import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dar
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/send_button.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/send_image_icon.dart';
-import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/constants/colors.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({
     super.key,
-    required this.toUser,
+    required this.toUserId,
   });
-  final UserModel toUser;
+  final String toUserId;
   @override
   State<InputMessageContainer> createState() => _InputMessageContainerState();
 }
@@ -80,7 +79,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                     textEditingController.text != "" || state is RecordStart
                         ? const SizedBox()
                         : SendImageIcon(
-                            toUser: widget.toUser,
+                            toUserId: widget.toUserId,
                           ),
                     textEditingController.text != ""
                         ? const SizedBox()
@@ -97,7 +96,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                         await BlocProvider.of<SendMessageCubit>(
                                                 context)
                                             .sendMessage(
-                                                toId: widget.toUser.id!,
+                                                toId: widget.toUserId,
                                                 recordURL:
                                                     File(recordedFilePath),
                                                 msg: "");

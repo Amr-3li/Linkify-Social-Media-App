@@ -2,7 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
+import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
+import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
+import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
@@ -46,22 +50,18 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashScrean(),
       ),
-
       GoRoute(
         path: '/splashScrean',
         builder: (context, state) => const SplashScrean(),
       ),
-
       GoRoute(
         path: '/disconnectPage',
         builder: (context, state) => const DisconnectedPage(),
       ),
-
       GoRoute(
         path: '/initialPage',
         builder: (context, state) => const InitialPage(),
       ),
-
       GoRoute(
         path: '/loginPage',
         builder: (context, state) => BlocProvider(
@@ -69,7 +69,6 @@ abstract class AppRouter {
           child: const LoginPage(),
         ),
       ),
-
       GoRoute(
         path: '/signupPage',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -84,7 +83,6 @@ abstract class AppRouter {
           ),
         ], child: const SignupPage()),
       ),
-
       GoRoute(
         path: '/forgotPassword',
         builder: (context, state) => BlocProvider(
@@ -92,7 +90,6 @@ abstract class AppRouter {
           child: const ForgotPasswordPage(),
         ),
       ),
-
       GoRoute(
         path: '/homePage',
         builder: (context, state) => MultiBlocProvider(
@@ -117,7 +114,6 @@ abstract class AppRouter {
           child: const HomePage(),
         ),
       ),
-
       GoRoute(
         path: '/profilePage/:userId',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -137,7 +133,6 @@ abstract class AppRouter {
                     ..getUserPosts(state.pathParameters['userId']!)),
         ], child: const ProfilePage()),
       ),
-
       GoRoute(
         path: '/addPost',
         builder: (context, state) => MultiBlocProvider(providers: [
@@ -146,21 +141,34 @@ abstract class AppRouter {
                   PostControlCubit(gitItInstanse<PostControlRepo>())),
         ], child: const AddPostPage()),
       ),
-
       GoRoute(
         path: '/chatHomePage',
         builder: (context, state) => const ChatHomePage(),
       ),
-      // GoRoute(
-      //   path: '/chatScrean',
-      //   builder: (context, state) => const ChatPage(toUser: UserModel(),),
-      // ),
-
+      GoRoute(
+        path: '/chatScrean/:toUserId',
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => UserCubit(gitItInstanse<UserDataRepo>())
+                ..getUserData(state.pathParameters['toUserId']!),
+            ),
+            BlocProvider(
+              create: (context) => ChatCubit(gitItInstanse<ChatRepo>())
+                ..getAllMessages(state.pathParameters['toUserId']!),
+            ),
+            BlocProvider(
+              create: (context) => SendMessageCubit(
+                  gitItInstanse<ChatRepo>(), gitItInstanse<ImageRepo>()),
+            ),
+          ],
+          child: ChatPage(toUserId: state.pathParameters['toUserId']!),
+        ),
+      ),
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsPage(),
       ),
-
       GoRoute(
         path: '/lovesPage/:postTime',
         builder: (context, state) => BlocProvider(
@@ -169,7 +177,6 @@ abstract class AppRouter {
           child: const LovesPage(),
         ),
       ),
-
       GoRoute(
         path: '/commentsPage/:postTime',
         builder: (context, state) => MultiBlocProvider(
