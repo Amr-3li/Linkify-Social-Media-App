@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/friend_component.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/friend_send_request_component.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/my_profile_status_component.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/no_relation_component.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/you_send_request_component.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -24,32 +25,16 @@ class UserRelationStatusBar extends StatelessWidget {
                 child: state.response == Constants.youSendRequest
                     ? const YouSendRequestComponent()
                     : state.response == Constants.friends
-                        ? const FriendComponent()
+                        ? FriendComponent(userId: userId)
                         : state.response == Constants.friendSendRequest
                             ? const FriendSendRequestComponent()
                             : state.response == Constants.noRelation
-                                ? NoRelationComponent(
-                                    userId: userId,
-                                  )
+                                ? NoRelationComponent(userId: userId)
                                 : state.response == Constants.myAccount
                                     ? const MyProfileStatusComponent()
                                     : const SizedBox())
             : const CircularProgressIndicator();
       },
-    );
-  }
-}
-
-class MyProfileStatusComponent extends StatelessWidget {
-  const MyProfileStatusComponent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "My Profile ",
-        style: TextStyle(fontSize: 15),
-      ),
     );
   }
 }
