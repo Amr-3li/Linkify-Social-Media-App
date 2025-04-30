@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
+import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 

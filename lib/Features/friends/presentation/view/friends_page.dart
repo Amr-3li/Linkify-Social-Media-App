@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
-import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_friends/get_friends_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/view/widgets/friend_requests_list.dart';
-import 'package:linkify/Features/add_friend/presentation/view/widgets/my_friend_list.dart';
-import 'package:linkify/Features/add_friend/presentation/view/widgets/my_requests_list.dart';
+import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
+import 'package:linkify/Features/friends/data/repository/get_friends_or_requests_repo.dart';
+import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
+import 'package:linkify/Features/friends/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
+import 'package:linkify/Features/friends/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
+import 'package:linkify/Features/friends/presentation/view/widgets/friend_requests_list.dart';
+import 'package:linkify/Features/friends/presentation/view/widgets/my_friend_list.dart';
+import 'package:linkify/Features/friends/presentation/view/widgets/my_requests_list.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 
-class AddFriendPage extends StatefulWidget {
-  const AddFriendPage({super.key});
+class FriendPage extends StatefulWidget {
+  const FriendPage({super.key});
 
   @override
-  State<AddFriendPage> createState() => _AddFriendPageState();
+  State<FriendPage> createState() => _FriendPageState();
 }
 
-class _AddFriendPageState extends State<AddFriendPage> {
+class _FriendPageState extends State<FriendPage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {

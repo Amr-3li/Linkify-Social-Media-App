@@ -7,7 +7,7 @@ import 'package:linkify/Features/home/data/Models/post_model.dart';
 class GetPostsServImpl implements GetPostsServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<List<PostModel>> getAllPosts() async {
+  Future<List<PostModel>> getMyTimelinePosts() async {
     List<PostModel> posts = [];
     await firestore
         .collection('posts')

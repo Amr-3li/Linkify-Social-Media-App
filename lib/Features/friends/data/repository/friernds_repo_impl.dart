@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
-import 'package:linkify/Features/add_friend/data/service/friend_serv.dart';
+import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
+import 'package:linkify/Features/friends/data/service/friend_serv.dart';
 import 'package:linkify/core/errors/failures.dart';
 
 class FrierndsRepoImpl implements FriendsRepo {

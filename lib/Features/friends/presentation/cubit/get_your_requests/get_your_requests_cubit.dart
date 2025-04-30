@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:linkify/Features/add_friend/data/repository/get_friends_or_requests_repo.dart';
+import 'package:linkify/Features/friends/data/repository/get_friends_or_requests_repo.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:meta/meta.dart';
 

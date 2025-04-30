@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
-import 'package:linkify/Features/add_friend/presentation/view/widgets/my_request_item.dart';
+import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
+import 'package:linkify/Features/friends/presentation/view/widgets/my_friend_item.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class MyRequestsList extends StatelessWidget {
-  const MyRequestsList({
-    super.key,
-  });
+class MyFriendList extends StatelessWidget {
+  const MyFriendList({super.key});
   Future<void> _onRefresh(BuildContext context) async {
-    await BlocProvider.of<GetYourRequestsCubit>(context).getYourRequests();
+    await BlocProvider.of<GetFriendsCubit>(context).getUserFrinds();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetYourRequestsCubit, GetYourRequestsState>(
+    return BlocBuilder<GetFriendsCubit, GetFriendsState>(
       builder: (context, state) {
-        if (state is GetYourRequestsLoading) {
+        if (state is GetFriendsLoading) {
           return Skeletonizer(
             child: ListView.builder(
               padding: const EdgeInsets.all(8),
@@ -31,15 +29,20 @@ class MyRequestsList extends StatelessWidget {
             ),
           );
         }
-        if (state is GetYourRequestsLoaded && state.users.isNotEmpty) {
-          return ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: state.users.length,
-            itemBuilder: (context, index) {
-              return MyRequestItem(
-                user: state.users[index],
-              );
+        if (state is GetFriendsLoaded && state.friends.isNotEmpty) {
+          return RefreshIndicator(
+            onRefresh: () async {
+              () => _onRefresh(context);
             },
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: state.friends.length,
+              itemBuilder: (context, index) {
+                return MyFriendItem(
+                  user: state.friends[index],
+                );
+              },
+            ),
           );
         } else {
           return Column(
@@ -53,7 +56,7 @@ class MyRequestsList extends StatelessWidget {
                   ),
                   onPressed: () => _onRefresh(context),
                   child: const Text("try again")),
-              const Spacer()
+              const Spacer(),
             ],
           );
         }

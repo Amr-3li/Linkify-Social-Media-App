@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/Features/add_friend/data/repository/friends_repo.dart';
-import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
+import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit.dart';
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
@@ -102,7 +102,8 @@ abstract class AppRouter {
                   ..getCurrentUserData()),
             BlocProvider(create: (_) => gitItInstanse<AddPostCubit>()),
             BlocProvider(
-                create: (_) => gitItInstanse<GetPostsCubit>()..getAllPosts()),
+                create: (_) =>
+                    gitItInstanse<GetPostsCubit>()..getMyTimelinePosts()),
             BlocProvider(
               create: (_) => PostControlCubit(gitItInstanse<PostControlRepo>()),
             ),

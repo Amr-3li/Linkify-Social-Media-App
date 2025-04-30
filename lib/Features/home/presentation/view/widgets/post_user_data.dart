@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart' as user;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +23,7 @@ class PostUserData extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            GoRouter.of(context).push('/profilePage/${userId}');
+            GoRouter.of(context).push('/profilePage/$userId');
           },
           child: Text(
             name,

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:linkify/Features/add_friend/data/service/get_friends_or_requests.dart';
+import 'package:linkify/Features/friends/data/service/get_friends_or_requests.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';

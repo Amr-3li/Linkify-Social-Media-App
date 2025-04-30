@@ -12,9 +12,9 @@ class GetPostsRepoImpl implements GetPostRepo {
   GetPostsRepoImpl(this.postServ);
 
   @override
-  Future<Either<Failure, List<PostModel>>> getAllPosts() async {
+  Future<Either<Failure, List<PostModel>>> getMyTimelinePosts() async {
     try {
-      List<PostModel> posts = await postServ.getAllPosts();
+      List<PostModel> posts = await postServ.getMyTimelinePosts();
       return Right(posts);
     } catch (e) {
       return Left(ServerFailure(e.toString()));

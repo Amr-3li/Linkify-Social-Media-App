@@ -9,9 +9,9 @@ class GetPostsCubit extends Cubit<GetPostsState> {
   GetPostsCubit(this.postRepo) : super(GetPostsInitial());
   final GetPostRepo postRepo;
 
-  Future<void> getAllPosts() async {
+  Future<void> getMyTimelinePosts() async {
     emit(GetPostsloading());
-    final response = await postRepo.getAllPosts();
+    final response = await postRepo.getMyTimelinePosts();
     response.fold((l) {
       emit(GetPostsFailure(l.errMessage));
     }, (r) {
