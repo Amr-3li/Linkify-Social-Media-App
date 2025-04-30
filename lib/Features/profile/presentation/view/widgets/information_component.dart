@@ -14,14 +14,14 @@ class InformationComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: Row(
         children: [
           Expanded(
             flex: 5,
             child: Text(
               " $type:   $text",
-              style: const TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 14),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),

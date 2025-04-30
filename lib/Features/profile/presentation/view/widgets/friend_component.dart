@@ -19,7 +19,7 @@ class FriendComponent extends StatelessWidget {
           flex: 1,
           child: CustomButton(
               title: "Remove Friend",
-              color: Colors.red,
+              color: const Color.fromARGB(149, 151, 0, 0),
               onTap: () {
                 showDialog(
                   context: context,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
 import 'package:linkify/Features/add_friend/presentation/view/widgets/custom_ftiend_button.dart';
@@ -36,12 +37,16 @@ class FriendRequestsItem extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: Text(
-              user.name,
-              style: const TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
+            child: InkWell(
+              onTap: () {
+                GoRouter.of(context).push('/profilePage/${user.id}');
+              },
+              child: Text(
+                user.name,
+                style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
               ),
             ),
           ),

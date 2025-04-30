@@ -19,7 +19,7 @@ class PostHeader extends StatelessWidget {
             : CachedNetworkImageProvider(post.userImage),
       ),
       const SizedBox(width: 10),
-      PostUserData(name: post.userName, time: post.time),
+      PostUserData(name: post.userName, time: post.time, userId: post.userId),
       const Spacer(),
       IconButton(
           key: iconButtonKey,

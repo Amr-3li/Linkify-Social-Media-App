@@ -33,7 +33,7 @@ class UserRelationStatusBar extends StatelessWidget {
                                 : state.response == Constants.myAccount
                                     ? const MyProfileStatusComponent()
                                     : const SizedBox())
-            : const CircularProgressIndicator();
+            : const SizedBox();
       },
     );
   }

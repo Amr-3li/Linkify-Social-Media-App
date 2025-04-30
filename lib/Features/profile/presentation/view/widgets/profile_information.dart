@@ -22,23 +22,20 @@ class ProfileInformation extends StatelessWidget {
     return Column(
       children: [
         InformationComponent(
-            type: "Email",
-            text: user.email,
-            icon: const Icon(Icons.email, color: Colors.red)),
-
-        InformationComponent(
           type: "Name",
           text: user.name,
           icon: const Icon(Icons.person, color: Colors.blueAccent),
         ),
 
         InformationComponent(
+            type: "Email",
+            text: user.email,
+            icon: const Icon(Icons.email, color: Colors.red)),
+
+        InformationComponent(
           type: "Phone ",
           text: user.phone,
-          icon: const Icon(
-            Icons.phone,
-            color: Colors.green,
-          ),
+          icon: const Icon(Icons.phone, color: Colors.green),
         ),
 
         InformationComponent(

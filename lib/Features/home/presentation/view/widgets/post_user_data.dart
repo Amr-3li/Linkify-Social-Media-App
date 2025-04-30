@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart' as user;
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class PostUserData extends StatelessWidget {
@@ -6,9 +8,10 @@ class PostUserData extends StatelessWidget {
     super.key,
     required this.name,
     required this.time,
+    required this.userId,
   });
 
-  final String name;
+  final String name, userId;
   final String time;
 
   @override
@@ -19,11 +22,16 @@ class PostUserData extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(name,
+        InkWell(
+          onTap: () {
+            GoRouter.of(context).push('/profilePage/${userId}');
+          },
+          child: Text(
+            name,
             style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            )),
+                fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
+          ),
+        ),
         const SizedBox(height: 2),
         Text(formattedDate,
             style: const TextStyle(fontSize: 13, color: Colors.grey)),
