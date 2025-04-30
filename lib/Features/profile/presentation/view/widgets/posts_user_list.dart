@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_posts/get_user_posts_cubit.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class PostsUserList extends StatelessWidget {
   const PostsUserList({
@@ -21,22 +21,8 @@ class PostsUserList extends StatelessWidget {
             itemCount: state.posts.length,
           );
         } else if (state is GetUserPostsloading) {
-          return SliverToBoxAdapter(
-            child: Skeletonizer(
-                child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(15),
-                  width: double.infinity,
-                  height: 500,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(15),
-                  width: double.infinity,
-                  height: 300,
-                )
-              ],
-            )),
+          return const SliverToBoxAdapter(
+            child: LoadingPost(),
           );
         } else if (state is GetUserPostsFailure) {
           return const SliverToBoxAdapter(

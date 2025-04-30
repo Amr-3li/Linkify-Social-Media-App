@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:lottie/lottie.dart';
@@ -13,7 +14,12 @@ class PostsList extends StatelessWidget {
     return BlocBuilder<GetPostsCubit, GetPostsState>(
       builder: (context, state) {
         if (state is GetPostsloading) {
-          return const Center(child: CircularProgressIndicator());
+          return ListView.builder(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return const LoadingPost();
+            },
+          );
         } else if (state is GetPostsSuccess) {
           return ListView.builder(
             itemCount: state.posts.length,
