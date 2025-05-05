@@ -22,6 +22,16 @@ class GetPostsRepoImpl implements GetPostRepo {
   }
 
   @override
+  Future<Either<Failure, List<PostModel>>> refreshTimeline() async {
+    try {
+      List<PostModel> posts = await postServ.refreshTimeline();
+      return Right(posts);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, List<CommentModel>>> getComments(
       String postTime) async {
     try {

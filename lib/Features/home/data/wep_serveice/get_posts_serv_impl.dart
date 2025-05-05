@@ -33,6 +33,7 @@ class GetPostsServImpl implements GetPostsServ {
     return glopalPosts;
   }
 
+  @override
   Future<List<PostModel>> refreshTimeline() async {
     glopalPosts.clear();
     lastPostDoc = null;

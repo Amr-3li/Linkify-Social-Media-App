@@ -18,4 +18,14 @@ class GetPostsCubit extends Cubit<GetPostsState> {
       emit(GetPostsSuccess(r));
     });
   }
+
+  Future<void> refreshTimeline() async {
+    emit(GetPostsloading());
+    final response = await postRepo.refreshTimeline();
+    response.fold((l) {
+      emit(GetPostsFailure(l.errMessage));
+    }, (r) {
+      emit(GetPostsSuccess(r));
+    });
+  }
 }
