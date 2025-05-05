@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         notificationPredicate: (notification) => true,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         onRefresh: () async =>
-            BlocProvider.of<GetPostsCubit>(context).getMyTimelinePosts(),
+            await BlocProvider.of<GetPostsCubit>(context).refreshTimeline(),
         child: const PostsList(),
       ),
     );

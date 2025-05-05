@@ -13,7 +13,7 @@ class AddPostImpl implements AddPost {
   @override
   Future<void> addPost(PostModel post) async {
     await firestore.collection('posts').doc(post.time).set(post.toJson());
-    List<String> friendIds = await _getFriendIds();
+    final friendIds = await _getFriendIds();
     for (String id in friendIds) {
       await firestore
           .collection('users')
@@ -24,7 +24,7 @@ class AddPostImpl implements AddPost {
     }
   }
 
-  Future<List<String>> _getFriendIds() async {
+  Future<List<dynamic>> _getFriendIds() async {
     final currentUserId = user.uid;
 
     final querySnapshot = await firestore
@@ -43,6 +43,6 @@ class AddPostImpl implements AddPost {
       return data['senderId'] == currentUserId
           ? data['receiverId']
           : data['senderId'];
-    }).toList() as List<String>;
+    }).toList();
   }
 }
