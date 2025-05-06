@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_more_posts/get_more_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/home_page_appbar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/posts_list.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,18 +18,7 @@ class HomePage extends StatelessWidget {
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         const HomePageAppBar(),
       ],
-      body: RefreshIndicator(
-        color: MyColors.iconActiveColor,
-        backgroundColor: Colors.white,
-        strokeWidth: 2,
-        displacement: 10,
-        elevation: 5,
-        notificationPredicate: (notification) => true,
-        triggerMode: RefreshIndicatorTriggerMode.anywhere,
-        onRefresh: () async =>
-            await BlocProvider.of<GetPostsCubit>(context).refreshTimeline(),
-        child: const PostsList(),
-      ),
+      body: const PostsList(),
     );
   }
 }

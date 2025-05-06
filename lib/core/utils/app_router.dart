@@ -103,7 +103,7 @@ abstract class AppRouter {
             BlocProvider(create: (_) => gitItInstanse<AddPostCubit>()),
             BlocProvider(
                 create: (_) =>
-                    gitItInstanse<GetPostsCubit>()..getMyTimelinePosts()),
+                    gitItInstanse<GetPostsCubit>()..loadInitialPosts()),
             BlocProvider(
               create: (_) => PostControlCubit(gitItInstanse<PostControlRepo>()),
             ),

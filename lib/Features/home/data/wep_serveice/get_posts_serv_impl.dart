@@ -19,18 +19,19 @@ class GetPostsServImpl implements GetPostsServ {
         .collection('users')
         .doc(currentUserId)
         .collection('timeline')
-        .limit(20);
+        .orderBy('time', descending: true)
+        .limit(5);
     if (lastPostDoc != null) {
       query = query.startAfterDocument(lastPostDoc!);
     }
     final snapshot = await query.get();
-    if (snapshot.docs.isEmpty) return glopalPosts;
+    if (snapshot.docs.isEmpty) return [];
     lastPostDoc = snapshot.docs.last;
     final localPosts = snapshot.docs
         .map((e) => PostModel.fromJson(e.data() as Map<String, dynamic>))
         .toList();
     glopalPosts.addAll(localPosts);
-    return glopalPosts;
+    return localPosts;
   }
 
   @override

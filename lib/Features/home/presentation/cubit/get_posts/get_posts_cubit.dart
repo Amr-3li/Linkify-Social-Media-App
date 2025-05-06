@@ -8,24 +8,66 @@ part 'get_posts_state.dart';
 class GetPostsCubit extends Cubit<GetPostsState> {
   GetPostsCubit(this.postRepo) : super(GetPostsInitial());
   final GetPostRepo postRepo;
+  List<PostModel> _allPosts = [];
+  bool _isLoadingMore = false;
+  bool _hasMore = true;
 
-  Future<void> getMyTimelinePosts() async {
+  List<PostModel> get posts => _allPosts;
+  bool get hasMore => _hasMore;
+
+  Future<void> loadInitialPosts() async {
     emit(GetPostsloading());
-    final response = await postRepo.getMyTimelinePosts();
-    response.fold((l) {
-      emit(GetPostsFailure(l.errMessage));
-    }, (r) {
-      emit(GetPostsSuccess(r));
-    });
+    final result = await postRepo.refreshTimeline();
+    result.fold(
+      (failure) => emit(GetPostsFailure(failure.errMessage)),
+      (data) {
+        _allPosts = data;
+        _hasMore = data.length >= 20;
+        emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
+      },
+    );
   }
 
-  Future<void> refreshTimeline() async {
-    emit(GetPostsloading());
-    final response = await postRepo.refreshTimeline();
-    response.fold((l) {
-      emit(GetPostsFailure(l.errMessage));
-    }, (r) {
-      emit(GetPostsSuccess(r));
-    });
+  Future<void> refreshPosts() async {
+    final result = await postRepo.refreshTimeline();
+    result.fold(
+      (failure) => emit(GetPostsFailure(failure.errMessage)),
+      (data) {
+        _allPosts = data;
+        _hasMore = data.length >= 20;
+        emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
+      },
+    );
+  }
+
+  Future<void> loadMorePosts() async {
+    if (_isLoadingMore || !_hasMore) return;
+
+    _isLoadingMore = true;
+    emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: true));
+
+    final result = await postRepo.getMyTimelinePosts(); // لازم ترجع بس الجديد
+
+    result.fold(
+      (failure) {
+        _isLoadingMore = false;
+        emit(GetPostsFailure(failure.errMessage));
+      },
+      (newPosts) {
+        _isLoadingMore = false;
+
+        // لو مفيش جديد خلاص مفيش حاجة نعملها
+        if (newPosts.isEmpty) {
+          _hasMore = false;
+          emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
+          return;
+        }
+
+        _allPosts.addAll(newPosts);
+        _hasMore = newPosts.length >= 20; // عدل الرقم حسب الlimit اللي شغال بيه
+
+        emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
+      },
+    );
   }
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_more_posts/get_more_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
+import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/widgets/custom_button.dart';
+import 'package:lottie/lottie.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});
@@ -13,58 +18,69 @@ class PostsList extends StatefulWidget {
 
 class _PostsListState extends State<PostsList> {
   final ScrollController _scrollController = ScrollController();
-  bool isLoadingMore = false;
 
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
 
-    // أول تحميل
-    context.read<GetPostsCubit>().getMyTimelinePosts();
-
-    _scrollController.addListener(() async {
-      if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 300 &&
-          !isLoadingMore) {
-        setState(() => isLoadingMore = true);
-
-        await context.read<GetPostsCubit>().getMyTimelinePosts();
-
-        setState(() => isLoadingMore = false);
-      }
-    });
+  Future<void> _scrollListener() async {
+    final cubit = context.read<GetPostsCubit>();
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent - 300 &&
+        cubit.hasMore) {
+      await cubit.loadMorePosts();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetPostsCubit, GetPostsState>(
       builder: (context, state) {
-        if (state is GetPostsloading && !(state is GetPostsSuccess)) {
-          // تحميل أول مرة
+        if (state is GetPostsloading) {
           return ListView.builder(
             itemCount: 2,
-            itemBuilder: (context, index) => const LoadingPost(),
+            itemBuilder: (_, __) => const LoadingPost(),
           );
         } else if (state is GetPostsSuccess) {
-          return ListView.builder(
-            controller: _scrollController,
-            itemCount: state.posts.length + 1, // +1 عشان الـ loader
-            itemBuilder: (context, index) {
-              if (index < state.posts.length) {
-                return PostContainer(post: state.posts[index]);
-              } else {
-                // آخر عنصر: loader
-                return isLoadingMore
-                    ? const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: Center(child: CircularProgressIndicator()),
-                      )
-                    : const SizedBox.shrink();
-              }
+          final posts = state.posts;
+          return RefreshIndicator(
+            onRefresh: () async {
+              posts.clear();
+              print("refresh");
+              await context.read<GetPostsCubit>().refreshPosts();
             },
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: posts.length + (state.isLoadingMore ? 1 : 0),
+              itemBuilder: (context, index) {
+                if (index < posts.length) {
+                  return PostContainer(post: posts[index]);
+                } else {
+                  return const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
+              },
+            ),
           );
         } else if (state is GetPostsFailure) {
-          return Center(child: Text("Error: ${state.error}"));
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(state.error),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () =>
+                      context.read<GetPostsCubit>().loadInitialPosts(),
+                  child: const Text("Try Again"),
+                )
+              ],
+            ),
+          );
         } else {
           return const Center(child: CircularProgressIndicator());
         }
