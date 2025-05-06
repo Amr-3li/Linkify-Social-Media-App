@@ -20,9 +20,7 @@ class SendMessageCubit extends Cubit<SendMessageState> {
 
     if (imageURL != null) {
       // Handle image upload
-      print("asdasdasdasdasdasdasd");
       var result = await imageRepo.uploadImageToFirebase(imageURL);
-      print("asdasdasdasdasdasdasd");
       result.fold(
         (l) {
           emit(SendMessageFaild(l.errMessage));

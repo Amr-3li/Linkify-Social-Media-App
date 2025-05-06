@@ -18,7 +18,6 @@ class SupabaseStorage implements StorageService {
     String url = supabase.client.storage
         .from('true_gym_assets')
         .getPublicUrl('$path/$fileName$now');
-    print("==================== $url");
 
     return url;
   }

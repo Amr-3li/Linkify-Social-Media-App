@@ -60,15 +60,12 @@ class PostControlImpl implements PostControl {
         'image': prefs.getString('userImage') ?? '',
       };
 
-      print(lover.toString());
-
       final docRef =
           FirebaseFirestore.instance.collection('posts').doc(postTime);
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         final snapshot = await transaction.get(docRef);
         if (!snapshot.exists) {
-          print("Post not found.");
           return;
         }
         final data = snapshot.data()!;
@@ -76,15 +73,13 @@ class PostControlImpl implements PostControl {
         final currentIndex = likes.indexWhere((e) => e['id'] == userId);
         if (currentIndex != -1) {
           likes.removeAt(currentIndex);
-          print("Like removed");
         } else {
           likes.add(lover);
-          print("Like added");
         }
         transaction.update(docRef, {'likes': likes});
       });
     } catch (e) {
-      print("Error in addRemoveLike: $e");
+      throw Exception(e.toString());
     }
   }
 

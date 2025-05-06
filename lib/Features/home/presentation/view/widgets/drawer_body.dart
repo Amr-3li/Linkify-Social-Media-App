@@ -21,11 +21,9 @@ class DrawerBody extends StatelessWidget {
           builder: (context, state) {
             if (state is CurrentUserLoaded) {
               UserModel user = state.user;
-              print(" ${user.id}    ${user.name}");
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    print(user.id);
                     GoRouter.of(context).push('/profilePage/${user.id}');
                   },
                   child: UserDrawerInformation(

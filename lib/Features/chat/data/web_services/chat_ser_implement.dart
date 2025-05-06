@@ -38,7 +38,6 @@ class ChatSerImplement implements ChatSer {
           .orderBy('time', descending: false)
           .snapshots();
     } catch (e) {
-      print("Error fetching messages: $e");
       yield* const Stream.empty();
     }
   }
@@ -63,7 +62,7 @@ class ChatSerImplement implements ChatSer {
     try {
       await firestore.collection(chatPath).doc(time).set(messageModel.toJson());
     } catch (e) {
-      print("Error sending message: $e");
+      throw Exception(e);
     }
   }
 
@@ -77,7 +76,6 @@ class ChatSerImplement implements ChatSer {
 
       return unreadMessageCount;
     } catch (e) {
-      print("Error fetching unread messages count: $e");
       return const Stream.empty();
     }
   }

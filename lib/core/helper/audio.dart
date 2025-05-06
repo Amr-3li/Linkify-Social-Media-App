@@ -28,7 +28,7 @@ class Audio {
         _isPlaying = false;
       });
     } catch (e) {
-      print('Error playing recording: $e');
+      throw Exception('Error playing recording: $e');
     }
   }
 
@@ -37,7 +37,7 @@ class Audio {
       await _audioPlayer.stop();
       _isPlaying = false;
     } catch (e) {
-      print('Error stopping playback: $e');
+      throw Exception('Error stopping playback: $e');
     }
   }
 }

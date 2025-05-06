@@ -15,11 +15,9 @@ class GetUserPostsImpl implements GetUserPosts {
           .get();
 
       return querySnapshot.docs.map((doc) {
-        print(doc.data().toString());
         return PostModel.fromJson(doc.data());
       }).toList();
     } catch (e) {
-      print('Error getting user posts: $e');
       return [];
     }
   }

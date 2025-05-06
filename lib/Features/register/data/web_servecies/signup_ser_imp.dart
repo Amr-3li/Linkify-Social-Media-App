@@ -28,7 +28,7 @@ class SignupSerImplementation implements SignupService {
         'phone': user.phone,
       });
     } catch (e) {
-      print(e.toString());
+      throw Exception(e);
     }
   }
 }

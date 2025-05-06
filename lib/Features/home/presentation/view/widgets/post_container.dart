@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
@@ -39,22 +38,23 @@ class PostContainer extends StatelessWidget {
           ReactionContainerBar(
             post: post,
           ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const SizedBox(width: 15),
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).push('/lovesPage/${post.time}');
-                },
-                child: Text("${post.likes.length}  love",
-                    style: const TextStyle(color: Colors.grey)),
-              ),
-              const Spacer(),
-              Text("${post.comments.length}  comments",
-                  style: const TextStyle(color: Colors.grey)),
-            ],
-          )
+          // المشكله هنا ان اول ما بعمل رياكت على بوست مابيعدلش ف كل التايم لاينز بتاعه الاصدقاء فا دي محتجه هندله قبل ما تعمل الفيتشر دي
+          // const SizedBox(height: 10),
+          // Row(
+          //   children: [
+          //     const SizedBox(width: 15),
+          //     InkWell(
+          //       onTap: () {
+
+          //       },
+          //       child: Text("${post.likes.length}  love",
+          //           style: const TextStyle(color: Colors.grey)),
+          //     ),
+          //     const Spacer(),
+          //     Text("${post.comments.length}  comments",
+          //         style: const TextStyle(color: Colors.grey)),
+          //   ],
+          // )
         ],
       ),
     );

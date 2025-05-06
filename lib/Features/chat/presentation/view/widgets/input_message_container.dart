@@ -100,7 +100,6 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                                                 recordURL:
                                                     File(recordedFilePath),
                                                 msg: "");
-                                        print(recordedFilePath);
                                       },
                                       icon: const Icon(
                                         Icons.send,

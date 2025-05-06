@@ -16,6 +16,9 @@ class CommenstWidget extends StatelessWidget {
       },
       icon: Icons.comment,
       text: "Comment",
+      openList: () {
+        GoRouter.of(context).push('/commentsPage/$postTime');
+      },
     );
   }
 }

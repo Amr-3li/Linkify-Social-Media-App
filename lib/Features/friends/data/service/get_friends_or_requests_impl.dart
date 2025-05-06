@@ -110,7 +110,6 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
 
   Future<List<String>> _getFriendRequestIds() async {
     final currentUserId = await _getCurrentUserId();
-    print(currentUserId);
     final received = await _firestore
         .collection('friendRequests')
         .where('receiverId', isEqualTo: currentUserId)

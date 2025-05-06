@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_widget.dart';
@@ -78,7 +79,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           isLoading
               ? PostReactionBarItem(
@@ -96,6 +97,9 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
                   icon: Icons.favorite,
                   text: "Like",
                   isLove: isLove,
+                  openList: () {
+                    GoRouter.of(context).push('/lovesPage/${widget.post.time}');
+                  },
                 ),
           CommenstWidget(postTime: widget.post.time),
           PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),

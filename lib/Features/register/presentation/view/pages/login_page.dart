@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
                                             .signin(emailController.text.trim(),
                                                 passwordController.text);
                                       } catch (e) {
-                                        print(e.toString());
+                                        throw Exception(e);
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -204,7 +204,6 @@ class LoginPage extends StatelessWidget {
   ElevatedButton signupButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        print("prressed");
         GoRouter.of(context).push('/signupPage');
       },
       style: ElevatedButton.styleFrom(
