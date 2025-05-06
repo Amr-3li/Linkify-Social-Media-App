@@ -22,19 +22,20 @@ class GetPostsCubit extends Cubit<GetPostsState> {
       (failure) => emit(GetPostsFailure(failure.errMessage)),
       (data) {
         _allPosts = data;
-        _hasMore = data.length >= 20;
+        _hasMore = data.length >= 5;
         emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
       },
     );
   }
 
   Future<void> refreshPosts() async {
+    emit(GetPostsloading());
     final result = await postRepo.refreshTimeline();
     result.fold(
       (failure) => emit(GetPostsFailure(failure.errMessage)),
       (data) {
         _allPosts = data;
-        _hasMore = data.length >= 20;
+        _hasMore = data.length >= 5;
         emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
       },
     );
@@ -64,7 +65,7 @@ class GetPostsCubit extends Cubit<GetPostsState> {
         }
 
         _allPosts.addAll(newPosts);
-        _hasMore = newPosts.length >= 20; // عدل الرقم حسب الlimit اللي شغال بيه
+        _hasMore = newPosts.length >= 5; // عدل الرقم حسب الlimit اللي شغال بيه
 
         emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
       },

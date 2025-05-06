@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/home/data/Models/post_model.dart';
-import 'package:linkify/Features/home/presentation/cubit/get_more_posts/get_more_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
-import 'package:linkify/core/constants/animation.dart';
-import 'package:linkify/core/widgets/custom_button.dart';
-import 'package:lottie/lottie.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});
@@ -45,26 +40,19 @@ class _PostsListState extends State<PostsList> {
           );
         } else if (state is GetPostsSuccess) {
           final posts = state.posts;
-          return RefreshIndicator(
-            onRefresh: () async {
-              posts.clear();
-              print("refresh");
-              await context.read<GetPostsCubit>().refreshPosts();
+          return ListView.builder(
+            controller: _scrollController,
+            itemCount: posts.length + (state.isLoadingMore ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index < posts.length) {
+                return PostContainer(post: posts[index]);
+              } else {
+                return const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
             },
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: posts.length + (state.isLoadingMore ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index < posts.length) {
-                  return PostContainer(post: posts[index]);
-                } else {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
-              },
-            ),
           );
         } else if (state is GetPostsFailure) {
           return Center(
