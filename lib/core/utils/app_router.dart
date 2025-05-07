@@ -8,6 +8,7 @@ import 'package:linkify/Features/chat/presentation/cubit/send_message/send_messa
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
+import 'package:linkify/Features/notifications/presentation/views/pages/notification_page.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_user_data_cubit.dart';
@@ -48,10 +49,6 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashScrean(),
-      ),
-      GoRoute(
-        path: '/splashScrean',
         builder: (context, state) => const SplashScrean(),
       ),
       GoRoute(
@@ -147,7 +144,7 @@ abstract class AppRouter {
         builder: (context, state) => const ChatHomePage(),
       ),
       GoRoute(
-        path: '/chatScrean/:toUserId',
+        path: '/chatPage/:toUserId',
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -167,8 +164,12 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/settings',
+        path: '/settingsPage',
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: '/notificationPage',
+        builder: (context, state) => const NotificationPage(),
       ),
       GoRoute(
         path: '/lovesPage/:postTime',

@@ -27,6 +27,15 @@ class HomePageAppBar extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
+            GoRouter.of(context).push('/notificationPage');
+          },
+          icon: const Badge(
+              smallSize: 8,
+              child: Icon(Icons.notifications_outlined,
+                  color: MyColors.fontColor, size: 30)),
+        ),
+        IconButton(
+          onPressed: () {
             GoRouter.of(context).push('/chatHomePage');
           },
           icon: const Badge(

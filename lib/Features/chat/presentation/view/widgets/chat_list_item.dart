@@ -29,7 +29,7 @@ class ChatListItem extends StatelessWidget {
         time: "dasdasd",
       ),
       onTap: () {
-        GoRouter.of(context).push('/chatScrean/${toUser.id}');
+        GoRouter.of(context).push('/chatPage/${toUser.id}');
       },
     );
   }

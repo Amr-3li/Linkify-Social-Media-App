@@ -52,7 +52,7 @@ class FriendComponent extends StatelessWidget {
               title: "send message",
               color: MyColors.fromMessageBorder,
               onTap: () {
-                GoRouter.of(context).push('/chatScrean/${userId}');
+                GoRouter.of(context).push('/chatPage/${userId}');
               }),
         )
       ]),
