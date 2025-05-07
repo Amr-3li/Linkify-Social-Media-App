@@ -1,45 +1,45 @@
 class NotificationModel {
-  String? id;
-  String? title;
-  String? message;
-  String? time;
-  String? type;
-  String? fromId;
-  String? toId;
-  bool? isRead;
+  final String fromUserName;
+  final String fromUserImage;
+  final String discription;
+  final String time;
+  final String type;
+  final int numOfTypeReations;
+  final bool isreading;
+  final String postId;
 
-  NotificationModel({
-    this.id,
-    this.title,
-    this.message,
-    this.time,
-    this.type,
-    this.fromId,
-    this.toId,
-    this.isRead,
-  });
+  NotificationModel(
+      {required this.fromUserName,
+      required this.fromUserImage,
+      required this.discription,
+      required this.time,
+      required this.type,
+      required this.numOfTypeReations,
+      required this.isreading,
+      required this.postId});
 
-  NotificationModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    message = json['message'];
-    time = json['time'];
-    type = json['type'];
-    fromId = json['fromId'];
-    toId = json['toId'];
-    isRead = json['isRead'];
+  factory NotificationModel.fromJson(Map<String, dynamic> json) {
+    return NotificationModel(
+      fromUserName: json['fromUserName'],
+      fromUserImage: json['fromUserImage'],
+      discription: json['discription'],
+      time: json['time'],
+      type: json['type'],
+      numOfTypeReations: json['numOfTypeReations'],
+      isreading: json['isreading'],
+      postId: json['postId'],
+    );
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['message'] = message;
+    data['fromUserName'] = fromUserName;
+    data['fromUserImage'] = fromUserImage;
+    data['discription'] = discription;
     data['time'] = time;
     data['type'] = type;
-    data['fromId'] = fromId;
-    data['toId'] = toId;
-    data['isRead'] = isRead;
+    data['numOfTypeReations'] = numOfTypeReations;
+    data['isreading'] = isreading;
+    data['postId'] = postId;
     return data;
   }
 }
