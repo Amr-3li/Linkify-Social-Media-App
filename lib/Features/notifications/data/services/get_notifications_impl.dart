@@ -4,10 +4,9 @@ import 'package:linkify/Features/notifications/data/model/notification_model.dar
 import 'package:linkify/Features/notifications/data/services/get_notifications.dart';
 
 class GetNotificationsImpl implements GetNotifications {
-  final FirebaseFirestore firestore;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User get user => auth.currentUser!;
-  GetNotificationsImpl(this.firestore);
   @override
   Future<List<NotificationModel>> getNotifications() async {
     final snapshot = await firestore
