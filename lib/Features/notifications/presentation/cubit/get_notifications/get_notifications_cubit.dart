@@ -8,14 +8,38 @@ part 'get_notifications_state.dart';
 class GetNotificationsCubit extends Cubit<GetNotificationsState> {
   GetNotificationsCubit(this.repo) : super(GetNotificationsInitial());
   final GetNotificationsRepo repo;
-
-  Future<void> getNotifications() async {
+  List<NotificationModel> _notifications = [];
+  bool _isLoadingMore = false;
+  Future<void> loadInitialNotifications() async {
     emit(GetNotificationsLoading());
-    final response = await repo.getNotifications();
+    repo.resetPagination();
+    try {
+      final response = await repo.getNotifications(refresh: true);
+      response.fold(
+        (l) => emit(GetNotificationsFaild(l.errMessage)),
+        (r) {
+          _notifications = r;
+          emit(GetNotificationsSuccess(_notifications, isLoadingMore: false));
+        },
+      );
+    } catch (e) {
+      emit(GetNotificationsFaild(e.toString()));
+    }
+  }
 
+  Future<void> loadMoreNotifications() async {
+    if (_isLoadingMore || !repo.hasMore) return;
+    _isLoadingMore = true;
+    emit(GetNotificationsSuccess(_notifications, isLoadingMore: true));
+
+    final response = await repo.getNotifications();
     response.fold(
       (l) => emit(GetNotificationsFaild(l.errMessage)),
-      (r) => emit(GetNotificationsSuccess(r)),
+      (r) {
+        _notifications.addAll(r);
+        _isLoadingMore = false;
+        emit(GetNotificationsSuccess(_notifications, isLoadingMore: false));
+      },
     );
   }
 }

@@ -63,10 +63,8 @@ class GetPostsCubit extends Cubit<GetPostsState> {
           emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
           return;
         }
-
         _allPosts.addAll(newPosts);
         _hasMore = newPosts.length >= 5; // عدل الرقم حسب الlimit اللي شغال بيه
-
         emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));
       },
     );

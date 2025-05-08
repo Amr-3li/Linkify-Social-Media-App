@@ -1,5 +1,7 @@
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 
 abstract class GetNotifications {
-  Future<List<NotificationModel>> getNotifications();
+  bool get hasMore;
+  Future<List<NotificationModel>> getNotifications({bool refresh = false});
+  void resetPagination();
 }

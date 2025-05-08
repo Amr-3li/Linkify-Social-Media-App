@@ -9,7 +9,8 @@ final class GetNotificationsInitial extends GetNotificationsState {}
 
 final class GetNotificationsSuccess extends GetNotificationsState {
   final List<NotificationModel> notifications;
-  GetNotificationsSuccess(this.notifications);
+  final bool isLoadingMore;
+  GetNotificationsSuccess(this.notifications, {this.isLoadingMore = false});
 }
 
 final class GetNotificationsFaild extends GetNotificationsState {

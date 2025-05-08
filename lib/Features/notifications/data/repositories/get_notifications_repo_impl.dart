@@ -9,7 +9,8 @@ class GetNotificationsRepoImpl implements GetNotificationsRepo {
 
   GetNotificationsRepoImpl(this.services);
   @override
-  Future<Either<Failure, List<NotificationModel>>> getNotifications() async {
+  Future<Either<Failure, List<NotificationModel>>> getNotifications(
+      {bool refresh = false}) async {
     try {
       final response = await services.getNotifications();
       return Right(response);
@@ -17,4 +18,10 @@ class GetNotificationsRepoImpl implements GetNotificationsRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  bool get hasMore => services.hasMore;
+
+  @override
+  void resetPagination() => services.resetPagination();
 }

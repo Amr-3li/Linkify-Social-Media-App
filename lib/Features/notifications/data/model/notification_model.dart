@@ -1,5 +1,6 @@
 class NotificationModel {
   final String fromUserName;
+  final String fromUserId;
   final String fromUserImage;
   final String discription;
   final String time;
@@ -9,7 +10,8 @@ class NotificationModel {
   final String postId;
 
   NotificationModel(
-      {required this.fromUserName,
+      {required this.fromUserId,
+      required this.fromUserName,
       required this.fromUserImage,
       required this.discription,
       required this.time,
@@ -20,6 +22,7 @@ class NotificationModel {
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
+      fromUserId: json['fromUserId'],
       fromUserName: json['fromUserName'],
       fromUserImage: json['fromUserImage'],
       discription: json['discription'],
@@ -32,6 +35,7 @@ class NotificationModel {
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['fromUserId'] = fromUserId;
     data['fromUserName'] = fromUserName;
     data['fromUserImage'] = fromUserImage;
     data['discription'] = discription;

@@ -3,5 +3,8 @@ import 'package:linkify/Features/notifications/data/model/notification_model.dar
 import 'package:linkify/core/errors/failures.dart';
 
 abstract class GetNotificationsRepo {
-  Future<Either<Failure, List<NotificationModel>>> getNotifications();
+  bool get hasMore;
+  Future<Either<Failure, List<NotificationModel>>> getNotifications(
+      {bool refresh = false});
+  void resetPagination();
 }
