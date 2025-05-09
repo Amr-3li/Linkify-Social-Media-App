@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/Features/notifications/presentation/views/widgets/notification_item.dart';
+import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/widgets/custom_button.dart';
+import 'package:lottie/lottie.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class NotificationBody extends StatefulWidget {
   const NotificationBody({super.key});
@@ -18,8 +22,6 @@ class _NotificationBodyState extends State<NotificationBody> {
   void initState() {
     super.initState();
 
-    context.read<GetNotificationsCubit>().loadInitialNotifications();
-
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 300) {
@@ -33,10 +35,19 @@ class _NotificationBodyState extends State<NotificationBody> {
     return BlocBuilder<GetNotificationsCubit, GetNotificationsState>(
       builder: (context, state) {
         if (state is GetNotificationsLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is GetNotificationsFaild) {
-          return Center(child: Text("Error: ${state.message}"));
-        } else if (state is GetNotificationsSuccess) {
+          return Skeletonizer(
+              child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (_, __) => const ListTile(
+                      leading: CircleAvatar(
+                        radius: 20,
+                      ),
+                      title: Padding(
+                        padding: EdgeInsets.only(top: 8.0),
+                        child: Text("sad fsadf sdf sdfs"),
+                      ))));
+        } else if (state is GetNotificationsSuccess &&
+            state.notifications.isNotEmpty) {
           final List<NotificationModel> notifications = state.notifications;
           final bool isLoadingMore = state.isLoadingMore;
 
@@ -56,7 +67,27 @@ class _NotificationBodyState extends State<NotificationBody> {
             },
           );
         } else {
-          return const SizedBox(); // Initial or unknown state
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset(MyAnimation.animationsNotExist),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 100,
+                  height: 40,
+                  child: CustomButton(
+                      title: "Refresh",
+                      color: Colors.green,
+                      onTap: () async {
+                        await context
+                            .read<GetNotificationsCubit>()
+                            .loadInitialNotifications();
+                      }),
+                )
+              ],
+            ),
+          ); // Initial or unknown state
         }
       },
     );

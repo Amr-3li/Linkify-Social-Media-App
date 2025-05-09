@@ -8,6 +8,8 @@ import 'package:linkify/Features/chat/presentation/cubit/send_message/send_messa
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
+import 'package:linkify/Features/notifications/data/repositories/get_notifications_repo.dart';
+import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/Features/notifications/presentation/views/pages/notification_page.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
@@ -169,7 +171,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/notificationPage',
-        builder: (context, state) => const NotificationPage(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              GetNotificationsCubit(gitItInstanse<GetNotificationsRepo>())
+                ..loadInitialNotifications(),
+          child: const NotificationPage(),
+        ),
       ),
       GoRoute(
         path: '/lovesPage/:postTime',
