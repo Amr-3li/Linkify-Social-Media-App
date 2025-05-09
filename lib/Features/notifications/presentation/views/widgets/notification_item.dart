@@ -13,61 +13,73 @@ class NotificationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String type = notificationModel.type;
-    return ListTile(
-      onTap: null,
-      tileColor: const Color.fromARGB(121, 100, 255, 219),
-      leading: Stack(children: [
-        const CircleAvatar(
-          radius: 25,
-          backgroundImage: const AssetImage(MyImages.imagesUserImage),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        onTap: null,
+        tileColor: const Color.fromARGB(121, 100, 255, 219),
+        leading: Stack(children: [
+          const CircleAvatar(
+            radius: 25,
+            backgroundImage: AssetImage(MyImages.imagesUserImage),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: CircleAvatar(
+              radius: 10,
+              backgroundColor: MyColors.toMessageBorder,
+              child: Icon(
+                  type == "love"
+                      ? Icons.favorite
+                      : type == "comment"
+                          ? Icons.comment
+                          : type == "friendRequest"
+                              ? Icons.group_add
+                              : type == "yourRequestIsAccepted"
+                                  ? Icons.group_rounded
+                                  : Icons.done_all,
+                  color: Colors.white,
+                  size: 12),
+            ),
+          )
+        ]),
+        title: Text(notificationModel.fromUserName,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              notificationModel.discription,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 15, color: MyColors.fontColor),
+            ),
+            const SizedBox(height: 5),
+            type == "friend request"
+                ? SizedBox(
+                    width: double.infinity,
+                    height: 35,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomButton(
+                              title: "Accept",
+                              color: Colors.green,
+                              onTap: () {}),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: CustomButton(
+                              title: "Reject", color: Colors.red, onTap: () {}),
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox(),
+          ],
         ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: CircleAvatar(
-            radius: 8,
-            backgroundColor: MyColors.toMessageBorder,
-            child: Icon(
-                type == "love"
-                    ? Icons.favorite
-                    : type == "comment"
-                        ? Icons.comment
-                        : type == "friend request"
-                            ? Icons.group_add_outlined
-                            : type == "your request is accepted"
-                                ? Icons.done
-                                : Icons.done_all,
-                color: Colors.white,
-                size: 12),
-          ),
-        )
-      ]),
-      title: Text(notificationModel.fromUserName),
-      subtitle: Column(
-        children: [
-          Text(
-            notificationModel.discription,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 12, color: Colors.grey),
-          ),
-          const SizedBox(height: 5),
-          type == "friend request"
-              ? SizedBox(
-                  width: double.infinity,
-                  height: 40,
-                  child: Row(
-                    children: [
-                      CustomButton(
-                          title: "Accept", color: Colors.green, onTap: () {}),
-                      const Spacer(),
-                      CustomButton(
-                          title: "Reject", color: Colors.red, onTap: () {}),
-                    ],
-                  ),
-                )
-              : const SizedBox(),
-        ],
       ),
     );
   }

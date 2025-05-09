@@ -1,7 +1,7 @@
 class NotificationModel {
   final String fromUserName;
   final String fromUserId;
-  final String fromUserImage;
+  final String? fromUserImage;
   final String discription;
   final String time;
   final String type;
@@ -12,7 +12,7 @@ class NotificationModel {
   NotificationModel(
       {required this.fromUserId,
       required this.fromUserName,
-      required this.fromUserImage,
+      this.fromUserImage,
       required this.discription,
       required this.time,
       required this.type,
@@ -24,7 +24,7 @@ class NotificationModel {
     return NotificationModel(
       fromUserId: json['fromUserId'],
       fromUserName: json['fromUserName'],
-      fromUserImage: json['fromUserImage'],
+      fromUserImage: json['fromUserImage'] ?? "",
       discription: json['discription'],
       time: json['time'],
       type: json['type'],

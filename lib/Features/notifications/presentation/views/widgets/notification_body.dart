@@ -36,6 +36,7 @@ class _NotificationBodyState extends State<NotificationBody> {
       builder: (context, state) {
         if (state is GetNotificationsLoading) {
           return Skeletonizer(
+              containersColor: const Color.fromARGB(105, 108, 212, 196),
               child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (_, __) => const ListTile(

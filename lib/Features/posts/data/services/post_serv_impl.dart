@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart'
     show Filter, FirebaseFirestore;
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
 import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/Features/posts/data/services/post_serv.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class AddPostImpl implements AddPost {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   User get user => auth.currentUser!;
 
   @override
@@ -22,6 +24,23 @@ class AddPostImpl implements AddPost {
           .doc(post.time)
           .set(post.toJson());
     }
+    NotificationModel notification = NotificationModel(
+      time: post.time,
+      fromUserId: user.uid,
+      fromUserName: "Me",
+      fromUserImage: user.photoURL,
+      isreading: false,
+      numOfTypeReations: 0,
+      discription: "you add new post",
+      type: 'addPost',
+      postId: post.time,
+    );
+    firestore
+        .collection('users')
+        .doc(user.uid)
+        .collection('notifications')
+        .doc(post.time)
+        .set(notification.toJson());
   }
 
   Future<List<dynamic>> _getFriendIds() async {

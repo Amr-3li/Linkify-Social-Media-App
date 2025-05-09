@@ -5,14 +5,15 @@ import 'package:linkify/core/shared_logic/data/services/post_control.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostControlImpl implements PostControl {
-  final firestore = FirebaseFirestore.instance;
+  final postsFirestore = FirebaseFirestore.instance.collection('posts');
+  final noticationFirestore = FirebaseFirestore.instance.collection('users');
   SharedPreferences? prefs;
   @override
   Future<void> deletePost(String userId, String time) async {
     prefs = await SharedPreferences.getInstance();
     String id = prefs!.getString('uid')!;
     if (userId == id) {
-      await firestore.collection('posts').doc(time).delete();
+      await postsFirestore.doc(time).delete();
     } else {
       throw Exception("You can't delete this post");
     }
@@ -24,10 +25,7 @@ class PostControlImpl implements PostControl {
     prefs = await SharedPreferences.getInstance();
     String id = prefs!.getString('uid')!;
     if (userId == id) {
-      await firestore
-          .collection('posts')
-          .doc(time)
-          .update({'description': description});
+      await postsFirestore.doc(time).update({'description': description});
     } else {
       throw Exception("You can't edit this post");
     }
@@ -35,7 +33,7 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> addComment(String postTime, CommentModel comment) async {
-    final docRef = firestore.collection('posts').doc(postTime);
+    final docRef = postsFirestore.doc(postTime);
     final docSnapshot = await docRef.get();
     if (!docSnapshot.exists) {
       throw Exception('Post Not Found');
@@ -60,8 +58,7 @@ class PostControlImpl implements PostControl {
         'image': prefs.getString('userImage') ?? '',
       };
 
-      final docRef =
-          FirebaseFirestore.instance.collection('posts').doc(postTime);
+      final docRef = postsFirestore.doc(postTime);
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         final snapshot = await transaction.get(docRef);
@@ -85,13 +82,10 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> removeComment(String postTime, CommentModel comment) async {
-    await firestore.collection('posts').doc(postTime).get().then((value) async {
+    await postsFirestore.doc(postTime).get().then((value) async {
       PostModel post = PostModel.fromJson(value.data()!);
       post.comments.remove(comment);
-      await firestore
-          .collection('posts')
-          .doc(post.time)
-          .update({'comments': post.comments});
+      await postsFirestore.doc(post.time).update({'comments': post.comments});
     });
   }
 }
