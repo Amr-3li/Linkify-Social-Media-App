@@ -134,6 +134,14 @@ abstract class AppRouter {
         ], child: const ProfilePage()),
       ),
       GoRoute(
+        path: '/postPage/:postId',
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider(
+              create: (context) =>
+                  PostControlCubit(gitItInstanse<PostControlRepo>())),
+        ], child: const AddPostPage()),
+      ),
+      GoRoute(
         path: '/addPost',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(

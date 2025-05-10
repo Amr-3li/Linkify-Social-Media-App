@@ -52,4 +52,14 @@ class GetPostsRepoImpl implements GetPostRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, PostModel>> getPost(String postTime) async {
+    try {
+      final response = await postServ.getPost(postTime);
+      return Right(response);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

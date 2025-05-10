@@ -35,6 +35,15 @@ class GetPostsServImpl implements GetPostsServ {
   }
 
   @override
+  Future<PostModel> getPost(String postTime) async {
+    final docSnapshot = await firestore.collection('posts').doc(postTime).get();
+    if (!docSnapshot.exists) {
+      throw Exception('Post not found');
+    }
+    return PostModel.fromJson(docSnapshot.data()!);
+  }
+
+  @override
   Future<List<PostModel>> refreshTimeline() async {
     glopalPosts.clear();
     lastPostDoc = null;
