@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/add_post/data/repository/add_post_repo.dart';
 import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
@@ -8,6 +9,8 @@ import 'package:linkify/Features/chat/presentation/cubit/send_message/send_messa
 import 'package:linkify/Features/chat/presentation/view/pages/chat_home_page.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/home/data/repository/get_post_repo.dart';
+import 'package:linkify/Features/home/presentation/cubit/get_post/get_post_cubit.dart';
+import 'package:linkify/Features/home/presentation/view/pages/post_page.dart';
 import 'package:linkify/Features/notifications/data/repositories/get_notifications_repo.dart';
 import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/Features/notifications/presentation/views/pages/notification_page.dart';
@@ -110,6 +113,10 @@ abstract class AppRouter {
               create: (_) =>
                   AddRemoveLoveCubit(gitItInstanse<PostControlRepo>()),
             ),
+            BlocProvider(
+              create: (_) => AddPostCubit(
+                  gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()),
+            ),
           ],
           child: const HomePage(),
         ),
@@ -137,9 +144,12 @@ abstract class AppRouter {
         path: '/postPage/:postId',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
+              create: (context) => GetPostCubit(gitItInstanse<GetPostRepo>())
+                ..getPost(state.pathParameters['postId']!)),
+          BlocProvider(
               create: (context) =>
                   PostControlCubit(gitItInstanse<PostControlRepo>())),
-        ], child: const AddPostPage()),
+        ], child: const PostPage()),
       ),
       GoRoute(
         path: '/addPost',

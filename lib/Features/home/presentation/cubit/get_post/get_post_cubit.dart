@@ -8,9 +8,9 @@ part 'get_post_state.dart';
 class GetPostCubit extends Cubit<GetPostState> {
   GetPostCubit(this.postRepo) : super(GetPostInitial());
   final GetPostRepo postRepo;
-  Future<void> getPost(PostModel post) async {
+  Future<void> getPost(String postTime) async {
     emit(GetPostLoading());
-    final response = await postRepo.getPost(post.time);
+    final response = await postRepo.getPost(postTime);
     response.fold((l) {
       emit(GetPostFailure(l.errMessage));
     }, (r) {

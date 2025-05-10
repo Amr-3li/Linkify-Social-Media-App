@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -20,7 +21,15 @@ class PostHeader extends StatelessWidget {
       ),
       const SizedBox(width: 10),
       PostUserData(name: post.userName, time: post.time, userId: post.userId),
-      const Spacer(),
+      Expanded(
+          child: GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push('/postPage/${post.time}');
+              },
+              child: Container(
+                height: 40,
+                color: Colors.amber,
+              ))),
       IconButton(
           key: iconButtonKey,
           onPressed: () {
