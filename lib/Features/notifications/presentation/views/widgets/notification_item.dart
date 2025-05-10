@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/images.dart';
@@ -39,9 +38,9 @@ class NotificationItem extends StatelessWidget {
               radius: 10,
               backgroundColor: MyColors.toMessageBorder,
               child: Icon(
-                  type == "love"
+                  type == "addLove"
                       ? Icons.favorite
-                      : type == "comment"
+                      : type == "addComment"
                           ? Icons.comment
                           : type == "friendRequest"
                               ? Icons.group_add

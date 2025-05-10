@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/shared_logic/data/services/post_control.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostControlImpl implements PostControl {
-  final postsFirestore = FirebaseFirestore.instance.collection('posts');
-  final noticationFirestore = FirebaseFirestore.instance.collection('users');
+  final firestore = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
+  User get user => auth.currentUser!;
   SharedPreferences? prefs;
   @override
   Future<void> deletePost(String userId, String time) async {
-    prefs = await SharedPreferences.getInstance();
-    String id = prefs!.getString('uid')!;
-    if (userId == id) {
-      await postsFirestore.doc(time).delete();
+    if (userId == user.uid) {
+      await firestore.collection('posts').doc(time).delete();
     } else {
       throw Exception("You can't delete this post");
     }
@@ -22,10 +23,11 @@ class PostControlImpl implements PostControl {
   @override
   Future<void> updatePost(
       String description, String userId, String time) async {
-    prefs = await SharedPreferences.getInstance();
-    String id = prefs!.getString('uid')!;
-    if (userId == id) {
-      await postsFirestore.doc(time).update({'description': description});
+    if (userId == user.uid) {
+      await firestore
+          .collection('posts')
+          .doc(time)
+          .update({'description': description});
     } else {
       throw Exception("You can't edit this post");
     }
@@ -33,7 +35,9 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> addComment(String postTime, CommentModel comment) async {
-    final docRef = postsFirestore.doc(postTime);
+    prefs = await SharedPreferences.getInstance();
+
+    final docRef = firestore.collection('posts').doc(postTime);
     final docSnapshot = await docRef.get();
     if (!docSnapshot.exists) {
       throw Exception('Post Not Found');
@@ -45,21 +49,34 @@ class PostControlImpl implements PostControl {
     await docRef.update({
       'comments': updatedComments,
     });
+    NotificationModel notification = NotificationModel(
+        time: DateTime.now().microsecondsSinceEpoch.toString(),
+        fromUserId: user.uid,
+        fromUserName: prefs!.getString('userName') ?? "",
+        fromUserImage: prefs!.getString('userImage') ?? "",
+        isreading: false,
+        numOfTypeReations: 0,
+        discription: "new comment added on your post",
+        type: 'addComment',
+        postId: postTime);
+    await firestore
+        .collection('users')
+        .doc(post.userId)
+        .collection('notifications')
+        .doc("$postTime-comment")
+        .set(notification.toJson());
   }
 
   @override
   Future<void> addRemoveLike(String postTime, String userId) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-
       final lover = {
         'id': userId,
         'name': prefs.getString('userName') ?? '',
         'image': prefs.getString('userImage') ?? '',
       };
-
-      final docRef = postsFirestore.doc(postTime);
-
+      final docRef = firestore.collection('posts').doc(postTime);
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         final snapshot = await transaction.get(docRef);
         if (!snapshot.exists) {
@@ -72,6 +89,22 @@ class PostControlImpl implements PostControl {
           likes.removeAt(currentIndex);
         } else {
           likes.add(lover);
+          NotificationModel notification = NotificationModel(
+              time: DateTime.now().microsecondsSinceEpoch.toString(),
+              fromUserId: user.uid,
+              fromUserName: prefs.getString('userName') ?? "",
+              fromUserImage: prefs.getString('userImage') ?? "",
+              isreading: false,
+              numOfTypeReations: data['likes'].length + 1,
+              discription: "loved your post",
+              type: 'addLove',
+              postId: postTime);
+          await firestore
+              .collection('users')
+              .doc(data['userId'])
+              .collection('notifications')
+              .doc("$postTime-love")
+              .set(notification.toJson());
         }
         transaction.update(docRef, {'likes': likes});
       });
@@ -82,10 +115,13 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> removeComment(String postTime, CommentModel comment) async {
-    await postsFirestore.doc(postTime).get().then((value) async {
+    await firestore.collection('posts').doc(postTime).get().then((value) async {
       PostModel post = PostModel.fromJson(value.data()!);
       post.comments.remove(comment);
-      await postsFirestore.doc(post.time).update({'comments': post.comments});
+      await firestore
+          .collection('posts')
+          .doc(post.time)
+          .update({'comments': post.comments});
     });
   }
 }
