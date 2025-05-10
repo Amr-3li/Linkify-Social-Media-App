@@ -28,7 +28,7 @@ class PostHeader extends StatelessWidget {
               },
               child: Container(
                 height: 40,
-                color: Colors.amber,
+                color: Colors.white,
               ))),
       IconButton(
           key: iconButtonKey,
