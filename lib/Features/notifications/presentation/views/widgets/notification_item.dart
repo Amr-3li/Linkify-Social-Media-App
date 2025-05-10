@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/images.dart';
+import 'package:linkify/core/helper/get_time_ago.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 
 class NotificationItem extends StatelessWidget {
@@ -13,12 +16,17 @@ class NotificationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String type = notificationModel.type;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onTap: null,
+        onTap: () {
+          GoRouter.of(context).push('/postPage/${notificationModel.postId}');
+        },
         tileColor: const Color.fromARGB(121, 100, 255, 219),
+        trailing: Text(GetTimeAgo.getTimeAgo(notificationModel.time),
+            style: const TextStyle(fontSize: 12)),
         leading: Stack(children: [
           const CircleAvatar(
             radius: 25,
