@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart'
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
-import 'package:linkify/Features/posts/data/services/post_serv.dart';
+import 'package:linkify/Features/add_post/data/services/post_serv.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class AddPostImpl implements AddPost {

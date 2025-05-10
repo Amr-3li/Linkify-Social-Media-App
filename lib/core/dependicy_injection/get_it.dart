@@ -23,11 +23,11 @@ import 'package:linkify/Features/notifications/data/repositories/get_notificatio
 import 'package:linkify/Features/notifications/data/repositories/get_notifications_repo_impl.dart';
 import 'package:linkify/Features/notifications/data/services/get_notifications.dart';
 import 'package:linkify/Features/notifications/data/services/get_notifications_impl.dart';
-import 'package:linkify/Features/posts/data/repository/add_post_repo.dart';
-import 'package:linkify/Features/posts/data/repository/add_post_repo_impl.dart';
-import 'package:linkify/Features/posts/data/services/post_serv.dart';
-import 'package:linkify/Features/posts/data/services/post_serv_impl.dart';
-import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
+import 'package:linkify/Features/add_post/data/repository/add_post_repo.dart';
+import 'package:linkify/Features/add_post/data/repository/add_post_repo_impl.dart';
+import 'package:linkify/Features/add_post/data/services/post_serv.dart';
+import 'package:linkify/Features/add_post/data/services/post_serv_impl.dart';
+import 'package:linkify/Features/add_post/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo_impl.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';

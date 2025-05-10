@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/posts/presentation/cubit/add_post/add_post_cubit.dart';
-import 'package:linkify/Features/posts/presentation/view/widgets/add_post_image.dart';
-import 'package:linkify/Features/posts/presentation/view/widgets/post_text_field.dart';
+import 'package:linkify/Features/add_post/presentation/cubit/add_post/add_post_cubit.dart';
+import 'package:linkify/Features/add_post/presentation/view/widgets/add_post_image.dart';
+import 'package:linkify/Features/add_post/presentation/view/widgets/post_text_field.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/friends/presentation/view/friends_page.dart';
 import 'package:linkify/Features/home/presentation/view/pages/home_page.dart';
-import 'package:linkify/Features/posts/presentation/view/add_post_page.dart';
+import 'package:linkify/Features/add_post/presentation/view/add_post_page.dart';
 import 'package:linkify/Features/search/presentation/views/search_page.dart';
 import 'package:linkify/Features/settings/presentation/view/settings.dart';
 
