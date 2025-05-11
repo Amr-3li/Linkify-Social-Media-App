@@ -21,11 +21,18 @@ class NotificationItem extends StatelessWidget {
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onTap: () {
-          GoRouter.of(context).push('/postPage/${notificationModel.postId}');
+          if (type == "friendRequest" || type == "yourRequestIsAccepted") {
+            GoRouter.of(context)
+                .push('/profilePage/${notificationModel.fromUserId}');
+          } else {
+            GoRouter.of(context).push('/postPage/${notificationModel.postId}');
+          }
         },
         tileColor: const Color.fromARGB(121, 100, 255, 219),
-        trailing: Text(GetTimeAgo.getTimeAgo(notificationModel.time),
-            style: const TextStyle(fontSize: 12)),
+        trailing: Text(
+            GetTimeAgo.getTimeAgo(notificationModel.time)
+                .replaceAll(" ago", ""),
+            style: const TextStyle(fontSize: 10)),
         leading: Stack(children: [
           const CircleAvatar(
             radius: 25,
@@ -64,7 +71,7 @@ class NotificationItem extends StatelessWidget {
               style: const TextStyle(fontSize: 15, color: MyColors.fontColor),
             ),
             const SizedBox(height: 5),
-            type == "friend request"
+            type == "friendRequest"
                 ? SizedBox(
                     width: double.infinity,
                     height: 35,
