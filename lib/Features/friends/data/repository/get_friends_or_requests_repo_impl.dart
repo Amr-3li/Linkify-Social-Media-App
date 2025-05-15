@@ -38,4 +38,34 @@ class GetFriendsOrRequestsRepoImpl implements GetFriendsOrRequestsRepo {
       return Left(ServerFailure(e.message.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> initialFriendRequests() async {
+    try {
+      final response = await services.initialFriendRequests();
+      return Right(response);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure(e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> initialUserFrinds() async {
+    try {
+      final response = await services.initialUserFrinds();
+      return Right(response);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure(e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> initialYourRequests() async {
+    try {
+      final response = await services.initialYourRequests();
+      return Right(response);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure(e.message.toString()));
+    }
+  }
 }

@@ -49,6 +49,12 @@ class AddFriendServImpl implements FriendServ {
   Future<void> unSendFriendRequest(String toId) async {
     final fromId = await _getCurrentUserId();
     await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
+    await firestore
+        .collection('users')
+        .doc(toId)
+        .collection('notifications')
+        .doc("$fromId-request")
+        .delete();
   }
 
   @override
@@ -87,6 +93,12 @@ class AddFriendServImpl implements FriendServ {
   Future<void> rejectFriendRequest(String fromId) async {
     final toId = await _getCurrentUserId();
     await firestore.collection('friendRequests').doc("$fromId-$toId").delete();
+    await firestore
+        .collection('users')
+        .doc(fromId)
+        .collection('notifications')
+        .doc("$toId-request")
+        .delete();
   }
 
   @override

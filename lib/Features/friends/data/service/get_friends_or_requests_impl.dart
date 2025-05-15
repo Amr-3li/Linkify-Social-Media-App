@@ -32,6 +32,13 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   }
 
   @override
+  Future<List<UserModel>> initialUserFrinds() async {
+    _globalFriends.clear();
+    _friendsCount = 0;
+    return getUserFrinds();
+  }
+
+  @override
   Future<List<UserModel>> getYourRequests() async {
     return await _getUsersByRelation(
       _globalYourRequests,
@@ -39,6 +46,13 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
       _yourRequestsCount,
       (count) => _yourRequestsCount = count,
     );
+  }
+
+  @override
+  Future<List<UserModel>> initialYourRequests() async {
+    _globalYourRequests.clear();
+    _yourRequestsCount = 0;
+    return getYourRequests();
   }
 
   @override
@@ -51,9 +65,16 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
     );
   }
 
+  @override
+  Future<List<UserModel>> initialFriendRequests() async {
+    _globalFriendRequests.clear();
+    _friendRequestsCount = 0;
+    return getFriendRequests();
+  }
+
   Future<List<UserModel>> _getUsersByRelation(
     List<UserModel> globalList,
-    Future<List<String>> Function() getIds,
+    Future<List<dynamic>> Function() getIds,
     int currentCount,
     Function(int) updateCount,
   ) async {
@@ -76,25 +97,22 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
     return globalList;
   }
 
-  Future<List<String>> _getFriendIds() async {
+  Future<List<dynamic>> _getFriendIds() async {
     final currentUserId = await _getCurrentUserId();
-    final sent = await _firestore
+    final snapshot = await _firestore
         .collection('friendRequests')
-        .where('senderId', isEqualTo: currentUserId)
         .where('status', isEqualTo: Constants.accepted)
+        .where(Filter.or(
+          Filter('senderId', isEqualTo: currentUserId),
+          Filter('receiverId', isEqualTo: currentUserId),
+        ))
         .get();
-
-    final received = await _firestore
-        .collection('friendRequests')
-        .where('receiverId', isEqualTo: currentUserId)
-        .where('status', isEqualTo: Constants.accepted)
-        .get();
-
-    final friendIds = <String>{};
-    friendIds.addAll(sent.docs.map((doc) => doc['receiverId']));
-    friendIds.addAll(received.docs.map((doc) => doc['senderId']));
-
-    return friendIds.toList();
+    return snapshot.docs.map((doc) {
+      final data = doc.data();
+      return data['senderId'] == currentUserId
+          ? data['receiverId']
+          : data['senderId'];
+    }).toList();
   }
 
   Future<List<String>> _getYourRequestIds() async {

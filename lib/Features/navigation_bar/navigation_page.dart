@@ -67,9 +67,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 setState(() {
                   currentIndex = e.key;
-                  pageController.animateToPage(currentIndex,
-                      duration: const Duration(milliseconds: 70),
-                      curve: Curves.easeInCirc);
+                  pageController.jumpToPage(currentIndex);
                 });
               },
               icon: Icon(e.value,

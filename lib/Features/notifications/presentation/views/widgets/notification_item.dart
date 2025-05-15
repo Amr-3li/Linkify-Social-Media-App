@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
+import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/images.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/helper/get_time_ago.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 
@@ -61,38 +65,56 @@ class NotificationItem extends StatelessWidget {
         ]),
         title: Text(notificationModel.fromUserName,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              notificationModel.discription,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 15, color: MyColors.fontColor),
-            ),
-            const SizedBox(height: 5),
-            type == "friendRequest"
-                ? SizedBox(
-                    width: double.infinity,
-                    height: 35,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: CustomButton(
-                              title: "Accept",
-                              color: Colors.green,
-                              onTap: () {}),
+        subtitle: BlocProvider(
+          create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>()),
+          child: BlocBuilder<FriendsCubit, FriendsState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  state is FriendsLoaded
+                      ? const Text("your response sent",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 15, color: MyColors.fontColor))
+                      : Text(
+                          notificationModel.discription,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 15, color: MyColors.fontColor),
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: CustomButton(
-                              title: "Reject", color: Colors.red, onTap: () {}),
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(),
-          ],
+                  const SizedBox(height: 5),
+                  type == "friendRequest"
+                      ? state is FriendsLoaded
+                          ? const SizedBox()
+                          : SizedBox(
+                              width: double.infinity,
+                              height: 35,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: CustomButton(
+                                        title: "Accept",
+                                        color: Colors.green,
+                                        onTap: () {}),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: CustomButton(
+                                        title: "Reject",
+                                        color: Colors.red,
+                                        onTap: () {}),
+                                  ),
+                                ],
+                              ),
+                            )
+                      : const SizedBox(),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

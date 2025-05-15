@@ -33,7 +33,7 @@ class UserModel {
       searchWords: json['searchWords'] ?? [],
       password: "",
       id: json['uid'] ?? "",
-      isMale: json['isMale'] ?? "",
+      isMale: json['isMale'] ?? true,
       isActive: json['isActive'] ?? false,
     );
   }

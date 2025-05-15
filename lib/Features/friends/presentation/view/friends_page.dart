@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/data/repository/get_friends_or_requests_repo.dart';
-import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
 import 'package:linkify/Features/friends/presentation/cubit/get_your_requests/get_your_requests_cubit.dart';
@@ -45,33 +43,30 @@ class _FriendPageState extends State<FriendPage> {
                     tapNavigateItem(1, "Friend requests"),
                     tapNavigateItem(2, "My requests")
                   ])),
-          BlocProvider(
-            create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>()),
-            child: Expanded(
-                child: IndexedStack(
-              index: currentIndex,
-              children: [
-                BlocProvider(
-                  create: (context) =>
-                      GetFriendsCubit(gitItInstanse<GetFriendsOrRequestsRepo>())
-                        ..getUserFrinds(),
-                  child: const MyFriendList(),
-                ),
-                BlocProvider(
-                  create: (context) => GetFriendsRequestsCubit(
-                      gitItInstanse<GetFriendsOrRequestsRepo>())
-                    ..getFriendRequests(),
-                  child: const FriendsRequestsList(),
-                ),
-                BlocProvider(
-                  create: (context) => GetYourRequestsCubit(
-                      gitItInstanse<GetFriendsOrRequestsRepo>())
-                    ..getYourRequests(),
-                  child: const MyRequestsList(),
-                ),
-              ],
-            )),
-          )
+          Expanded(
+              child: IndexedStack(
+            index: currentIndex,
+            children: [
+              BlocProvider(
+                create: (context) =>
+                    GetFriendsCubit(gitItInstanse<GetFriendsOrRequestsRepo>())
+                      ..getUserFrinds(),
+                child: const MyFriendList(),
+              ),
+              BlocProvider(
+                create: (context) => GetFriendsRequestsCubit(
+                    gitItInstanse<GetFriendsOrRequestsRepo>())
+                  ..getFriendRequests(),
+                child: const FriendsRequestsList(),
+              ),
+              BlocProvider(
+                create: (context) => GetYourRequestsCubit(
+                    gitItInstanse<GetFriendsOrRequestsRepo>())
+                  ..getYourRequests(),
+                child: const MyRequestsList(),
+              ),
+            ],
+          ))
         ]));
   }
 

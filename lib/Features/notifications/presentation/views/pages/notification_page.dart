@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/Features/notifications/presentation/views/widgets/notificaion_appbar.dart';
 import 'package:linkify/Features/notifications/presentation/views/widgets/notification_body.dart';
 
@@ -7,9 +9,15 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
-        appBar: NotificationAppbar(),
-        body: NotificationBody());
+        appBar: const NotificationAppbar(),
+        body: RefreshIndicator(
+            onRefresh: () async {
+              await context
+                  .read<GetNotificationsCubit>()
+                  .loadInitialNotifications();
+            },
+            child: const NotificationBody()));
   }
 }

@@ -29,7 +29,8 @@ class FriendComponent extends StatelessWidget {
                     actions: [
                       TextButton(
                           onPressed: () async {
-                            await BlocProvider.of<FriendsCubit>(context)
+                            await context
+                                .read<FriendsCubit>()
                                 .removeFriend(userId);
                             await BlocProvider.of<GetUserStatusCubit>(context)
                                 .userStatus(userId);

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
+import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/my_friend_item.dart';
 import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -38,8 +41,12 @@ class MyFriendList extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               itemCount: state.friends.length,
               itemBuilder: (context, index) {
-                return MyFriendItem(
-                  user: state.friends[index],
+                return BlocProvider(
+                  create: (context) =>
+                      FriendsCubit(gitItInstanse<FriendsRepo>()),
+                  child: MyFriendItem(
+                    user: state.friends[index],
+                  ),
                 );
               },
             ),
