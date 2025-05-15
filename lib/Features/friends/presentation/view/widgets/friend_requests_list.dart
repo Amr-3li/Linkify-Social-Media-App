@@ -14,7 +14,8 @@ class FriendsRequestsList extends StatelessWidget {
     super.key,
   });
   Future<void> _onRefresh(BuildContext context) async {
-    await BlocProvider.of<GetFriendsRequestsCubit>(context).getFriendRequests();
+    await BlocProvider.of<GetFriendsRequestsCubit>(context)
+        .initialFriendRequests();
   }
 
   @override

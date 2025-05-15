@@ -12,62 +12,67 @@ import 'package:skeletonizer/skeletonizer.dart';
 class MyFriendList extends StatelessWidget {
   const MyFriendList({super.key});
   Future<void> _onRefresh(BuildContext context) async {
-    await BlocProvider.of<GetFriendsCubit>(context).getUserFrinds();
+    await BlocProvider.of<GetFriendsCubit>(context).initialUserFrinds();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetFriendsCubit, GetFriendsState>(
-      builder: (context, state) {
-        if (state is GetFriendsLoading) {
-          return Skeletonizer(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const ListTile(
-                    leading: CircleAvatar(radius: 20),
-                    title: Text(" asf asdf asdf "));
-              },
-            ),
-          );
-        }
-        if (state is GetFriendsLoaded && state.friends.isNotEmpty) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              () => _onRefresh(context);
-            },
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: state.friends.length,
-              itemBuilder: (context, index) {
-                return BlocProvider(
-                  create: (context) =>
-                      FriendsCubit(gitItInstanse<FriendsRepo>()),
-                  child: MyFriendItem(
-                    user: state.friends[index],
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return Column(
-            children: [
-              const Spacer(),
-              LottieBuilder.asset(MyAnimation.animationsNotExist),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () => _onRefresh(context),
-                  child: const Text("try again")),
-              const Spacer(),
-            ],
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        () => _onRefresh(context);
       },
+      child: BlocBuilder<GetFriendsCubit, GetFriendsState>(
+        builder: (context, state) {
+          if (state is GetFriendsLoading) {
+            return Skeletonizer(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const ListTile(
+                      leading: CircleAvatar(radius: 20),
+                      title: Text(" asf asdf asdf "));
+                },
+              ),
+            );
+          }
+          if (state is GetFriendsLoaded && state.friends.isNotEmpty) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                () => _onRefresh(context);
+              },
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: state.friends.length,
+                itemBuilder: (context, index) {
+                  return BlocProvider(
+                    create: (context) =>
+                        FriendsCubit(gitItInstanse<FriendsRepo>()),
+                    child: MyFriendItem(
+                      user: state.friends[index],
+                    ),
+                  );
+                },
+              ),
+            );
+          } else {
+            return Column(
+              children: [
+                const Spacer(),
+                LottieBuilder.asset(MyAnimation.animationsNotExist),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: () => _onRefresh(context),
+                    child: const Text("try again")),
+                const Spacer(),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }

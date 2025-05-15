@@ -13,12 +13,15 @@ class MyRequestsList extends StatelessWidget {
   const MyRequestsList({
     super.key,
   });
+  Future<void> _onRefresh(BuildContext context) async {
+    await BlocProvider.of<GetYourRequestsCubit>(context).initialYourRequests();
+  }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        await BlocProvider.of<GetYourRequestsCubit>(context).getYourRequests();
+        await _onRefresh(context);
       },
       child: BlocBuilder<GetYourRequestsCubit, GetYourRequestsState>(
         builder: (context, state) {
@@ -58,8 +61,7 @@ class MyRequestsList extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () async {
-                      await BlocProvider.of<GetYourRequestsCubit>(context)
-                          .getYourRequests();
+                      await _onRefresh(context);
                     },
                     child: const Text("try again")),
                 const Spacer()
