@@ -17,4 +17,13 @@ class GetFriendsRequestsCubit extends Cubit<GetFriendsRequestsState> {
       (r) => emit(GetFriendsRequestsLoaded(r)),
     );
   }
+
+  Future<void> initialFriendRequests() async {
+    emit(GetFriendsRequestsLoading());
+    final result = await repo.initialFriendRequests();
+    result.fold(
+      (l) => emit(GetFriendsRequestsError(l.errMessage)),
+      (r) => emit(GetFriendsRequestsLoaded(r)),
+    );
+  }
 }

@@ -17,4 +17,13 @@ class GetFriendsCubit extends Cubit<GetFriendsState> {
       (r) => emit(GetFriendsLoaded(r)),
     );
   }
+
+  Future<void> initialUserFrinds() async {
+    emit(GetFriendsLoading());
+    final result = await repo.initialUserFrinds();
+    result.fold(
+      (l) => emit(GetFriendsError(l.errMessage)),
+      (r) => emit(GetFriendsLoaded(r)),
+    );
+  }
 }

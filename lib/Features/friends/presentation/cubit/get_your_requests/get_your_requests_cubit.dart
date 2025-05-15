@@ -17,4 +17,13 @@ class GetYourRequestsCubit extends Cubit<GetYourRequestsState> {
       (r) => emit(GetYourRequestsLoaded(r)),
     );
   }
+
+  Future<void> initialYourRequests() async {
+    emit(GetYourRequestsLoading());
+    final result = await repo.initialYourRequests();
+    result.fold(
+      (l) => emit(GetYourRequestsError(l.errMessage)),
+      (r) => emit(GetYourRequestsLoaded(r)),
+    );
+  }
 }
