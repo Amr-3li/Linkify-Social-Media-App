@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
-import 'package:linkify/Features/friends/presentation/cubit/get_friends/get_friends_cubit.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -53,22 +52,24 @@ class MyFriendItem extends StatelessWidget {
           ),
           BlocBuilder<FriendsCubit, FriendsState>(
             builder: (context, state) {
-              return state is FriendsLoading
-                  ? const CircularProgressIndicator()
-                  : PopupMenuButton<String>(
-                      onSelected: (value) async {
-                        if (value == 'unfriend') {
-                          await BlocProvider.of<FriendsCubit>(context)
-                              .removeFriend(user.id!);
-                          await BlocProvider.of<GetFriendsCubit>(context)
-                              .getUserFrinds();
-                        }
-                      },
-                      itemBuilder: (context) => [
-                            const PopupMenuItem<String>(
-                                value: 'unfriend', child: Text("Unfriend")),
-                          ],
-                      icon: const Icon(Icons.more_vert));
+              if (state is FriendsLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is FriendsLoaded) {
+                return const SizedBox();
+              } else {
+                return PopupMenuButton<String>(
+                    onSelected: (value) async {
+                      if (value == 'unfriend') {
+                        await BlocProvider.of<FriendsCubit>(context)
+                            .removeFriend(user.id!);
+                      }
+                    },
+                    itemBuilder: (context) => [
+                          const PopupMenuItem<String>(
+                              value: 'unfriend', child: Text("Unfriend")),
+                        ],
+                    icon: const Icon(Icons.more_vert));
+              }
             },
           ),
         ],

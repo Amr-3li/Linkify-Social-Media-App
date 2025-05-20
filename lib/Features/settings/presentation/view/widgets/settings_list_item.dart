@@ -7,15 +7,18 @@ class SettingsListItem extends StatelessWidget {
     required this.text,
     required this.icon,
     this.trailingText,
+    required this.onTap,
   });
 
   final String text;
   final IconData icon;
   final String? trailingText;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: Icon(icon, color: MyColors.iconColor),
       title: Text(text, style: const TextStyle(fontSize: 18)),
       trailing: trailingText == null
