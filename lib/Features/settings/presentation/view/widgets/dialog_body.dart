@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/profile/presentation/view/widgets/input_data_widgit.dart';
+import 'package:linkify/Features/settings/presentation/view/widgets/input_data_widgit.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';

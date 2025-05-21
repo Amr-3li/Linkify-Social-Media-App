@@ -27,16 +27,28 @@ class SettingsPage extends StatelessWidget {
           )
         ];
       },
-      body: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-        if (state is UserLoaded) {
-          UserModel user = state.user;
-          return const SettingsBody();
-        } else {
-          return const Skeletonizer(
-            child: SettingsBody(),
-          );
-        }
-      }),
+      body: BlocBuilder<UserCubit, UserState>(
+        builder: (context, state) {
+          if (state is CurrentUserLoaded) {
+            UserModel user = state.user;
+            return SettingsBody(user: user);
+          } else {
+            return Skeletonizer(
+              child: SettingsBody(
+                  user: UserModel(
+                name: '',
+                image: '',
+                email: '',
+                phone: '',
+                searchWords: [],
+                isMale: true,
+                isActive: true,
+                password: '',
+              )),
+            );
+          }
+        },
+      ),
     );
   }
 }
