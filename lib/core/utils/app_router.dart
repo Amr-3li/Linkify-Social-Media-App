@@ -20,6 +20,7 @@ import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_us
 import 'package:linkify/Features/profile/presentation/cubit/get_user_posts/get_user_posts_cubit.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/Features/static_pages/pages/about_us_paga.dart';
+import 'package:linkify/Features/static_pages/pages/help_page.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_comment/add_comment_cubit.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
@@ -225,6 +226,9 @@ abstract class AppRouter {
       GoRoute(
           path: AboutUsPaga.routeName,
           builder: (context, state) => const AboutUsPaga()),
+      GoRoute(
+          path: HelpPage.routeName,
+          builder: (context, state) => const HelpPage()),
     ],
   );
 }
