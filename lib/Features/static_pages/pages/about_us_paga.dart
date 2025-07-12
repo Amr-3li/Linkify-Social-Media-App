@@ -13,7 +13,7 @@ class AboutUsPaga extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
+        child: SelectableText(
           Constants.aboutUsText,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
