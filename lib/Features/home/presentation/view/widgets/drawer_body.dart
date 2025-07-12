@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/static_pages/pages/about_us_paga.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/user_drawer_information.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
@@ -53,10 +54,11 @@ class DrawerBody extends StatelessWidget {
           title: Text('Help',
               style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
         ),
-        const ListTile(
-          leading: Icon(Icons.info, color: MyColors.iconColor),
-          title: Text('About',
+        ListTile(
+          leading: const Icon(Icons.info, color: MyColors.iconColor),
+          title: const Text('About',
               style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+          onTap: () => GoRouter.of(context).push(AboutUsPaga.routeName),
         ),
         const Divider(),
         const ListTile(

@@ -79,4 +79,8 @@ class ChatSerImplement implements ChatSer {
       return const Stream.empty();
     }
   }
+
+  int sum(int a, int b) {
+    return a + b;
+  }
 }
