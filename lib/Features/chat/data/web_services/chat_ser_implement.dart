@@ -66,6 +66,7 @@ class ChatSerImplement implements ChatSer {
     }
   }
 
+  @override
   Stream<QuerySnapshot<Map<String, dynamic>>> countUnreadMessage(String toId) {
     try {
       final unreadMessageCount = firestore

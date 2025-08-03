@@ -34,7 +34,7 @@ class ChatRepoImplementation implements ChatRepo {
   Future<Either<Failure, Stream<QuerySnapshot<Map<String, dynamic>>>>>
       countUnreadMessage(String toId) async {
     try {
-      final result = await chatSer.countUnreadMessage(toId);
+      final result = chatSer.countUnreadMessage(toId);
       return Right(result);
     } catch (e) {
       return Left(ServerFailure("Failuer in send message "));

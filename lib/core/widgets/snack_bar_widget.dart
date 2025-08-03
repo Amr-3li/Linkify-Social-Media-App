@@ -16,9 +16,9 @@ class SnackBarWidget {
         backgroundColor: MyColors.mainChat,
         padding: const EdgeInsets.symmetric(horizontal: 10),
       ),
-      snackBarAnimationStyle: AnimationStyle(
-        duration: const Duration(milliseconds: 501),
-        reverseDuration: const Duration(milliseconds: 500),
+      snackBarAnimationStyle: const AnimationStyle(
+        duration: Duration(milliseconds: 501),
+        reverseDuration: Duration(milliseconds: 500),
       ),
     );
   }

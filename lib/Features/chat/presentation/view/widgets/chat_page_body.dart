@@ -12,7 +12,7 @@ class ChatPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
     return Column(
       children: [
         Expanded(
@@ -44,15 +44,15 @@ class ChatPageBody extends StatelessWidget {
                         .toList();
 
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      if (_scrollController.hasClients) {
-                        _scrollController.jumpTo(
-                          _scrollController.position.maxScrollExtent,
+                      if (scrollController.hasClients) {
+                        scrollController.jumpTo(
+                          scrollController.position.maxScrollExtent,
                         );
                       }
                     });
 
                     return ListView.builder(
-                      controller: _scrollController,
+                      controller: scrollController,
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         return TextMessageContainer(
