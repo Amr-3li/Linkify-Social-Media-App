@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class ImageConfirmMessage extends StatefulWidget {
   const ImageConfirmMessage(
@@ -49,7 +50,7 @@ class _ImageConfirmMessageState extends State<ImageConfirmMessage> {
                 onChanged: (value) => setState(() {}),
                 decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: "  type a message",
+                    hintText: Constants.writeMessage,
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 157, 157, 157))),
               ),

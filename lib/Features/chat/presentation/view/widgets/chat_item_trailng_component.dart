@@ -8,9 +8,8 @@ import 'package:linkify/core/constants/colors.dart';
 class ChatItemTrailingComponent extends StatelessWidget {
   const ChatItemTrailingComponent({
     super.key,
-    required this.time,
   });
-  final String time;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MessageCountCubit, MessageCountState>(

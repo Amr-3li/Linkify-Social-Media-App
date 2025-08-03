@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/widgets/dialogs.dart';
 
@@ -73,7 +74,7 @@ class PostHeader extends StatelessWidget {
           Dialogs.editPostDialog(
               context, post.description, post.userId, post.time);
         },
-        child: const Text("edit",
+        child: const Text(Constants.edit,
             style: TextStyle(
                 color: MyColors.iconActiveColor,
                 fontSize: 17,
@@ -85,7 +86,7 @@ class PostHeader extends StatelessWidget {
         onTap: () {
           Dialogs.deletePostDialog(context, post.userId, post.time);
         },
-        child: const Text("Delete",
+        child: const Text(Constants.delete,
             style: TextStyle(
                 color: Colors.red, fontSize: 17, fontWeight: FontWeight.w600)));
   }

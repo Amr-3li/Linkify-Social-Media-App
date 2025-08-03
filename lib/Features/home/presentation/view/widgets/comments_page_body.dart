@@ -5,6 +5,7 @@ import 'package:linkify/Features/home/presentation/cubit/get_post_comments/get_p
 import 'package:linkify/Features/home/presentation/view/widgets/comment_container.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class CommentsPageBody extends StatefulWidget {
@@ -78,7 +79,7 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
                   controller: _commentController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Write a comment",
+                    hintText: Constants.writeComment,
                   ),
                   maxLines: 3,
                   minLines: 1,

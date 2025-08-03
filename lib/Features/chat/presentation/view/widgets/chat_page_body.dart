@@ -5,6 +5,7 @@ import 'package:linkify/Features/chat/presentation/cubit/get_messages/chat_cubit
 import 'package:linkify/Features/chat/presentation/cubit/record/record_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/input_message_container.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/text_message_container.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class ChatPageBody extends StatelessWidget {
   const ChatPageBody({super.key, required this.toUserId});
@@ -36,7 +37,7 @@ class ChatPageBody extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     }
                     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      return const Center(child: Text("No messages yet"));
+                      return const Center(child: Text(Constants.noMessage));
                     }
 
                     final messages = snapshot.data!.docs
@@ -63,7 +64,7 @@ class ChatPageBody extends StatelessWidget {
                   },
                 );
               } else {
-                return const Center(child: Text("No messages yet"));
+                return const Center(child: Text(Constants.noMessage));
               }
             },
           ),

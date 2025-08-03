@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/custom_ftiend_button.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -59,7 +60,7 @@ class FriendRequestsItem extends StatelessWidget {
                 return Row(
                   children: [
                     CustomFreindsButton(
-                      title: "reject",
+                      title: Constants.reject,
                       color: const Color.fromARGB(149, 151, 0, 0),
                       onTap: () async {
                         await context
@@ -69,7 +70,7 @@ class FriendRequestsItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     CustomFreindsButton(
-                      title: "accept",
+                      title: Constants.accept,
                       color: const Color.fromARGB(255, 68, 126, 121),
                       onTap: () async {
                         await context

@@ -25,9 +25,7 @@ class ChatListItem extends StatelessWidget {
         toUser.name,
         style: const TextStyle(color: MyColors.fontColor, fontSize: 15),
       ),
-      trailing: const ChatItemTrailingComponent(
-        time: "dasdasd",
-      ),
+      trailing: const ChatItemTrailingComponent(),
       onTap: () {
         GoRouter.of(context).push('/chatPage/${toUser.id}');
       },

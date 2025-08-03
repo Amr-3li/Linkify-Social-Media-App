@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
@@ -29,11 +30,11 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             );
           } else {
-            return const Skeletonizer(
+            return Skeletonizer(
               //     child: ListTile(
               //   splashColor: Colors.grey,
               // )
-              child: Text("asdda"),
+              child: Text(Constants.skeltonizerTextSmall),
             );
           }
         },

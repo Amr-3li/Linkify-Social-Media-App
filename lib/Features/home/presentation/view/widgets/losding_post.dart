@@ -14,11 +14,10 @@ class LoadingPost extends StatelessWidget {
     return Skeletonizer(
       child: PostContainer(
           post: PostModel(
-        description:
-            "asdfsdasf gagsg asg asgsg\nagasdag sadgfasdgagagagashgasgjasdhsajdhjgashgasg\nagagafas",
-        time: "156154445414514",
-        userId: "fadf",
-        userName: "afsadffs",
+        description: Constants.skeltonizerTextmedium3,
+        time: Constants.skeltonizerTextSmall2,
+        userId: Constants.skeltonizerTextSmall1,
+        userName: Constants.skeltonizerTextSmall1,
         userImage: Constants.defaultUserImage,
         likes: [],
         comments: [],

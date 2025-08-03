@@ -6,6 +6,7 @@ import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_widget.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReactionContainerBar extends StatefulWidget {
@@ -85,7 +86,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
               ? PostReactionBarItem(
                   onTap: () => null,
                   icon: Icons.favorite,
-                  text: "Like",
+                  text: Constants.like,
                   isLove: isLove,
                 )
               : PostReactionBarItem(
@@ -95,14 +96,15 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
                         .addRemoveLike(widget.post.time, userId);
                   },
                   icon: Icons.favorite,
-                  text: "Like",
+                  text: Constants.like,
                   isLove: isLove,
                   openList: () {
                     GoRouter.of(context).push('/lovesPage/${widget.post.time}');
                   },
                 ),
           CommenstWidget(postTime: widget.post.time),
-          PostReactionBarItem(onTap: () {}, icon: Icons.share, text: "Share"),
+          PostReactionBarItem(
+              onTap: () {}, icon: Icons.share, text: Constants.share),
         ],
       ),
     );

@@ -8,6 +8,7 @@ import 'package:linkify/Features/friends/presentation/view/widgets/friend_reques
 import 'package:linkify/Features/friends/presentation/view/widgets/my_friend_list.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/my_requests_list.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class FriendPage extends StatefulWidget {
@@ -39,9 +40,9 @@ class _FriendPageState extends State<FriendPage> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    tapNavigateItem(0, "My Friends"),
-                    tapNavigateItem(1, "Friend requests"),
-                    tapNavigateItem(2, "My requests")
+                    tapNavigateItem(0, Constants.myFriends),
+                    tapNavigateItem(1, Constants.friendsRequests),
+                    tapNavigateItem(2, Constants.myRequests),
                   ])),
           Expanded(
               child: IndexedStack(

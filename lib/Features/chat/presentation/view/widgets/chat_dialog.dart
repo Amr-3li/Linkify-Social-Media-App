@@ -1,5 +1,6 @@
-
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class AddChatDialog extends StatelessWidget {
   const AddChatDialog({super.key});
@@ -9,17 +10,18 @@ class AddChatDialog extends StatelessWidget {
     return AlertDialog(
       content: const TextField(
           decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-
-            labelText: 'Enter chat name',
-          )),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        labelText: Constants.enterChatName,
+      )),
       actions: [
-        TextButton(onPressed: () {}, child: const Text("Add")),
-        TextButton(onPressed: () {
-          Navigator.pop(context);
-        }, child: const Text("Cancel")),
+        TextButton(onPressed: () {}, child: const Text(Constants.add)),
+        TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(Constants.cansel)),
       ],
     );
   }

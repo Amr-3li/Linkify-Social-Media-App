@@ -6,6 +6,7 @@ import 'package:linkify/Features/add_post/presentation/cubit/add_post/add_post_c
 import 'package:linkify/Features/add_post/presentation/view/widgets/add_post_image.dart';
 import 'package:linkify/Features/add_post/presentation/view/widgets/post_text_field.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
@@ -35,7 +36,7 @@ class _AddPostBodyState extends State<AddPostBody> {
         if (state is AddPostFailure) {
           SnackBarWidget.showSnack(context, state.errMessage);
         } else if (state is AddPostSuccess) {
-          SnackBarWidget.showSnack(context, "Post added successfully");
+          SnackBarWidget.showSnack(context, Constants.postsAddedSuccess);
           postController.clear();
           setState(() {
             imageFile = null;
@@ -59,14 +60,16 @@ class _AddPostBodyState extends State<AddPostBody> {
               child: BlocBuilder<AddPostCubit, AddPostState>(
                 builder: (context, state) {
                   return CustomButton(
-                    title: state is AddPostLoading ? "Posting..." : "Post",
+                    title: state is AddPostLoading
+                        ? Constants.postLoading
+                        : Constants.postNow,
                     color: MyColors.toMessageBorder,
                     onTap: state is AddPostLoading
                         ? () {}
                         : () {
                             if (postController.text.isEmpty) {
                               SnackBarWidget.showSnack(
-                                  context, "Post can't be empty");
+                                  context, Constants.postEmpty);
                               return;
                             }
 

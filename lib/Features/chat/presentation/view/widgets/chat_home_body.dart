@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/presentation/cubit/message_count/message_count_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_list_item.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 
@@ -27,7 +28,7 @@ class _ChatHomeBodyState extends State<ChatHomeBody> {
           users = data?.map((e) => UserModel.fromJson(e.data())).toList() ?? [];
         }
         if (users.isEmpty) {
-          return const Center(child: Text("not user exist"));
+          return const Center(child: Text(Constants.notUsersExist));
         }
         return ListView.builder(
           itemCount: users.length,

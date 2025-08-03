@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post_lovers/get_post_lovers_cubit.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -30,7 +31,7 @@ class LoversBody extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundImage: AssetImage(MyImages.imagesUserImage),
                     ),
-                    title: Text("User Name"),
+                    title: Text(Constants.userName),
                   ),
                   Divider(
                       color: MyColors.fromMessageBorder,

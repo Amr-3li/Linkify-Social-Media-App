@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class PostTextField extends StatelessWidget {
   const PostTextField({super.key, required this.controller});
@@ -13,7 +14,7 @@ class PostTextField extends StatelessWidget {
         controller: controller,
         style: const TextStyle(fontSize: 20),
         decoration: const InputDecoration(
-          hintText: "write post",
+          hintText: Constants.whatInYourMind,
           disabledBorder: InputBorder.none,
         ),
         maxLines: 30,

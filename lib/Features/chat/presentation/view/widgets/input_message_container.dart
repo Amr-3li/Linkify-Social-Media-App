@@ -9,6 +9,7 @@ import 'package:linkify/Features/chat/presentation/cubit/send_message/send_messa
 import 'package:linkify/Features/chat/presentation/view/widgets/send_button.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/send_image_icon.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class InputMessageContainer extends StatefulWidget {
   const InputMessageContainer({
@@ -58,7 +59,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     state is RecordStart
-                        ? const Text("Recording...",
+                        ? const Text(Constants.recording,
                             style: TextStyle(color: Colors.green))
                         : Expanded(
                             child: TextFormField(
@@ -72,7 +73,7 @@ class _InputMessageContainerState extends State<InputMessageContainer> {
                             onChanged: (value) => setState(() {}),
                             decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "  type a message",
+                                hintText: Constants.writeMessage,
                                 hintStyle: TextStyle(
                                     color: Color.fromARGB(255, 147, 147, 147))),
                           )),

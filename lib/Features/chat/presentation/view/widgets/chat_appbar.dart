@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class ChatAppbar extends StatelessWidget {
   const ChatAppbar({
@@ -11,7 +12,8 @@ class ChatAppbar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: MyColors.mainChat,
       titleSpacing: 0.0,
-      title: const Text("Chats", style: TextStyle(fontWeight: FontWeight.bold)),
+      title: const Text(Constants.chats,
+          style: TextStyle(fontWeight: FontWeight.bold)),
       elevation: 2,
       floating: true,
       snap: true,

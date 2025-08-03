@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/lovers_body.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class LovesPage extends StatelessWidget {
   const LovesPage({super.key});
@@ -9,7 +10,7 @@ class LovesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lovers",
+        title: const Text(Constants.lovers,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

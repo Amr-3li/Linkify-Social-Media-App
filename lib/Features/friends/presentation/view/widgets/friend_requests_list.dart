@@ -5,6 +5,7 @@ import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubi
 import 'package:linkify/Features/friends/presentation/cubit/get_friends_requests/get_friends_requests_cubit.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/friend_requests_item.dart';
 import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -30,7 +31,7 @@ class FriendsRequestsList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return const ListTile(
                     leading: CircleAvatar(radius: 20),
-                    title: Text(" asf asdf asdf "));
+                    title: Text(Constants.skeltonizerTextSmall2));
               },
             ),
           );
@@ -63,7 +64,7 @@ class FriendsRequestsList extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () => _onRefresh(context),
-                  child: const Text("try again")),
+                  child: const Text(Constants.tryAgain)),
               const Spacer(),
             ],
           );

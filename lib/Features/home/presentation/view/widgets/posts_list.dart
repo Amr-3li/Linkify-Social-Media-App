@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});
@@ -64,7 +65,7 @@ class _PostsListState extends State<PostsList> {
                 ElevatedButton(
                   onPressed: () =>
                       context.read<GetPostsCubit>().loadInitialPosts(),
-                  child: const Text("Try Again"),
+                  child: const Text(Constants.tryAgain),
                 )
               ],
             ),

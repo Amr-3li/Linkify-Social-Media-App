@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -59,14 +60,15 @@ class MyFriendItem extends StatelessWidget {
               } else {
                 return PopupMenuButton<String>(
                     onSelected: (value) async {
-                      if (value == 'unfriend') {
+                      if (value == Constants.unFriend) {
                         await BlocProvider.of<FriendsCubit>(context)
                             .removeFriend(user.id!);
                       }
                     },
                     itemBuilder: (context) => [
                           const PopupMenuItem<String>(
-                              value: 'unfriend', child: Text("Unfriend")),
+                              value: Constants.unFriend,
+                              child: Text(Constants.unFriend)),
                         ],
                     icon: const Icon(Icons.more_vert));
               }

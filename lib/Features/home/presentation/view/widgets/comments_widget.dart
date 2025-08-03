@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class CommenstWidget extends StatelessWidget {
   const CommenstWidget({
@@ -15,7 +16,7 @@ class CommenstWidget extends StatelessWidget {
         GoRouter.of(context).push('/commentsPage/$postTime');
       },
       icon: Icons.comment,
-      text: "Comment",
+      text: Constants.comments,
       openList: () {
         GoRouter.of(context).push('/commentsPage/$postTime');
       },

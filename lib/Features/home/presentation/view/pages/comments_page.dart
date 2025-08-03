@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_page_body.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class CommentsPage extends StatelessWidget {
   const CommentsPage({super.key, required this.postTime});
@@ -11,7 +12,7 @@ class CommentsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
           title: const Text(
-            "Comments",
+            Constants.comments,
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
           ),

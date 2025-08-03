@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/custom_ftiend_button.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -58,7 +59,7 @@ class MyRequestItem extends StatelessWidget {
                 return const SizedBox();
               } else {
                 return CustomFreindsButton(
-                  title: "UnSend",
+                  title: Constants.unSend,
                   color: const Color.fromARGB(149, 151, 0, 0),
                   onTap: () async {
                     await BlocProvider.of<FriendsCubit>(context)
