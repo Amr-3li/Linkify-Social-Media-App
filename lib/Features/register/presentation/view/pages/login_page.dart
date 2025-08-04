@@ -103,13 +103,16 @@ class LoginPage extends StatelessWidget {
                                 : ElevatedButton(
                                     onPressed: () async {
                                       try {
-                                        formKey.currentState!.validate();
+                                        if (!formKey.currentState!.validate()) {
+                                          return;
+                                        }
                                         await BlocProvider.of<AuthCubit>(
                                                 context)
                                             .signin(emailController.text.trim(),
                                                 passwordController.text);
                                       } catch (e) {
-                                        throw Exception(e);
+                                        SnackBarWidget.showSnack(
+                                            context, e.toString());
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(

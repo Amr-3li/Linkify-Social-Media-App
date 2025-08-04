@@ -14,7 +14,8 @@ class SignupRepoImplement implements SignupRepo {
       await signupService.register(user);
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure("failed to signup"));
+      print(e);
+      return Left(ServerFailure(e.toString()));
     }
   }
 }
