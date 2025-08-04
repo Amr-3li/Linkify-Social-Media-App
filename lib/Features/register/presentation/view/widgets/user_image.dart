@@ -26,9 +26,11 @@ class _UserImageState extends State<UserImage> {
             isLoading = true;
             setState(() {});
             try {
-              await PickImage().pickImage(widget.image);
+              imageFile = await PickImage().pickImage();
+              widget.image(imageFile);
             } catch (e) {
               isLoading = false;
+
               setState(() {});
             }
             isLoading = false;

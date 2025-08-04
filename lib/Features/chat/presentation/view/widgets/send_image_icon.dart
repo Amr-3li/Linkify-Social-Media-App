@@ -18,21 +18,18 @@ class SendImageIcon extends StatelessWidget {
     late File imageFile;
     return IconButton(
       onPressed: () async {
-        await PickImage().pickImage((value) {
-          imageFile = value;
-        }).then((value) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                create: (context) => SendMessageCubit(
-                    gitItInstanse<ChatRepo>(), gitItInstanse<ImageRepo>()),
-                child: ImageConfirmMessage(
-                    toUserId: toUserId, imageFile: imageFile),
-              ),
+        imageFile = await PickImage().pickImage();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlocProvider(
+              create: (context) => SendMessageCubit(
+                  gitItInstanse<ChatRepo>(), gitItInstanse<ImageRepo>()),
+              child:
+                  ImageConfirmMessage(toUserId: toUserId, imageFile: imageFile),
             ),
-          );
-        });
+          ),
+        );
       },
       icon: const Icon(Icons.image),
     );
