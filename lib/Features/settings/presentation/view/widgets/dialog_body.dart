@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/input_data_widgit.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
@@ -29,7 +30,7 @@ class DialogBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'update user data',
+              Constants.updateUserData,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -37,7 +38,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 10),
             InputDataWidgit(
               text: fname,
-              title: "first name",
+              title: Constants.firstName,
               onchanged: (value) {
                 fname = value;
                 userModel.name = "$fname $lname";
@@ -46,7 +47,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: lname,
-              title: "last name",
+              title: Constants.lastName,
               onchanged: (value) {
                 lname = value;
                 userModel.name = "$fname $lname";
@@ -55,7 +56,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: userModel.email,
-              title: "Email",
+              title: Constants.email,
               onchanged: (value) {
                 userModel.email = value;
               },
@@ -63,7 +64,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: userModel.phone,
-              title: "phone",
+              title: Constants.phone,
               isnumber: true,
               onchanged: (value) {
                 userModel.phone = value;
@@ -80,7 +81,7 @@ class DialogBody extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                     ),
-                    child: const Text('Cancel',
+                    child: const Text(Constants.cansel,
                         style: TextStyle(color: Colors.white, fontSize: 12)),
                   ),
                 ),
@@ -105,7 +106,7 @@ class DialogBody extends StatelessWidget {
                                   backgroundColor:
                                       const Color.fromARGB(255, 1, 52, 94),
                                 ),
-                                child: const Text('save',
+                                child: const Text(Constants.save,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12)),
                               ),

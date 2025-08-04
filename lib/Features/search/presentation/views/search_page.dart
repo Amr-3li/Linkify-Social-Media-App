@@ -5,6 +5,7 @@ import 'package:linkify/Features/search/presentation/cubit/get_search_user/get_s
 import 'package:linkify/Features/search/presentation/views/widgets/search_appbar.dart';
 import 'package:linkify/Features/search/presentation/views/widgets/users_lisr.dart';
 import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -27,10 +28,11 @@ class SearchPage extends StatelessWidget {
               return Skeletonizer(
                 child: Column(
                   children: List.generate(
-                      5,
-                      (index) => const ListTile(
-                          leading: CircleAvatar(radius: 20),
-                          title: Text("nameasdf asdfasd af"))).toList(),
+                          5,
+                          (index) => const ListTile(
+                              leading: CircleAvatar(radius: 20),
+                              title: Text(Constants.skeltonizerTextSmall2)))
+                      .toList(),
                 ),
               );
             } else {

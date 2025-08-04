@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class ListNameComponent extends StatelessWidget {
   const ListNameComponent({
@@ -12,7 +13,7 @@ class ListNameComponent extends StatelessWidget {
     return const ListTile(
       minTileHeight: 30,
       titleAlignment: ListTileTitleAlignment.center,
-      title: Text("GENERAL  ",
+      title: Text(Constants.general,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           )),

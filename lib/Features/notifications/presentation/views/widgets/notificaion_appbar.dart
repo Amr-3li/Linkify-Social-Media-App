@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class NotificationAppbar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -17,7 +18,7 @@ class NotificationAppbar extends StatelessWidget
         icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
       ),
       title: const Text(
-        "Notifications",
+        Constants.notifications,
         style: TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
       ),

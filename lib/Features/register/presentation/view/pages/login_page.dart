@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/icons.dart';
 import 'package:linkify/core/widgets/input_text.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
@@ -24,9 +25,10 @@ class LoginPage extends StatelessWidget {
         } else if (state is SigninFailed) {
           SnackBarWidget.showSnack(context, state.error);
         } else if (state is ResetPasswordSuccess) {
-          SnackBarWidget.showSnack(context, "the password reset successfully");
+          SnackBarWidget.showSnack(
+              context, Constants.passwordResetsSuccessfully);
         } else if (state is ResetPasswordfaild) {
-          SnackBarWidget.showSnack(context, "reset password faild");
+          SnackBarWidget.showSnack(context, Constants.resetPasswordFaild);
         }
       },
       builder: (context, state) {
@@ -34,12 +36,6 @@ class LoginPage extends StatelessWidget {
           body: Container(
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 255, 255, 255),
-              // image: DecorationImage(
-              //   image: AssetImage(
-              //     MyImages.imagesAppIcon,
-              //   ),
-              //   opacity: 0.9,
-              // ),
             ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -54,7 +50,7 @@ class LoginPage extends StatelessWidget {
                       height: 50,
                     ),
                     const Text(
-                      "Login Page",
+                      Constants.loginPage,
                       style: TextStyle(
                           color: Color.fromARGB(200, 108, 108, 108),
                           fontSize: 50,
@@ -80,21 +76,21 @@ class LoginPage extends StatelessWidget {
                             ),
                             InputTextField(
                               controller: emailController,
-                              hintText: "Email",
+                              hintText: Constants.email,
                             ),
                             const SizedBox(
                               height: 30,
                             ),
                             InputTextField(
                               controller: passwordController,
-                              hintText: "password",
+                              hintText: Constants.password,
                               isPassword: true,
                             ),
                             Align(
                               alignment: AlignmentDirectional.centerEnd,
                               child: TextButton(
                                 child: const Text(
-                                  "forget password?",
+                                  Constants.forgetPassword,
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {
@@ -123,7 +119,7 @@ class LoginPage extends StatelessWidget {
                                         backgroundColor: const Color.fromARGB(
                                             199, 69, 69, 135)),
                                     child: const Text(
-                                      "Login",
+                                      Constants.login,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     ),
@@ -184,11 +180,11 @@ class LoginPage extends StatelessWidget {
               RichText(
                 text: const TextSpan(children: [
                   TextSpan(
-                      text: "Sign in with ",
+                      text: Constants.signInWith,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   TextSpan(
-                      text: "Google",
+                      text: Constants.google,
                       style: TextStyle(
                           color: Colors.green,
                           fontSize: 20,

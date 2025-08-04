@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/input_text.dart';
 
 // ignore: must_be_immutable
@@ -36,26 +37,29 @@ class _UserInformationsState extends State<UserInformations> {
           children: [
             Expanded(
               child: InputTextField(
-                  controller: widget.fnameController, hintText: "first name"),
+                  controller: widget.fnameController,
+                  hintText: Constants.firstName),
             ),
             const SizedBox(width: 20),
             Expanded(
               child: InputTextField(
-                  controller: widget.lnameController, hintText: "last name"),
+                  controller: widget.lnameController,
+                  hintText: Constants.lastName),
             ),
           ],
         ),
         const SizedBox(height: 30),
-        InputTextField(controller: widget.emailController, hintText: "Email"),
+        InputTextField(
+            controller: widget.emailController, hintText: Constants.email),
         const SizedBox(height: 30),
         InputTextField(
             controller: widget.phoneController,
-            hintText: "phone number",
+            hintText: Constants.phone,
             isnumber: true),
         const SizedBox(height: 30),
         InputTextField(
             controller: widget.passwordController,
-            hintText: "password",
+            hintText: Constants.password,
             isPassword: true),
         const SizedBox(height: 30),
         Row(
@@ -68,7 +72,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Female",
+            const Text(Constants.female,
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             const SizedBox(width: 20),
             Checkbox(
@@ -79,7 +83,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text("Male",
+            const Text(Constants.male,
                 style: TextStyle(color: Colors.white, fontSize: 20)),
           ],
         ),

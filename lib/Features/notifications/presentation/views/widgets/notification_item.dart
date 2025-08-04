@@ -5,6 +5,7 @@ import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/helper/get_time_ago.dart';
@@ -73,7 +74,7 @@ class NotificationItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   state is FriendsLoaded
-                      ? const Text("your response sent",
+                      ? const Text(Constants.yourResponseSent,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -96,14 +97,14 @@ class NotificationItem extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: CustomButton(
-                                        title: "Accept",
+                                        title: Constants.accept,
                                         color: Colors.green,
                                         onTap: () {}),
                                   ),
                                   const SizedBox(width: 10),
                                   Expanded(
                                     child: CustomButton(
-                                        title: "Reject",
+                                        title: Constants.reject,
                                         color: Colors.red,
                                         onTap: () {}),
                                   ),

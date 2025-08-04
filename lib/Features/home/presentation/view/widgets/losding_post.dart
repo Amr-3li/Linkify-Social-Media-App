@@ -15,9 +15,9 @@ class LoadingPost extends StatelessWidget {
       child: PostContainer(
           post: PostModel(
         description: Constants.skeltonizerTextmedium3,
-        time: Constants.skeltonizerTextSmall2,
+        time: Constants.skeltonizertime,
         userId: Constants.skeltonizerTextSmall1,
-        userName: Constants.skeltonizerTextSmall1,
+        userName: Constants.skeltonizerTextSmall2,
         userImage: Constants.defaultUserImage,
         likes: [],
         comments: [],

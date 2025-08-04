@@ -30,11 +30,11 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             );
           } else {
-            return Skeletonizer(
+            return const Skeletonizer(
               //     child: ListTile(
               //   splashColor: Colors.grey,
               // )
-              child: Text(Constants.skeltonizerTextSmall),
+              child: Text(Constants.skeltonizerTextSmall1),
             );
           }
         },

@@ -6,6 +6,7 @@ import 'package:linkify/Features/profile/presentation/view/widgets/posts_user_li
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/user_relation_status_bar.dart';
 import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -59,7 +60,7 @@ class ProfilePage extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: Text("Error"),
+              child: Text(Constants.error),
             );
           }
         },

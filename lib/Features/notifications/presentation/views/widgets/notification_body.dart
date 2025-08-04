@@ -4,6 +4,7 @@ import 'package:linkify/Features/notifications/data/model/notification_model.dar
 import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/Features/notifications/presentation/views/widgets/notification_item.dart';
 import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -45,7 +46,7 @@ class _NotificationBodyState extends State<NotificationBody> {
                       ),
                       title: Padding(
                         padding: EdgeInsets.only(top: 8.0),
-                        child: Text("sad fsadf sdf sdfs"),
+                        child: Text(Constants.skeltonizerTextSmall2),
                       ))));
         } else if (state is GetNotificationsSuccess &&
             state.notifications.isNotEmpty) {
@@ -78,7 +79,7 @@ class _NotificationBodyState extends State<NotificationBody> {
                   width: 100,
                   height: 40,
                   child: CustomButton(
-                      title: "Refresh",
+                      title: Constants.refresh,
                       color: Colors.green,
                       onTap: () async {
                         await context

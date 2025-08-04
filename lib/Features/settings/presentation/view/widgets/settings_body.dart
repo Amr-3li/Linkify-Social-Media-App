@@ -4,6 +4,7 @@ import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubi
 import 'package:linkify/Features/settings/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
@@ -17,38 +18,41 @@ class SettingsBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListNameComponent(name: "GENERAL"),
+          const ListNameComponent(name: Constants.general),
           const SettingsListItem(
-              text: "language",
+              text: Constants.language,
               icon: Icons.language,
-              trailingText: "English",
+              trailingText: Constants.english,
               onTap: null),
           const SettingsListItem(
-              text: "theme",
+              text: Constants.theme,
               icon: Icons.brightness_4,
-              trailingText: "Light",
+              trailingText: Constants.light,
               onTap: null),
           const SettingsListItem(
-              text: "notifications", icon: Icons.notifications, onTap: null),
-          const ListNameComponent(name: "ACCOUNT"),
+              text: Constants.notifications,
+              icon: Icons.notifications,
+              onTap: null),
+          const ListNameComponent(name: Constants.account),
           SettingsListItem(
-              text: "edit profile",
+              text: Constants.editProfile,
               icon: Icons.person,
               onTap: () {
                 openDialog(context);
-                SnackBarWidget.showSnack(
-                    context, "Profile updated successfully");
+                SnackBarWidget.showSnack(context, Constants.profileUpdated);
               }),
           const SettingsListItem(
-              text: "change password", icon: Icons.password, onTap: null),
-          const ListNameComponent(name: "HELP"),
+              text: Constants.changePassword,
+              icon: Icons.password,
+              onTap: null),
+          const ListNameComponent(name: Constants.help),
           const SettingsListItem(
-              text: "contact us", icon: Icons.contact_page, onTap: null),
+              text: Constants.contact, icon: Icons.contact_page, onTap: null),
           const SettingsListItem(
-              text: "about us", icon: Icons.info, onTap: null),
-          const ListNameComponent(name: "OTHERS"),
+              text: Constants.aboutUs, icon: Icons.info, onTap: null),
+          const ListNameComponent(name: Constants.others),
           const SettingsListItem(
-              text: "logout", icon: Icons.logout, onTap: null),
+              text: Constants.logout, icon: Icons.logout, onTap: null),
         ],
       ),
     );

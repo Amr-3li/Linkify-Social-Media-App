@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_posts/get_user_posts_cubit.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class PostsUserList extends StatelessWidget {
   const PostsUserList({
@@ -27,13 +28,13 @@ class PostsUserList extends StatelessWidget {
         } else if (state is GetUserPostsFailure) {
           return const SliverToBoxAdapter(
             child: Center(
-              child: Text("Error"),
+              child: Text(Constants.error),
             ),
           );
         } else {
           return const SliverToBoxAdapter(
             child: Center(
-              child: Text("Not Posts Exist"),
+              child: Text(Constants.noPostExist),
             ),
           );
         }

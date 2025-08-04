@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/register/presentation/cubit/signup/signup_cubit.dart';
 import 'package:linkify/Features/register/presentation/view/widgets/user_image.dart';
@@ -39,21 +40,11 @@ class _SignupPageState extends State<SignupPage> {
   final keyform = GlobalKey<FormState>();
 
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    fnameController.dispose();
-    lnameController.dispose();
-    phoneController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          SnackBarWidget.showSnack(context, "User created successfully");
+          SnackBarWidget.showSnack(context, Constants.userCreatedSuccessfully);
           Navigator.pop(context);
         } else if (state is SignUpError) {
           SnackBarWidget.showSnack(context, state.message);
@@ -62,11 +53,7 @@ class _SignupPageState extends State<SignupPage> {
       builder: (context, state) {
         return Scaffold(
           body: Container(
-            decoration: const BoxDecoration(color: Colors.white
-                // image: DecorationImage(
-                //     image: AssetImage("assets/images/gymlogin.jpg"),
-                //     fit: BoxFit.cover)
-                ),
+            decoration: const BoxDecoration(color: Colors.white),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -80,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
                       height: 40,
                     ),
                     const Text(
-                      "SignUp Page",
+                      Constants.signUpPage,
                       style: TextStyle(
                           color: Color.fromARGB(200, 91, 91, 91),
                           fontSize: 45,
@@ -153,7 +140,7 @@ class _SignupPageState extends State<SignupPage> {
                                         backgroundColor: const Color.fromARGB(
                                             199, 69, 69, 135)),
                                     child: const Text(
-                                      "Sign Up",
+                                      Constants.signUp,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     ),
@@ -163,7 +150,7 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                             TextButton(
                                 child: const Text(
-                                  "Already have an account?",
+                                  Constants.alreadyHaveAccount,
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {
@@ -184,5 +171,15 @@ class _SignupPageState extends State<SignupPage> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    fnameController.dispose();
+    lnameController.dispose();
+    phoneController.dispose();
+    super.dispose();
   }
 }

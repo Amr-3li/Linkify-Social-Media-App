@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 
 class CustomAppbarProfile extends StatefulWidget {
@@ -27,14 +28,14 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
     return BlocConsumer<UpdateUserCubit, UpdateUserState>(
       listener: (context, state) {
         if (state is UpdateUserImageLoaded) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text("Image updated")));
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text(Constants.imageUpdated)));
         } else if (state is UpdateUserImageError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
         } else if (state is UpdateUserImageLoading) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text("Loading...")));
+              .showSnackBar(const SnackBar(content: Text(Constants.loading)));
         }
       },
       builder: (context, state) {

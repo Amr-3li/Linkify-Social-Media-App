@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/animation.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashBody extends StatelessWidget {
@@ -20,7 +22,7 @@ class SplashBody extends StatelessWidget {
             height: MediaQuery.of(context).size.width,
             width: double.infinity,
             child: LottieBuilder.asset(
-              "assets/animations/dash_animation.json",
+              MyAnimation.animationsDashAnimation,
               fit: BoxFit.fill,
             )),
         AnimatedOpacity(
@@ -28,7 +30,7 @@ class SplashBody extends StatelessWidget {
           duration: const Duration(milliseconds: 2000),
           curve: Curves.easeInCirc,
           child: Text(
-            "Welcome",
+            Constants.welcome,
             style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.05,
               color: const Color(0xff00D2C1),

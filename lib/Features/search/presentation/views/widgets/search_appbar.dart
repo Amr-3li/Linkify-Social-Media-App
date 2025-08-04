@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/search/presentation/cubit/get_search_user/get_search_user_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 
 class SearchAppbar extends StatefulWidget implements PreferredSizeWidget {
   const SearchAppbar({
@@ -54,7 +55,7 @@ class _SearchAppbarState extends State<SearchAppbar> {
                       border: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: MyColors.light, width: 3)),
-                      hintText: "Search",
+                      hintText: Constants.search,
                       hintStyle:
                           TextStyle(color: MyColors.light, fontSize: 20)),
                 ),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 
 class NoRelationComponent extends StatelessWidget {
@@ -18,7 +19,7 @@ class NoRelationComponent extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: CustomButton(
-              title: "Add Friend",
+              title: Constants.addFriend,
               color: MyColors.iconActiveColor,
               onTap: () async {
                 await BlocProvider.of<FriendsCubit>(context)
@@ -30,7 +31,7 @@ class NoRelationComponent extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: CustomButton(
-              title: "send message",
+              title: Constants.sendMessage,
               color: MyColors.fromMessageBorder,
               onTap: () {
                 GoRouter.of(context).push('/chatPage/$userId');

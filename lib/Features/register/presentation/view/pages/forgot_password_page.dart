@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/input_text.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -16,14 +17,14 @@ class ForgotPasswordPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            "enter your email to reset pass",
+            Constants.enterYourEmail,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: InputTextField(
-              hintText: "email",
+              hintText: Constants.email,
               controller: emailControler,
               color: Colors.black,
             ),
@@ -40,7 +41,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 backgroundColor: const Color.fromARGB(255, 183, 183, 183),
                 fixedSize: const Size(300, 50)),
             child: const Text(
-              "Send the request",
+              Constants.resetPassword,
               style: TextStyle(fontSize: 20),
             ),
           )

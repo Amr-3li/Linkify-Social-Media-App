@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/information_component.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
 class ProfileInformation extends StatelessWidget {
@@ -14,25 +15,25 @@ class ProfileInformation extends StatelessWidget {
     return Column(
       children: [
         InformationComponent(
-          type: "Name",
+          type: Constants.name,
           text: user.name,
           icon: const Icon(Icons.person, color: Colors.blueAccent),
         ),
 
         InformationComponent(
-            type: "Email",
+            type: Constants.email,
             text: user.email,
             icon: const Icon(Icons.email, color: Colors.red)),
 
         InformationComponent(
-          type: "Phone ",
+          type: Constants.phone,
           text: user.phone,
           icon: const Icon(Icons.phone, color: Colors.green),
         ),
 
         InformationComponent(
-          type: "Gender ",
-          text: user.isMale ? "Male" : "Female",
+          type: Constants.gender,
+          text: user.isMale ? Constants.male : Constants.female,
           icon: Icon(
             user.isMale ? Icons.male : Icons.female,
             color: user.isMale ? Colors.blue : Colors.pink,

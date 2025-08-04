@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 
 class FriendComponent extends StatelessWidget {
@@ -18,7 +19,7 @@ class FriendComponent extends StatelessWidget {
         Expanded(
           flex: 1,
           child: CustomButton(
-              title: "Remove Friend",
+              title: Constants.removeFriend,
               color: const Color.fromARGB(149, 151, 0, 0),
               onTap: () {
                 showDialog(
@@ -35,14 +36,14 @@ class FriendComponent extends StatelessWidget {
                             await BlocProvider.of<GetUserStatusCubit>(context)
                                 .userStatus(userId);
                           },
-                          child: const Text("Remove")),
+                          child: const Text(Constants.remove)),
                       TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text("Cancel")),
+                          child: const Text(Constants.cansel)),
                     ],
-                    content: const Text("Are you sure you want to remove?"),
+                    content: const Text(Constants.areYouSure),
                   ),
                 );
               }),
@@ -50,7 +51,7 @@ class FriendComponent extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: CustomButton(
-              title: "send message",
+              title: Constants.sendMessage,
               color: MyColors.fromMessageBorder,
               onTap: () {
                 GoRouter.of(context).push('/chatPage/$userId');
