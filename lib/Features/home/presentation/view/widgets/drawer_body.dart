@@ -80,10 +80,10 @@ class DrawerBody extends StatelessWidget {
               const Icon(Icons.logout, color: Color.fromARGB(255, 198, 0, 0)),
           title: const Text(Constants.logout,
               style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
-          onTap: () {
+          onTap: () async {
             Navigator.pop(context);
-            BlocProvider.of<AuthCubit>(context).signout();
-            GoRouter.of(context).push('/initialPage');
+            await BlocProvider.of<AuthCubit>(context).signout();
+            GoRouter.of(context).push('/loginPage');
           },
         ),
       ],
