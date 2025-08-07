@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/friends/data/service/get_friends_or_requests.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,11 +74,10 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   }
 
   Future<List<UserModel>> _getUsersByRelation(
-    List<UserModel> globalList,
-    Future<List<dynamic>> Function() getIds,
-    int currentCount,
-    Function(int) updateCount,
-  ) async {
+      List<UserModel> globalList,
+      Future<List<dynamic>> Function() getIds,
+      int currentCount,
+      Function(int) updateCount) async {
     final ids = await getIds();
     if (ids.isEmpty) return globalList;
 
@@ -98,42 +98,60 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   }
 
   Future<List<dynamic>> _getFriendIds() async {
-    final currentUserId = await _getCurrentUserId();
-    final snapshot = await _firestore
-        .collection('friendRequests')
-        .where('status', isEqualTo: Constants.accepted)
-        .where(Filter.or(
-          Filter('senderId', isEqualTo: currentUserId),
-          Filter('receiverId', isEqualTo: currentUserId),
-        ))
-        .get();
-    return snapshot.docs.map((doc) {
-      final data = doc.data();
-      return data['senderId'] == currentUserId
-          ? data['receiverId']
-          : data['senderId'];
-    }).toList();
+    try {
+      final currentUserId = await _getCurrentUserId();
+      final snapshot = await _firestore
+          .collection('friendRequests')
+          .where('status', isEqualTo: Constants.accepted)
+          .where(Filter.or(
+            Filter('senderId', isEqualTo: currentUserId),
+            Filter('receiverId', isEqualTo: currentUserId),
+          ))
+          .get();
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        return data['senderId'] == currentUserId
+            ? data['receiverId']
+            : data['senderId'];
+      }).toList();
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
   }
 
   Future<List<String>> _getYourRequestIds() async {
-    final currentUserId = await _getCurrentUserId();
-    final sent = await _firestore
-        .collection('friendRequests')
-        .where('senderId', isEqualTo: currentUserId)
-        .where('status', isEqualTo: Constants.requested)
-        .get();
+    try {
+      final currentUserId = await _getCurrentUserId();
+      final sent = await _firestore
+          .collection('friendRequests')
+          .where('senderId', isEqualTo: currentUserId)
+          .where('status', isEqualTo: Constants.requested)
+          .get();
 
-    return sent.docs.map((doc) => doc['receiverId'] as String).toList();
+      return sent.docs.map((doc) => doc['receiverId'] as String).toList();
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
   }
 
   Future<List<String>> _getFriendRequestIds() async {
-    final currentUserId = await _getCurrentUserId();
-    final received = await _firestore
-        .collection('friendRequests')
-        .where('receiverId', isEqualTo: currentUserId)
-        .where('status', isEqualTo: Constants.requested)
-        .get();
+    try {
+      final currentUserId = await _getCurrentUserId();
+      final received = await _firestore
+          .collection('friendRequests')
+          .where('receiverId', isEqualTo: currentUserId)
+          .where('status', isEqualTo: Constants.requested)
+          .get();
 
-    return received.docs.map((doc) => doc['senderId'] as String).toList();
+      return received.docs.map((doc) => doc['senderId'] as String).toList();
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetPostsServImpl implements GetPostsServ {
@@ -14,33 +15,46 @@ class GetPostsServImpl implements GetPostsServ {
   DocumentSnapshot? lastPostDoc;
   @override
   Future<List<PostModel>> getMyTimelinePosts() async {
-    final currentUserId = await _getCurrentUserId();
-    Query query = firestore
-        .collection('users')
-        .doc(currentUserId)
-        .collection('timeline')
-        .orderBy('time', descending: true)
-        .limit(5);
-    if (lastPostDoc != null) {
-      query = query.startAfterDocument(lastPostDoc!);
+    try {
+      final currentUserId = await _getCurrentUserId();
+      Query query = firestore
+          .collection('users')
+          .doc(currentUserId)
+          .collection('timeline')
+          .orderBy('time', descending: true)
+          .limit(5);
+      if (lastPostDoc != null) {
+        query = query.startAfterDocument(lastPostDoc!);
+      }
+      final snapshot = await query.get();
+      if (snapshot.docs.isEmpty) return [];
+      lastPostDoc = snapshot.docs.last;
+      final localPosts = snapshot.docs
+          .map((e) => PostModel.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
+      glopalPosts.addAll(localPosts);
+      return localPosts;
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
     }
-    final snapshot = await query.get();
-    if (snapshot.docs.isEmpty) return [];
-    lastPostDoc = snapshot.docs.last;
-    final localPosts = snapshot.docs
-        .map((e) => PostModel.fromJson(e.data() as Map<String, dynamic>))
-        .toList();
-    glopalPosts.addAll(localPosts);
-    return localPosts;
   }
 
   @override
   Future<PostModel> getPost(String postTime) async {
-    final docSnapshot = await firestore.collection('posts').doc(postTime).get();
-    if (!docSnapshot.exists) {
-      throw Exception('Post not found');
+    try {
+      final docSnapshot =
+          await firestore.collection('posts').doc(postTime).get();
+      if (!docSnapshot.exists) {
+        throw Exception('Post not found');
+      }
+      return PostModel.fromJson(docSnapshot.data()!);
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
     }
-    return PostModel.fromJson(docSnapshot.data()!);
   }
 
   @override
@@ -52,22 +66,39 @@ class GetPostsServImpl implements GetPostsServ {
 
   @override
   Future<List<CommentModel>> getComments(String postTime) async {
-    final docSnapshot = await firestore.collection('posts').doc(postTime).get();
-    if (!docSnapshot.exists) {
-      throw Exception('Post not found');
+    try {
+      final docSnapshot =
+          await firestore.collection('posts').doc(postTime).get();
+      if (!docSnapshot.exists) {
+        throw Exception('Post not found');
+      }
+      final post = PostModel.fromJson(docSnapshot.data()!);
+      return post.comments;
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
     }
-    final post = PostModel.fromJson(docSnapshot.data()!);
-    return post.comments;
   }
 
   @override
   Future<List<LoverModel>> getLoversPost(String postTime) async {
-    List<LoverModel> lovers = [];
-    await firestore.collection('posts').doc(postTime).get().then((value) async {
-      PostModel post = PostModel.fromJson(value.data()!);
-      lovers = post.likes;
-    });
-    return lovers;
+    try {
+      List<LoverModel> lovers = [];
+      await firestore
+          .collection('posts')
+          .doc(postTime)
+          .get()
+          .then((value) async {
+        PostModel post = PostModel.fromJson(value.data()!);
+        lovers = post.likes;
+      });
+      return lovers;
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
   }
 
   //=====================================================

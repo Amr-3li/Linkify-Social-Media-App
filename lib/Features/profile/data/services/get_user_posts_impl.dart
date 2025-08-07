@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/profile/data/services/get_user_posts.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 
 class GetUserPostsImpl implements GetUserPosts {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -17,8 +18,10 @@ class GetUserPostsImpl implements GetUserPosts {
       return querySnapshot.docs.map((doc) {
         return PostModel.fromJson(doc.data());
       }).toList();
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {
-      return [];
+      throw "something went wrong";
     }
   }
 }
