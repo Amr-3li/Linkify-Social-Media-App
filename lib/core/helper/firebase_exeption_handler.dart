@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthExeptionHandler {
+class FirebaseExeptionHandler {
   static String handleFirebaseAuthError(FirebaseAuthException e) {
     switch (e.code) {
       case 'email-already-in-use':
@@ -68,6 +68,62 @@ class FirebaseAuthExeptionHandler {
 
       default:
         return 'Authentication failed: ${e.code}';
+    }
+  }
+
+  static String handleFirebaseStorageError(String e) {
+    switch (e) {
+      case 'already-exists':
+        return 'File with this name already exists';
+      case 'invalid-file-format':
+        return 'Invalid file format or path';
+      case 'authentication-required':
+        return 'Authentication required';
+      case 'permission-denied':
+        return 'You don\'t have permission for this operation';
+      case 'bucket-not-found':
+        return 'Bucket not found';
+      case 'file-not-found':
+        return 'File not found';
+      case 'object-not-found':
+        return 'Object not found';
+      case 'object-already-exists':
+        return 'Object already exists';
+      case 'unauthenticated':
+        return 'User is not authenticated';
+      case 'unauthorized':
+        return 'User is not authorized to perform this operation';
+      case 'quota-exceeded':
+        return 'Storage quota exceeded';
+      case 'file-size-exceeds-limit':
+        return 'File size exceeds limit';
+      case 'unsupported-file-type':
+        return 'Unsupported file type';
+      case 'server-error':
+        return 'Server error occurred';
+      default:
+        return 'File upload failed: $e';
+    }
+  }
+
+  static String handleFirebaseFirestoreError(String e) {
+    switch (e) {
+      case 'permission-denied':
+        return 'You don\'t have permission for this operation';
+      case 'unauthenticated':
+        return 'User is not authenticated';
+      case 'unauthorized':
+        return 'User is not authorized to perform this operation';
+      case 'quota-exceeded':
+        return 'Storage quota exceeded';
+      case 'file-size-exceeds-limit':
+        return 'File size exceeds limit';
+      case 'unsupported-file-type':
+        return 'Unsupported file type';
+      case 'server-error':
+        return 'Server error occurred';
+      default:
+        return 'File upload failed: $e';
     }
   }
 }

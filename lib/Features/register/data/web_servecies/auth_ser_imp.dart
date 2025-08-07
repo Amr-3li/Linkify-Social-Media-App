@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
-import 'package:linkify/core/helper/firebase_auth_exeption_handler.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthWebServiceImplement implements AuthService {
@@ -38,7 +38,7 @@ class AuthWebServiceImplement implements AuthService {
       });
       return id;
     } on FirebaseAuthException catch (e) {
-      throw FirebaseAuthExeptionHandler.handleFirebaseAuthError(e);
+      throw FirebaseExeptionHandler.handleFirebaseAuthError(e);
     } catch (e) {
       throw "sorry something went wrongssss";
     }
