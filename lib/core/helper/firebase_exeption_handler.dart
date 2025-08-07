@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseExeptionHandler {
@@ -106,24 +107,44 @@ class FirebaseExeptionHandler {
     }
   }
 
-  static String handleFirebaseFirestoreError(String e) {
-    switch (e) {
+  static String handleFirebaseFirestoreError(FirebaseException e) {
+    switch (e.code) {
+      case 'aborted':
+        return 'Operation was aborted.';
+      case 'already-exists':
+        return 'Document already exists.';
+      case 'cancelled':
+        return 'Operation was cancelled.';
+      case 'data-loss':
+        return 'Data loss occurred.';
+      case 'deadline-exceeded':
+        return 'Request deadline exceeded.';
+      case 'failed-precondition':
+        return 'Precondition check failed.';
+      case 'internal':
+        return 'Internal Firestore error.';
+      case 'invalid-argument':
+        return 'Invalid document reference.';
+      case 'not-found':
+        return 'Document not found.';
+      case 'out-of-range':
+        return 'Operation attempted past valid range.';
       case 'permission-denied':
-        return 'You don\'t have permission for this operation';
+        return 'Missing or insufficient permissions.';
+      case 'resource-exhausted':
+        return 'Resource has been exhausted.';
       case 'unauthenticated':
-        return 'User is not authenticated';
-      case 'unauthorized':
-        return 'User is not authorized to perform this operation';
+        return 'User is not authenticated.';
+      case 'unavailable':
+        return 'Service is unavailable.';
+      case 'unimplemented':
+        return 'Operation not implemented.';
+      case 'network-request-failed':
+        return 'Network error. Check your connection.';
       case 'quota-exceeded':
-        return 'Storage quota exceeded';
-      case 'file-size-exceeds-limit':
-        return 'File size exceeds limit';
-      case 'unsupported-file-type':
-        return 'Unsupported file type';
-      case 'server-error':
-        return 'Server error occurred';
+        return 'Quota exceeded. Try again later.';
       default:
-        return 'File upload failed: $e';
+        return 'Database operation failed.';
     }
   }
 }

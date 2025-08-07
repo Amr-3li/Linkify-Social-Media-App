@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/Features/chat/data/model/message_model.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 
 class ChatSerImplement implements ChatSer {
   static FirebaseAuth auth = FirebaseAuth.instance;
@@ -17,7 +18,6 @@ class ChatSerImplement implements ChatSer {
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessage(
       String toId) async* {
     try {
-      // Query all unread messages in the conversation that were sent to the current user
       final unreadMessages = await firestore
           .collection('chat/${getConversationID(toId)}/messages')
           .where('toId',
@@ -25,7 +25,6 @@ class ChatSerImplement implements ChatSer {
                   user.uid) // Ensure only the receiver's messages are updated
           .get();
 
-      // Update all unread messages to "isRead: true" for the receiver
       final batch = firestore.batch();
       for (final doc in unreadMessages.docs) {
         batch.update(doc.reference, {'isRead': true});
@@ -61,8 +60,10 @@ class ChatSerImplement implements ChatSer {
 
     try {
       await firestore.collection(chatPath).doc(time).set(messageModel.toJson());
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {
-      throw Exception(e);
+      throw "something went wrong";
     }
   }
 
@@ -79,9 +80,5 @@ class ChatSerImplement implements ChatSer {
     } catch (e) {
       return const Stream.empty();
     }
-  }
-
-  int sum(int a, int b) {
-    return a + b;
   }
 }
