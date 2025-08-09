@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/helper/sharedperefrence_helper.dart';
 import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,6 +21,7 @@ Future<void> main() async {
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  SharedPreferencesHelper.init();
   setUpGitIt();
   runApp(const MyApp());
 }
