@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesHelper {
+class SharedPreferenceSengelton {
   static late SharedPreferences _instance;
 
   static Future<void> init() async {
@@ -16,4 +16,7 @@ class SharedPreferencesHelper {
   }
 
   static String getString(String key) => _instance.getString(key) ?? '';
+
+  static remove(String key) => _instance.remove(key);
+  static clear() => _instance.clear();
 }

@@ -3,19 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:linkify/core/services/sharedpreference_sengelton.dart';
 
 class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? get currentUser => auth.currentUser;
-  SharedPreferences? prefs;
 
   AuthWebServiceImplement();
 
   @override
   Future<String> signin(String username, String password) async {
     try {
-      prefs = await SharedPreferences.getInstance();
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: username,
         password: password,
@@ -25,15 +23,17 @@ class AuthWebServiceImplement implements AuthService {
         throw Exception("User not found after sign in.");
       }
       String id = user.uid;
-      prefs!.setString('uid', id);
+      SharedPreferenceSengelton.setString('uid', id);
       await FirebaseFirestore.instance
           .collection("users")
           .doc(id)
           .get()
           .then((value) {
         if (value.exists) {
-          prefs!.setString('userName', "${value.data()!['name']}");
-          prefs!.setString('userImage', value.data()!['image'] ?? "");
+          SharedPreferenceSengelton.setString(
+              'userName', "${value.data()!['name']}");
+          SharedPreferenceSengelton.setString(
+              'userImage', value.data()!['image'] ?? "");
         }
       });
       return id;
@@ -46,7 +46,6 @@ class AuthWebServiceImplement implements AuthService {
 
   @override
   Future<void> signout() async {
-    prefs = await SharedPreferences.getInstance();
     try {
       List<String> userProviders = currentUser!.providerData
           .map((userInfo) => userInfo.providerId)
@@ -67,9 +66,9 @@ class AuthWebServiceImplement implements AuthService {
       }
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
-      prefs!.remove('uid');
-      prefs!.remove('userName');
-      prefs!.remove('userImage');
+      SharedPreferenceSengelton.remove('uid');
+      SharedPreferenceSengelton.remove('userName');
+      SharedPreferenceSengelton.remove('userImage');
     } catch (e) {
       rethrow;
     }
@@ -86,7 +85,7 @@ class AuthWebServiceImplement implements AuthService {
     );
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-    prefs = await SharedPreferences.getInstance();
+
     String? id = userCredential.user?.uid;
     //مهمه to ensure that the user not exist in firebase if not exist add it
     DocumentSnapshot snapshot = await refs.doc(id).get();
@@ -102,9 +101,11 @@ class AuthWebServiceImplement implements AuthService {
         'phone': userCredential.user?.phoneNumber ?? "",
       });
     }
-    prefs!.setString('uid', id!);
-    prefs!.setString('userName', userCredential.user!.displayName!);
-    prefs!.setString('userImage', userCredential.user!.photoURL!);
+    SharedPreferenceSengelton.setString('uid', id!);
+    SharedPreferenceSengelton.setString(
+        'userName', userCredential.user!.displayName!);
+    SharedPreferenceSengelton.setString(
+        'userImage', userCredential.user!.photoURL!);
     return id;
   }
 }

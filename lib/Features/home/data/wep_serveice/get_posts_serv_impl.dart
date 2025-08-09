@@ -4,11 +4,10 @@ import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:linkify/core/services/sharedpreference_sengelton.dart';
 
 class GetPostsServImpl implements GetPostsServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  SharedPreferences? _prefs;
   List<PostModel> glopalPosts = [];
   int postsCount = 0;
 
@@ -125,7 +124,6 @@ class GetPostsServImpl implements GetPostsServ {
   // }
 
   Future<String> _getCurrentUserId() async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getString('uid')!;
+    return SharedPreferenceSengelton.getString('uid');
   }
 }

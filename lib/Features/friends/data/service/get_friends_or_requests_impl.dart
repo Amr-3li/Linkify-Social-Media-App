@@ -2,13 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/friends/data/service/get_friends_or_requests.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
+import 'package:linkify/core/services/sharedpreference_sengelton.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  SharedPreferences? _prefs;
-
   final List<UserModel> _globalFriends = [];
   final List<UserModel> _globalYourRequests = [];
   final List<UserModel> _globalFriendRequests = [];
@@ -18,8 +16,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   int _friendRequestsCount = 0;
 
   Future<String> _getCurrentUserId() async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getString('uid')!;
+    return SharedPreferenceSengelton.getString('uid');
   }
 
   @override

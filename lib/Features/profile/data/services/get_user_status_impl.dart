@@ -2,18 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/profile/data/services/get_user_status.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
+import 'package:linkify/core/services/sharedpreference_sengelton.dart';
 import 'package:path/path.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetUserStatusImpl implements GetUserStatus {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  SharedPreferences? prefs;
   @override
   Future<String> userStatus(String toId) async {
     try {
-      prefs = await SharedPreferences.getInstance();
-      final myId = prefs!.getString('uid');
-      if (equals(toId, myId!)) {
+      final myId = SharedPreferenceSengelton.getString('uid');
+      if (equals(toId, myId)) {
         return Constants.myAccount;
       } else {
         final response1 = await firestore

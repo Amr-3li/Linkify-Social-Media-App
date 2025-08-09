@@ -4,15 +4,13 @@ import 'package:linkify/Features/friends/data/service/friend_serv.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:linkify/core/services/sharedpreference_sengelton.dart';
 
 class AddFriendServImpl implements FriendServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  SharedPreferences? prefs;
 
   Future<String> _getCurrentUserId() async {
-    prefs ??= await SharedPreferences.getInstance();
-    return prefs!.getString("uid")!;
+    return SharedPreferenceSengelton.getString("uid");
   }
 
   @override
@@ -31,8 +29,8 @@ class AddFriendServImpl implements FriendServ {
       final notification = NotificationModel(
         time: DateTime.now().microsecondsSinceEpoch.toString(),
         fromUserId: fromId,
-        fromUserName: prefs!.getString('userName') ?? "",
-        fromUserImage: prefs!.getString('userImage') ?? "",
+        fromUserName: SharedPreferenceSengelton.getString('userName'),
+        fromUserImage: SharedPreferenceSengelton.getString('userImage'),
         isreading: false,
         numOfTypeReations: 0,
         discription: "sent you friend request",
@@ -91,8 +89,8 @@ class AddFriendServImpl implements FriendServ {
       final notification = NotificationModel(
           time: DateTime.now().microsecondsSinceEpoch.toString(),
           fromUserId: toId,
-          fromUserName: prefs!.getString('userName') ?? "",
-          fromUserImage: prefs!.getString('userImage') ?? "",
+          fromUserName: SharedPreferenceSengelton.getString('userName'),
+          fromUserImage: SharedPreferenceSengelton.getString('userImage'),
           isreading: false,
           numOfTypeReations: 0,
           discription: "accepted your friend request",
