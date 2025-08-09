@@ -24,14 +24,12 @@ class _FriendPageState extends State<FriendPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: MyColors.appBarColor,
           leading: const SizedBox(),
           centerTitle: true,
           title: const Text("Friends",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         ),
-        backgroundColor: MyColors.backgroundColor,
         body: Column(children: [
           Container(
               padding: const EdgeInsets.all(10),

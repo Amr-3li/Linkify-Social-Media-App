@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class NotificationAppbar extends StatelessWidget
@@ -9,7 +8,6 @@ class NotificationAppbar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColors.appBarColor,
       elevation: 0,
       leading: IconButton(
         onPressed: () {

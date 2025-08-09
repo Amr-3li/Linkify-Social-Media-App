@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/lovers_body.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class LovesPage extends StatelessWidget {
@@ -15,7 +14,6 @@ class LovesPage extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20)),
-        backgroundColor: MyColors.appBarColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(10),

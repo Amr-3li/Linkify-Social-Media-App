@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_page_body.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 
 class CommentsPage extends StatelessWidget {
@@ -9,14 +8,13 @@ class CommentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-          title: const Text(
-            Constants.comments,
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
-          ),
-          backgroundColor: MyColors.appBarColor),
+        title: const Text(
+          Constants.comments,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
+        ),
+      ),
       body: CommentsPageBody(
         postTime: postTime,
       ),

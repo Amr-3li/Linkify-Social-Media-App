@@ -11,7 +11,7 @@ class HomePageAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: MyColors.appBarColor,
+      backgroundColor: MyColors.primaryColor,
       floating: true,
       snap: true,
       leading: IconButton(

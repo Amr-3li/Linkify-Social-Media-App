@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/images.dart';
 
 class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,7 +15,6 @@ class ChatPageAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColors.mainChat,
       titleSpacing: 0,
       title: Row(
         children: [

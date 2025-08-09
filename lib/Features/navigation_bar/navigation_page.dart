@@ -31,7 +31,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.backgroundColor,
       drawer: const HomeDrawer(),
       body: PageView.builder(
         itemCount: pages.length,
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.symmetric(),
       height: 60,
       decoration: const BoxDecoration(
-        color: MyColors.appBarColor,
+        color: MyColors.primaryColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
       ),

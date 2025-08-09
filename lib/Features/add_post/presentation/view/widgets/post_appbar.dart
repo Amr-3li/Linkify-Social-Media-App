@@ -5,7 +5,6 @@ import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PostAppBar({super.key});
@@ -13,7 +12,6 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColors.appBarColor,
       leadingWidth: double.infinity,
       leading: BlocBuilder<UserCubit, UserState>(
         builder: (context, state) {

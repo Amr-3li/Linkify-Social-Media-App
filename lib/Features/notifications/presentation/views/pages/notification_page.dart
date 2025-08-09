@@ -10,7 +10,6 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: const NotificationAppbar(),
         body: RefreshIndicator(
             onRefresh: () async {

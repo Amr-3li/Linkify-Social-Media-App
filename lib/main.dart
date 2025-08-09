@@ -2,6 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:linkify/Features/connectivity/disconnected_page.dart';
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
       routerConfig: AppRouter.appRouter,
       title: 'Linkify',
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       builder: (context, child) {
         return StreamBuilder<List<ConnectivityResult>>(
             stream: Connectivity().onConnectivityChanged,

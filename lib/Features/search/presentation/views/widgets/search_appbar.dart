@@ -31,7 +31,7 @@ class _SearchAppbarState extends State<SearchAppbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: MyColors.appBarColor,
+        backgroundColor: MyColors.primaryColor,
         leading: const SizedBox(),
         leadingWidth: 50,
         title: Row(
