@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:linkify/core/services/sharedpreference_sengelton.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 
 class AuthWebServiceImplement implements AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -23,16 +23,16 @@ class AuthWebServiceImplement implements AuthService {
         throw Exception("User not found after sign in.");
       }
       String id = user.uid;
-      SharedPreferenceSengelton.setString('uid', id);
+      SharedPreferenceSingelton.setString('uid', id);
       await FirebaseFirestore.instance
           .collection("users")
           .doc(id)
           .get()
           .then((value) {
         if (value.exists) {
-          SharedPreferenceSengelton.setString(
+          SharedPreferenceSingelton.setString(
               'userName', "${value.data()!['name']}");
-          SharedPreferenceSengelton.setString(
+          SharedPreferenceSingelton.setString(
               'userImage', value.data()!['image'] ?? "");
         }
       });
@@ -66,9 +66,9 @@ class AuthWebServiceImplement implements AuthService {
       }
       // تسجيل الخروج من Firebase Auth بعد التعامل مع الـ providers
       await auth.signOut();
-      SharedPreferenceSengelton.remove('uid');
-      SharedPreferenceSengelton.remove('userName');
-      SharedPreferenceSengelton.remove('userImage');
+      SharedPreferenceSingelton.remove('uid');
+      SharedPreferenceSingelton.remove('userName');
+      SharedPreferenceSingelton.remove('userImage');
     } catch (e) {
       rethrow;
     }
@@ -101,10 +101,10 @@ class AuthWebServiceImplement implements AuthService {
         'phone': userCredential.user?.phoneNumber ?? "",
       });
     }
-    SharedPreferenceSengelton.setString('uid', id!);
-    SharedPreferenceSengelton.setString(
+    SharedPreferenceSingelton.setString('uid', id!);
+    SharedPreferenceSingelton.setString(
         'userName', userCredential.user!.displayName!);
-    SharedPreferenceSengelton.setString(
+    SharedPreferenceSingelton.setString(
         'userImage', userCredential.user!.photoURL!);
     return id;
   }

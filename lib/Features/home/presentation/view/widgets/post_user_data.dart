@@ -27,8 +27,10 @@ class PostUserData extends StatelessWidget {
           },
           child: Text(
             name,
-            style: const TextStyle(
-                fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
+            style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.w500),
           ),
         ),
         const SizedBox(height: 2),

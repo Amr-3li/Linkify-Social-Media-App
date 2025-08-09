@@ -11,7 +11,7 @@ class HomePageAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: MyColors.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.onPrimary,
       floating: true,
       snap: true,
       leading: IconButton(
@@ -28,19 +28,21 @@ class HomePageAppBar extends StatelessWidget {
           onPressed: () {
             GoRouter.of(context).push('/notificationPage');
           },
-          icon: const Badge(
+          icon: Badge(
               smallSize: 8,
               child: Icon(Icons.notifications_outlined,
-                  color: MyColors.fontColor, size: 30)),
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                  size: 30)),
         ),
         IconButton(
           onPressed: () {
             GoRouter.of(context).push('/chatHomePage');
           },
-          icon: const Badge(
+          icon: Badge(
               smallSize: 8,
               child: Icon(Icons.forum_outlined,
-                  color: MyColors.fontColor, size: 30)),
+                  color: Theme.of(context).colorScheme.inverseSurface,
+                  size: 30)),
         )
       ],
       title: Row(

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/profile/data/services/get_user_status.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:linkify/core/services/sharedpreference_sengelton.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:path/path.dart';
 
 class GetUserStatusImpl implements GetUserStatus {
@@ -10,7 +10,7 @@ class GetUserStatusImpl implements GetUserStatus {
   @override
   Future<String> userStatus(String toId) async {
     try {
-      final myId = SharedPreferenceSengelton.getString('uid');
+      final myId = SharedPreferenceSingelton.getString('uid');
       if (equals(toId, myId)) {
         return Constants.myAccount;
       } else {

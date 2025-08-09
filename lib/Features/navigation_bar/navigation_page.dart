@@ -54,9 +54,9 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.symmetric(),
       height: 60,
-      decoration: const BoxDecoration(
-        color: MyColors.primaryColor,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onPrimary,
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
       ),
       child: Row(

@@ -16,14 +16,14 @@ class PostContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-                color: MyColors.shadowColor,
+                color: Theme.of(context).colorScheme.shadow,
                 blurRadius: 20,
-                offset: Offset(0, 10))
+                offset: const Offset(0, 10))
           ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

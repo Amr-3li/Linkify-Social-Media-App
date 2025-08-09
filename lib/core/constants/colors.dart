@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 abstract class MyColors {
@@ -27,9 +26,10 @@ abstract class MyColors {
   static const Color darkBackgroundColor = Color(0xFF121212);
   static const Color darkShadowColor = Color(0xFF1E1E1E);
   static const Color darkFontColor = Colors.white;
-  static const Color darkPrimaryColor = Color(0xFF6CD4C4); // فاتح على الأسود
+  static const Color darkPrimaryColor =
+      Color.fromARGB(255, 40, 78, 73); // فاتح على الأسود
   static const Color darkButtonColor = Color(0xFF009688);
-  static const Color darkIconColor = Color(0xFFB0B0B0);
+  static const Color darkIconColor = Color.fromARGB(255, 215, 215, 215);
   static const Color darkIconNavColor = Color(0xFF1E1E1E);
   static const Color darkIconActiveColor = Color(0xFF6CD4C4);
   static const Color darkTextColor = Color(0xFFB0B0B0);

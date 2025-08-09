@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/core/services/sharedpreference_sengelton.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,7 +21,7 @@ Future<void> main() async {
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  SharedPreferenceSengelton.init();
+  SharedPreferenceSingelton.init();
   setUpGitIt();
   runApp(const MyApp());
 }
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       routerConfig: AppRouter.appRouter,
       title: 'Linkify',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       builder: (context, child) {

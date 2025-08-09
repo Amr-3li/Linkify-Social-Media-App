@@ -4,7 +4,7 @@ import 'package:linkify/Features/home/data/Models/lover_model.dart';
 import 'package:linkify/Features/home/data/wep_serveice/get_posts_serv.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
-import 'package:linkify/core/services/sharedpreference_sengelton.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 
 class GetPostsServImpl implements GetPostsServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -124,6 +124,6 @@ class GetPostsServImpl implements GetPostsServ {
   // }
 
   Future<String> _getCurrentUserId() async {
-    return SharedPreferenceSengelton.getString('uid');
+    return SharedPreferenceSingelton.getString('uid');
   }
 }
