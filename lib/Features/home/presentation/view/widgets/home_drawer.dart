@@ -9,16 +9,17 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
+    return Drawer(
       width: 290,
       clipBehavior: Clip.hardEdge,
       elevation: 5,
       semanticLabel: 'Navigation Drawer',
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(bottomRight: Radius.circular(250.0)),
+      shape: const RoundedRectangleBorder(
+        borderRadius:
+            const BorderRadius.only(bottomRight: const Radius.circular(250.0)),
       ),
-      backgroundColor: MyColors.backgroundColor,
-      child: DrawerBody(),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      child: const DrawerBody(),
     );
   }
 }

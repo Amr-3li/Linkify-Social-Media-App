@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.symmetric(),
       height: 60,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
       ),

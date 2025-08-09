@@ -53,33 +53,43 @@ class DrawerBody extends StatelessWidget {
         ),
         ListTile(
           leading: const Icon(Icons.help, color: MyColors.iconColor),
-          title: const Text(Constants.help,
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+          title: Text(Constants.help,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 20)),
           onTap: () => GoRouter.of(context).push(HelpPage.routeName),
         ),
         ListTile(
           leading: const Icon(Icons.info, color: MyColors.iconColor),
-          title: const Text(Constants.aboutUs,
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+          title: Text(Constants.aboutUs,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 20)),
           onTap: () => GoRouter.of(context).push(AboutUsPaga.routeName),
         ),
         const Divider(),
-        const ListTile(
-          leading: Icon(Icons.share, color: MyColors.iconColor),
+        ListTile(
+          leading: const Icon(Icons.share, color: MyColors.iconColor),
           title: Text(Constants.share,
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 20)),
         ),
-        const ListTile(
-          leading: Icon(Icons.rate_review, color: MyColors.iconColor),
+        ListTile(
+          leading: const Icon(Icons.rate_review, color: MyColors.iconColor),
           title: Text(Constants.rateUs,
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 20)),
         ),
         const Divider(),
         ListTile(
           leading:
               const Icon(Icons.logout, color: Color.fromARGB(255, 198, 0, 0)),
-          title: const Text(Constants.logout,
-              style: TextStyle(color: MyColors.fontColor, fontSize: 20)),
+          title: Text(Constants.logout,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 20)),
           onTap: () async {
             Navigator.pop(context);
             await BlocProvider.of<AuthCubit>(context).signout();

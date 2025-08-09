@@ -34,7 +34,7 @@ class _FriendPageState extends State<FriendPage> {
           Container(
               padding: const EdgeInsets.all(10),
               width: double.infinity,
-              color: MyColors.backgroundColor,
+              color: Theme.of(context).colorScheme.background,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -79,16 +79,16 @@ class _FriendPageState extends State<FriendPage> {
       child: Column(
         children: [
           Text(title,
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: MyColors.iconActiveColor)),
+                  color: Theme.of(context).colorScheme.secondary)),
           currentIndex == index
               ? Container(
                   margin: const EdgeInsets.only(top: 7),
                   width: 70,
                   height: 2.5,
-                  color: Colors.black)
+                  color: Theme.of(context).colorScheme.inverseSurface)
               : const SizedBox(),
         ],
       ),

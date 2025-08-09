@@ -33,7 +33,7 @@ class SplashBody extends StatelessWidget {
             Constants.welcome,
             style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.05,
-              color: const Color(0xff00D2C1),
+              color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.w900,
             ),
           ),
