@@ -27,7 +27,7 @@ class FromMessage extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: MyColors.fromMessage,
+                    color: Theme.of(context).colorScheme.onTertiary,
                     border:
                         Border.all(color: MyColors.fromMessageBorder, width: 2),
                     borderRadius: const BorderRadius.only(
@@ -65,15 +65,16 @@ class FromMessage extends StatelessWidget {
                               horizontal: 2.0, vertical: 3),
                           child: Text(
                             message.msg!,
-                            style: const TextStyle(
-                                color: Colors.black, fontSize: 16),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontSize: 16),
                           ),
                         ),
                     ],
                   ),
                 )
               : VoiceMessageView(
-                  backgroundColor: MyColors.fromMessage,
+                  backgroundColor: Theme.of(context).colorScheme.onTertiary,
                   controller: VoiceController(
                     audioSrc: message.recordUrl!,
                     maxDuration: const Duration(minutes: 10),
@@ -85,9 +86,9 @@ class FromMessage extends StatelessWidget {
                       log(err.toString());
                     },
                   ),
-                  circlesColor: const Color.fromARGB(194, 0, 66, 66),
-                  innerPadding: 12,
-                  cornerRadius: 20,
+                  circlesColor: Theme.of(context).colorScheme.secondary,
+                  innerPadding: 8,
+                  cornerRadius: 30,
                 ),
         ),
         Padding(

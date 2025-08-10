@@ -31,7 +31,7 @@ class ToMessage extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: MyColors.mainChat,
+                    color: Theme.of(context).colorScheme.onTertiaryContainer,
                     border:
                         Border.all(color: MyColors.toMessageBorder, width: 2),
                     borderRadius: const BorderRadius.only(
@@ -69,28 +69,35 @@ class ToMessage extends StatelessWidget {
                               horizontal: 5.0, vertical: 3),
                           child: Text(
                             message.msg!,
-                            style: const TextStyle(
-                                color: Color(0xff333333), fontSize: 16),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontSize: 16),
                           ),
                         ),
                     ],
                   ),
                 )
-              : VoiceMessageView(
-                  controller: VoiceController(
-                    audioSrc: message.recordUrl!,
-                    maxDuration: const Duration(minutes: 10),
-                    isFile: false,
-                    onComplete: () async {},
-                    onPause: () async {},
-                    onPlaying: () async {},
-                    onError: (err) {
-                      log(err.toString());
-                    },
+              : Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: VoiceMessageView(
+                    backgroundColor:
+                        Theme.of(context).colorScheme.onTertiaryContainer,
+                    controller: VoiceController(
+                      audioSrc: message.recordUrl!,
+                      maxDuration: const Duration(minutes: 10),
+                      isFile: false,
+                      onComplete: () async {},
+                      onPause: () async {},
+                      onPlaying: () async {},
+                      onError: (err) {
+                        log(err.toString());
+                      },
+                    ),
+                    circlesColor:
+                        Theme.of(context).colorScheme.onTertiaryContainer,
+                    innerPadding: 8,
+                    cornerRadius: 30,
                   ),
-                  circlesColor: MyColors.toMessageBorder,
-                  innerPadding: 12,
-                  cornerRadius: 20,
                 ),
         )
       ],

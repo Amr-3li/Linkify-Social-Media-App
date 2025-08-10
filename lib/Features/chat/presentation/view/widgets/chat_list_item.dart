@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class ChatListItem extends StatelessWidget {
   const ChatListItem({
@@ -23,7 +22,8 @@ class ChatListItem extends StatelessWidget {
       ),
       title: Text(
         toUser.name,
-        style: const TextStyle(color: MyColors.fontColor, fontSize: 15),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface, fontSize: 15),
       ),
       trailing: const ChatItemTrailingComponent(),
       onTap: () {
