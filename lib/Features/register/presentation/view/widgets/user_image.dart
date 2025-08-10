@@ -57,7 +57,7 @@ class _UserImageState extends State<UserImage> {
                       )),
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: const Color.fromARGB(255, 15, 0, 101),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     child: IconButton(
                         onPressed: () {},
                         icon: const Icon(

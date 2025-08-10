@@ -15,7 +15,7 @@ class AppTheme {
       primary: MyColors.primaryColor,
       secondary: MyColors.buttonColor,
       onBackground: MyColors.backgroundColor,
-      tertiary: const Color.fromARGB(255, 195, 204, 205),
+      tertiary: const Color.fromARGB(255, 194, 194, 194),
     ),
     brightness: Brightness.light,
     primaryColor: MyColors.primaryColor,

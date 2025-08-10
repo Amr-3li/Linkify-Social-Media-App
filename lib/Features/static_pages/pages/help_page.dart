@@ -20,7 +20,6 @@ class HelpPage extends StatelessWidget {
             _buildSectionHeader(context, 'Frequently Asked Questions'),
             const SizedBox(height: 16),
             ..._buildFAQItems(),
-            const Spacer(),
             _buildSupportSection(context),
           ],
         ),

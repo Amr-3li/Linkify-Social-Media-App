@@ -53,7 +53,8 @@ class _SignupPageState extends State<SignupPage> {
       builder: (context, state) {
         return Scaffold(
           body: Container(
-            decoration: const BoxDecoration(color: Colors.white),
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.background),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -66,10 +67,10 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(
                       height: 40,
                     ),
-                    const Text(
+                    Text(
                       Constants.signUpPage,
                       style: TextStyle(
-                          color: Color.fromARGB(200, 91, 91, 91),
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 45,
                           fontWeight: FontWeight.bold),
                     ),
@@ -82,7 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(100, 20, 20, 20),
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                       child: Form(
                         key: keyform,
@@ -94,7 +95,7 @@ class _SignupPageState extends State<SignupPage> {
                                 imageFile = image;
                               },
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 10),
                             UserInformations(
                               isFemale: isFemale,
                               isMale: isMale,
@@ -137,8 +138,9 @@ class _SignupPageState extends State<SignupPage> {
                                         fixedSize: const Size(500, 60),
                                         animationDuration:
                                             const Duration(seconds: 2),
-                                        backgroundColor: const Color.fromARGB(
-                                            199, 69, 69, 135)),
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
                                     child: const Text(
                                       Constants.signUp,
                                       style: TextStyle(

@@ -34,8 +34,8 @@ class LoginPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 255, 255),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.background,
             ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -49,10 +49,10 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    const Text(
+                    Text(
                       Constants.loginPage,
                       style: TextStyle(
-                          color: Color.fromARGB(200, 108, 108, 108),
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 50,
                           fontWeight: FontWeight.bold),
                     ),
@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(100, 20, 20, 20),
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                       child: Form(
                         key: formKey,
@@ -119,8 +119,9 @@ class LoginPage extends StatelessWidget {
                                         fixedSize: const Size(500, 60),
                                         animationDuration:
                                             const Duration(seconds: 2),
-                                        backgroundColor: const Color.fromARGB(
-                                            199, 69, 69, 135)),
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
                                     child: const Text(
                                       Constants.login,
                                       style: TextStyle(
@@ -135,7 +136,7 @@ class LoginPage extends StatelessWidget {
                                 ? const SizedBox()
                                 : signupButton(context),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             state is SigninLoading ||
                                     state is SigninWithGoogleLoading
@@ -200,19 +201,15 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton signupButton(BuildContext context) {
-    return ElevatedButton(
+  TextButton signupButton(BuildContext context) {
+    return TextButton(
+      child: const Text(
+        Constants.dontHaveAccount,
+        style: TextStyle(color: Colors.white),
+      ),
       onPressed: () {
         GoRouter.of(context).push('/signupPage');
       },
-      style: ElevatedButton.styleFrom(
-          fixedSize: const Size(500, 60),
-          animationDuration: const Duration(seconds: 2),
-          backgroundColor: const Color.fromARGB(217, 255, 255, 255)),
-      child: const Text(
-        "Register",
-        style: TextStyle(fontSize: 20),
-      ),
     );
   }
 }

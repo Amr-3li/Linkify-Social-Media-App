@@ -92,7 +92,7 @@ class Constants {
       "the password reset successfully";
   static const String resetPasswordFaild = "reset password faild";
   static const String changePassword = "change password";
-
+  static const String dontHaveAccount = "Don't have an account?";
   // ==================== App Settings ====================
   static const String settings = "Settings";
   static const String updateUserData = "update user data";

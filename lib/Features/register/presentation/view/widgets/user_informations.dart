@@ -42,26 +42,25 @@ class _UserInformationsState extends State<UserInformations> {
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: InputTextField(
-                  controller: widget.lnameController,
-                  hintText: Constants.lastName),
-            ),
+                child: InputTextField(
+                    controller: widget.lnameController,
+                    hintText: Constants.lastName)),
           ],
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         InputTextField(
             controller: widget.emailController, hintText: Constants.email),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         InputTextField(
             controller: widget.phoneController,
             hintText: Constants.phone,
             isnumber: true),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         InputTextField(
             controller: widget.passwordController,
             hintText: Constants.password,
             isPassword: true),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         Row(
           children: [
             Checkbox(
@@ -87,7 +86,7 @@ class _UserInformationsState extends State<UserInformations> {
                 style: TextStyle(color: Colors.white, fontSize: 20)),
           ],
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 10),
       ],
     );
   }
