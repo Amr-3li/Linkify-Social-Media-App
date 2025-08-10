@@ -65,7 +65,7 @@ class DrawerBody extends StatelessWidget {
               style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 20)),
-          onTap: () => GoRouter.of(context).push(AboutUsPaga.routeName),
+          onTap: () => GoRouter.of(context).push(AboutUsPage.routeName),
         ),
         const Divider(),
         ListTile(

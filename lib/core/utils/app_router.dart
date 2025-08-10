@@ -174,8 +174,8 @@ abstract class AppRouter {
                 CommentsPage(postTime: "${state.pathParameters['postTime']}")),
       ),
       GoRoute(
-          path: AboutUsPaga.routeName,
-          builder: (context, state) => const AboutUsPaga()),
+          path: AboutUsPage.routeName,
+          builder: (context, state) => const AboutUsPage()),
       GoRoute(
           path: HelpPage.routeName,
           builder: (context, state) => const HelpPage()),
