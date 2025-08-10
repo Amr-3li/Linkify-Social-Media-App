@@ -67,19 +67,25 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
         const SizedBox(height: 10),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
-          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: MyColors.iconNavColor,
+            color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             children: [
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   controller: _commentController,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     hintText: Constants.writeComment,
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.background,
+                  ),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                   maxLines: 3,
                   minLines: 1,

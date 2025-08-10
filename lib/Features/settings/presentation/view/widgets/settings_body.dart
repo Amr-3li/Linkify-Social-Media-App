@@ -61,8 +61,7 @@ class SettingsBody extends StatelessWidget {
   Future openDialog(BuildContext context) => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Colors.white,
-          contentPadding: const EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(0),
           content: BlocProvider(
             create: (context) => UserCubit(gitItInstanse<UserDataRepo>()),
             child: DialogBody(

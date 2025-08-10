@@ -36,6 +36,7 @@ class InputDataWidgit extends StatelessWidget {
         labelStyle: TextStyle(color: color!),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderSide: BorderSide(color: Colors.transparent),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: color!.withOpacity(0.3), width: 2),
