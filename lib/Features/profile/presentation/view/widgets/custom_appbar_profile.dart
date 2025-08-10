@@ -56,14 +56,8 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
               icon: const Icon(Icons.edit),
             ),
           ],
-          backgroundColor: MyColors.light,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
-          ),
-          expandedHeight: 280,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          expandedHeight: 200,
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: const EdgeInsets.only(bottom: 10),
             title: Text(widget.name),
@@ -72,16 +66,12 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
               tag: "profile-page",
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50),
-                    ),
                     image: DecorationImage(
-                      image: widget.image == ""
-                          ? const AssetImage(MyImages.imagesUserImage)
-                          : CachedNetworkImageProvider(widget.image),
-                      fit: BoxFit.cover,
-                    )),
+                  image: widget.image == ""
+                      ? const AssetImage(MyImages.imagesUserImage)
+                      : CachedNetworkImageProvider(widget.image),
+                  fit: BoxFit.cover,
+                )),
               ),
             ),
           ),

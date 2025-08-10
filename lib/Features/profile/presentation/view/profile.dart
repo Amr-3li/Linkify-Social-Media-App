@@ -18,7 +18,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.backgroundColor,
       body: BlocBuilder<GetUserDataCubit, GetUserDataState>(
         builder: (context, state) {
           if (state is GetUserDataLoaded) {
@@ -38,15 +37,15 @@ class ProfilePage extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
                       boxShadow: [
                         BoxShadow(
-                            color: MyColors.shadowColor,
+                            color: Theme.of(context).colorScheme.shadow,
                             blurRadius: 10,
-                            offset: Offset(0, 10))
+                            offset: const Offset(0, 10))
                       ],
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                     ),
                     child: ProfileInformation(user: state.user),
                   ),
