@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/drawer_body.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -16,9 +15,9 @@ class HomeDrawer extends StatelessWidget {
       semanticLabel: 'Navigation Drawer',
       shape: const RoundedRectangleBorder(
         borderRadius:
-            const BorderRadius.only(bottomRight: const Radius.circular(250.0)),
+            BorderRadius.only(bottomRight: Radius.circular(250.0)),
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: const DrawerBody(),
     );
   }

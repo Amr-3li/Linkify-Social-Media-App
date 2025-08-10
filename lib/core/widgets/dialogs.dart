@@ -11,6 +11,7 @@ class Dialogs {
   static Future<dynamic> deletePostDialog(
       BuildContext context, String userId, String time) {
     return showDialog(
+      barrierColor: Colors.transparent,
       context: context,
       builder: (context) => BlocProvider(
         create: (context) => PostControlCubit(gitItInstanse<PostControlRepo>()),

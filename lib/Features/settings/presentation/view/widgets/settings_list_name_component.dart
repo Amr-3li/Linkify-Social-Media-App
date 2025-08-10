@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/constants.dart';
 
 class ListNameComponent extends StatelessWidget {
   const ListNameComponent({
@@ -10,14 +9,14 @@ class ListNameComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
+    return ListTile(
       minTileHeight: 30,
       titleAlignment: ListTileTitleAlignment.center,
-      title: Text(Constants.general,
-          style: TextStyle(
+      title: Text(name,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           )),
-      tileColor: Color.fromARGB(255, 195, 204, 205),
+      tileColor: Theme.of(context).colorScheme.tertiary,
     );
   }
 }

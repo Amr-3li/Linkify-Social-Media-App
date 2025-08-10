@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -21,11 +20,11 @@ class CustomButton extends StatelessWidget {
         height: 55,
         decoration: BoxDecoration(
           color: color,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-                color: MyColors.shadowColor,
+                color: Theme.of(context).colorScheme.shadow,
                 blurRadius: 20,
-                offset: Offset(0, 10))
+                offset: const Offset(0, 10))
           ],
           borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),

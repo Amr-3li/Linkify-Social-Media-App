@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/images.dart';
 
 class HomePageAppBar extends StatelessWidget {

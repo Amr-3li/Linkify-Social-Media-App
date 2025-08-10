@@ -15,15 +15,10 @@ class SettingsPage extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
-          const SliverAppBar(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(10),
-              ),
-            ),
-            leading: SizedBox(),
-            title: Text(Constants.settings),
-            backgroundColor: MyColors.backgroundColor,
+          SliverAppBar(
+            leading: const SizedBox(),
+            title: const Text(Constants.settings),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             centerTitle: true,
           )
         ];

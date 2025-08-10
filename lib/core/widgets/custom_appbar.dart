@@ -8,7 +8,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColors.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       elevation: 0,
       leading: IconButton(
         onPressed: () {

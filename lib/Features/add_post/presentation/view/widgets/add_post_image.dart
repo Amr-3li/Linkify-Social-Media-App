@@ -31,9 +31,9 @@ class _AddPostImageState extends State<AddPostImage> {
               margin: const EdgeInsets.all(20),
               width: double.infinity,
               height: 200,
-              decoration: const BoxDecoration(
-                color: MyColors.iconNavColor,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
               ),
               child: Image.asset(
                 MyIcons.iconsAddImage,

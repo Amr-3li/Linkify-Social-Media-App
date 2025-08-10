@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class PostContainer extends StatelessWidget {
   const PostContainer({

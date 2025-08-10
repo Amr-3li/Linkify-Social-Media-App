@@ -7,7 +7,6 @@ import 'package:linkify/Features/friends/presentation/cubit/get_your_requests/ge
 import 'package:linkify/Features/friends/presentation/view/widgets/friend_requests_list.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/my_friend_list.dart';
 import 'package:linkify/Features/friends/presentation/view/widgets/my_requests_list.dart';
-import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 
@@ -34,7 +33,7 @@ class _FriendPageState extends State<FriendPage> {
           Container(
               padding: const EdgeInsets.all(10),
               width: double.infinity,
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
