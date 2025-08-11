@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
         return Scaffold(
           body: Container(
             decoration:
-                BoxDecoration(color: Theme.of(context).colorScheme.background),
+                BoxDecoration(color: Theme.of(context).colorScheme.surface),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,

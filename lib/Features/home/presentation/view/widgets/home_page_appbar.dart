@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:linkify/Features/notifications/data/repositories/get_notifications_repo.dart';
-import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/core/constants/images.dart';
-import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/exports/app_router.dart';
 
 class HomePageAppBar extends StatelessWidget {

@@ -40,8 +40,8 @@ class CommentContainer extends StatelessWidget {
             children: [
               Text(
                 commentModel.userName,
-                style: const TextStyle(
-                    color: Colors.black,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.bold,
                     fontSize: 16),
               ),
@@ -53,7 +53,7 @@ class CommentContainer extends StatelessWidget {
           ),
           subtitle: Text(
             commentModel.comment,
-            style: const TextStyle(color: Colors.black),
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
             maxLines: 17,
             overflow: TextOverflow.ellipsis,
           ),

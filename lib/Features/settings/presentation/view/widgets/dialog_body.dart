@@ -23,7 +23,7 @@ class DialogBody extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
       ),
       width: double.infinity,
       child: SingleChildScrollView(
@@ -91,7 +91,7 @@ class DialogBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         backgroundColor:
-                            Theme.of(context).colorScheme.background),
+                            Theme.of(context).colorScheme.surface),
                     child: Text(Constants.cansel,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,

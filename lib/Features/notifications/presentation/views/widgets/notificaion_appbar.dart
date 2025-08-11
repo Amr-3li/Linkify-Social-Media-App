@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/exports/app_router.dart';
 

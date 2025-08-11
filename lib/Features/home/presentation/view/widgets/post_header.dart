@@ -38,7 +38,7 @@ class PostHeader extends StatelessWidget {
             final Offset offset = renderBox.localToGlobal(Offset.zero);
             final Size size = renderBox.size;
             showMenu(
-              color: Theme.of(context).colorScheme.surfaceVariant,
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
               shadowColor: const Color.fromARGB(255, 180, 180, 180),
               position: RelativeRect.fromLTRB(
                 offset.dx, // الـ x بتاع الـ IconButton

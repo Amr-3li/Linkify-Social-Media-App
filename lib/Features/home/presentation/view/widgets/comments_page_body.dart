@@ -68,7 +68,7 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -82,7 +82,7 @@ class _CommentsPageBodyState extends State<CommentsPageBody> {
                     ),
                     hintText: Constants.writeComment,
                     filled: true,
-                    fillColor: Theme.of(context).colorScheme.background,
+                    fillColor: Theme.of(context).colorScheme.surface,
                   ),
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,

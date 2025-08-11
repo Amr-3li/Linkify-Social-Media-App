@@ -56,7 +56,7 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
               icon: const Icon(Icons.edit),
             ),
           ],
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           expandedHeight: 200,
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: const EdgeInsets.only(bottom: 10),

@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
         return Scaffold(
           body: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
             ),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
