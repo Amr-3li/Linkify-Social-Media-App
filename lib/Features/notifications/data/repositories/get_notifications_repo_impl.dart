@@ -41,6 +41,16 @@ class GetNotificationsRepoImpl implements GetNotificationsRepo {
   }
 
   @override
+  Future<Either<Failure, int>> noOfUnreadNotifications() async {
+    try {
+      int response = await services.noOfUnreadNotifications();
+      return Right(response);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
   bool get hasMore => services.hasMore;
 
   @override

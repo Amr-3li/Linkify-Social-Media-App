@@ -7,6 +7,7 @@ abstract class GetNotificationsRepo {
   Future<Either<Failure, List<NotificationModel>>> getNotifications(
       {bool refresh = false});
   Future<Either<Failure, void>> readAllNotifications();
+  Future<Either<Failure, int>> noOfUnreadNotifications();
   Future<Either<Failure, void>> deleteNotification(String notificationId);
   void resetPagination();
 }

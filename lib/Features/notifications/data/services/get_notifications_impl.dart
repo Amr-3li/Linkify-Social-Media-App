@@ -65,26 +65,37 @@ class GetNotificationsImpl implements GetNotifications {
   @override
   Future<void> readAllNotifications() async {
     try {
-      final user = FirebaseAuth.instance.currentUser;
-      if (user == null) throw 'User not authenticated';
-
-      final notificationsRef = FirebaseFirestore.instance
+      final notificationsRef = firestore
           .collection('users')
           .doc(user.uid)
           .collection('notifications');
       final querySnapshot =
-          await notificationsRef.where('isReading', isEqualTo: false).get();
-      print('Number of unread notifications: ${querySnapshot.docs.length}');
+          await notificationsRef.where('isreading', isEqualTo: false).get();
       final batch = FirebaseFirestore.instance.batch();
 
       for (final doc in querySnapshot.docs) {
-        batch.update(doc.reference, {'isReading': true});
+        batch.update(doc.reference, {'isreading': true});
       }
       if (querySnapshot.docs.isNotEmpty) {
         await batch.commit();
       }
-      print('All notifications marked as read.' +
-          querySnapshot.docs.length.toString());
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw 'Failed to update notifications. Please try again.';
+    }
+  }
+
+  @override
+  Future<int> noOfUnreadNotifications() async {
+    try {
+      final notificationsRef = firestore
+          .collection('users')
+          .doc(user.uid)
+          .collection('notifications');
+      final querySnapshot =
+          await notificationsRef.where('isreading', isEqualTo: false).get();
+      return querySnapshot.docs.length;
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {

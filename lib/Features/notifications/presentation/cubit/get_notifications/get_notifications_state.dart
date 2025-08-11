@@ -19,3 +19,17 @@ final class GetNotificationsFaild extends GetNotificationsState {
 }
 
 final class GetNotificationsLoading extends GetNotificationsState {}
+
+//============= Get number of unread notifications ================
+
+final class GetUnreadNotificationsSuccess extends GetNotificationsState {
+  final int noOfUnreadNotifications;
+  GetUnreadNotificationsSuccess(this.noOfUnreadNotifications);
+}
+
+final class GetUnreadNotificationsFaild extends GetNotificationsState {
+  String message;
+  GetUnreadNotificationsFaild(this.message);
+}
+
+final class GetUnreadNotificationsLoading extends GetNotificationsState {}

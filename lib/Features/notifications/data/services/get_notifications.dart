@@ -5,5 +5,6 @@ abstract class GetNotifications {
   Future<List<NotificationModel>> getNotifications({bool refresh = false});
   Future<void> deleteNotification(String notificationId);
   Future<void> readAllNotifications();
+  Future<int> noOfUnreadNotifications();
   void resetPagination();
 }

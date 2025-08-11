@@ -53,4 +53,11 @@ class GetNotificationsCubit extends Cubit<GetNotificationsState> {
 
     loadInitialNotifications();
   }
+
+  Future<void> noOfUnreadNotifications() async {
+    final response = await repo.noOfUnreadNotifications();
+    response.fold((l) => emit(GetUnreadNotificationsFaild(l.errMessage)), (r) {
+      emit(GetUnreadNotificationsSuccess(r));
+    });
+  }
 }

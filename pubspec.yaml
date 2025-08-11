@@ -25,7 +25,7 @@ dependencies:
   firebase_storage: ^12.3.4
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.1
   flutter_launcher_icons: ^0.14.1
   flutter_sound: ^9.24.4
   flutter_speed_dial: ^7.0.0
@@ -42,7 +42,7 @@ dependencies:
   sizer: ^3.0.0
   skeletonizer: ^2.0.1
   supabase_flutter: ^2.8.1
-  syncfusion_flutter_sliders: ^28.1.38  
+  syncfusion_flutter_sliders: ^28.1.38
   timeago: ^3.7.0
   voice_message_package: ^2.2.1
 
@@ -81,7 +81,6 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
-
 # flutter_assets:
 #   assets_path:
 #     - assets/icons/
@@ -90,7 +89,6 @@ flutter_launcher_icons:
 #   field_prefix:
 #   classname: MyIcons
 #   ignore_comments: true
-
 # flutter_assets:
 #   assets_path:
 #     - assets/images/
@@ -99,7 +97,6 @@ flutter_launcher_icons:
 #   field_prefix: null
 #   classname: MyImages
 #   ignore_comments: true
-
 # flutter_assets:
 #   assets_path:
 #     - assets/animations/
