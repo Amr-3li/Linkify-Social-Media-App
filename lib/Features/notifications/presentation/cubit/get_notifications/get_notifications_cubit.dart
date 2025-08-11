@@ -42,4 +42,15 @@ class GetNotificationsCubit extends Cubit<GetNotificationsState> {
       },
     );
   }
+
+  Future<void> deleteNotification(String notificationId) async {
+    await repo.deleteNotification(notificationId);
+    loadInitialNotifications();
+  }
+
+  Future<void> readAllNotifications() async {
+    await repo.readAllNotifications();
+
+    loadInitialNotifications();
+  }
 }

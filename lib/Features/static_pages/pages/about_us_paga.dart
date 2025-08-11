@@ -11,14 +11,6 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppbar(
         title: Constants.aboutUs,
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.info_outline, color: Colors.blue),
-        //     onPressed: () {
-        //       // إضافة أي إجراء إضافي
-        //     },
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -26,7 +18,6 @@ class AboutUsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // شعار الشركة
               Container(
                 width: 120,
                 height: 120,
@@ -48,8 +39,6 @@ class AboutUsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // عنوان الصفحة
               Text(
                 Constants.aboutUs,
                 style: TextStyle(
@@ -59,8 +48,6 @@ class AboutUsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // محتوى الصفحة
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -76,19 +63,17 @@ class AboutUsPage extends StatelessWidget {
                 ),
                 child: SelectableText(
                   Constants.aboutUsText,
-                  textAlign: TextAlign.justify, // محاذاة للنص
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 16,
-                    height: 1.6, // تباعد بين الأسطر
+                    height: 1.6,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
               const SizedBox(height: 24),
-
-              // معلومات التواصل
               Text(
-                'تواصل معنا',
+                Constants.contact,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -102,23 +87,17 @@ class AboutUsPage extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.email,
                         color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {
-                      // إجراء إرسال بريد
-                    },
+                    onPressed: () {},
                   ),
                   IconButton(
                     icon: Icon(Icons.phone,
                         color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {
-                      // إجراء اتصال
-                    },
+                    onPressed: () {},
                   ),
                   IconButton(
                     icon: Icon(Icons.language,
                         color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {
-                      // فتح موقع الويب
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),

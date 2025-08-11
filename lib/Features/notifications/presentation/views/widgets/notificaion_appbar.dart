@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/notifications/presentation/cubit/get_notifications/get_notifications_cubit.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/exports/app_router.dart';
 
 class NotificationAppbar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -15,6 +17,18 @@ class NotificationAppbar extends StatelessWidget
         },
         icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.remove_red_eye,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () async {
+            await context.read<GetNotificationsCubit>().readAllNotifications();
+          },
+        ),
+      ],
       title: const Text(
         Constants.notifications,
         style: TextStyle(

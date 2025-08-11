@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppbar({super.key, required this.title});

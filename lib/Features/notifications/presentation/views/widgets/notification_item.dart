@@ -21,101 +21,99 @@ class NotificationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     String type = notificationModel.type;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: ListTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onTap: () {
-          if (type == "friendRequest" || type == "yourRequestIsAccepted") {
-            GoRouter.of(context)
-                .push('/profilePage/${notificationModel.fromUserId}');
-          } else {
-            GoRouter.of(context).push('/postPage/${notificationModel.postId}');
-          }
-        },
-        tileColor: const Color.fromARGB(121, 100, 255, 219),
-        trailing: Text(
-            GetTimeAgo.getTimeAgo(notificationModel.time)
-                .replaceAll(" ago", ""),
-            style: const TextStyle(fontSize: 10)),
-        leading: Stack(children: [
-          const CircleAvatar(
-            radius: 25,
-            backgroundImage: AssetImage(MyImages.imagesUserImage),
+    return ListTile(
+      onTap: () {
+        if (type == "friendRequest" || type == "yourRequestIsAccepted") {
+          GoRouter.of(context)
+              .push('/profilePage/${notificationModel.fromUserId}');
+        } else {
+          GoRouter.of(context).push('/postPage/${notificationModel.postId}');
+        }
+      },
+      tileColor: notificationModel.isreading
+          ? Colors.transparent
+          : Theme.of(context).colorScheme.tertiary,
+      trailing: Text(
+          GetTimeAgo.getTimeAgo(notificationModel.time).replaceAll(" ago", ""),
+          style: const TextStyle(fontSize: 10)),
+      leading: Stack(children: [
+        const CircleAvatar(
+          radius: 25,
+          backgroundImage: AssetImage(MyImages.imagesUserImage),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: CircleAvatar(
+            radius: 10,
+            backgroundColor: MyColors.toMessageBorder,
+            child: Icon(
+                type == "addLove"
+                    ? Icons.favorite
+                    : type == "addComment"
+                        ? Icons.comment
+                        : type == "friendRequest"
+                            ? Icons.group_add
+                            : type == "yourRequestIsAccepted"
+                                ? Icons.group_rounded
+                                : Icons.done_all,
+                color: Colors.white,
+                size: 12),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: CircleAvatar(
-              radius: 10,
-              backgroundColor: MyColors.toMessageBorder,
-              child: Icon(
-                  type == "addLove"
-                      ? Icons.favorite
-                      : type == "addComment"
-                          ? Icons.comment
-                          : type == "friendRequest"
-                              ? Icons.group_add
-                              : type == "yourRequestIsAccepted"
-                                  ? Icons.group_rounded
-                                  : Icons.done_all,
-                  color: Colors.white,
-                  size: 12),
-            ),
-          )
-        ]),
-        title: Text(notificationModel.fromUserName,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-        subtitle: BlocProvider(
-          create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>()),
-          child: BlocBuilder<FriendsCubit, FriendsState>(
-            builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  state is FriendsLoaded
-                      ? const Text(Constants.yourResponseSent,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15, color: MyColors.fontColor))
-                      : Text(
-                          notificationModel.discription,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 15, color: MyColors.fontColor),
-                        ),
-                  const SizedBox(height: 5),
-                  type == "friendRequest"
-                      ? state is FriendsLoaded
-                          ? const SizedBox()
-                          : SizedBox(
-                              width: double.infinity,
-                              height: 35,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: CustomButton(
-                                        title: Constants.accept,
-                                        color: Colors.green,
-                                        onTap: () {}),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: CustomButton(
-                                        title: Constants.reject,
-                                        color: Colors.red,
-                                        onTap: () {}),
-                                  ),
-                                ],
-                              ),
-                            )
-                      : const SizedBox(),
-                ],
-              );
-            },
-          ),
+        )
+      ]),
+      title: Text(notificationModel.fromUserName,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+      subtitle: BlocProvider(
+        create: (context) => FriendsCubit(gitItInstanse<FriendsRepo>()),
+        child: BlocBuilder<FriendsCubit, FriendsState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                state is FriendsLoaded
+                    ? const Text(Constants.yourResponseSent,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            TextStyle(fontSize: 15, color: MyColors.fontColor))
+                    : Text(
+                        notificationModel.discription,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Theme.of(context).colorScheme.onSurface),
+                      ),
+                const SizedBox(height: 5),
+                type == "friendRequest"
+                    ? state is FriendsLoaded
+                        ? const SizedBox()
+                        : SizedBox(
+                            width: double.infinity,
+                            height: 35,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: CustomButton(
+                                      title: Constants.accept,
+                                      color: Colors.green,
+                                      onTap: () {}),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: CustomButton(
+                                      title: Constants.reject,
+                                      color: Colors.red,
+                                      onTap: () {}),
+                                ),
+                              ],
+                            ),
+                          )
+                    : const SizedBox(),
+              ],
+            );
+          },
         ),
       ),
     );

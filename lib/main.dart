@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/notifications/data/services/get_notifications_impl.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  GetNotificationsImpl().readAllNotifications();
   SharedPreferenceSingelton.init();
   setUpGitIt();
   runApp(const MyApp());

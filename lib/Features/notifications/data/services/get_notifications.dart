@@ -3,5 +3,7 @@ import 'package:linkify/Features/notifications/data/model/notification_model.dar
 abstract class GetNotifications {
   bool get hasMore;
   Future<List<NotificationModel>> getNotifications({bool refresh = false});
+  Future<void> deleteNotification(String notificationId);
+  Future<void> readAllNotifications();
   void resetPagination();
 }

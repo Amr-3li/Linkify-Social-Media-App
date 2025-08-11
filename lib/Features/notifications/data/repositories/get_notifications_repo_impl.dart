@@ -20,6 +20,27 @@ class GetNotificationsRepoImpl implements GetNotificationsRepo {
   }
 
   @override
+  Future<Either<Failure, void>> deleteNotification(
+      String notificationId) async {
+    try {
+      await services.deleteNotification(notificationId);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> readAllNotifications() async {
+    try {
+      await services.readAllNotifications();
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
   bool get hasMore => services.hasMore;
 
   @override
