@@ -13,15 +13,16 @@ class FriendRequestsItem extends StatelessWidget {
   final UserModel user;
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6),
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.colorScheme.background,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
+            color: theme.colorScheme.shadow,
             blurRadius: 5,
             offset: const Offset(0, 3),
           ),
@@ -43,9 +44,9 @@ class FriendRequestsItem extends StatelessWidget {
               },
               child: Text(
                 user.name,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w500),
               ),
             ),

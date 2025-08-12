@@ -120,6 +120,7 @@ class Constants {
   static const String loading = "Loading...";
   static const String add = "Add";
   static const String cansel = "Cansel";
+  static const String canselRequest = "Cansel Request";
   static const String notUsersExist = "No users exist";
   static const String yourResponseSent = "Your response sent";
   static const String about = "About";

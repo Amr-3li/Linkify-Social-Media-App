@@ -23,7 +23,7 @@ class UserRelationStatusBar extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(15),
                 child: state.response == Constants.youSendRequest
-                    ? const YouSendRequestComponent()
+                    ? YouSendRequestComponent(userId: userId)
                     : state.response == Constants.friends
                         ? FriendComponent(userId: userId)
                         : state.response == Constants.friendSendRequest

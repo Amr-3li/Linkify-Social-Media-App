@@ -49,8 +49,9 @@ class _SearchAppbarState extends State<SearchAppbar> {
                           .getUsersBySearch(value);
                     });
                   },
-                  style:
-                      const TextStyle(color: MyColors.fontColor, fontSize: 20),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 20),
                   decoration: const InputDecoration(
                       border: UnderlineInputBorder(
                           borderSide:
