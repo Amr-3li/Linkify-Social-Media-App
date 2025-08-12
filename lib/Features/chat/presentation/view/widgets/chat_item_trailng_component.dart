@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:linkify/Features/chat/data/model/message_model.dart';
 import 'package:linkify/Features/chat/presentation/cubit/message_count/message_count_cubit.dart';
-import 'package:linkify/core/constants/colors.dart';
 
 class ChatItemTrailingComponent extends StatelessWidget {
   const ChatItemTrailingComponent({
@@ -60,8 +59,11 @@ class ChatItemTrailingComponent extends StatelessWidget {
                           ),
                           Text(
                             dateString,
-                            style: const TextStyle(
-                                color: MyColors.fontColor, fontSize: 12),
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                                fontSize: 12),
                           ),
                         ]);
                   }

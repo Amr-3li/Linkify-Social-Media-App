@@ -2,8 +2,12 @@ import 'package:get_it/get_it.dart';
 
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo_implementation.dart';
+import 'package:linkify/Features/chat/data/repository/chat_users_repo.dart';
+import 'package:linkify/Features/chat/data/repository/chat_users_repo_impl.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser.dart';
 import 'package:linkify/Features/chat/data/web_services/chat_ser_implement.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_users.dart';
+import 'package:linkify/Features/chat/data/web_services/chat_users_impl.dart';
 import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/data/repository/friernds_repo_impl.dart';
 import 'package:linkify/Features/friends/data/repository/get_friends_or_requests_repo.dart';
@@ -87,6 +91,11 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<ChatSer>(ChatSerImplement());
   gitItInstanse.registerSingleton<ChatRepo>(
       ChatRepoImplementation(gitItInstanse<ChatSer>()));
+
+  gitItInstanse.registerSingleton<ChatUsers>(ChatUsersImpl());
+  gitItInstanse.registerSingleton<ChatUsersRepo>(
+      ChatUsersRepoImpl(gitItInstanse<ChatUsers>()));
+
   //======================= Posts ===========================================
 
   gitItInstanse.registerSingleton<AddPost>(AddPostImpl());
