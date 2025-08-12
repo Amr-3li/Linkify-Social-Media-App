@@ -5,6 +5,7 @@ import 'package:linkify/core/constants/colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+    fontFamily: "PoppinsSemiBold",
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
       seedColor: MyColors.primaryColor,
@@ -47,6 +48,7 @@ class AppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
+    fontFamily: 'PoppinsSemiBold',
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: MyColors.darkPrimaryColor,

@@ -35,7 +35,7 @@ class _FriendPageState extends State<FriendPage> {
               width: double.infinity,
               color: Theme.of(context).colorScheme.surface,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     tapNavigateItem(0, Constants.myFriends),
                     tapNavigateItem(1, Constants.friendsRequests),
@@ -77,11 +77,12 @@ class _FriendPageState extends State<FriendPage> {
       },
       child: Column(
         children: [
-          Text(title,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.secondary)),
+          FittedBox(
+            child: Text(title,
+                style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    color: Theme.of(context).colorScheme.secondary)),
+          ),
           currentIndex == index
               ? Container(
                   margin: const EdgeInsets.only(top: 7),

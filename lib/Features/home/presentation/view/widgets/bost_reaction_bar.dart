@@ -55,7 +55,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
           final loved = likes.any(
               (like) => like is Map<String, dynamic> && like['id'] == userId);
 
-          if (!mounted) return; // ✅ added line
+          if (!mounted) return;
           setState(() {
             isLove = loved;
           });
@@ -80,7 +80,7 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           isLoading
               ? PostReactionBarItem(
@@ -103,8 +103,6 @@ class _ReactionContainerStateBar extends State<ReactionContainerBar> {
                   },
                 ),
           CommenstWidget(postTime: widget.post.time),
-          PostReactionBarItem(
-              onTap: () {}, icon: Icons.share, text: Constants.share),
         ],
       ),
     );

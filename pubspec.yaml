@@ -62,13 +62,11 @@ flutter:
     - assets/icons/
     - assets/animations/
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:    
+    - family: PoppinsSemiBold 
+      fonts:
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          style: normal
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

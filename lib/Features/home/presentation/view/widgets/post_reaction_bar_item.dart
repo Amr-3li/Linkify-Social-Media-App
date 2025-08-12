@@ -31,7 +31,6 @@ class PostReactionBarItem extends StatelessWidget {
             size: 25,
           ),
         ),
-        const SizedBox(width: 0),
         InkWell(
           onTap: openList ?? () {},
           child: Text(

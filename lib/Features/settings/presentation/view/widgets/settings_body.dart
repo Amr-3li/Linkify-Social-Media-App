@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
-import 'package:linkify/core/dependicy_injection/get_it.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
 class SettingsBody extends StatelessWidget {
@@ -56,10 +53,6 @@ class SettingsBody extends StatelessWidget {
               }
             },
           ),
-          const SettingsListItem(
-              text: Constants.notifications,
-              icon: Icons.notifications,
-              onTap: null),
           const ListNameComponent(name: Constants.account),
           SettingsListItem(
               text: Constants.editProfile,
@@ -72,11 +65,19 @@ class SettingsBody extends StatelessWidget {
               text: Constants.changePassword,
               icon: Icons.password,
               onTap: null),
-          const ListNameComponent(name: Constants.help),
-          const SettingsListItem(
-              text: Constants.contact, icon: Icons.contact_page, onTap: null),
-          const SettingsListItem(
-              text: Constants.aboutUs, icon: Icons.info, onTap: null),
+          const ListNameComponent(name: Constants.helping),
+          SettingsListItem(
+              text: Constants.help,
+              icon: Icons.contact_page,
+              onTap: () {
+                GoRouter.of(context).push(HelpPage.routeName);
+              }),
+          SettingsListItem(
+              text: Constants.aboutUs,
+              icon: Icons.info,
+              onTap: () {
+                GoRouter.of(context).push(AboutUsPage.routeName);
+              }),
           const ListNameComponent(name: Constants.others),
           const SettingsListItem(
               text: Constants.logout, icon: Icons.logout, onTap: null),

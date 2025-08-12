@@ -109,6 +109,7 @@ class Constants {
 
   // ==================== App Content ====================
   static const String aboutUs = "About Us";
+  static const String helping = "Helping";
   static const String help = "Help";
   static const String notifications = "Notifications";
   static const String refresh = "Refresh";
