@@ -1,3 +1,5 @@
+import 'package:linkify/core/shared_logic/data/models/user.dart';
+
 abstract class ChatUsers {
-  // Stream<QuerySnapshot<List<UserModel>>> getChatUsers();
+  Future<List<UserModel>> getChatUsers();
 }

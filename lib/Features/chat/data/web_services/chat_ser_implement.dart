@@ -60,6 +60,10 @@ class ChatSerImplement implements ChatSer {
 
     try {
       await firestore.collection(chatPath).doc(time).set(messageModel.toJson());
+      await firestore
+          .collection('chat/${getConversationID(toId)}')
+          .doc()
+          .set({'lastMessage': msg, 'lastMessageTime': time});
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {
