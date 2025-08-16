@@ -36,31 +36,10 @@ Tools: Dart, Android Studio, VS Code
 
 📸 Screenshots
 
-(Add some screenshots or GIFs of your app UI here to showcase the design and features)
+
 
 📂 Project Structure
-lib/
-│── core/                     # Core modules shared across the app
-│   ├── constants/            # App constants
-│   ├── dependency_injection/ # Service locator & dependency injection setup
-│   ├── errors/               # Error handling & exceptions
-│   ├── exports/              # Barrel files for exports
-│   ├── helper/               # Utility helpers
-│   ├── services/             # Firebase, APIs, etc.
-│   ├── shared_logic/         # Shared business logic
-│   ├── utils/                # Utility functions & extensions
-│   └── widgets/              # Reusable UI components
-│
-│── Features/                 # App features (modularized)
-│   ├── add_post/             # Add new posts feature
-│   └── chat/                 # Chat / messaging feature
-│       ├── data/             # Data layer (models, repository, web services)
-│       │   ├── model/
-│       │   ├── repository/
-│       │   └── services/
-│       └── presentation/     # Presentation layer
-│           ├── cubit/        # State management with Cubit
-│           └── view/         # UI screens
+
 
 🔮 Future Enhancements
 
