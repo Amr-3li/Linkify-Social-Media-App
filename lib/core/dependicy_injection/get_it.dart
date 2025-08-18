@@ -31,7 +31,6 @@ import 'package:linkify/Features/add_post/data/repository/add_post_repo.dart';
 import 'package:linkify/Features/add_post/data/repository/add_post_repo_impl.dart';
 import 'package:linkify/Features/add_post/data/services/post_serv.dart';
 import 'package:linkify/Features/add_post/data/services/post_serv_impl.dart';
-import 'package:linkify/Features/add_post/presentation/cubit/add_post/add_post_cubit.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_posts_repo_impl.dart';
 import 'package:linkify/Features/profile/data/repositories/get_user_status_repo.dart';
@@ -101,8 +100,6 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<AddPost>(AddPostImpl());
   gitItInstanse.registerSingleton<AddPostRepo>(
       AddPostRepoImpl(gitItInstanse<AddPost>()));
-  gitItInstanse.registerSingleton<AddPostCubit>(
-      AddPostCubit(gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()));
 
   gitItInstanse.registerSingleton<PostControl>(PostControlImpl());
   gitItInstanse.registerSingleton<PostControlRepo>(

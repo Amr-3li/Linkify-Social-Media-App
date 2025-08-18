@@ -93,7 +93,7 @@ class DrawerBody extends StatelessWidget {
           onTap: () async {
             Navigator.pop(context);
             await BlocProvider.of<AuthCubit>(context).signout();
-            GoRouter.of(context).push('/loginPage');
+            GoRouter.of(context).pushReplacement('/loginPage');
           },
         ),
       ],
