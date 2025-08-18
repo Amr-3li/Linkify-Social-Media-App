@@ -90,8 +90,7 @@ class DialogBody extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        backgroundColor:
-                            Theme.of(context).colorScheme.surface),
+                        backgroundColor: Theme.of(context).colorScheme.surface),
                     child: Text(Constants.cansel,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,

@@ -1,5 +1,1 @@
-class MyStyles {
-
-
-  
-}
+class MyStyles {}

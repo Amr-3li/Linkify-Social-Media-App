@@ -49,7 +49,7 @@ class RecordCubit extends Cubit<RecordState> {
   Future<void> playRecord(FlutterSoundPlayer audioPlayer) async {
     try {
       await audioPlayer.openPlayer();
-            await audioPlayer.startPlayer(fromURI: 'audio_record.aac');
+      await audioPlayer.startPlayer(fromURI: 'audio_record.aac');
     } catch (e) {
       emit(RecordFaild());
     }

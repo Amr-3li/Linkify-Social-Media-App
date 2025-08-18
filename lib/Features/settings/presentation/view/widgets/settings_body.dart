@@ -79,8 +79,13 @@ class SettingsBody extends StatelessWidget {
                 GoRouter.of(context).push(AboutUsPage.routeName);
               }),
           const ListNameComponent(name: Constants.others),
-          const SettingsListItem(
-              text: Constants.logout, icon: Icons.logout, onTap: null),
+          SettingsListItem(
+              text: Constants.logout,
+              icon: Icons.logout,
+              onTap: () {
+                context.read<AuthCubit>().signout();
+                GoRouter.of(context).pushReplacement("/loginPage");
+              }),
         ],
       ),
     );

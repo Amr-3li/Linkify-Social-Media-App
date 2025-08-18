@@ -14,8 +14,7 @@ class HomeDrawer extends StatelessWidget {
       elevation: 5,
       semanticLabel: 'Navigation Drawer',
       shape: const RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.only(bottomRight: Radius.circular(250.0)),
+        borderRadius: BorderRadius.only(bottomRight: Radius.circular(250.0)),
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       child: const DrawerBody(),

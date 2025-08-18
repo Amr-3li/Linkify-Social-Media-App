@@ -1,17 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:linkify/Features/chat/data/web_services/chat_users_impl.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
 import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:linkify/Features/connectivity/disconnected_page.dart';
-import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/utils/app_router.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';
 import 'package:linkify/firebase_options.dart';
@@ -25,8 +21,7 @@ Future<void> main() async {
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  ChatUsersImpl().getChatUsers();
-  SharedPreferenceSingelton.init();
+  await SharedPreferenceSingelton.init();
   setUpGitIt();
 
   runApp(BlocProvider(

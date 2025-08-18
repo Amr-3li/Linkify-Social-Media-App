@@ -64,8 +64,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '879218773903',
     projectId: 'linkify-63769',
     storageBucket: 'linkify-63769.firebasestorage.app',
-    androidClientId: '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
-    iosClientId: '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
+    androidClientId:
+        '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
+    iosClientId:
+        '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
     iosBundleId: 'com.example.trueGym',
   );
 
@@ -75,8 +77,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '879218773903',
     projectId: 'linkify-63769',
     storageBucket: 'linkify-63769.firebasestorage.app',
-    androidClientId: '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
-    iosClientId: '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
+    androidClientId:
+        '879218773903-bo6hi6bu1tk10270qij63stso7nmai48.apps.googleusercontent.com',
+    iosClientId:
+        '879218773903-lf9tiqjlm108tvm9v8nbq7b9lmbe4b4i.apps.googleusercontent.com',
     iosBundleId: 'com.example.trueGym',
   );
 
