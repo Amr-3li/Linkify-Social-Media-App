@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/add_post/data/repository/add_post_repo.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 
 part 'add_post_state.dart';
 

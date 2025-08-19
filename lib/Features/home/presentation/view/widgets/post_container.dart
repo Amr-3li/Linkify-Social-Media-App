@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
-import 'package:linkify/Features/home/presentation/view/widgets/bost_reaction_bar.dart';
+import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
 
 class PostContainer extends StatelessWidget {
@@ -34,7 +34,7 @@ class PostContainer extends StatelessWidget {
             text: post.description,
           ),
           const Divider(),
-          ReactionContainerBar(
+          PostReactionBar(
             post: post,
           ),
           // المشكله هنا ان اول ما بعمل رياكت على بوست مابيعدلش ف كل التايم لاينز بتاعه الاصدقاء فا دي محتجه هندله قبل ما تعمل الفيتشر دي

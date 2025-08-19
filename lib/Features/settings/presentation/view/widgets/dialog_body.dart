@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/input_data_widgit.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';

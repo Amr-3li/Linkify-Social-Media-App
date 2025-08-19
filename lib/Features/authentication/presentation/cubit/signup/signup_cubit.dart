@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
-import 'package:linkify/Features/register/data/repository/signup_repo.dart';
+import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
+import 'package:linkify/Features/authentication/data/repository/signup_repo.dart';
 
 part 'signup_state.dart';
 

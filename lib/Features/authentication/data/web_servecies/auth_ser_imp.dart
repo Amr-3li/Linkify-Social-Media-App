@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
+import 'package:linkify/Features/authentication/data/web_servecies/auth_ser.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 

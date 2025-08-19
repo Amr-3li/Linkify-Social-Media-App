@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/Features/register/presentation/cubit/signup/signup_cubit.dart';
-import 'package:linkify/Features/register/presentation/view/widgets/user_image.dart';
-import 'package:linkify/Features/register/presentation/view/widgets/user_informations.dart';
+import 'package:linkify/Features/authentication/presentation/cubit/signup/signup_cubit.dart';
+import 'package:linkify/Features/authentication/presentation/view/widgets/user_image.dart';
+import 'package:linkify/Features/authentication/presentation/view/widgets/user_informations.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
 // ignore: must_be_immutable

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/Features/authentication/presentation/cubit/user_data/user_cubit.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PostAppBar({super.key});

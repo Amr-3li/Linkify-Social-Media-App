@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
-import 'package:linkify/Features/register/data/web_servecies/storage_ser.dart';
+import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
+import 'package:linkify/Features/authentication/data/web_servecies/storage_ser.dart';
 import 'package:linkify/core/errors/failures.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';
 

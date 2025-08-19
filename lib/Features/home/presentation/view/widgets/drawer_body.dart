@@ -6,8 +6,8 @@ import 'package:linkify/Features/static_pages/pages/help_page.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/user_drawer_information.dart';
-import 'package:linkify/Features/register/presentation/cubit/auth/auth_cubit.dart';
-import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/Features/authentication/presentation/cubit/auth/auth_cubit.dart';
+import 'package:linkify/Features/authentication/presentation/cubit/user_data/user_cubit.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/constants/colors.dart';
 

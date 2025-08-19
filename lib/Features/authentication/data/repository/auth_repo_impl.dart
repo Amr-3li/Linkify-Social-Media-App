@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:linkify/Features/register/data/repository/auth_repo.dart';
-import 'package:linkify/Features/register/data/web_servecies/auth_ser.dart';
+import 'package:linkify/Features/authentication/data/repository/auth_repo.dart';
+import 'package:linkify/Features/authentication/data/web_servecies/auth_ser.dart';
 import 'package:linkify/core/errors/failures.dart';
 
 class AuthRepoImpelement implements AuthRepository {

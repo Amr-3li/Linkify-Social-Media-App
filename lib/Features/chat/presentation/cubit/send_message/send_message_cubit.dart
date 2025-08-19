@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
-import 'package:linkify/Features/register/data/repository/image_repo.dart';
+import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 
 part 'send_message_state.dart';
 

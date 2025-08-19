@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
-import 'package:linkify/Features/register/data/repository/signup_repo.dart';
-import 'package:linkify/Features/register/data/web_servecies/signup_ser.dart';
+import 'package:linkify/Features/authentication/data/repository/signup_repo.dart';
+import 'package:linkify/Features/authentication/data/web_servecies/signup_ser.dart';
 import 'package:linkify/core/errors/failures.dart';
 
 class SignupRepoImplement implements SignupRepo {

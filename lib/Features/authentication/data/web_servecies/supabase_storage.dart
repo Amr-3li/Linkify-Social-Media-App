@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:linkify/Features/register/data/web_servecies/storage_ser.dart';
+import 'package:linkify/Features/authentication/data/web_servecies/storage_ser.dart';
 import 'package:path/path.dart' as p;
 
 class SupabaseStorage implements StorageService {

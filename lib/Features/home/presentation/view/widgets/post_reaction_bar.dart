@@ -9,8 +9,8 @@ import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_ba
 import 'package:linkify/core/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ReactionContainerBar extends StatefulWidget {
-  const ReactionContainerBar({
+class PostReactionBar extends StatefulWidget {
+  const PostReactionBar({
     super.key,
     required this.post,
   });
@@ -18,10 +18,10 @@ class ReactionContainerBar extends StatefulWidget {
   final PostModel post;
 
   @override
-  State<ReactionContainerBar> createState() => _ReactionContainerStateBar();
+  State<PostReactionBar> createState() => _ReactionContainerStateBar();
 }
 
-class _ReactionContainerStateBar extends State<ReactionContainerBar> {
+class _ReactionContainerStateBar extends State<PostReactionBar> {
   bool isLove = false;
   bool isLoading = true;
   String userId = '';
