@@ -28,7 +28,7 @@ class DrawerBody extends StatelessWidget {
               UserModel user = state.user;
               return GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    GoRouter.of(context).pop();
                     GoRouter.of(context)
                         .push('${ProfilePage.routeName}/${user.id}');
                   },
@@ -94,7 +94,7 @@ class DrawerBody extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 20)),
           onTap: () async {
-            Navigator.pop(context);
+            GoRouter.of(context).pop();
             await BlocProvider.of<AuthCubit>(context).signout();
             GoRouter.of(context).pushReplacement(LoginPage.routeName);
           },

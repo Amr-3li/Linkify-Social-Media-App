@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/core/exports/app_router.dart';
 
 class ImagePresentationPage extends StatelessWidget {
   const ImagePresentationPage({super.key, required this.image});
@@ -12,7 +13,7 @@ class ImagePresentationPage extends StatelessWidget {
         backgroundColor: Colors.black,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            GoRouter.of(context).pop();
           },
           icon: const Icon(
             Icons.arrow_back,

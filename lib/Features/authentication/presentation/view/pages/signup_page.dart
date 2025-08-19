@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/authentication/presentation/cubit/signup/signup_cubit.dart';
 import 'package:linkify/Features/authentication/presentation/view/widgets/user_image.dart';
@@ -45,7 +46,7 @@ class _SignupPageState extends State<SignupPage> {
       listener: (context, state) {
         if (state is SignUpSuccess) {
           SnackBarWidget.showSnack(context, Constants.userCreatedSuccessfully);
-          Navigator.pop(context);
+          GoRouter.of(context).pop();
         } else if (state is SignUpError) {
           SnackBarWidget.showSnack(context, state.message);
         }
@@ -156,7 +157,7 @@ class _SignupPageState extends State<SignupPage> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  GoRouter.of(context).pop();
                                 }),
                             const SizedBox(
                               height: 50,

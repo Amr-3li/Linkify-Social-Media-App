@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_post/get_post_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
+import 'package:linkify/core/exports/app_router.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({super.key});
@@ -14,7 +15,7 @@ class PostPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
           onPressed: () {
-            Navigator.pop(context);
+            GoRouter.of(context).pop();
           },
         ),
       ),

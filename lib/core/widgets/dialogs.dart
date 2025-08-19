@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/shared_logic/cubit/post_control/post_control_cubit.dart';
 import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/repositories/post_control_repo.dart';
@@ -19,10 +20,10 @@ class Dialogs {
           listener: (context, state) {
             if (state is PostControlFailure) {
               SnackBarWidget.showSnack(context, state.error);
-              Navigator.pop(context); // دي كده تضمن إنها تتنفذ برا build
+              GoRouter.of(context).pop();
             }
             if (state is PostControlSuccess) {
-              Navigator.pop(context); // لو نجح الحذف أو التعديل نقفل الـ dialog
+              GoRouter.of(context).pop();
             }
           },
           child: BlocBuilder<PostControlCubit, PostControlState>(
@@ -36,7 +37,7 @@ class Dialogs {
                     : [
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            GoRouter.of(context).pop();
                           },
                           child: const Text("Cancel"),
                         ),
@@ -68,10 +69,10 @@ class Dialogs {
           listener: (context, state) {
             if (state is PostControlFailure) {
               SnackBarWidget.showSnack(context, state.error);
-              Navigator.pop(context);
+              GoRouter.of(context).pop();
             }
             if (state is PostControlSuccess) {
-              Navigator.pop(context); // نقفل الـ dialog لما العملية تنجح
+              GoRouter.of(context).pop(); // نقفل الـ dialog لما العملية تنجح
             }
           },
           child: BlocBuilder<PostControlCubit, PostControlState>(
@@ -89,7 +90,7 @@ class Dialogs {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      GoRouter.of(context).pop();
                     },
                     child: const Text("Cancel"),
                   ),

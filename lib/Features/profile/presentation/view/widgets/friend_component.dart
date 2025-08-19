@@ -40,7 +40,7 @@ class FriendComponent extends StatelessWidget {
                           child: const Text(Constants.remove)),
                       TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            GoRouter.of(context).pop();
                           },
                           child: const Text(Constants.cansel)),
                     ],

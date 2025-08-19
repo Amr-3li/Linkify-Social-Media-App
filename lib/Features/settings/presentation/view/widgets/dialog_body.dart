@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/input_data_widgit.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 import 'package:linkify/Features/profile/presentation/cubit/update_user/update_user_cubit.dart';
@@ -82,7 +83,7 @@ class DialogBody extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      GoRouter.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
                         side: const BorderSide(
@@ -112,7 +113,7 @@ class DialogBody extends StatelessWidget {
                                   await BlocProvider.of<UpdateUserCubit>(
                                           context)
                                       .updateUser(userModel);
-                                  Navigator.pop(context);
+                                  GoRouter.of(context).pop();
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
