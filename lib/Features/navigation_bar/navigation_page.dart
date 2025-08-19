@@ -3,14 +3,14 @@ import 'package:linkify/Features/home/presentation/view/widgets/home_drawer.dart
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/utils/lists.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-  static const String routeName = '/homePage';
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({super.key});
+  static const String routeName = '/NavigationPage';
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NavigationPageState extends State<NavigationPage> {
   int currentIndex = 0;
   late PageController pageController;
   @override

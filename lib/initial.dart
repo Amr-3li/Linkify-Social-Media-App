@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/authentication/presentation/view/pages/login_page.dart';
+import 'package:linkify/Features/navigation_bar/navigation_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InitialPage extends StatefulWidget {
@@ -24,9 +26,9 @@ class _MyWidgetState extends State<InitialPage> {
     prefs = await SharedPreferences.getInstance();
     loging = prefs!.getString('uid');
     if (loging == null) {
-      GoRouter.of(context).pushReplacement('/loginPage');
+      GoRouter.of(context).pushReplacement(LoginPage.routeName);
     } else {
-      GoRouter.of(context).pushReplacement('/homePage');
+      GoRouter.of(context).pushReplacement(NavigationPage.routeName);
     }
   }
 

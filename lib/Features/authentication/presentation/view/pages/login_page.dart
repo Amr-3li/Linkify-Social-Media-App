@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/authentication/presentation/cubit/auth/auth_cubit.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/icons.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/widgets/input_text.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 
@@ -21,7 +22,7 @@ class LoginPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SigninSuccess || state is SigninWithGoogleSuccess) {
-          GoRouter.of(context).push('/initialPage');
+          GoRouter.of(context).push(InitialPage.routeName);
         } else if (state is SigninFailed) {
           SnackBarWidget.showSnack(context, state.error);
         } else if (state is ResetPasswordSuccess) {
@@ -94,7 +95,8 @@ class LoginPage extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {
-                                  GoRouter.of(context).push("/forgotPassword");
+                                  GoRouter.of(context)
+                                      .push(ForgotPasswordPage.routeName);
                                 },
                               ),
                             ),
@@ -208,7 +210,7 @@ class LoginPage extends StatelessWidget {
         style: TextStyle(color: Colors.white),
       ),
       onPressed: () {
-        GoRouter.of(context).push('/signupPage');
+        GoRouter.of(context).push(SignupPage.routeName);
       },
     );
   }

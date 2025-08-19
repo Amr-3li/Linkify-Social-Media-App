@@ -84,7 +84,7 @@ class SettingsBody extends StatelessWidget {
               icon: Icons.logout,
               onTap: () {
                 context.read<AuthCubit>().signout();
-                GoRouter.of(context).pushReplacement("/loginPage");
+                GoRouter.of(context).pushReplacement(LoginPage.routeName);
               }),
         ],
       ),

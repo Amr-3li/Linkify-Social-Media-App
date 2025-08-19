@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/splash_screan/widgets/splash_body.dart';
+import 'package:linkify/core/exports/app_router.dart';
 
 class SplashScrean extends StatefulWidget {
   const SplashScrean({super.key});
@@ -26,7 +27,7 @@ class _SplashScreanState extends State<SplashScrean> {
     Future.delayed(
       const Duration(seconds: 5),
       () {
-        GoRouter.of(context).pushReplacement('/initialPage');
+        GoRouter.of(context).pushReplacement(InitialPage.routeName);
       },
     );
   }

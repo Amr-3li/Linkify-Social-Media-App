@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 
@@ -14,7 +15,7 @@ class UserItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        GoRouter.of(context).push('/profilePage/${user.id}');
+        GoRouter.of(context).push('${ProfilePage.routeName}/${user.id}');
       },
       leading: CircleAvatar(
         radius: 20,

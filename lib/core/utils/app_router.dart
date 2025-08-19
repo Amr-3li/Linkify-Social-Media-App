@@ -45,7 +45,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: HomePage.routeName,
+        path: NavigationPage.routeName,
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -68,7 +68,7 @@ abstract class AppRouter {
                   gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()),
             ),
           ],
-          child: const HomePage(),
+          child: const NavigationPage(),
         ),
       ),
       GoRoute(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
@@ -40,7 +41,8 @@ class MyFriendItem extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () {
-                GoRouter.of(context).push('/profilePage/${user.id}');
+                GoRouter.of(context)
+                    .push('${ProfilePage.routeName}/${user.id}');
               },
               child: Text(
                 user.name,

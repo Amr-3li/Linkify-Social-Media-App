@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/authentication/presentation/view/pages/login_page.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/Features/static_pages/pages/about_us_paga.dart';
 import 'package:linkify/Features/static_pages/pages/help_page.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -27,7 +29,8 @@ class DrawerBody extends StatelessWidget {
               return GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    GoRouter.of(context).push('/profilePage/${user.id}');
+                    GoRouter.of(context)
+                        .push('${ProfilePage.routeName}/${user.id}');
                   },
                   child: UserDrawerInformation(
                       name: user.name, email: user.email, image: user.image!));
@@ -93,7 +96,7 @@ class DrawerBody extends StatelessWidget {
           onTap: () async {
             Navigator.pop(context);
             await BlocProvider.of<AuthCubit>(context).signout();
-            GoRouter.of(context).pushReplacement('/loginPage');
+            GoRouter.of(context).pushReplacement(LoginPage.routeName);
           },
         ),
       ],

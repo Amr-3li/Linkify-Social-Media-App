@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
@@ -25,7 +26,7 @@ class NotificationItem extends StatelessWidget {
       onTap: () {
         if (type == "friendRequest" || type == "yourRequestIsAccepted") {
           GoRouter.of(context)
-              .push('/profilePage/${notificationModel.fromUserId}');
+              .push('${ProfilePage.routeName}/${notificationModel.fromUserId}');
         } else {
           GoRouter.of(context).push('/postPage/${notificationModel.postId}');
         }

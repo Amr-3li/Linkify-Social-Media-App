@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:linkify/Features/profile/presentation/view/profile.dart';
 
 class PostUserData extends StatelessWidget {
   const PostUserData({
@@ -23,7 +24,7 @@ class PostUserData extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            GoRouter.of(context).push('/profilePage/$userId');
+            GoRouter.of(context).push('${ProfilePage.routeName}/$userId');
           },
           child: Text(
             name,
