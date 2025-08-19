@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/home/presentation/view/pages/comments_page.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
 import 'package:linkify/core/constants/constants.dart';
 
@@ -13,12 +14,12 @@ class CommenstWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return PostReactionBarItem(
       onTap: () {
-        GoRouter.of(context).push('/commentsPage/$postTime');
+        GoRouter.of(context).push('${CommentsPage.routeName}/$postTime');
       },
       icon: Icons.comment,
       text: Constants.comments,
       openList: () {
-        GoRouter.of(context).push('/commentsPage/$postTime');
+        GoRouter.of(context).push('${CommentsPage.routeName}/$postTime');
       },
     );
   }

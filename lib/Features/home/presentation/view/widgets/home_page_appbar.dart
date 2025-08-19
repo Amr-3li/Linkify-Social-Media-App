@@ -31,7 +31,7 @@ class HomePageAppBar extends StatelessWidget {
               builder: (context, state) {
             return IconButton(
                 onPressed: () {
-                  GoRouter.of(context).push('/notificationPage');
+                  GoRouter.of(context).push(NotificationPage.routeName);
                 },
                 icon: state is GetUnreadNotificationsSuccess &&
                         state.noOfUnreadNotifications > 0
@@ -49,7 +49,7 @@ class HomePageAppBar extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            GoRouter.of(context).push('/chatHomePage');
+            GoRouter.of(context).push(ChatHomePage.routeName);
           },
           icon: Badge(
               smallSize: 8,

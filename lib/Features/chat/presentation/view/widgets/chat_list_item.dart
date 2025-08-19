@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/chat/presentation/view/widgets/chat_item_trailng_component.dart';
 import 'package:linkify/core/constants/images.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
@@ -27,7 +28,7 @@ class ChatListItem extends StatelessWidget {
       ),
       trailing: const ChatItemTrailingComponent(),
       onTap: () {
-        GoRouter.of(context).push('/chatPage/${toUser.id}');
+        GoRouter.of(context).push('${ChatPage.routeName}/${toUser.id}');
       },
     );
   }

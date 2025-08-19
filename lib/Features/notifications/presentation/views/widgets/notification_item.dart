@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
+import 'package:linkify/Features/home/presentation/view/pages/post_page.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
 import 'package:linkify/Features/profile/presentation/view/profile.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -28,7 +29,8 @@ class NotificationItem extends StatelessWidget {
           GoRouter.of(context)
               .push('${ProfilePage.routeName}/${notificationModel.fromUserId}');
         } else {
-          GoRouter.of(context).push('/postPage/${notificationModel.postId}');
+          GoRouter.of(context)
+              .push('${PostPage.routeName}/${notificationModel.postId}');
         }
       },
       tileColor: notificationModel.isreading

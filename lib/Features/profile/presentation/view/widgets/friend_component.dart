@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:linkify/Features/chat/presentation/view/pages/chat_page.dart';
 import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_status/get_user_status_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
@@ -54,7 +55,7 @@ class FriendComponent extends StatelessWidget {
               title: Constants.sendMessage,
               color: MyColors.fromMessageBorder,
               onTap: () {
-                GoRouter.of(context).push('/chatPage/$userId');
+                GoRouter.of(context).push('${ChatPage.routeName}/$userId');
               }),
         )
       ]),

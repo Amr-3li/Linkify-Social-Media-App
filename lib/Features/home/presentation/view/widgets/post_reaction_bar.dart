@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/cubit/add_remove_love/add_remove_love_cubit.dart';
+import 'package:linkify/Features/home/presentation/view/pages/loves_page.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/comments_widget.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar_item.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -99,7 +100,8 @@ class _ReactionContainerStateBar extends State<PostReactionBar> {
                   text: Constants.like,
                   isLove: isLove,
                   openList: () {
-                    GoRouter.of(context).push('/lovesPage/${widget.post.time}');
+                    GoRouter.of(context)
+                        .push('${LovesPage.routeName}/${widget.post.time}');
                   },
                 ),
           CommenstWidget(postTime: widget.post.time),

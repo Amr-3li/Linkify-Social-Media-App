@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
+import 'package:linkify/Features/home/presentation/view/pages/post_page.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_user_data.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -25,7 +26,7 @@ class PostHeader extends StatelessWidget {
       Expanded(
           child: GestureDetector(
               onTap: () {
-                GoRouter.of(context).push('/postPage/${post.time}');
+                GoRouter.of(context).push('${PostPage.routeName}/${post.time}');
               },
               child: Container(
                 height: 40,
