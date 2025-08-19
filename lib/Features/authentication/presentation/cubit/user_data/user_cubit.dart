@@ -41,7 +41,7 @@ class UserCubit extends Cubit<UserState> {
     );
   }
 
-  getAllUsers() async {
+  Future<void> getAllUsers() async {
     // emit(UserLoading());
     // try {
     //   QuerySnapshot snapshot = await collRef.get();
@@ -53,7 +53,7 @@ class UserCubit extends Cubit<UserState> {
     //   emit(UserError(e.toString())); // Handle any exception
     // }
   }
-  searchUser(String name) async {
+  Future<void> searchUser(String name) async {
     // emit(UserLoading());
     // try {
     //   QuerySnapshot snapshot = await collRef.where('fname', isEqualTo: name).get();

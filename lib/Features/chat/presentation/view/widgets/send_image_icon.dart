@@ -1,14 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:linkify/Features/chat/data/repository/chat_repo.dart';
-import 'package:linkify/Features/chat/presentation/cubit/send_message/send_message_cubit.dart';
 import 'package:linkify/Features/chat/presentation/view/pages/image_confirm_message.dart';
-import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/helper/pick_image.dart';
-import 'package:linkify/core/dependicy_injection/get_it.dart';
 
 class SendImageIcon extends StatelessWidget {
   const SendImageIcon({super.key, required this.toUserId});
@@ -20,7 +15,6 @@ class SendImageIcon extends StatelessWidget {
     return IconButton(
       onPressed: () async {
         imageFile = await PickImage().pickImage();
-        ;
         Navigator.push(
           context,
           MaterialPageRoute(

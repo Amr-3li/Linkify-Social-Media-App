@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class PickImage {
-  get widget => null;
+  Null get widget => null;
 
   Future<File> pickImage() async {
     File imageFile;

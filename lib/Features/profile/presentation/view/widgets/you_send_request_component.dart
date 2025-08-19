@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkify/Features/friends/presentation/cubit/friends/friends_cubit.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/exports/app_router.dart';

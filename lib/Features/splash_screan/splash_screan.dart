@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:linkify/Features/splash_screan/widgets/splash_body.dart';
 import 'package:linkify/core/exports/app_router.dart';
 

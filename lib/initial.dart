@@ -22,7 +22,7 @@ class _MyWidgetState extends State<InitialPage> {
     getState();
   }
 
-  getState() async {
+  Future<void> getState() async {
     prefs = await SharedPreferences.getInstance();
     loging = prefs!.getString('uid');
     if (loging == null) {

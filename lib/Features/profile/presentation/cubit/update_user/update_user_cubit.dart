@@ -25,7 +25,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
     });
   }
 
-  updateImage(File image) async {
+  Future<void> updateImage(File image) async {
     emit(UpdateUserImageLoading());
     var result = await imageRepo.uploadImageToFirebase(image);
     result.fold(
