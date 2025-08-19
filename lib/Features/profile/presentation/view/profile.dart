@@ -13,7 +13,7 @@ import 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart'
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
-
+  static const String routeName = '/profilePage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

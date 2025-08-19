@@ -9,22 +9,22 @@ abstract class AppRouter {
         builder: (context, state) => const SplashScrean(),
       ),
       GoRoute(
-        path: '/disconnectPage',
+        path: DisconnectedPage.routeName,
         builder: (context, state) => const DisconnectedPage(),
       ),
       GoRoute(
-        path: '/initialPage',
+        path: InitialPage.routeName,
         builder: (context, state) => const InitialPage(),
       ),
       GoRoute(
-        path: '/loginPage',
+        path: LoginPage.routeName,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
           child: const LoginPage(),
         ),
       ),
       GoRoute(
-        path: '/signupPage',
+        path: SignupPage.routeName,
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
             create: (context) => SignUpCupit(
@@ -38,14 +38,14 @@ abstract class AppRouter {
         ], child: const SignupPage()),
       ),
       GoRoute(
-        path: '/forgotPassword',
+        path: ForgotPasswordPage.routeName,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
           child: const ForgotPasswordPage(),
         ),
       ),
       GoRoute(
-        path: '/homePage',
+        path: HomePage.routeName,
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -72,7 +72,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/profilePage/:userId',
+        path: '${ProfilePage.routeName}/:userId',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
               create: (context) =>
@@ -91,7 +91,7 @@ abstract class AppRouter {
         ], child: const ProfilePage()),
       ),
       GoRoute(
-        path: '/postPage/:postId',
+        path: '${PostPage.routeName}/:postId',
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
               create: (context) => GetPostCubit(gitItInstanse<GetPostRepo>())
@@ -102,7 +102,7 @@ abstract class AppRouter {
         ], child: const PostPage()),
       ),
       GoRoute(
-        path: '/addPost',
+        path: AddPostPage.routeName,
         builder: (context, state) => MultiBlocProvider(providers: [
           BlocProvider(
               create: (context) =>
@@ -110,11 +110,11 @@ abstract class AppRouter {
         ], child: const AddPostPage()),
       ),
       GoRoute(
-        path: '/chatHomePage',
+        path: ChatHomePage.routeName,
         builder: (context, state) => const ChatHomePage(),
       ),
       GoRoute(
-        path: '/chatPage/:toUserId',
+        path: '${ChatPage.routeName}/:toUserId',
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -134,11 +134,11 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/settingsPage',
+        path: SettingsPage.routeName,
         builder: (context, state) => const SettingsPage(),
       ),
       GoRoute(
-        path: '/notificationPage',
+        path: NotificationPage.routeName,
         builder: (context, state) => BlocProvider(
           create: (context) =>
               GetNotificationsCubit(gitItInstanse<GetNotificationsRepo>())
@@ -147,7 +147,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/lovesPage/:postTime',
+        path: '${LovesPage.routeName}/:postTime',
         builder: (context, state) => BlocProvider(
           create: (context) => GetPostLoversCubit(gitItInstanse<GetPostRepo>())
             ..getLoversPost("${state.pathParameters['postTime']}"),
@@ -155,7 +155,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/commentsPage/:postTime',
+        path: '${CommentsPage.routeName}/:postTime',
         builder: (context, state) => MultiBlocProvider(
             providers: [
               BlocProvider(

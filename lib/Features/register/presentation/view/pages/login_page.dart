@@ -10,7 +10,7 @@ import 'package:linkify/core/widgets/snack_bar_widget.dart';
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-
+  static String routeName = '/loginPage';
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();

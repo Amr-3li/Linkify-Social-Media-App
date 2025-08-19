@@ -5,7 +5,7 @@ import 'package:linkify/core/utils/lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
+  static const String routeName = '/homePage';
   @override
   State<HomePage> createState() => _HomePageState();
 }

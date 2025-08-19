@@ -8,7 +8,7 @@ import 'package:linkify/core/widgets/input_text.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
-
+  static const String routeName = '/forgotPassword';
   @override
   Widget build(BuildContext context) {
     TextEditingController emailControler = TextEditingController();

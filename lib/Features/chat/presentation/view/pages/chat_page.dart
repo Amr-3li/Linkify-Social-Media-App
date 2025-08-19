@@ -7,6 +7,7 @@ import 'package:linkify/Features/register/presentation/cubit/user_data/user_cubi
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key, required this.toUserId});
   final String toUserId;
+  static const String routeName = '/chatPage';
 
   @override
   Widget build(BuildContext context) {

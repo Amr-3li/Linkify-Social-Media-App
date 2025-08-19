@@ -60,7 +60,10 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
           expandedHeight: 200,
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: const EdgeInsets.only(bottom: 10),
-            title: Text(widget.name),
+            title: FittedBox(
+                child: Text(
+              widget.name,
+            )),
             centerTitle: true,
             background: Hero(
               tag: "profile-page",

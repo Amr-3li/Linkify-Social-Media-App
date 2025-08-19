@@ -4,7 +4,7 @@ import 'package:linkify/core/constants/constants.dart';
 
 class LovesPage extends StatelessWidget {
   const LovesPage({super.key});
-
+  static const String routeName = '/lovesPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

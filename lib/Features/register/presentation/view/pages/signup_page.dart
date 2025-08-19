@@ -12,7 +12,7 @@ import 'package:linkify/core/widgets/snack_bar_widget.dart';
 // ignore: must_be_immutable
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
+  static const String routeName = '/signupPage';
   @override
   State<SignupPage> createState() => _SignupPageState();
 }

@@ -6,7 +6,7 @@ import 'package:linkify/Features/notifications/presentation/views/widgets/notifi
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
-
+  static const String routeName = '/notificationPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

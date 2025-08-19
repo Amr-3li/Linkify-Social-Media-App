@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
-
+  static const String routeName = '/initialPage';
   @override
   State<InitialPage> createState() => _MyWidgetState();
 }

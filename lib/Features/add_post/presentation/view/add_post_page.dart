@@ -4,7 +4,7 @@ import 'package:linkify/Features/add_post/presentation/view/widgets/post_appbar.
 
 class AddPostPage extends StatelessWidget {
   const AddPostPage({super.key});
-
+  static const String routeName = '/addPost';
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

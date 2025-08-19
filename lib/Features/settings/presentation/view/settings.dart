@@ -8,7 +8,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
-
+  static const String routeName = '/settingsPage';
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(

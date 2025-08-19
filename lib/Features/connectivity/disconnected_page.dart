@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 
 class DisconnectedPage extends StatelessWidget {
   const DisconnectedPage({super.key});
-
+  static const String routeName = '/disconnectPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

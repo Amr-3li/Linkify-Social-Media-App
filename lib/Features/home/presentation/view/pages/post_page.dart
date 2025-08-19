@@ -6,7 +6,7 @@ import 'package:linkify/Features/home/presentation/view/widgets/post_container.d
 
 class PostPage extends StatelessWidget {
   const PostPage({super.key});
-
+  static const String routeName = '/postPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
