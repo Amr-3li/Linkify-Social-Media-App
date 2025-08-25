@@ -65,12 +65,14 @@ class AddPostImpl implements AddPost {
           )
           .get();
 
-      return querySnapshot.docs.map((doc) {
+      final friendIds = querySnapshot.docs.map((doc) {
         final data = doc.data();
         return data['senderId'] == currentUserId
             ? data['receiverId']
             : data['senderId'];
-      }).toList();
+      }).toList(); // include self
+      friendIds.add(currentUserId);
+      return friendIds;
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {

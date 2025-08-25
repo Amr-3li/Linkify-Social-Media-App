@@ -40,6 +40,14 @@ class ProfileInformation extends StatelessWidget {
           ),
         ),
 
+        user.about != "" && user.about != null
+            ? InformationComponent(
+                type: Constants.about,
+                text: user.about!,
+                icon: const Icon(Icons.info, color: Colors.purple),
+              )
+            : const SizedBox(),
+
         // const SizedBox(height: 20),
         // SizedBox(
         //   width: 200,

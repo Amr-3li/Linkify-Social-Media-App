@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/cubit/get_posts/get_posts_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
+import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:lottie/lottie.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});
@@ -39,7 +41,7 @@ class _PostsListState extends State<PostsList> {
             itemCount: 2,
             itemBuilder: (_, __) => const LoadingPost(),
           );
-        } else if (state is GetPostsSuccess) {
+        } else if (state is GetPostsSuccess && state.posts.isNotEmpty) {
           final posts = state.posts;
           return ListView.builder(
             controller: _scrollController,
@@ -55,23 +57,20 @@ class _PostsListState extends State<PostsList> {
               }
             },
           );
-        } else if (state is GetPostsFailure) {
+        } else {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(state.error),
+                LottieBuilder.asset(MyAnimation.animationsNotExist),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () =>
-                      context.read<GetPostsCubit>().loadInitialPosts(),
-                  child: const Text(Constants.tryAgain),
-                )
+                const Text(
+                  Constants.noPostExist,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           );
-        } else {
-          return const Center(child: CircularProgressIndicator());
         }
       },
     );
