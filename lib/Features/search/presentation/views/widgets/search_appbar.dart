@@ -40,6 +40,11 @@ class _SearchAppbarState extends State<SearchAppbar> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: TextFormField(
+                  initialValue: search,
+                  cursorColor: MyColors.light,
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                   onChanged: (value) async {
                     _debounce = Timer(const Duration(milliseconds: 500), () {
                       setState(() {
@@ -49,9 +54,7 @@ class _SearchAppbarState extends State<SearchAppbar> {
                           .getUsersBySearch(value);
                     });
                   },
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 20),
+                  style: TextStyle(color: MyColors.light, fontSize: 20),
                   decoration: const InputDecoration(
                       border: UnderlineInputBorder(
                           borderSide:

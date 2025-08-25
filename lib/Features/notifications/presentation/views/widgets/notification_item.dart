@@ -101,14 +101,24 @@ class NotificationItem extends StatelessWidget {
                                   child: CustomButton(
                                       title: Constants.accept,
                                       color: Colors.green,
-                                      onTap: () {}),
+                                      onTap: () {
+                                        context
+                                            .read<FriendsCubit>()
+                                            .acceptFriendRequest(
+                                                notificationModel.fromUserId);
+                                      }),
                                 ),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: CustomButton(
                                       title: Constants.reject,
                                       color: Colors.red,
-                                      onTap: () {}),
+                                      onTap: () {
+                                        context
+                                            .read<FriendsCubit>()
+                                            .rejectFriendRequest(
+                                                notificationModel.fromUserId);
+                                      }),
                                 ),
                               ],
                             ),

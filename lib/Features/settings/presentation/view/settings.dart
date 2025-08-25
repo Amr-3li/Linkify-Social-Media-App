@@ -16,7 +16,8 @@ class SettingsPage extends StatelessWidget {
         return [
           SliverAppBar(
             leading: const SizedBox(),
-            title: const Text(Constants.settings),
+            title: const Text(Constants.settings,
+                style: TextStyle(fontSize: 25, color: Colors.white)),
             backgroundColor: Theme.of(context).colorScheme.primary,
             centerTitle: true,
           )
