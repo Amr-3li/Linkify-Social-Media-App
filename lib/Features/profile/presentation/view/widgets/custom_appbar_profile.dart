@@ -59,12 +59,6 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
           backgroundColor: Theme.of(context).colorScheme.surface,
           expandedHeight: 200,
           flexibleSpace: FlexibleSpaceBar(
-            titlePadding: const EdgeInsets.only(bottom: 10),
-            title: FittedBox(
-                child: Text(
-              widget.name,
-            )),
-            centerTitle: true,
             background: Hero(
               tag: "profile-page",
               child: Container(

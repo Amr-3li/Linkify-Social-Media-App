@@ -74,38 +74,55 @@ class _ReactionContainerStateBar extends State<PostReactionBar> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 40,
+      height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          isLoading
-              ? PostReactionBarItem(
-                  onTap: () => null,
-                  icon: Icons.favorite,
-                  text: Constants.like,
-                  isLove: isLove,
-                )
-              : PostReactionBarItem(
-                  onTap: () async {
-                    setState(() => isLove = !isLove); // تغيير محلي سريع
-                    await BlocProvider.of<AddRemoveLoveCubit>(context)
-                        .addRemoveLike(widget.post.time, userId);
-                  },
-                  icon: Icons.favorite,
-                  text: Constants.like,
-                  isLove: isLove,
-                  openList: () {
-                    GoRouter.of(context)
-                        .push('${LovesPage.routeName}/${widget.post.time}');
-                  },
-                ),
-          CommenstWidget(postTime: widget.post.time),
-        ],
+      child: FittedBox(
+        child: Row(
+          children: [
+            isLoading
+                ? PostReactionBarItem(
+                    onTap: () => null,
+                    icon: Icons.favorite,
+                    text: Constants.like,
+                    isLove: isLove,
+                  )
+                : PostReactionBarItem(
+                    onTap: () async {
+                      setState(() => isLove = !isLove); // تغيير محلي سريع
+                      await BlocProvider.of<AddRemoveLoveCubit>(context)
+                          .addRemoveLike(widget.post.time, userId);
+                    },
+                    icon: Icons.favorite,
+                    text: Constants.like,
+                    isLove: isLove,
+                    openList: () {
+                      GoRouter.of(context)
+                          .push('${LovesPage.routeName}/${widget.post.time}');
+                    },
+                  ),
+            VerticalDivider(
+              color: Colors.grey,
+              thickness: 2,
+              width: screenWidth * 0.02,
+            ),
+            CommenstWidget(postTime: widget.post.time),
+            VerticalDivider(
+              color: Colors.grey,
+              thickness: 2,
+              width: screenWidth * 0.02,
+            ),
+            PostReactionBarItem(
+              onTap: () => null,
+              icon: Icons.share,
+              text: Constants.share,
+            ),
+          ],
+        ),
       ),
     );
   }

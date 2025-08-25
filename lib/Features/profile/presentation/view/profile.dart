@@ -4,6 +4,7 @@ import 'package:linkify/Features/profile/presentation/cubit/get_user_data/get_us
 import 'package:linkify/Features/profile/presentation/view/widgets/custom_appbar_profile.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/posts_user_list.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/profile_information.dart';
+import 'package:linkify/Features/profile/presentation/view/widgets/user_name.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/user_relation_status_bar.dart';
 import 'package:linkify/Features/authentication/data/repository/image_repo.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -28,6 +29,9 @@ class ProfilePage extends StatelessWidget {
                       gitItInstanse<UserDataRepo>()),
                   child: CustomAppbarProfile(
                       name: state.user.name, image: state.user.image!),
+                ),
+                SliverToBoxAdapter(
+                  child: UserName(name: state.user.name),
                 ),
                 SliverToBoxAdapter(
                   child: UserRelationStatusBar(userId: state.user.id!),

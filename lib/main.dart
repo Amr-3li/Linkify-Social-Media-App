@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,11 @@ Future<void> main() async {
   await SharedPreferenceSingelton.init();
   setUpGitIt();
 
-  runApp(BlocProvider(
-    create: (context) => ChangeThemeCubit(),
-    child: const MyApp(),
+  runApp(DevicePreview(
+    builder: (context) => BlocProvider(
+      create: (context) => ChangeThemeCubit(),
+      child: const MyApp(),
+    ),
   ));
 }
 
@@ -45,6 +48,8 @@ class MyApp extends StatelessWidget {
           routerConfig: AppRouter.appRouter,
           title: 'Linkify',
           debugShowCheckedModeBanner: false,
+          themeAnimationCurve: Curves.slowMiddle,
+          themeAnimationDuration: const Duration(milliseconds: 300),
           theme: AppTheme.lightTheme, // Light theme
           darkTheme: AppTheme.darkTheme, // Dark theme
           themeMode: themeState is ChangeThemeLoaded

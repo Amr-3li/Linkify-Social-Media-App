@@ -21,7 +21,8 @@ class UserRelationStatusBar extends StatelessWidget {
         return state is GetUserStatusLoadded
             ? Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.only(
+                    bottom: 20, top: 5, left: 15, right: 15),
                 child: state.response == Constants.youSendRequest
                     ? YouSendRequestComponent(userId: userId)
                     : state.response == Constants.friends
