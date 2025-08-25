@@ -2,6 +2,7 @@
 
 class UserModel {
   String? id;
+  String? about;
   String name;
   List searchWords;
   String email;
@@ -21,6 +22,7 @@ class UserModel {
       required this.password,
       required this.phone,
       this.image,
+      this.about,
       required this.isMale,
       required this.isActive});
 
@@ -33,6 +35,7 @@ class UserModel {
       searchWords: json['searchWords'] ?? [],
       password: "",
       id: json['uid'] ?? "",
+      about: json['about'] ?? "",
       isMale: json['isMale'] ?? true,
       isActive: json['isActive'] ?? false,
     );
@@ -45,6 +48,7 @@ class UserModel {
       'phone': phone,
       'image': image,
       'searchWords': searchWords,
+      'about': about,
       'isMale': isMale,
       'isActive': isActive,
     };

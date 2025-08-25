@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_reaction_bar.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_header.dart';
+import 'package:linkify/core/exports/app_router.dart';
 
 class PostContainer extends StatelessWidget {
   const PostContainer({
@@ -27,7 +28,11 @@ class PostContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PostHeader(post: post),
+          BlocProvider(
+            create: (context) => GetUserDataCubit(gitItInstanse<UserDataRepo>())
+              ..getUserData(post.userId),
+            child: PostHeader(post: post),
+          ),
           const SizedBox(height: 10),
           PostContent(
             image: post.imageUrl,
@@ -37,23 +42,6 @@ class PostContainer extends StatelessWidget {
           PostReactionBar(
             post: post,
           ),
-          // المشكله هنا ان اول ما بعمل رياكت على بوست مابيعدلش ف كل التايم لاينز بتاعه الاصدقاء فا دي محتجه هندله قبل ما تعمل الفيتشر دي
-          // const SizedBox(height: 10),
-          // Row(
-          //   children: [
-          //     const SizedBox(width: 15),
-          //     InkWell(
-          //       onTap: () {
-
-          //       },
-          //       child: Text("${post.likes.length}  love",
-          //           style: const TextStyle(color: Colors.grey)),
-          //     ),
-          //     const Spacer(),
-          //     Text("${post.comments.length}  comments",
-          //         style: const TextStyle(color: Colors.grey)),
-          //   ],
-          // )
         ],
       ),
     );

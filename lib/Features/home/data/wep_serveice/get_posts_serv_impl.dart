@@ -9,13 +9,12 @@ import 'package:linkify/core/services/sharedpreference_singelton.dart';
 class GetPostsServImpl implements GetPostsServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   List<PostModel> glopalPosts = [];
-  int postsCount = 0;
 
   DocumentSnapshot? lastPostDoc;
   @override
   Future<List<PostModel>> getMyTimelinePosts() async {
     try {
-      final currentUserId = await _getCurrentUserId();
+      final currentUserId = _getCurrentUserId();
       Query query = firestore
           .collection('users')
           .doc(currentUserId)
@@ -123,7 +122,7 @@ class GetPostsServImpl implements GetPostsServ {
   //   }).toList() as List<String>;
   // }
 
-  Future<String> _getCurrentUserId() async {
+  String _getCurrentUserId() {
     return SharedPreferenceSingelton.getString('uid');
   }
 }

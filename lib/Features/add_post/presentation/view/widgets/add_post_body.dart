@@ -50,7 +50,7 @@ class _AddPostBodyState extends State<AddPostBody> {
             AddPostImage(
               onImagePicked: (value) {
                 setState(() {
-                  imageFile = value; // تحديث imageFile هنا
+                  imageFile = value;
                 });
               },
             ),
@@ -77,10 +77,8 @@ class _AddPostBodyState extends State<AddPostBody> {
                               postController.text,
                               imageFile,
                             );
-
-                            setState(() {
-                              imageFile = null;
-                            });
+                            imageFile = null;
+                            setState(() {});
                           },
                   );
                 },

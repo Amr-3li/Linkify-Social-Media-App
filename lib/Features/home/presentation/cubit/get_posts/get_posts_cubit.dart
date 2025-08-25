@@ -56,8 +56,6 @@ class GetPostsCubit extends Cubit<GetPostsState> {
       },
       (newPosts) {
         _isLoadingMore = false;
-
-        // لو مفيش جديد خلاص مفيش حاجة نعملها
         if (newPosts.isEmpty) {
           _hasMore = false;
           emit(GetPostsSuccess(posts: _allPosts, isLoadingMore: false));

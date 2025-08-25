@@ -56,11 +56,11 @@ class DialogBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             InputDataWidgit(
-              text: userModel.email,
-              title: Constants.email,
+              text: userModel.about ?? "",
+              title: Constants.about,
               color: Theme.of(context).colorScheme.onSurface,
               onchanged: (value) {
-                userModel.email = value;
+                userModel.about = value;
               },
             ),
             const SizedBox(height: 20),

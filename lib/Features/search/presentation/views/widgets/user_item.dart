@@ -24,7 +24,6 @@ class UserItem extends StatelessWidget {
             : CachedNetworkImageProvider(user.image!),
       ),
       title: Text(user.name),
-      subtitle: Text(user.email),
     );
   }
 }
