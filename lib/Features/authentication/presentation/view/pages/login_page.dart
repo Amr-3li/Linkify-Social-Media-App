@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/authentication/presentation/view/widgets/auth_background.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/icons.dart';
 import 'package:linkify/core/exports/app_router.dart';
@@ -31,10 +32,7 @@ class LoginPage extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-            ),
+          body: AuthBackground(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -50,8 +48,8 @@ class LoginPage extends StatelessWidget {
                     Text(
                       Constants.loginPage,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 50,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 36,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
@@ -63,7 +61,7 @@ class LoginPage extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: Colors.transparent,
                       ),
                       child: Form(
                         key: formKey,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/authentication/presentation/view/widgets/auth_background.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
@@ -51,9 +52,7 @@ class _SignupPageState extends State<SignupPage> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Container(
-            decoration:
-                BoxDecoration(color: Theme.of(context).colorScheme.surface),
+          body: AuthBackground(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               primary: true,
@@ -64,13 +63,13 @@ class _SignupPageState extends State<SignupPage> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(
-                      height: 40,
+                      height: 50,
                     ),
                     Text(
                       Constants.signUpPage,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 45,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 36,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
@@ -82,7 +81,7 @@ class _SignupPageState extends State<SignupPage> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: Colors.transparent,
                       ),
                       child: Form(
                         key: keyform,

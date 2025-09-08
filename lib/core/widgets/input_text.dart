@@ -23,6 +23,7 @@ class InputTextField extends StatelessWidget {
         }
         return null;
       },
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
       controller: controller,
       obscureText: isPassword ?? false,
       keyboardType: isnumber! ? TextInputType.number : TextInputType.text,
