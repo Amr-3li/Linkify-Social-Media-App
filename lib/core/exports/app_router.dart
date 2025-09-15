@@ -48,4 +48,3 @@ export 'package:linkify/Features/authentication/presentation/view/pages/signup_p
 export 'package:linkify/Features/settings/presentation/view/settings.dart';
 export 'package:linkify/Features/splash_screan/splash_screan.dart';
 export 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';
-export 'package:linkify/initial.dart';

@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SigninSuccess || state is SigninWithGoogleSuccess) {
-          GoRouter.of(context).push(InitialPage.routeName);
+          GoRouter.of(context).push(NavigationPage.routeName);
         } else if (state is SigninFailed) {
           SnackBarWidget.showSnack(context, state.error);
         } else if (state is ResetPasswordSuccess) {

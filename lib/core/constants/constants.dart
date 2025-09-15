@@ -93,6 +93,13 @@ class Constants {
   static const String resetPasswordFaild = "reset password faild";
   static const String changePassword = "change password";
   static const String dontHaveAccount = "Don't have an account?";
+  static const String invalidEmail = "Invalid email";
+  static const String weakPassword = "Weak password";
+  static const String wrongPassword = "Wrong password";
+  static const String userNotFound = "User not found";
+  static const String userDisabled = "User disabled";
+  static const String emailSent = "Done email sent, check your network";
+  static const String sendEmail = "Send Email ...";
   // ==================== App Settings ====================
   static const String settings = "Settings";
   static const String updateUserData = "update user data";

@@ -12,7 +12,7 @@ class SnackBarWidget {
         duration: const Duration(milliseconds: 1500),
         content: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Center(child: Text(messge))),
+            child: Center(child: FittedBox(child: Text(messge)))),
         backgroundColor: MyColors.mainChat,
         padding: const EdgeInsets.symmetric(horizontal: 10),
       ),

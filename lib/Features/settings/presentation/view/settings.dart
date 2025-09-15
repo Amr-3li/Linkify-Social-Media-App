@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/authentication/presentation/cubit/user_data/user_cubit.dart';
+import 'package:linkify/Features/settings/data/repo/reset_pass_repo.dart';
+import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/Settings_body.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/dependicy_injection/get_it.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

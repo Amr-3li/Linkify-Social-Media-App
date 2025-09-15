@@ -34,6 +34,8 @@ class AuthWebServiceImplement implements AuthService {
               'userName', "${value.data()!['name']}");
           SharedPreferenceSingelton.setString(
               'userImage', value.data()!['image'] ?? "");
+          SharedPreferenceSingelton.setString(
+              'email', value.data()!['email'] ?? "");
         }
       });
       return id;
@@ -69,6 +71,7 @@ class AuthWebServiceImplement implements AuthService {
       SharedPreferenceSingelton.remove('uid');
       SharedPreferenceSingelton.remove('userName');
       SharedPreferenceSingelton.remove('userImage');
+      SharedPreferenceSingelton.remove('email');
     } catch (e) {
       rethrow;
     }
@@ -106,6 +109,8 @@ class AuthWebServiceImplement implements AuthService {
         'userName', userCredential.user!.displayName!);
     SharedPreferenceSingelton.setString(
         'userImage', userCredential.user!.photoURL!);
+    SharedPreferenceSingelton.setString(
+        'email', userCredential.user!.email ?? "");
     return id;
   }
 }

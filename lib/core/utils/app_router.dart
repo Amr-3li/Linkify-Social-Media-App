@@ -1,3 +1,5 @@
+import 'package:linkify/Features/settings/data/repo/reset_pass_repo.dart';
+import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
 import 'package:linkify/core/exports/app_router.dart';
 
 abstract class AppRouter {
@@ -11,10 +13,6 @@ abstract class AppRouter {
       GoRoute(
         path: DisconnectedPage.routeName,
         builder: (context, state) => const DisconnectedPage(),
-      ),
-      GoRoute(
-        path: InitialPage.routeName,
-        builder: (context, state) => const InitialPage(),
       ),
       GoRoute(
         path: LoginPage.routeName,
@@ -67,6 +65,8 @@ abstract class AppRouter {
               create: (_) => AddPostCubit(
                   gitItInstanse<AddPostRepo>(), gitItInstanse<ImageRepo>()),
             ),
+            BlocProvider(
+                create: (_) => ResetPassCubit(gitItInstanse<ResetPassRepo>())),
           ],
           child: const NavigationPage(),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
+import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
@@ -57,14 +58,27 @@ class SettingsBody extends StatelessWidget {
           SettingsListItem(
               text: Constants.editProfile,
               icon: Icons.person,
-              onTap: () {
-                openDialog(context);
+              onTap: () async {
+                await openDialog(context);
                 SnackBarWidget.showSnack(context, Constants.profileUpdated);
               }),
-          const SettingsListItem(
-              text: Constants.changePassword,
-              icon: Icons.password,
-              onTap: null),
+          BlocListener<ResetPassCubit, ResetPassState>(
+            listener: (context, state) {
+              if (state is ResetPassLoading) {
+                SnackBarWidget.showSnack(context, Constants.sendEmail);
+              } else if (state is ResetPassSuccess) {
+                SnackBarWidget.showSnack(context, Constants.emailSent);
+              } else if (state is ResetPassFailure) {
+                SnackBarWidget.showSnack(context, state.errorMessage);
+              }
+            },
+            child: SettingsListItem(
+                text: Constants.changePassword,
+                icon: Icons.password,
+                onTap: () async {
+                  await BlocProvider.of<ResetPassCubit>(context).resetPass();
+                }),
+          ),
           const ListNameComponent(name: Constants.helping),
           SettingsListItem(
               text: Constants.help,
