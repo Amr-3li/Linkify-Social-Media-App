@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/home_drawer.dart';
 import 'package:linkify/core/constants/colors.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/utils/lists.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _NavigationPageState extends State<NavigationPage> {
   late PageController pageController;
   @override
   void initState() {
+    context.read<UserCubit>().getCurrentUserData();
     pageController = PageController(
       initialPage: 0,
       viewportFraction: 1,

@@ -29,8 +29,8 @@ class PostContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlocProvider(
-            create: (context) =>
-                GetUserDataCubit(gitItInstanse<UserDataRepo>()),
+            create: (context) => GetUserDataCubit(gitItInstanse<UserDataRepo>())
+              ..getUserData(post.userId),
             child: PostHeader(post: post),
           ),
           const SizedBox(height: 10),

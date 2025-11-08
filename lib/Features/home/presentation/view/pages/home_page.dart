@@ -9,9 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          GetPostsCubit(gitItInstanse<GetPostRepo>())..loadInitialPosts(),
+    return BlocProvider.value(
+      value: BlocProvider.of<GetPostsCubit>(context)..loadInitialPosts(),
       child: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [

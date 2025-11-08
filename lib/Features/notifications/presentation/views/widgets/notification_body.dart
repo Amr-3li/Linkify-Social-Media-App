@@ -98,6 +98,7 @@ class _NotificationBodyState extends State<NotificationBody> {
   @override
   void dispose() {
     _scrollController.dispose();
+
     super.dispose();
   }
 }

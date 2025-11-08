@@ -50,8 +50,7 @@ abstract class AppRouter {
               create: (context) => AuthCubit(gitItInstanse<AuthRepository>()),
             ),
             BlocProvider(
-                create: (context) => UserCubit(gitItInstanse<UserDataRepo>())
-                  ..getCurrentUserData()),
+                create: (context) => UserCubit(gitItInstanse<UserDataRepo>())),
             BlocProvider(create: (_) => gitItInstanse<AddPostCubit>()),
             BlocProvider(create: (_) => gitItInstanse<GetPostsCubit>()),
             BlocProvider(

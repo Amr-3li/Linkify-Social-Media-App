@@ -12,6 +12,7 @@ class NotificationAppbar extends StatelessWidget
       elevation: 0,
       leading: IconButton(
         onPressed: () {
+          context.read<GetNotificationsCubit>().readAllNotifications();
           GoRouter.of(context).pop();
         },
         icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
