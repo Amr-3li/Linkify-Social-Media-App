@@ -3,6 +3,7 @@ import 'package:linkify/Features/home/presentation/view/widgets/home_page_appbar
 import 'package:linkify/Features/home/presentation/view/widgets/posts_list.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/exports/app_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,7 +27,14 @@ class HomePage extends StatelessWidget {
           triggerMode: RefreshIndicatorTriggerMode.anywhere,
           onRefresh: () async =>
               await BlocProvider.of<GetPostsCubit>(context).refreshPosts(),
-          child: const PostsList(),
+          child: BlocProvider(
+            create: (context) => UserCubit(gitItInstanse<UserDataRepo>()),
+            child: BlocProvider(
+              create: (context) =>
+                  GetUserDataCubit(gitItInstanse<UserDataRepo>()),
+              child: const PostsList(),
+            ),
+          ),
         ),
       ),
     );

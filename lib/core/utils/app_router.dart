@@ -138,10 +138,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: NotificationPage.routeName,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              GetNotificationsCubit(gitItInstanse<GetNotificationsRepo>())
-                ..loadInitialNotifications(),
+        builder: (context, state) => BlocProvider.value(
+          value: GetNotificationsCubit(gitItInstanse<GetNotificationsRepo>()),
           child: const NotificationPage(),
         ),
       ),

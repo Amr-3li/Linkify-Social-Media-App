@@ -60,4 +60,8 @@ class GetNotificationsCubit extends Cubit<GetNotificationsState> {
       emit(GetUnreadNotificationsSuccess(r));
     });
   }
+
+  Future<void> close() {
+    return super.close();
+  }
 }

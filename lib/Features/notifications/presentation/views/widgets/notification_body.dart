@@ -5,6 +5,7 @@ import 'package:linkify/Features/notifications/presentation/cubit/get_notificati
 import 'package:linkify/Features/notifications/presentation/views/widgets/notification_item.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/exports/app_router.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -22,10 +23,10 @@ class _NotificationBodyState extends State<NotificationBody> {
   @override
   void initState() {
     super.initState();
-
+    context.read<GetNotificationsCubit>().loadInitialNotifications();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 300) {
+          _scrollController.position.maxScrollExtent) {
         context.read<GetNotificationsCubit>().loadMoreNotifications();
       }
     });
@@ -98,7 +99,6 @@ class _NotificationBodyState extends State<NotificationBody> {
   @override
   void dispose() {
     _scrollController.dispose();
-
     super.dispose();
   }
 }

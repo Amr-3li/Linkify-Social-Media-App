@@ -23,12 +23,7 @@ class _PostHeaderState extends State<PostHeader> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        final cubit = BlocProvider.of<GetUserDataCubit>(context);
-        cubit.getUserData(widget.post.userId);
-      }
-    });
+    context.read<GetUserDataCubit>().getUserData(widget.post.userId);
   }
 
   @override

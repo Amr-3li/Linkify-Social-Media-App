@@ -28,9 +28,8 @@ class PostContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BlocProvider(
-            create: (context) => GetUserDataCubit(gitItInstanse<UserDataRepo>())
-              ..getUserData(post.userId),
+          BlocProvider.value(
+            value: GetUserDataCubit(gitItInstanse<UserDataRepo>()),
             child: PostHeader(post: post),
           ),
           const SizedBox(height: 10),
