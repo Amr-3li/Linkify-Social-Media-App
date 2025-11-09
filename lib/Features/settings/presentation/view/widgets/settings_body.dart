@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
 import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
+import 'package:linkify/Features/settings/presentation/view/pages/language.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_name_component.dart';
@@ -18,14 +20,18 @@ class SettingsBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const ListNameComponent(name: Constants.general),
-          const SettingsListItem(
-              text: Constants.language, icon: Icons.language, onTap: null),
+          ListNameComponent(name: Constants.general.tr()),
+          SettingsListItem(
+              text: Constants.language.tr(),
+              icon: Icons.language,
+              onTap: () {
+                GoRouter.of(context).push(LanguagePage.routeName);
+              }),
           BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
             builder: (context, state) {
               if (state is ChangeThemeLoaded) {
                 return SettingsListItem(
-                    text: Constants.theme,
+                    text: Constants.theme.tr(),
                     icon: Icons.brightness_4,
                     trailing: Switch(
                       value: state.isDarkMode,
@@ -39,8 +45,8 @@ class SettingsBody extends StatelessWidget {
                     ),
                     onTap: null);
               } else {
-                return const SettingsListItem(
-                    text: Constants.theme,
+                return SettingsListItem(
+                    text: Constants.theme.tr(),
                     icon: Icons.brightness_4,
                     trailing: Switch(
                       value: false,
@@ -54,47 +60,48 @@ class SettingsBody extends StatelessWidget {
               }
             },
           ),
-          const ListNameComponent(name: Constants.account),
+          ListNameComponent(name: Constants.account.tr()),
           SettingsListItem(
               text: Constants.editProfile,
               icon: Icons.person,
               onTap: () async {
                 await openDialog(context);
-                SnackBarWidget.showSnack(context, Constants.profileUpdated);
+                SnackBarWidget.showSnack(
+                    context, Constants.profileUpdated.tr());
               }),
           BlocListener<ResetPassCubit, ResetPassState>(
             listener: (context, state) {
               if (state is ResetPassLoading) {
-                SnackBarWidget.showSnack(context, Constants.sendEmail);
+                SnackBarWidget.showSnack(context, Constants.sendEmail.tr());
               } else if (state is ResetPassSuccess) {
-                SnackBarWidget.showSnack(context, Constants.emailSent);
+                SnackBarWidget.showSnack(context, Constants.emailSent.tr());
               } else if (state is ResetPassFailure) {
-                SnackBarWidget.showSnack(context, state.errorMessage);
+                SnackBarWidget.showSnack(context, state.errorMessage.tr());
               }
             },
             child: SettingsListItem(
-                text: Constants.changePassword,
+                text: Constants.changePassword.tr(),
                 icon: Icons.password,
                 onTap: () async {
                   await BlocProvider.of<ResetPassCubit>(context).resetPass();
                 }),
           ),
-          const ListNameComponent(name: Constants.helping),
+          ListNameComponent(name: Constants.helping.tr()),
           SettingsListItem(
-              text: Constants.help,
+              text: Constants.help.tr(),
               icon: Icons.contact_page,
               onTap: () {
                 GoRouter.of(context).push(HelpPage.routeName);
               }),
           SettingsListItem(
-              text: Constants.aboutUs,
+              text: Constants.aboutUs.tr(),
               icon: Icons.info,
               onTap: () {
                 GoRouter.of(context).push(AboutUsPage.routeName);
               }),
-          const ListNameComponent(name: Constants.others),
+          ListNameComponent(name: Constants.others.tr()),
           SettingsListItem(
-              text: Constants.logout,
+              text: Constants.logout.tr(),
               icon: Icons.logout,
               onTap: () {
                 context.read<AuthCubit>().signout();

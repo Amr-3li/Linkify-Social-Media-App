@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:linkify/firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await EasyLocalization.ensureInitialized(); // Initialize EasyLocalization
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await Supabase.initialize(
@@ -29,7 +31,11 @@ Future<void> main() async {
   runApp(DevicePreview(
     builder: (context) => BlocProvider(
       create: (context) => ChangeThemeCubit(),
-      child: const MyApp(),
+      child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ar')],
+          path: "assets/lang", // Path to your translation files
+          fallbackLocale: Locale('en '),
+          child: const MyApp()),
     ),
   ));
 }
@@ -46,6 +52,11 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
       builder: (context, themeState) {
         return MaterialApp.router(
+          //for localization
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          //==========================
           routerConfig: AppRouter.appRouter,
           title: 'Linkify',
           debugShowCheckedModeBanner: false,

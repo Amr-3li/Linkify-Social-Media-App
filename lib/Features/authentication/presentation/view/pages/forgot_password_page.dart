@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,20 +14,20 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController emailControler = TextEditingController();
     return Scaffold(
-      appBar: const CustomAppbar(title: Constants.resetPassword),
+      appBar: CustomAppbar(title: Constants.resetPassword.tr()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            Constants.enterYourEmail,
+          Text(
+            Constants.enterYourEmail.tr(),
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: InputTextField(
-              hintText: Constants.email,
+              hintText: Constants.email.tr(),
               controller: emailControler,
               color: Theme.of(context).colorScheme.secondary,
             ),
@@ -41,8 +42,8 @@ class ForgotPasswordPage extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 fixedSize: const Size(300, 50)),
-            child: const Text(
-              Constants.resetPassword,
+            child: Text(
+              Constants.resetPassword.tr(),
               style: TextStyle(fontSize: 20),
             ),
           )

@@ -45,6 +45,6 @@ export 'package:linkify/Features/authentication/presentation/cubit/user_data/use
 export 'package:linkify/Features/authentication/presentation/view/pages/forgot_password_page.dart';
 export 'package:linkify/Features/authentication/presentation/view/pages/login_page.dart';
 export 'package:linkify/Features/authentication/presentation/view/pages/signup_page.dart';
-export 'package:linkify/Features/settings/presentation/view/settings.dart';
+export 'package:linkify/Features/settings/presentation/view/pages/settings.dart';
 export 'package:linkify/Features/splash_screan/splash_screan.dart';
 export 'package:linkify/core/shared_logic/data/repositories/user_data_repo.dart';

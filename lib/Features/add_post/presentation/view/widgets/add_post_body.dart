@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/add_post/presentation/cubit/add_post/add_post_cubit.dart';
@@ -36,7 +37,7 @@ class _AddPostBodyState extends State<AddPostBody> {
         if (state is AddPostFailure) {
           SnackBarWidget.showSnack(context, state.errMessage);
         } else if (state is AddPostSuccess) {
-          SnackBarWidget.showSnack(context, Constants.postsAddedSuccess);
+          SnackBarWidget.showSnack(context, Constants.postsAddedSuccess.tr());
           postController.clear();
           setState(() {
             imageFile = null;
@@ -61,15 +62,15 @@ class _AddPostBodyState extends State<AddPostBody> {
                 builder: (context, state) {
                   return CustomButton(
                     title: state is AddPostLoading
-                        ? Constants.postLoading
-                        : Constants.postNow,
+                        ? Constants.postLoading.tr()
+                        : Constants.postNow.tr(),
                     color: MyColors.toMessageBorder,
                     onTap: state is AddPostLoading
                         ? () {}
                         : () {
                             if (postController.text.isEmpty) {
                               SnackBarWidget.showSnack(
-                                  context, Constants.postEmpty);
+                                  context, Constants.postEmpty.tr());
                               return;
                             }
 

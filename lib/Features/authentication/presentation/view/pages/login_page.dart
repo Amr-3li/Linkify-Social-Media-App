@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/authentication/presentation/view/widgets/auth_background.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -25,9 +26,9 @@ class LoginPage extends StatelessWidget {
           SnackBarWidget.showSnack(context, state.error);
         } else if (state is ResetPasswordSuccess) {
           SnackBarWidget.showSnack(
-              context, Constants.passwordResetsSuccessfully);
+              context, Constants.passwordResetsSuccessfully.tr());
         } else if (state is ResetPasswordfaild) {
-          SnackBarWidget.showSnack(context, Constants.resetPasswordFaild);
+          SnackBarWidget.showSnack(context, Constants.resetPasswordFaild.tr());
         }
       },
       builder: (context, state) {
@@ -46,7 +47,7 @@ class LoginPage extends StatelessWidget {
                       height: 50,
                     ),
                     Text(
-                      Constants.loginPage,
+                      Constants.loginPage.tr(),
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 36,
@@ -72,21 +73,21 @@ class LoginPage extends StatelessWidget {
                             ),
                             InputTextField(
                               controller: emailController,
-                              hintText: Constants.email,
+                              hintText: Constants.email.tr(),
                             ),
                             const SizedBox(
                               height: 30,
                             ),
                             InputTextField(
                               controller: passwordController,
-                              hintText: Constants.password,
+                              hintText: Constants.password.tr(),
                               isPassword: true,
                             ),
                             Align(
                               alignment: AlignmentDirectional.centerEnd,
                               child: TextButton(
-                                child: const Text(
-                                  Constants.forgetPassword,
+                                child: Text(
+                                  Constants.forgetPassword.tr(),
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {
@@ -119,8 +120,8 @@ class LoginPage extends StatelessWidget {
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
                                             .secondary),
-                                    child: const Text(
-                                      Constants.login,
+                                    child: Text(
+                                      Constants.login.tr(),
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     ),

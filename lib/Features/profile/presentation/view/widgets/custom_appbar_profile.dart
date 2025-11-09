@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,13 +30,13 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
       listener: (context, state) {
         if (state is UpdateUserImageLoaded) {
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text(Constants.imageUpdated)));
+              SnackBar(content: Text(Constants.imageUpdated.tr())));
         } else if (state is UpdateUserImageError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
         } else if (state is UpdateUserImageLoading) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text(Constants.loading)));
+              .showSnackBar(SnackBar(content: Text(Constants.loading.tr())));
         }
       },
       builder: (context, state) {

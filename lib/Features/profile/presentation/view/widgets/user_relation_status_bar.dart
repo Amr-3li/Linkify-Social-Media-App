@@ -6,7 +6,6 @@ import 'package:linkify/Features/profile/presentation/view/widgets/friend_send_r
 import 'package:linkify/Features/profile/presentation/view/widgets/my_profile_status_component.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/no_relation_component.dart';
 import 'package:linkify/Features/profile/presentation/view/widgets/you_send_request_component.dart';
-import 'package:linkify/core/constants/constants.dart';
 
 class UserRelationStatusBar extends StatelessWidget {
   const UserRelationStatusBar({
@@ -23,15 +22,15 @@ class UserRelationStatusBar extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.only(
                     bottom: 20, top: 5, left: 15, right: 15),
-                child: state.response == Constants.youSendRequest
+                child: state.response == "YouSendRequest"
                     ? YouSendRequestComponent(userId: userId)
-                    : state.response == Constants.friends
+                    : state.response == "Friends"
                         ? FriendComponent(userId: userId)
-                        : state.response == Constants.friendSendRequest
+                        : state.response == "FriendSendRequest"
                             ? const FriendSendRequestComponent()
-                            : state.response == Constants.noRelation
+                            : state.response == "NoRelation"
                                 ? NoRelationComponent(userId: userId)
-                                : state.response == Constants.myAccount
+                                : state.response == "MyAccount"
                                     ? const MyProfileStatusComponent()
                                     : const SizedBox())
             : const SizedBox();

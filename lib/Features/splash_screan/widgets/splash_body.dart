@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -30,7 +31,7 @@ class SplashBody extends StatelessWidget {
           duration: const Duration(milliseconds: 2000),
           curve: Curves.easeInCirc,
           child: Text(
-            Constants.welcome,
+            Constants.welcome.tr(),
             style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.05,
               color: Theme.of(context).colorScheme.primary,

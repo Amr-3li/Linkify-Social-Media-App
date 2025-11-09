@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_appbar.dart';
@@ -9,8 +10,8 @@ class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppbar(
-        title: Constants.help,
+      appBar: CustomAppbar(
+        title: Constants.help.tr(),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -42,7 +43,7 @@ class HelpPage extends StatelessWidget {
     final faqs = [
       {
         'question': 'How do I reset my password?',
-        'answer': Constants.helpText, // Replace with actual answer
+        'answer': Constants.helpText.tr(), // Replace with actual answer
       },
       {
         'question': 'How to create a new account?',

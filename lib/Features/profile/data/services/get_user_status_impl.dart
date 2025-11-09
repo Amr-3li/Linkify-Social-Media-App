@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/profile/data/services/get_user_status.dart';
-import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:path/path.dart';
@@ -12,7 +11,7 @@ class GetUserStatusImpl implements GetUserStatus {
     try {
       final myId = SharedPreferenceSingelton.getString('uid');
       if (equals(toId, myId)) {
-        return Constants.myAccount;
+        return "MyAccount";
       } else {
         final response1 = await firestore
             .collection('friendRequests')
@@ -20,10 +19,10 @@ class GetUserStatusImpl implements GetUserStatus {
             .get();
         if (response1.exists) {
           String status = response1.data()!["status"];
-          if (equals(status, Constants.requested)) {
-            return Constants.youSendRequest;
-          } else if (equals(status, Constants.accepted)) {
-            return Constants.friends;
+          if (equals(status, "Requested")) {
+            return "YouSendRequest";
+          } else if (equals(status, "Accepted")) {
+            return "Friends";
           }
         } else {
           final response1 = await firestore
@@ -32,15 +31,15 @@ class GetUserStatusImpl implements GetUserStatus {
               .get();
           if (response1.exists) {
             String status = response1.data()!["status"];
-            if (equals(status, Constants.requested)) {
-              return Constants.friendSendRequest;
-            } else if (equals(status, Constants.accepted)) {
-              return Constants.friends;
+            if (equals(status, "Requested")) {
+              return "FriendSendRequest";
+            } else if (equals(status, "Accepted")) {
+              return "Friends";
             }
           }
         }
       }
-      return Constants.noRelation;
+      return "NoRelation";
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
     } catch (e) {

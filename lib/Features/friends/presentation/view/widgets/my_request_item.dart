@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -62,7 +63,7 @@ class MyRequestItem extends StatelessWidget {
                 return const SizedBox();
               } else {
                 return CustomFreindsButton(
-                  title: Constants.unSend,
+                  title: Constants.unSend.tr(),
                   color: const Color.fromARGB(149, 151, 0, 0),
                   onTap: () async {
                     await BlocProvider.of<FriendsCubit>(context)

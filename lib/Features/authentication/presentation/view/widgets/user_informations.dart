@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/input_text.dart';
@@ -38,27 +39,27 @@ class _UserInformationsState extends State<UserInformations> {
             Expanded(
               child: InputTextField(
                   controller: widget.fnameController,
-                  hintText: Constants.firstName),
+                  hintText: Constants.firstName.tr()),
             ),
             const SizedBox(width: 20),
             Expanded(
                 child: InputTextField(
                     controller: widget.lnameController,
-                    hintText: Constants.lastName)),
+                    hintText: Constants.lastName.tr())),
           ],
         ),
         const SizedBox(height: 20),
         InputTextField(
-            controller: widget.emailController, hintText: Constants.email),
+            controller: widget.emailController, hintText: Constants.email.tr()),
         const SizedBox(height: 20),
         InputTextField(
             controller: widget.phoneController,
-            hintText: Constants.phone,
+            hintText: Constants.phone.tr(),
             isnumber: true),
         const SizedBox(height: 20),
         InputTextField(
             controller: widget.passwordController,
-            hintText: Constants.password,
+            hintText: Constants.password.tr(),
             isPassword: true),
         const SizedBox(height: 20),
         Row(
@@ -71,7 +72,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text(Constants.female,
+            Text(Constants.female.tr(),
                 style: TextStyle(color: Colors.white, fontSize: 20)),
             const SizedBox(width: 20),
             Checkbox(
@@ -82,7 +83,7 @@ class _UserInformationsState extends State<UserInformations> {
                 setState(() {});
               },
             ),
-            const Text(Constants.male,
+            Text(Constants.male.tr(),
                 style: TextStyle(color: Colors.white, fontSize: 20)),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_appbar.dart';
@@ -9,8 +10,8 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppbar(
-        title: Constants.aboutUs,
+      appBar: CustomAppbar(
+        title: Constants.aboutUs.tr(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -40,7 +41,7 @@ class AboutUsPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                Constants.aboutUs,
+                Constants.aboutUs.tr(),
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -62,7 +63,7 @@ class AboutUsPage extends StatelessWidget {
                   ],
                 ),
                 child: SelectableText(
-                  Constants.aboutUsText,
+                  Constants.aboutUsText.tr(),
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 16,
@@ -73,7 +74,7 @@ class AboutUsPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                Constants.contact,
+                Constants.contact.tr(),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,

@@ -31,6 +31,8 @@ migrate_working_dir/
 .pub/
 /build/
 /lib/Features/test/
+/lib/Features/home/
+/lib/Features/chat/
 
 # Symbolication related
 app.*.symbols

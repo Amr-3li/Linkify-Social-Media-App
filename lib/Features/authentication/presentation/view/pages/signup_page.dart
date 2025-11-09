@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/authentication/presentation/view/widgets/auth_background.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -44,7 +45,8 @@ class _SignupPageState extends State<SignupPage> {
     return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          SnackBarWidget.showSnack(context, Constants.userCreatedSuccessfully);
+          SnackBarWidget.showSnack(
+              context, Constants.userCreatedSuccessfully.tr());
           GoRouter.of(context).pop();
         } else if (state is SignUpError) {
           SnackBarWidget.showSnack(context, state.message);
@@ -66,7 +68,7 @@ class _SignupPageState extends State<SignupPage> {
                       height: 50,
                     ),
                     Text(
-                      Constants.signUpPage,
+                      Constants.signUpPage.tr(),
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 36,
@@ -139,8 +141,8 @@ class _SignupPageState extends State<SignupPage> {
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
                                             .secondary),
-                                    child: const Text(
-                                      Constants.signUp,
+                                    child: Text(
+                                      Constants.signUp.tr(),
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     ),
@@ -149,8 +151,8 @@ class _SignupPageState extends State<SignupPage> {
                               height: 10,
                             ),
                             TextButton(
-                                child: const Text(
-                                  Constants.alreadyHaveAccount,
+                                child: Text(
+                                  Constants.alreadyHaveAccount.tr(),
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () {

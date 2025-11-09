@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -75,7 +76,7 @@ class NotificationItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 state is FriendsLoaded
-                    ? const Text(Constants.yourResponseSent,
+                    ? Text(Constants.yourResponseSent.tr(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style:
@@ -99,7 +100,7 @@ class NotificationItem extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: CustomButton(
-                                      title: Constants.accept,
+                                      title: Constants.accept.tr(),
                                       color: Colors.green,
                                       onTap: () {
                                         context
@@ -111,7 +112,7 @@ class NotificationItem extends StatelessWidget {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: CustomButton(
-                                      title: Constants.reject,
+                                      title: Constants.reject.tr(),
                                       color: Colors.red,
                                       onTap: () {
                                         context

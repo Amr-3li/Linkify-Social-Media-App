@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_button.dart';
@@ -10,11 +11,11 @@ class FriendSendRequestComponent extends StatelessWidget {
     return Row(children: [
       Expanded(
           child: CustomButton(
-              title: Constants.reject, color: Colors.red, onTap: () {})),
+              title: Constants.reject.tr(), color: Colors.red, onTap: () {})),
       const SizedBox(width: 10),
       Expanded(
           child: CustomButton(
-              title: Constants.accept, color: Colors.green, onTap: () {})),
+              title: Constants.accept.tr(), color: Colors.green, onTap: () {})),
     ]);
   }
 }

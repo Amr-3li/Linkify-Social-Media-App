@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/exports/app_router.dart';
@@ -29,8 +30,8 @@ class NotificationAppbar extends StatelessWidget
           },
         ),
       ],
-      title: const Text(
-        Constants.notifications,
+      title: Text(
+        Constants.notifications.tr(),
         style: TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23),
       ),

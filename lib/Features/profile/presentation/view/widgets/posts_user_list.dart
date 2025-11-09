@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
@@ -26,15 +27,15 @@ class PostsUserList extends StatelessWidget {
             child: LoadingPost(),
           );
         } else if (state is GetUserPostsFailure) {
-          return const SliverToBoxAdapter(
+          return SliverToBoxAdapter(
             child: Center(
-              child: Text(Constants.error),
+              child: Text(Constants.error.tr()),
             ),
           );
         } else {
-          return const SliverToBoxAdapter(
+          return SliverToBoxAdapter(
             child: Center(
-              child: Text(Constants.noPostExist),
+              child: Text(Constants.noPostExist.tr()),
             ),
           );
         }

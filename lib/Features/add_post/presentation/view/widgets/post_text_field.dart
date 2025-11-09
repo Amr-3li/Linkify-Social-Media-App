@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 
@@ -13,8 +14,8 @@ class PostTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         style: const TextStyle(fontSize: 20),
-        decoration: const InputDecoration(
-          hintText: Constants.whatInYourMind,
+        decoration: InputDecoration(
+          hintText: Constants.whatInYourMind.tr(),
           disabledBorder: InputBorder.none,
         ),
         maxLines: 30,

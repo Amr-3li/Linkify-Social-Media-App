@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +21,7 @@ class FriendComponent extends StatelessWidget {
         Expanded(
           flex: 1,
           child: CustomButton(
-              title: Constants.removeFriend,
+              title: Constants.removeFriend.tr(),
               color: const Color.fromARGB(149, 151, 0, 0),
               onTap: () {
                 showDialog(
@@ -37,14 +38,14 @@ class FriendComponent extends StatelessWidget {
                             await BlocProvider.of<GetUserStatusCubit>(context)
                                 .userStatus(userId);
                           },
-                          child: const Text(Constants.remove)),
+                          child: Text(Constants.remove.tr())),
                       TextButton(
                           onPressed: () {
                             GoRouter.of(context).pop();
                           },
-                          child: const Text(Constants.cansel)),
+                          child: Text(Constants.cansel.tr())),
                     ],
-                    content: const Text(Constants.areYouSure),
+                    content: Text(Constants.areYouSure.tr()),
                   ),
                 );
               }),

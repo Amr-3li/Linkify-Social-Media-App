@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/splash_screan/widgets/splash_body.dart';
 import 'package:linkify/core/exports/app_router.dart';
@@ -26,8 +27,12 @@ class _SplashScreanState extends State<SplashScrean> {
     );
     Future.delayed(
       const Duration(seconds: 5),
-      () {
-        if (SharedPreferenceSingelton.getString('uid') != null) {
+      () async {
+        await context.setLocale(Locale(
+            SharedPreferenceSingelton.getString('lang') == ''
+                ? 'en'
+                : SharedPreferenceSingelton.getString('lang')));
+        if (SharedPreferenceSingelton.getString('uid') != "") {
           GoRouter.of(context).pushReplacement(NavigationPage.routeName);
         } else {
           GoRouter.of(context).pushReplacement(LoginPage.routeName);

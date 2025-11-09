@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +64,7 @@ class FriendRequestsItem extends StatelessWidget {
                 return Row(
                   children: [
                     CustomFreindsButton(
-                      title: Constants.reject,
+                      title: Constants.reject.tr(),
                       color: const Color.fromARGB(149, 151, 0, 0),
                       onTap: () async {
                         await context
@@ -73,7 +74,7 @@ class FriendRequestsItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     CustomFreindsButton(
-                      title: Constants.accept,
+                      title: Constants.accept.tr(),
                       color: const Color.fromARGB(255, 68, 126, 121),
                       onTap: () async {
                         await context

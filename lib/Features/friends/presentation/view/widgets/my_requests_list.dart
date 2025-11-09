@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/friends/data/repository/friends_repo.dart';
@@ -64,7 +65,7 @@ class MyRequestsList extends StatelessWidget {
                     onPressed: () async {
                       await _onRefresh(context);
                     },
-                    child: const Text(Constants.tryAgain)),
+                    child: Text(Constants.tryAgain.tr())),
                 const Spacer()
               ],
             );

@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/input_data_widgit.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -27,8 +28,8 @@ class DialogBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              Constants.updateUserData,
+            Text(
+              Constants.updateUserData.tr(),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -37,7 +38,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 10),
             InputDataWidgit(
               text: fname,
-              title: Constants.firstName,
+              title: Constants.firstName.tr(),
               color: Theme.of(context).colorScheme.onSurface,
               onchanged: (value) {
                 fname = value;
@@ -47,7 +48,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: lname,
-              title: Constants.lastName,
+              title: Constants.lastName.tr(),
               color: Theme.of(context).colorScheme.onSurface,
               onchanged: (value) {
                 lname = value;
@@ -57,7 +58,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: userModel.about ?? "",
-              title: Constants.about,
+              title: Constants.about.tr(),
               color: Theme.of(context).colorScheme.onSurface,
               onchanged: (value) {
                 userModel.about = value;
@@ -66,7 +67,7 @@ class DialogBody extends StatelessWidget {
             const SizedBox(height: 20),
             InputDataWidgit(
               text: userModel.phone,
-              title: Constants.phone,
+              title: Constants.phone.tr(),
               color: Theme.of(context).colorScheme.onSurface,
               isnumber: true,
               onchanged: (value) {
@@ -88,7 +89,7 @@ class DialogBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         backgroundColor: Theme.of(context).colorScheme.surface),
-                    child: Text(Constants.cansel,
+                    child: Text(Constants.cansel.tr(),
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: 12)),
@@ -115,7 +116,7 @@ class DialogBody extends StatelessWidget {
                                   backgroundColor:
                                       Theme.of(context).colorScheme.secondary,
                                 ),
-                                child: const Text(Constants.save,
+                                child: Text(Constants.save.tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12)),
                               ),

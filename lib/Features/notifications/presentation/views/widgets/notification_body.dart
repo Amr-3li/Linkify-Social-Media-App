@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
@@ -80,7 +81,7 @@ class _NotificationBodyState extends State<NotificationBody> {
                   width: 100,
                   height: 40,
                   child: CustomButton(
-                      title: Constants.refresh,
+                      title: Constants.refresh.tr(),
                       color: Colors.green,
                       onTap: () async {
                         await context

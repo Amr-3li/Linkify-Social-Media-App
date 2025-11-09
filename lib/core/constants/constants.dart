@@ -13,136 +13,130 @@ class Constants {
       "asdfsdasf gagsg asg asgsg\nagasdag sadgfasdgagagagashgasgjasdhsajdhjgashgasg\nagagafas";
   static const String skeltonizertime = "156154445414514";
   // ==================== Friend Request Statuses ====================
-  static const String accepted = "Accepted";
-  static const String requested = "Requested";
-  static const String youSendRequest = "YouSendRequest";
-  static const String friendSendRequest = "FriendSendRequest";
-  static const String friends = "Friends";
-  static const String noRelation = "NoRelation";
-  static const String myAccount = "MyAccount";
+  static const String accepted = "accepted";
+  static const String requested = "requested";
+  static const String youSendRequest = "youSendRequest";
+  static const String friendSendRequest = "friendSendRequest";
+  static const String friends = "friends";
+  static const String noRelation = "noRelation";
+  static const String myAccount = "myAccount";
 
   // ==================== Post Related ====================
-  static const String postLoading = "Posting...";
-  static const String postNow = "Post Now";
-  static const String postEmpty = "Post can't be empty";
-  static const String whatInYourMind = "What's in your mind?";
-  static const String postsAddedSuccess = "Post added successfully";
-  static const String noPostExist = "No posts exist";
+  static const String postLoading = "postLoading";
+  static const String postNow = "postNow";
+  static const String postEmpty = "postEmpty";
+  static const String whatInYourMind = "whatInYourMind";
+  static const String postsAddedSuccess = "postsAddedSuccess";
+  static const String noPostExist = "noPostExist";
 
   // ==================== Comments & Reactions ====================
-  static const String comments = "Comments";
-  static const String lovers = "Lovers";
-  static const String like = "Like";
-  static const String share = "Share";
-  static const String writeComment = "Write a comment...";
+  static const String comments = "comments";
+  static const String lovers = "lovers";
+  static const String like = "like";
+  static const String share = "share";
+  static const String writeComment = "writeComment";
 
   // ==================== Messaging ====================
-  static const String chats = "Chats";
-  static const String writeMessage = "Write a message...";
-  static const String enterChatName = "Enter chat name";
-  static const String noMessage = "No Messages Yet";
-  static const String recording = "Recording...";
-  static const String pleaseWriteMessage = "Please write a message";
-  static const String sendMessage = "Send Message";
+  static const String chats = "chats";
+  static const String writeMessage = "writeMessage";
+  static const String enterChatName = "enterChatName";
+  static const String noMessage = "noMessage";
+  static const String recording = "recording";
+  static const String pleaseWriteMessage = "pleaseWriteMessage";
+  static const String sendMessage = "sendMessage";
 
   // ==================== Friends ====================
-  static const String myFriends = "My Friends";
-  static const String myRequests = "My Requests";
-  static const String friendsRequests = "Friends Requests";
-  static const String addFriend = "Add Friend";
-  static const String reject = "Reject";
-  static const String accept = "Accept";
-  static const String unFriend = "UnFriend";
-  static const String unSend = "UnSend";
-  static const String removeFriend = "Remove Friend";
-  static const String unsendRequest = "Unsend Request";
+  static const String myFriends = "myFriends";
+  static const String myRequests = "myRequests";
+  static const String friendsRequests = "friendsRequests";
+  static const String addFriend = "addFriend";
+  static const String reject = "reject";
+  static const String accept = "accept";
+  static const String unFriend = "unFriend";
+  static const String unSend = "unSend";
+  static const String removeFriend = "removeFriend";
+  static const String unsendRequest = "unsendRequest";
 
   // ==================== User Profile ====================
-  static const String myProfile = "My Profile";
-  static const String userName = "UserName";
-  static const String name = "Name";
-  static const String email = "Email";
-  static const String phone = "Phone";
-  static const String gender = "Gender";
-  static const String male = "Male";
-  static const String female = "Female";
-  static const String edit = "Edit";
-  static const String delete = "Delete";
-  static const String imageUpdated = "Image updated";
-  static const String editProfile = "edit profile";
-  static const String profileUpdated = "Profile updated successfully";
+  static const String myProfile = "myProfile";
+  static const String userName = "userName";
+  static const String name = "name";
+  static const String email = "email";
+  static const String phone = "phone";
+  static const String gender = "gender";
+  static const String male = "male";
+  static const String female = "female";
+  static const String edit = "edit";
+  static const String delete = "delete";
+  static const String imageUpdated = "imageUpdated";
+  static const String editProfile = "editProfile";
+  static const String profileUpdated = "profileUpdated";
 
   // ==================== Authentication ====================
-  static const String loginPage = "Login Page";
-  static const String password = "Password";
-  static const String forgetPassword = "forget password?";
-  static const String signInWith = "Sign in with";
-  static const String google = "Google";
-  static const String register = "Register";
-  static const String login = "Login";
-  static const String signUpPage = "SignUp Page";
-  static const String signUp = "Sign Up";
-  static const String alreadyHaveAccount = "Already have an account?";
-  static const String firstName = "first name";
-  static const String lastName = "last name";
-  static const String userCreatedSuccessfully = "User created successfully";
-  static const String enterYourEmail = "enter your email to reset pass";
-  static const String resetPassword = "Reset Password";
-  static const String passwordResetsSuccessfully =
-      "the password reset successfully";
-  static const String resetPasswordFaild = "reset password faild";
-  static const String changePassword = "change password";
-  static const String dontHaveAccount = "Don't have an account?";
-  static const String invalidEmail = "Invalid email";
-  static const String weakPassword = "Weak password";
-  static const String wrongPassword = "Wrong password";
-  static const String userNotFound = "User not found";
-  static const String userDisabled = "User disabled";
-  static const String emailSent = "Done email sent, check your network";
-  static const String sendEmail = "Send Email ...";
+  static const String loginPage = "loginPage";
+  static const String password = "password";
+  static const String forgetPassword = "forgetPassword";
+  static const String signInWith = "signInWith";
+  static const String google = "google";
+  static const String register = "register";
+  static const String login = "login";
+  static const String signUpPage = "signUpPage";
+  static const String signUp = "signUp";
+  static const String alreadyHaveAccount = "alreadyHaveAccount";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String userCreatedSuccessfully = "userCreatedSuccessfully";
+  static const String enterYourEmail = "enterYourEmail";
+  static const String resetPassword = "resetPassword";
+  static const String passwordResetsSuccessfully = "passwordResetsSuccessfully";
+  static const String resetPasswordFaild = "resetPasswordFaild";
+  static const String changePassword = "changePassword";
+  static const String dontHaveAccount = "dontHaveAccount";
+  static const String invalidEmail = "invalidEmail";
+  static const String weakPassword = "weakPassword";
+  static const String wrongPassword = "wrongPassword";
+  static const String userNotFound = "userNotFound";
+  static const String userDisabled = "userDisabled";
+  static const String emailSent = "emailSent";
+  static const String sendEmail = "sendEmail";
+
   // ==================== App Settings ====================
-  static const String settings = "Settings";
-  static const String updateUserData = "update user data";
-  static const String save = "Save";
-  static const String general = "GENERAL";
+  static const String settings = "settings";
+  static const String updateUserData = "updateUserData";
+  static const String save = "save";
+  static const String general = "general";
   static const String language = "language";
-  static const String english = "English";
+  static const String english = "english";
+  static const String arabic = "arabic";
   static const String theme = "theme";
-  static const String light = "Light";
-  static const String others = "OTHERS";
-  static const String contact = "contact us";
-  static const String account = "ACCOUNT";
-  static const String welcome = "Welcome";
+  static const String light = "light";
+  static const String others = "others";
+  static const String contact = "contact";
+  static const String account = "account";
+  static const String welcome = "welcome";
 
   // ==================== App Content ====================
-  static const String aboutUs = "About Us";
-  static const String helping = "Helping";
-  static const String help = "Help";
-  static const String notifications = "Notifications";
-  static const String refresh = "Refresh";
-  static const String search = "Search";
-  static const String tryAgain = "Try Again";
-  static const String remove = "Remove";
-  static const String areYouSure = "Are you sure you want to remove";
-  static const String error = "Error";
-  static const String loading = "Loading...";
-  static const String add = "Add";
-  static const String cansel = "Cansel";
-  static const String canselRequest = "Cansel Request";
-  static const String notUsersExist = "No users exist";
-  static const String yourResponseSent = "Your response sent";
-  static const String about = "About";
-  static const String rateUs = "Rate Us";
-  static const String logout = "Logout";
+  static const String aboutUs = "aboutUs";
+  static const String helping = "helping";
+  static const String help = "help";
+  static const String notifications = "notifications";
+  static const String refresh = "refresh";
+  static const String search = "search";
+  static const String tryAgain = "tryAgain";
+  static const String remove = "remove";
+  static const String areYouSure = "areYouSure";
+  static const String error = "error";
+  static const String loading = "loading";
+  static const String add = "add";
+  static const String cansel = "cansel";
+  static const String canselRequest = "canselRequest";
+  static const String notUsersExist = "notUsersExist";
+  static const String yourResponseSent = "yourResponseSent";
+  static const String about = "about";
+  static const String rateUs = "rateUs";
+  static const String logout = "logout";
 
   // ==================== Long Texts ====================
-  static const String aboutUsText =
-      "🧾 About Us \n\n Welcome to Linkify – your go-to social media platform designed to bring people closer through meaningful conversations, shared moments, and powerful connections."
-      "\nCreated by Amr Ali, a passionate Flutter Developer, Linkify offers a smooth and modern experience with real-time messaging, engaging posts, and all the features you'd expect from a top-tier social app."
-      "\nWe're here to redefine how you connect online."
-      "\n📞 Developer Contact: +201066472418";
-
-  static const String helpText =
-      "🧾 Help \n\n If you have any questions or need assistance, please don't hesitate to reach out to our support team. We are here to help you navigate our app and ensure a seamless experience."
-      "\n📞 Support Contact: +201066472418";
+  static const String aboutUsText = "aboutUsText";
+  static const String helpText = "helpText";
 }

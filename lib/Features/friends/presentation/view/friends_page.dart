@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/friends/data/repository/get_friends_or_requests_repo.dart';
@@ -37,9 +38,9 @@ class _FriendPageState extends State<FriendPage> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    tapNavigateItem(0, Constants.myFriends),
-                    tapNavigateItem(1, Constants.friendsRequests),
-                    tapNavigateItem(2, Constants.myRequests),
+                    tapNavigateItem(0, Constants.myFriends.tr()),
+                    tapNavigateItem(1, Constants.friendsRequests.tr()),
+                    tapNavigateItem(2, Constants.myRequests.tr()),
                   ])),
           Expanded(
               child: IndexedStack(

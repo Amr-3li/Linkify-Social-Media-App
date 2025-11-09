@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
@@ -16,7 +17,7 @@ class YouSendRequestComponent extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: CustomButton(
-              title: Constants.canselRequest,
+              title: Constants.canselRequest.tr(),
               color: MyColors.fromMessageBorder,
               onTap: () async {
                 await BlocProvider.of<FriendsCubit>(context)

@@ -5,6 +5,10 @@ class SharedPreferenceSingelton {
 
   static Future<void> init() async {
     _instance = await SharedPreferences.getInstance();
+
+    if (!_instance.containsKey('lang')) {
+      await _instance.setString('lang', "en");
+    }
   }
 
   static Future<bool> setBool(String key, bool value) =>

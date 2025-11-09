@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart'
     show Filter, FirebaseFirestore, FirebaseException;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth, User;
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
@@ -56,7 +57,7 @@ class AddPostImpl implements AddPost {
 
       final querySnapshot = await firestore
           .collection('friendRequests')
-          .where('status', isEqualTo: Constants.accepted)
+          .where('status', isEqualTo: Constants.accepted.tr())
           .where(
             Filter.or(
               Filter('senderId', isEqualTo: currentUserId),

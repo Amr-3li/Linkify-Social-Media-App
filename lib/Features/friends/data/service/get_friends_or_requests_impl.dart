@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:linkify/Features/friends/data/service/get_friends_or_requests.dart';
-import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/helper/firebase_exeption_handler.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
@@ -99,7 +98,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
       final currentUserId = await _getCurrentUserId();
       final snapshot = await _firestore
           .collection('friendRequests')
-          .where('status', isEqualTo: Constants.accepted)
+          .where('status', isEqualTo: "Accepted")
           .where(Filter.or(
             Filter('senderId', isEqualTo: currentUserId),
             Filter('receiverId', isEqualTo: currentUserId),
@@ -124,7 +123,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
       final sent = await _firestore
           .collection('friendRequests')
           .where('senderId', isEqualTo: currentUserId)
-          .where('status', isEqualTo: Constants.requested)
+          .where('status', isEqualTo: "Requested")
           .get();
 
       return sent.docs.map((doc) => doc['receiverId'] as String).toList();
@@ -141,7 +140,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
       final received = await _firestore
           .collection('friendRequests')
           .where('receiverId', isEqualTo: currentUserId)
-          .where('status', isEqualTo: Constants.requested)
+          .where('status', isEqualTo: "Requested")
           .get();
 
       return received.docs.map((doc) => doc['senderId'] as String).toList();

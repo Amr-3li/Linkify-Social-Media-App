@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/search/presentation/cubit/get_search_user/get_search_user_cubit.dart';
@@ -55,11 +56,11 @@ class _SearchAppbarState extends State<SearchAppbar> {
                     });
                   },
                   style: TextStyle(color: MyColors.light, fontSize: 20),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       border: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: MyColors.light, width: 3)),
-                      hintText: Constants.search,
+                      hintText: Constants.search.tr(),
                       hintStyle:
                           TextStyle(color: MyColors.light, fontSize: 20)),
                 ),
