@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 class InputTextField extends StatelessWidget {
   const InputTextField({
     super.key,
-    this.isPassword,
+    this.isPassword = false,
     required this.hintText,
     required this.controller,
     this.isnumber = false,
     this.color = Colors.white,
+    this.onChanged,
+    this.suffixIcon,
   });
-  final bool? isPassword, isnumber;
+  final bool isPassword;
+  final bool? isnumber;
   final String hintText;
   final TextEditingController controller;
   final Color? color;
+  final void Function(String)? onChanged;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -23,11 +28,13 @@ class InputTextField extends StatelessWidget {
         }
         return null;
       },
+      onChanged: onChanged,
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       controller: controller,
-      obscureText: isPassword ?? false,
+      obscureText: isPassword,
       keyboardType: isnumber! ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         labelText: hintText,
         labelStyle: TextStyle(color: color!),
         border: const OutlineInputBorder(

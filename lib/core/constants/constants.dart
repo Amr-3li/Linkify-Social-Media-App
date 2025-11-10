@@ -99,7 +99,7 @@ class Constants {
   static const String userDisabled = "userDisabled";
   static const String emailSent = "emailSent";
   static const String sendEmail = "sendEmail";
-
+  static const String passwordChanged = "passwordChanged";
   // ==================== App Settings ====================
   static const String settings = "settings";
   static const String updateUserData = "updateUserData";
@@ -135,8 +135,21 @@ class Constants {
   static const String about = "about";
   static const String rateUs = "rateUs";
   static const String logout = "logout";
-
+  static const String oldPassword = "oldPassword";
+  static const String newPassword = "newPassword";
+  static const String confirmNewPassword = "confirmNewPassword";
   // ==================== Long Texts ====================
   static const String aboutUsText = "aboutUsText";
   static const String helpText = "helpText";
+  // ==================== validation ====================
+  static const String invalidEntry = "invalid_entry";
+  static const String requiredField = "required_field";
+  static const String passwordLength = "password_length";
+  static const String passwordComplexity = "password_complexity";
+  static const String passwordMismatch = "password_mismatch";
+  static const String invalidUrl = "invalid_url";
+  static const String invalidNumber = "invalid_number";
+  static const String invalidPhone = "invalid_phone";
+  static const String chooseRating = "choose_rating";
+  static const String mustBePositive = "must_be_positive";
 }

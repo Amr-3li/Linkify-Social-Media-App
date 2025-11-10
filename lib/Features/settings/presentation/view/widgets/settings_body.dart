@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
 import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
+import 'package:linkify/Features/settings/presentation/view/pages/change_password.dart';
 import 'package:linkify/Features/settings/presentation/view/pages/language.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/dialog_body.dart';
 import 'package:linkify/Features/settings/presentation/view/widgets/settings_list_item.dart';
@@ -83,7 +84,7 @@ class SettingsBody extends StatelessWidget {
                 text: Constants.changePassword.tr(),
                 icon: Icons.password,
                 onTap: () async {
-                  await BlocProvider.of<ResetPassCubit>(context).resetPass();
+                  GoRouter.of(context).push(ChangePassword.routeName);
                 }),
           ),
           ListNameComponent(name: Constants.helping.tr()),

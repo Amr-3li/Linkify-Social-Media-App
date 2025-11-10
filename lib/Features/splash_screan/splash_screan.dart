@@ -28,10 +28,8 @@ class _SplashScreanState extends State<SplashScrean> {
     Future.delayed(
       const Duration(seconds: 5),
       () async {
-        await context.setLocale(Locale(
-            SharedPreferenceSingelton.getString('lang') == ''
-                ? 'en'
-                : SharedPreferenceSingelton.getString('lang')));
+        await context.setLocale(
+            Locale(SharedPreferenceSingelton.getString('lang') ?? "en"));
         if (SharedPreferenceSingelton.getString('uid') != "") {
           GoRouter.of(context).pushReplacement(NavigationPage.routeName);
         } else {

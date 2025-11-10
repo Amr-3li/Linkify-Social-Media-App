@@ -1,5 +1,6 @@
 import 'package:linkify/Features/settings/data/repo/reset_pass_repo.dart';
 import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
+import 'package:linkify/Features/settings/presentation/view/pages/change_password.dart';
 import 'package:linkify/Features/settings/presentation/view/pages/language.dart';
 import 'package:linkify/core/exports/app_router.dart';
 
@@ -178,6 +179,9 @@ abstract class AppRouter {
       GoRoute(
           path: LanguagePage.routeName,
           builder: (context, state) => const LanguagePage()),
+      GoRoute(
+          path: ChangePassword.routeName,
+          builder: (context, state) => const ChangePassword()),
     ],
   );
 }
