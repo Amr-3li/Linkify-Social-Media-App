@@ -100,6 +100,7 @@ class Constants {
   static const String emailSent = "emailSent";
   static const String sendEmail = "sendEmail";
   static const String passwordChanged = "passwordChanged";
+  static const String passwordChangeFailed = "passwordChangeFailed";
   // ==================== App Settings ====================
   static const String settings = "settings";
   static const String updateUserData = "updateUserData";

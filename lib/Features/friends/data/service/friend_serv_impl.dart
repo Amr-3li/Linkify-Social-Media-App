@@ -9,7 +9,7 @@ class AddFriendServImpl implements FriendServ {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<String> _getCurrentUserId() async {
-    return SharedPreferenceSingelton.getString("uid");
+    return SharedPreferenceSingelton.getString("uid")!;
   }
 
   @override
@@ -28,7 +28,7 @@ class AddFriendServImpl implements FriendServ {
       final notification = NotificationModel(
         time: DateTime.now().microsecondsSinceEpoch.toString(),
         fromUserId: fromId,
-        fromUserName: SharedPreferenceSingelton.getString('userName'),
+        fromUserName: SharedPreferenceSingelton.getString('userName')!,
         fromUserImage: SharedPreferenceSingelton.getString('userImage'),
         isreading: false,
         numOfTypeReations: 0,
@@ -88,7 +88,7 @@ class AddFriendServImpl implements FriendServ {
       final notification = NotificationModel(
           time: DateTime.now().microsecondsSinceEpoch.toString(),
           fromUserId: toId,
-          fromUserName: SharedPreferenceSingelton.getString('userName'),
+          fromUserName: SharedPreferenceSingelton.getString('userName')!,
           fromUserImage: SharedPreferenceSingelton.getString('userImage'),
           isreading: false,
           numOfTypeReations: 0,

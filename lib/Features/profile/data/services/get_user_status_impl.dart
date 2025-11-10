@@ -9,7 +9,7 @@ class GetUserStatusImpl implements GetUserStatus {
   @override
   Future<String> userStatus(String toId) async {
     try {
-      final myId = SharedPreferenceSingelton.getString('uid');
+      final myId = SharedPreferenceSingelton.getString('uid')!;
       if (equals(toId, myId)) {
         return "MyAccount";
       } else {

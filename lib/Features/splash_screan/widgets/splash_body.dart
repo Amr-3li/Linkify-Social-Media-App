@@ -1,8 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/animation.dart';
-import 'package:linkify/core/constants/constants.dart';
-import 'package:linkify/core/constants/images.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashBody extends StatelessWidget {

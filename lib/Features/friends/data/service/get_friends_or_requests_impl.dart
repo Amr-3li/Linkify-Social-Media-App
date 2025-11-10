@@ -15,7 +15,7 @@ class GetFriendsOrRequestsImpl implements GetFriendsOrRequests {
   int _friendRequestsCount = 0;
 
   Future<String> _getCurrentUserId() async {
-    return SharedPreferenceSingelton.getString('uid');
+    return SharedPreferenceSingelton.getString('uid')!;
   }
 
   @override

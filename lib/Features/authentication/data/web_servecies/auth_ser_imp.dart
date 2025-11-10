@@ -34,8 +34,7 @@ class AuthWebServiceImplement implements AuthService {
               'userName', "${value.data()!['name']}");
           SharedPreferenceSingelton.setString(
               'userImage', value.data()!['image'] ?? "");
-          SharedPreferenceSingelton.setString(
-              'email', value.data()!['email'] ?? "");
+          SharedPreferenceSingelton.setString('email', user.email!);
         }
       });
       return id;
