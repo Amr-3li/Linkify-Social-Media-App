@@ -20,7 +20,7 @@ class SharedPreferenceSingelton {
     await _instance.setString(key, value);
   }
 
-  static String getString(String key) => _instance.getString(key) ?? '';
+  static String? getString(String key) => _instance.getString(key);
 
   static Future<bool> remove(String key) => _instance.remove(key);
   static Future<bool> clear() => _instance.clear();

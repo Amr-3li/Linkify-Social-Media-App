@@ -8,9 +8,10 @@ class ResetPassRepoImpl implements ResetPassRepo {
 
   ResetPassRepoImpl(this.resetPassService);
   @override
-  Future<Either<Failure, void>> resetPass() async {
+  Future<Either<Failure, void>> resetPass(
+      {required String oldPass, required String newPass}) async {
     try {
-      await resetPassService.resetPass();
+      await resetPassService.resetPass(oldPass: oldPass, newPass: newPass);
       return Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
