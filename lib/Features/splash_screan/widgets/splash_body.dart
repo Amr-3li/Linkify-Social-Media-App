@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:linkify/core/constants/images.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashBody extends StatelessWidget {
@@ -18,10 +19,11 @@ class SplashBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Spacer(),
+        const Spacer(
+          flex: 1,
+        ),
         SizedBox(
             height: MediaQuery.of(context).size.width,
-            width: double.infinity,
             child: LottieBuilder.asset(
               MyAnimation.animationsDashAnimation,
               fit: BoxFit.fill,
@@ -30,16 +32,21 @@ class SplashBody extends StatelessWidget {
           opacity: opacity,
           duration: const Duration(milliseconds: 2000),
           curve: Curves.easeInCirc,
-          child: Text(
-            Constants.welcome.tr(),
-            style: TextStyle(
-              fontSize: MediaQuery.of(context).size.height * 0.05,
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.w900,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Linkify",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 50,
+                    fontStyle: FontStyle.italic),
+              ),
+            ],
           ),
         ),
-        const Spacer()
+        const Spacer(flex: 2),
       ],
     );
   }

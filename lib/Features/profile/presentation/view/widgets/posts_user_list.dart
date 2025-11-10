@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 import 'package:linkify/Features/profile/presentation/cubit/get_user_posts/get_user_posts_cubit.dart';
+import 'package:linkify/core/constants/animation.dart';
 import 'package:linkify/core/constants/constants.dart';
+import 'package:lottie/lottie.dart';
 
 class PostsUserList extends StatelessWidget {
   const PostsUserList({
@@ -35,7 +37,9 @@ class PostsUserList extends StatelessWidget {
         } else {
           return SliverToBoxAdapter(
             child: Center(
-              child: Text(Constants.noPostExist.tr()),
+              child: Lottie.asset(
+                MyAnimation.animationsNotExist,
+              ),
             ),
           );
         }

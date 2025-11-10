@@ -14,14 +14,14 @@ class LanguagePage extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
-            title: Text(Constants.english.tr()),
+            title: Text("English"),
             onTap: () async {
               await context.setLocale(const Locale('en'));
               SharedPreferenceSingelton.setString('lang', 'en');
             },
           ),
           ListTile(
-            title: Text(Constants.arabic.tr()),
+            title: Text("العربية"),
             onTap: () async {
               await context.setLocale(const Locale('ar'));
               SharedPreferenceSingelton.setString('lang', 'ar');

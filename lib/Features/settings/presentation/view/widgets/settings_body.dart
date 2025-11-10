@@ -62,7 +62,7 @@ class SettingsBody extends StatelessWidget {
           ),
           ListNameComponent(name: Constants.account.tr()),
           SettingsListItem(
-              text: Constants.editProfile,
+              text: Constants.editProfile.tr(),
               icon: Icons.person,
               onTap: () async {
                 await openDialog(context);
