@@ -4,30 +4,35 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:linkify/Features/settings/presentation/cubit/change_theme/change_theme_cubit.dart';
 import 'package:linkify/core/exports/app_router.dart';
+import 'package:linkify/core/services/local_notification_services.dart';
+import 'package:linkify/core/services/push_notification_services.dart';
 import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/utils/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import 'package:linkify/core/utils/app_router.dart';
 import 'package:linkify/core/utils/project_endpoints.dart';
 import 'package:linkify/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  await EasyLocalization.ensureInitialized(); // Initialize EasyLocalization
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  //shared preference
+  await SharedPreferenceSingelton.init();
+  //notification
+  await PushNotificationServices.initialize();
+  await LocalNotificationService.init();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  //supabase
   await Supabase.initialize(
       url: ProjectEndpoints.storageUrl,
       anonKey: ProjectEndpoints.storageSecretKey);
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  await SharedPreferenceSingelton.init();
+  //git it
   setUpGitIt();
-
+  //localization
+  await EasyLocalization.ensureInitialized();
   runApp(DevicePreview(
     builder: (context) => BlocProvider(
       create: (context) => ChangeThemeCubit(),
