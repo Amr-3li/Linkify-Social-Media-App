@@ -29,7 +29,9 @@ class ProfilePage extends StatelessWidget {
                       gitItInstanse<ImageRepo>(),
                       gitItInstanse<UserDataRepo>()),
                   child: CustomAppbarProfile(
-                      name: state.user.name, image: state.user.image!),
+                      userId: state.user.id!,
+                      name: state.user.name,
+                      image: state.user.image!),
                 ),
                 SliverToBoxAdapter(
                   child: UserName(name: state.user.name),

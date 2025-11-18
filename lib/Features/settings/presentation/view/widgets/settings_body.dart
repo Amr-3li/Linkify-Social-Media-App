@@ -10,8 +10,6 @@ import 'package:linkify/Features/settings/presentation/view/widgets/settings_lis
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/exports/app_router.dart';
-import 'package:linkify/core/services/fcm_notification_services.dart';
-import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/shared_logic/data/models/user.dart';
 import 'package:linkify/core/widgets/snack_bar_widget.dart';
 

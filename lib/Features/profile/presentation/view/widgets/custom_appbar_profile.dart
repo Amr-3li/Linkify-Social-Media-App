@@ -9,14 +9,16 @@ import 'package:linkify/Features/profile/presentation/cubit/update_user/update_u
 import 'package:linkify/core/constants/colors.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/constants/images.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 
 class CustomAppbarProfile extends StatefulWidget {
   const CustomAppbarProfile({
     super.key,
     required this.name,
     required this.image,
+    required this.userId,
   });
-  final String name, image;
+  final String name, image, userId;
 
   @override
   State<CustomAppbarProfile> createState() => _CustomAppbarProfileState();
@@ -26,6 +28,40 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
   File? imageFile;
   @override
   Widget build(BuildContext context) {
+    return SharedPreferenceSingelton.getString('uid') == widget.userId
+        ? _buildEditableAppBar()
+        : _buildNonEditableAppBar();
+  }
+
+  Widget _buildNonEditableAppBar() {
+    return SliverAppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back,
+          color: MyColors.light,
+        ),
+        onPressed: () => Navigator.pop(context),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      expandedHeight: 200,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Hero(
+          tag: "profile-page",
+          child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: widget.image == ""
+                  ? const AssetImage(MyImages.imagesUserImage)
+                  : CachedNetworkImageProvider(widget.image),
+              fit: BoxFit.cover,
+            )),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEditableAppBar() {
     return BlocConsumer<UpdateUserCubit, UpdateUserState>(
       listener: (context, state) {
         if (state is UpdateUserImageLoaded) {
@@ -52,7 +88,7 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
             IconButton(
               onPressed: () async {
                 await pickImage();
-                context.read<UpdateUserCubit>().updateImage(imageFile!);
+                await context.read<UpdateUserCubit>().updateImage(imageFile!);
               },
               icon: const Icon(Icons.edit),
             ),
@@ -79,8 +115,14 @@ class _CustomAppbarProfileState extends State<CustomAppbarProfile> {
   }
 
   Future<void> pickImage() async {
-    XFile? ximage = await ImagePicker().pickImage(source: ImageSource.gallery);
-    imageFile = File(ximage!.path);
-    setState(() {});
+    try {
+      XFile? ximage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      setState(() {
+        imageFile = File(ximage!.path);
+      });
+    } on Exception catch (e) {
+      print('Error picking image: $e');
+    }
   }
 }

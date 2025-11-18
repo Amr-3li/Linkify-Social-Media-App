@@ -30,7 +30,7 @@ class _SplashScreanState extends State<SplashScrean> {
       () async {
         await context.setLocale(
             Locale(SharedPreferenceSingelton.getString('lang') ?? "en"));
-        if (SharedPreferenceSingelton.getString('uid') != "") {
+        if (SharedPreferenceSingelton.getString('uid') != null) {
           GoRouter.of(context).pushReplacement(NavigationPage.routeName);
         } else {
           GoRouter.of(context).pushReplacement(LoginPage.routeName);

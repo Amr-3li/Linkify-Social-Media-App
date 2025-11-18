@@ -27,7 +27,6 @@ class SupabaseStorage implements StorageService {
     bool isAudio = false,
   }) async {
     try {
-      // Validate file first
       await _validateFile(file, isImage: isImage, isAudio: isAudio);
 
       // Generate unique filename

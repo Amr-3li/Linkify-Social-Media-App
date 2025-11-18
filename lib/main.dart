@@ -20,6 +20,7 @@ Future<void> main() async {
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //shared preference
+
   await SharedPreferenceSingelton.init();
   //notification
   await PushNotificationServices.initialize();
@@ -33,6 +34,7 @@ Future<void> main() async {
   setUpGitIt();
   //localization
   await EasyLocalization.ensureInitialized();
+
   runApp(DevicePreview(
     builder: (context) => BlocProvider(
       create: (context) => ChangeThemeCubit(),
