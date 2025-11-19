@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
@@ -117,5 +118,10 @@ class HelpPage extends StatelessWidget {
     );
   }
 
-  void _contactSupport() {}
+  void _contactSupport() async {
+    final url = Uri.parse("https://wa.me/+201066472418");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
 }

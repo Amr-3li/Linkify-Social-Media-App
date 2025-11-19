@@ -31,6 +31,7 @@ class UserInformations extends StatefulWidget {
 class _UserInformationsState extends State<UserInformations> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         const SizedBox(height: 10),
@@ -73,7 +74,7 @@ class _UserInformationsState extends State<UserInformations> {
               },
             ),
             Text(Constants.female.tr(),
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+                style: TextStyle(color: colorScheme.onSurface, fontSize: 20)),
             const SizedBox(width: 20),
             Checkbox(
               value: widget.isFemale,
@@ -84,7 +85,7 @@ class _UserInformationsState extends State<UserInformations> {
               },
             ),
             Text(Constants.male.tr(),
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+                style: TextStyle(color: colorScheme.onSurface, fontSize: 20)),
           ],
         ),
         const SizedBox(height: 10),

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:linkify/Features/authentication/data/web_servecies/storage_ser.dart';
 import 'package:path/path.dart' as p;
@@ -12,7 +13,11 @@ class SupabaseStorage implements StorageService {
 
   @override
   Future<String> uploadImageToFirebase(File file, String path) async {
-    return _uploadFile(file, path, isImage: true);
+    File? compressed;
+    if ((file.lengthSync() / 1024) > 200) {
+      compressed = await compressImage(file);
+    }
+    return _uploadFile(compressed!, path, isImage: true);
   }
 
   @override
@@ -98,6 +103,21 @@ class SupabaseStorage implements StorageService {
       default:
         return 'File upload failed: ${e.message}';
     }
+  }
+
+  Future<File?> compressImage(File file) async {
+    final filePath = file.absolute.path;
+
+    final lastIndex = filePath.lastIndexOf(RegExp(r'.jp'));
+    final splitted = filePath.substring(0, lastIndex);
+    final outPath = "${splitted}_compressed.jpg";
+
+    final compressedImage = await FlutterImageCompress.compressAndGetFile(
+      filePath,
+      outPath,
+      quality: 40,
+    );
+    return File(compressedImage!.path);
   }
 }
 

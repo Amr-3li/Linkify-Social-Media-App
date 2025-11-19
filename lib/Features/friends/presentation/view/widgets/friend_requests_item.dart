@@ -64,16 +64,6 @@ class FriendRequestsItem extends StatelessWidget {
                 return Row(
                   children: [
                     CustomFreindsButton(
-                      title: Constants.reject.tr(),
-                      color: const Color.fromARGB(149, 151, 0, 0),
-                      onTap: () async {
-                        await context
-                            .read<FriendsCubit>()
-                            .rejectFriendRequest(user.id!);
-                      },
-                    ),
-                    const SizedBox(width: 10),
-                    CustomFreindsButton(
                       title: Constants.accept.tr(),
                       color: const Color.fromARGB(255, 68, 126, 121),
                       onTap: () async {
@@ -82,6 +72,11 @@ class FriendRequestsItem extends StatelessWidget {
                             .acceptFriendRequest(user.id!);
                       },
                     ),
+                    const SizedBox(width: 10),
+                    Text(Constants.reject.tr(),
+                        style: TextStyle(
+                            color: const Color.fromARGB(149, 151, 0, 0),
+                            fontWeight: FontWeight.w900)),
                   ],
                 );
               }

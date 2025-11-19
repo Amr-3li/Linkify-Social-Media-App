@@ -23,9 +23,14 @@ class _AddPostImageState extends State<AddPostImage> {
     return imageFile == null
         ? InkWell(
             onTap: () async {
-              imageFile = await PickImage().pickImage();
-              widget.onImagePicked(imageFile);
-              setState(() {});
+              try {
+                imageFile = await PickImage().pickImage();
+                widget.onImagePicked(imageFile);
+                setState(() {});
+              } on Exception catch (e) {
+                // ignore: avoid_print
+                print(e);
+              }
             },
             child: Container(
               margin: const EdgeInsets.all(20),

@@ -176,7 +176,7 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Image.asset(
                   MyIcons.iconsGoogle2702602,
-                  width: 50,
+                  width: 30,
                 ),
               ),
               RichText(
@@ -188,7 +188,7 @@ class LoginPage extends StatelessWidget {
                   TextSpan(
                       text: Constants.google,
                       style: TextStyle(
-                          color: Colors.green,
+                          // color: Colors.green,
                           fontSize: 20,
                           fontWeight: FontWeight.bold))
                 ]),
@@ -201,9 +201,11 @@ class LoginPage extends StatelessWidget {
 
   TextButton signupButton(BuildContext context) {
     return TextButton(
-      child: const Text(
-        Constants.dontHaveAccount,
-        style: TextStyle(color: Colors.white),
+      child: Text(
+        Constants.dontHaveAccount.tr(),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontWeight: FontWeight.w900),
       ),
       onPressed: () {
         GoRouter.of(context).push(SignupPage.routeName);

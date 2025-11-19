@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/core/constants/constants.dart';
 import 'package:linkify/core/widgets/custom_appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({super.key});
@@ -64,44 +65,14 @@ class AboutUsPage extends StatelessWidget {
                 ),
                 child: SelectableText(
                   Constants.aboutUsText.tr(),
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 16,
-                    height: 1.6,
+                    fontSize: 14,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
               const SizedBox(height: 24),
-              Text(
-                Constants.contact.tr(),
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.email,
-                        color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.phone,
-                        color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.language,
-                        color: Theme.of(context).colorScheme.secondary),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
             ],
           ),
         ),

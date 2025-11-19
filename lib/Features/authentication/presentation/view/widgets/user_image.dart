@@ -55,13 +55,18 @@ class _UserImageState extends State<UserImage> {
                         Icons.person,
                         size: 80,
                       )),
-                  CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      )),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: CircleAvatar(
+                        radius: 20,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        )),
+                  ),
                 ]),
         );
       },

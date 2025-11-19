@@ -35,7 +35,9 @@ class Constants {
   static const String like = "like";
   static const String share = "share";
   static const String writeComment = "writeComment";
-
+  static const String myLists = "myLists";
+  static const String lovedList = "lovedList";
+  static const String savedList = "savedList";
   // ==================== Messaging ====================
   static const String chats = "chats";
   static const String writeMessage = "writeMessage";

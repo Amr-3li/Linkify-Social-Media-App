@@ -42,6 +42,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocConsumer<SignUpCupit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
@@ -70,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                     Text(
                       Constants.signUpPage.tr(),
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: colorScheme.onSurface,
                           fontSize: 36,
                           fontWeight: FontWeight.bold),
                     ),
@@ -138,9 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                                         fixedSize: const Size(500, 60),
                                         animationDuration:
                                             const Duration(seconds: 2),
-                                        backgroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .secondary),
+                                        backgroundColor: colorScheme.secondary),
                                     child: Text(
                                       Constants.signUp.tr(),
                                       style: TextStyle(
@@ -153,7 +152,9 @@ class _SignupPageState extends State<SignupPage> {
                             TextButton(
                                 child: Text(
                                   Constants.alreadyHaveAccount.tr(),
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                      color: colorScheme.secondary,
+                                      fontWeight: FontWeight.w900),
                                 ),
                                 onPressed: () {
                                   GoRouter.of(context).pop();
