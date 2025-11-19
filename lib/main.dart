@@ -35,13 +35,16 @@ Future<void> main() async {
   //localization
   await EasyLocalization.ensureInitialized();
 
-  runApp(BlocProvider(
-    create: (context) => ChangeThemeCubit(),
-    child: EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
-        path: "assets/lang", // Path to your translation files
-        fallbackLocale: Locale('en '),
-        child: const MyApp()),
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => BlocProvider(
+      create: (context) => ChangeThemeCubit(),
+      child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ar')],
+          path: "assets/lang", // Path to your translation files
+          fallbackLocale: Locale('en '),
+          child: const MyApp()),
+    ),
   ));
 }
 
