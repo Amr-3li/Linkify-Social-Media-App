@@ -28,4 +28,16 @@ class GetPostsListRepoImpl implements GetPostsListRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<PostModel>>> refreshLikedPostsList() {
+    // TODO: implement refreshLikedPostsList
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<PostModel>>> refreshSavedPostsList() {
+    // TODO: implement refreshSavedPostsList
+    throw UnimplementedError();
+  }
 }
