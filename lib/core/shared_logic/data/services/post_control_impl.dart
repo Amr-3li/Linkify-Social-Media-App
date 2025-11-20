@@ -3,14 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:linkify/Features/home/data/Models/comment_model.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
 import 'package:linkify/Features/notifications/data/model/notification_model.dart';
+import 'package:linkify/core/helper/firebase_exeption_handler.dart';
+import 'package:linkify/core/services/sharedpreference_singelton.dart';
 import 'package:linkify/core/shared_logic/data/services/post_control.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PostControlImpl implements PostControl {
   final firestore = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
   User get user => auth.currentUser!;
-  SharedPreferences? prefs;
   @override
   Future<void> deletePost(String userId, String time) async {
     if (userId == user.uid) {
@@ -35,8 +35,6 @@ class PostControlImpl implements PostControl {
 
   @override
   Future<void> addComment(String postTime, CommentModel comment) async {
-    prefs = await SharedPreferences.getInstance();
-
     final docRef = firestore.collection('posts').doc(postTime);
     final docSnapshot = await docRef.get();
     if (!docSnapshot.exists) {
@@ -52,8 +50,8 @@ class PostControlImpl implements PostControl {
     NotificationModel notification = NotificationModel(
         time: DateTime.now().microsecondsSinceEpoch.toString(),
         fromUserId: user.uid,
-        fromUserName: prefs!.getString('userName') ?? "",
-        fromUserImage: prefs!.getString('userImage') ?? "",
+        fromUserName: SharedPreferenceSingelton.getString('userName') ?? "",
+        fromUserImage: SharedPreferenceSingelton.getString('userImage') ?? "",
         isreading: false,
         numOfTypeReations: 0,
         discription: "new comment added on your post",
@@ -68,13 +66,12 @@ class PostControlImpl implements PostControl {
   }
 
   @override
-  Future<void> addRemoveLike(String postTime, String userId) async {
+  Future<void> addRemoveLike(String postTime) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final lover = {
-        'id': userId,
-        'name': prefs.getString('userName') ?? '',
-        'image': prefs.getString('userImage') ?? '',
+        'id': user.uid,
+        'name': SharedPreferenceSingelton.getString('userName') ?? '',
+        'image': SharedPreferenceSingelton.getString('userImage') ?? '',
       };
       final docRef = firestore.collection('posts').doc(postTime);
       await FirebaseFirestore.instance.runTransaction((transaction) async {
@@ -84,16 +81,20 @@ class PostControlImpl implements PostControl {
         }
         final data = snapshot.data()!;
         final likes = List<Map<String, dynamic>>.from(data['likes'] ?? []);
-        final currentIndex = likes.indexWhere((e) => e['id'] == userId);
+        final currentIndex = likes.indexWhere((e) => e['id'] == user.uid);
         if (currentIndex != -1) {
           likes.removeAt(currentIndex);
+          await _removeInLoveList(postTime);
         } else {
           likes.add(lover);
+          await _addInLoveList(postTime);
           NotificationModel notification = NotificationModel(
               time: DateTime.now().microsecondsSinceEpoch.toString(),
               fromUserId: user.uid,
-              fromUserName: prefs.getString('userName') ?? "",
-              fromUserImage: prefs.getString('userImage') ?? "",
+              fromUserName:
+                  SharedPreferenceSingelton.getString('userName') ?? "",
+              fromUserImage:
+                  SharedPreferenceSingelton.getString('userImage') ?? "",
               isreading: false,
               numOfTypeReations: data['likes'].length + 1,
               discription: "loved your post",
@@ -123,5 +124,66 @@ class PostControlImpl implements PostControl {
           .doc(post.time)
           .update({'comments': post.comments});
     });
+  }
+
+  @override
+  Future<void> saveAndUnSavePost(String postTime) async {
+    try {
+      final isSaved = await firestore
+          .collection("userPostsList")
+          .doc(user.uid)
+          .collection("MySavedPosts")
+          .doc(postTime)
+          .get();
+      if (isSaved.exists) {
+        await _removeInSavedList(postTime);
+      } else {
+        await _addInSavedList(postTime);
+      }
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
+  }
+
+  // local functions
+
+  Future<void> _addInLoveList(String postTime) async {
+    final time = DateTime.now().microsecondsSinceEpoch.toString();
+    firestore
+        .collection("userPostsList")
+        .doc(user.uid)
+        .collection("MyLovedPosts")
+        .doc(postTime)
+        .set({"postId": postTime, "createdAt": time});
+  }
+
+  Future<void> _removeInLoveList(String postTime) async {
+    firestore
+        .collection("userPostsList")
+        .doc(user.uid)
+        .collection("MyLovedPosts")
+        .doc(postTime)
+        .delete();
+  }
+
+  Future<void> _addInSavedList(String postTime) async {
+    final time = DateTime.now().microsecondsSinceEpoch.toString();
+    firestore
+        .collection("userPostsList")
+        .doc(user.uid)
+        .collection("MySavedPosts")
+        .doc(postTime)
+        .set({"postId": postTime, "createdAt": time});
+  }
+
+  Future<void> _removeInSavedList(String postTime) async {
+    firestore
+        .collection("userPostsList")
+        .doc(user.uid)
+        .collection("MySavedPosts")
+        .doc(postTime)
+        .delete();
   }
 }

@@ -21,7 +21,7 @@ class GetPostsListImpl implements GetPostsList {
       Query query = firestore
           .collection("userPostsList")
           .doc(currentUserId)
-          .collection("MyLikedPosts")
+          .collection("MyLovedPosts")
           .orderBy("createdAt", descending: true)
           .limit(20);
 
@@ -109,7 +109,7 @@ class GetPostsListImpl implements GetPostsList {
       final snapshot = await firestore
           .collection("userPostsList")
           .doc(currentUserId)
-          .collection("MyLikedPosts")
+          .collection("MyLovedPosts")
           .orderBy("createdAt", descending: true)
           .limit(20)
           .get();

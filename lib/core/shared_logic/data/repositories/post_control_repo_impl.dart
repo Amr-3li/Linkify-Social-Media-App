@@ -41,10 +41,9 @@ class PostControlRepoImpl implements PostControlRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addRemoveLike(
-      String postTime, String userId) async {
+  Future<Either<Failure, void>> addRemoveLike(String postTime) async {
     try {
-      await postControl.addRemoveLike(postTime, userId);
+      await postControl.addRemoveLike(postTime);
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
@@ -56,6 +55,16 @@ class PostControlRepoImpl implements PostControlRepo {
       String postTime, CommentModel comment) async {
     try {
       await postControl.removeComment(postTime, comment);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> saveAndUnSavePost(String postTime) async {
+    try {
+      await postControl.saveAndUnSavePost(postTime);
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));

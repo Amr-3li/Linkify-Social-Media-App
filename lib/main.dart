@@ -34,7 +34,6 @@ Future<void> main() async {
   setUpGitIt();
   //localization
   await EasyLocalization.ensureInitialized();
-
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => BlocProvider(
