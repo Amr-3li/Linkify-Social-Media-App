@@ -73,7 +73,7 @@ class Constants {
   static const String imageUpdated = "imageUpdated";
   static const String editProfile = "editProfile";
   static const String profileUpdated = "profileUpdated";
-
+  static const String seeAll = "seeAll";
   // ==================== Authentication ====================
   static const String loginPage = "loginPage";
   static const String password = "password";
@@ -141,6 +141,7 @@ class Constants {
   static const String oldPassword = "oldPassword";
   static const String newPassword = "newPassword";
   static const String confirmNewPassword = "confirmNewPassword";
+
   // ==================== Long Texts ====================
   static const String aboutUsText = "aboutUsText";
   static const String helpText = "helpText";

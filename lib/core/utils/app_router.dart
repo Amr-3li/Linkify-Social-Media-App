@@ -1,3 +1,6 @@
+import 'package:linkify/Features/my_lists/data/repo/get_posts_list_repo.dart';
+import 'package:linkify/Features/my_lists/presentation/cubit/posts_list_cubit.dart';
+import 'package:linkify/Features/my_lists/presentation/views/pages/my_posts_list_page.dart';
 import 'package:linkify/Features/settings/data/repo/reset_pass_repo.dart';
 import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
 import 'package:linkify/Features/settings/presentation/view/pages/change_password.dart';
@@ -182,6 +185,13 @@ abstract class AppRouter {
       GoRoute(
           path: ChangePassword.routeName,
           builder: (context, state) => const ChangePassword()),
+      GoRoute(
+          path: MyPostsListPage.routeName,
+          builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    PostsListCubit(gitItInstanse<GetPostsListRepo>()),
+                child: const MyPostsListPage(),
+              )),
     ],
   );
 }

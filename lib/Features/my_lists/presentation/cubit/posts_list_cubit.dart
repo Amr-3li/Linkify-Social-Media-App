@@ -14,24 +14,4 @@ class PostsListCubit extends Cubit<PostsListState> {
   final GetPostsListRepo getPostsListRepo;
   final List<PostModel> savedPostsList = [];
   final List<PostModel> likedPostsList = [];
-  Future<void> getSavedPostsList() async {
-    emit(SavedPostsListLoading());
-    final failureOrPostsList = await getPostsListRepo.getSavedPostsList();
-    failureOrPostsList.fold(
-        (failure) => emit(SavedPostsListError(failure.toString())),
-        (postsList) => emit(SavedPostsListLoaded(postsList)));
-  }
-
-  Future<void> getLikedPostsList() async {
-    emit(LikedPostsListLoading());
-    final failureOrPostsList = await getPostsListRepo.getLikedPostsList();
-    failureOrPostsList.fold(
-      (failure) => emit(LikedPostsListError(failure.toString())),
-      (postsList) => emit(LikedPostsListLoaded(postsList)),
-    );
-  }
-
-  Future<List<PostModel>> refreshLikedPostsList() async {
-    throw UnimplementedError();
-  }
 }
