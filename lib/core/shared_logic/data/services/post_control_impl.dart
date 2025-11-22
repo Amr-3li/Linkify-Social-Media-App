@@ -147,6 +147,41 @@ class PostControlImpl implements PostControl {
     }
   }
 
+  @override
+  Future<bool> checkIfPostLoved(String postTime) async {
+    try {
+      final doc = await firestore.collection('posts').doc(postTime).get();
+      bool loved = false;
+      if (doc.exists) {
+        final data = doc.data();
+        final likes = data?['likes'] as List<dynamic>?;
+
+        if (likes != null && likes.isNotEmpty) {
+          loved = likes.any(
+              (like) => like is Map<String, dynamic> && like['id'] == user.uid);
+        }
+      }
+      return loved;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> checkIfPostSaved(String postTime) {
+    try {
+      final doc = firestore
+          .collection("userPostsList")
+          .doc(user.uid)
+          .collection("MySavedPosts")
+          .doc(postTime)
+          .get();
+      return doc.then((value) => value.exists);
+    } catch (e) {
+      return Future.value(false);
+    }
+  }
+
   // local functions
 
   Future<void> _addInLoveList(String postTime) async {

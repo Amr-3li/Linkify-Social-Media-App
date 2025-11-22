@@ -7,4 +7,6 @@ abstract class PostControl {
   Future<void> addComment(String postTime, CommentModel comment);
   Future<void> removeComment(String postTime, CommentModel comment);
   Future<void> saveAndUnSavePost(String postTime);
+  Future<bool> checkIfPostSaved(String postTime);
+  Future<bool> checkIfPostLoved(String postTime);
 }

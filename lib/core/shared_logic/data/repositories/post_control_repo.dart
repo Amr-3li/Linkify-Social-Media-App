@@ -12,4 +12,6 @@ abstract class PostControlRepo {
   Future<Either<Failure, void>> removeComment(
       String postTime, CommentModel comment);
   Future<Either<Failure, void>> saveAndUnSavePost(String postTime);
+  Future<Either<Failure, bool>> checkIfPostSaved(String postTime);
+  Future<Either<Failure, bool>> checkIfPostLoved(String postTime);
 }

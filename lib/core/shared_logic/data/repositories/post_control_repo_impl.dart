@@ -70,4 +70,24 @@ class PostControlRepoImpl implements PostControlRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> checkIfPostLoved(String postTime) async {
+    try {
+      final isLoved = await postControl.checkIfPostLoved(postTime);
+      return Right(isLoved);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkIfPostSaved(String postTime) async {
+    try {
+      final isSaved = await postControl.checkIfPostSaved(postTime);
+      return Right(isSaved);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }
