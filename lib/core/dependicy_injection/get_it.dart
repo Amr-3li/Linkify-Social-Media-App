@@ -1,4 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:linkify/Features/my_lists/data/repo/get_posts_list_repo.dart';
+import 'package:linkify/Features/my_lists/data/repo/get_posts_list_repo_impl.dart';
+import 'package:linkify/Features/my_lists/data/web_services/get_posts_list.dart';
+import 'package:linkify/Features/my_lists/data/web_services/get_posts_list_impl.dart';
 
 import 'package:linkify/core/exports/di.dart';
 
@@ -57,6 +61,10 @@ void setUpGitIt() {
   gitItInstanse.registerSingleton<GetUserPosts>(GetUserPostsImpl());
   gitItInstanse.registerSingleton<GetUserPostsRepo>(
       GetUserPostsRepoImpl(gitItInstanse<GetUserPosts>()));
+
+  gitItInstanse.registerSingleton<GetPostsList>(GetPostsListImpl());
+  gitItInstanse.registerSingleton<GetPostsListRepo>(
+      GetPostsListRepoImpl(gitItInstanse<GetPostsList>()));
 //======================= Search ===========================================
 
   gitItInstanse.registerSingleton<GetSearchUsers>(GetSearchUsersImpl());
