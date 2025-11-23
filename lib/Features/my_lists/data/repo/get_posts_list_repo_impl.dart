@@ -30,14 +30,22 @@ class GetPostsListRepoImpl implements GetPostsListRepo {
   }
 
   @override
-  Future<Either<Failure, List<PostModel>>> refreshLikedPostsList() {
-    // TODO: implement refreshLikedPostsList
-    throw UnimplementedError();
+  Future<Either<Failure, List<PostModel>>> refreshLikedPostsList() async {
+    try {
+      final result = await postsService.refreshLikedPostsList();
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, List<PostModel>>> refreshSavedPostsList() {
-    // TODO: implement refreshSavedPostsList
-    throw UnimplementedError();
+  Future<Either<Failure, List<PostModel>>> refreshSavedPostsList() async {
+    try {
+      final result = await postsService.refreshSavedPostsList();
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }

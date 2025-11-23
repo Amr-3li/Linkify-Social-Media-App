@@ -8,12 +8,18 @@ part 'get_loved_list_state.dart';
 class GetLovedListCubit extends Cubit<GetLovedListState> {
   GetLovedListCubit(this.getPostsListRepo) : super(GetLovedListInitial());
   final GetPostsListRepo getPostsListRepo;
+  bool hasMore = true;
   Future<void> getLikedPostsList() async {
     emit(GetLovedListLoading());
     final failureOrPostsList = await getPostsListRepo.getLikedPostsList();
     failureOrPostsList.fold(
       (failure) => emit(GetLovedListError(failure.toString())),
-      (postsList) => emit(GetLovedListLoaded(postsList)),
+      (postsList) {
+        emit(GetLovedListLoaded(postsList));
+        if (postsList.isEmpty) {
+          hasMore = false;
+        }
+      },
     );
   }
 

@@ -7,10 +7,11 @@ class ListTitle extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
+    this.onTap,
   });
   final String title;
   final IconData icon;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -21,6 +22,7 @@ class ListTitle extends StatelessWidget {
       trailing: Text(Constants.seeAll.tr(),
           style: TextStyle(color: Colors.grey, fontSize: 16)),
       tileColor: Theme.of(context).colorScheme.surfaceVariant,
+      onTap: onTap,
     );
   }
 }

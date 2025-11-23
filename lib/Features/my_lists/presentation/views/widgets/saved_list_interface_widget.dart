@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_saved_list/get_saved_list_cubit.dart';
+import 'package:linkify/Features/my_lists/presentation/views/pages/save_list_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
@@ -24,6 +25,7 @@ class SavedListInterfaceWidget extends StatelessWidget {
               ListTitle(
                 icon: Icons.bookmark,
                 title: Constants.savedList.tr(),
+                onTap: () => GoRouter.of(context).push(SaveListPage.routeName),
               ),
               PostContainer(post: state.postsList.first),
             ],

@@ -8,19 +8,28 @@ part 'get_saved_list_state.dart';
 class GetSavedListCubit extends Cubit<GetSavedListState> {
   GetSavedListCubit(this.getPostsListRepo) : super(GetSavedListInitial());
   final GetPostsListRepo getPostsListRepo;
+  bool hasMore = true;
   Future<void> getSavedPostsList() async {
     emit(GetSavedListLoading());
     final failureOrPostsList = await getPostsListRepo.getSavedPostsList();
     failureOrPostsList.fold(
-        (failure) => emit(GetSavedListError(failure.toString())),
-        (postsList) => emit(GetSavedListLoaded(postsList)));
+        (failure) => emit(GetSavedListError(failure.toString())), (postsList) {
+      emit(GetSavedListLoaded(postsList));
+      if (postsList.isEmpty) {
+        hasMore = false;
+      }
+    });
   }
 
   Future<void> refresh() async {
     emit(GetSavedListLoading());
     final failureOrPostsList = await getPostsListRepo.refreshSavedPostsList();
     failureOrPostsList.fold(
-        (failure) => emit(GetSavedListError(failure.toString())),
-        (postsList) => emit(GetSavedListLoaded(postsList)));
+        (failure) => emit(GetSavedListError(failure.toString())), (postsList) {
+      emit(GetSavedListLoaded(postsList));
+      if (postsList.isEmpty) {
+        hasMore = false;
+      }
+    });
   }
 }

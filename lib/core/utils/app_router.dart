@@ -1,7 +1,9 @@
 import 'package:linkify/Features/my_lists/data/repo/get_posts_list_repo.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_loved_list/get_loved_list_cubit.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_saved_list/get_saved_list_cubit.dart';
+import 'package:linkify/Features/my_lists/presentation/views/pages/love_list_page.dart';
 import 'package:linkify/Features/my_lists/presentation/views/pages/my_posts_list_page.dart';
+import 'package:linkify/Features/my_lists/presentation/views/pages/save_list_page.dart';
 import 'package:linkify/Features/settings/data/repo/reset_pass_repo.dart';
 import 'package:linkify/Features/settings/presentation/cubit/reset_pass/reset_pass_cubit.dart';
 import 'package:linkify/Features/settings/presentation/view/pages/change_password.dart';
@@ -202,6 +204,22 @@ abstract class AppRouter {
                   ),
                 ],
                 child: const MyPostsListPage(),
+              )),
+      GoRoute(
+          path: LoveListPage.routeName,
+          builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    GetLovedListCubit(gitItInstanse<GetPostsListRepo>())
+                      ..refresh(),
+                child: const LoveListPage(),
+              )),
+      GoRoute(
+          path: SaveListPage.routeName,
+          builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    GetSavedListCubit(gitItInstanse<GetPostsListRepo>())
+                      ..refresh(),
+                child: const SaveListPage(),
               )),
     ],
   );

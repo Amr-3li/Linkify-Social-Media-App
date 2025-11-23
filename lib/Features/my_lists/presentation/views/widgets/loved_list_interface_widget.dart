@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/my_lists/presentation/views/pages/love_list_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
@@ -24,6 +25,7 @@ class LovedListInterfaceWidget extends StatelessWidget {
               ListTitle(
                 icon: Icons.favorite,
                 title: Constants.lovedList.tr(),
+                onTap: () => GoRouter.of(context).push(LoveListPage.routeName),
               ),
               PostContainer(post: state.postsList.first),
             ],
