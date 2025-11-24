@@ -16,3 +16,8 @@ final class GetLovedListError extends GetLovedListState {
   GetLovedListError(this.message);
   final String message;
 }
+
+final class GetLovedListRefreshed extends GetLovedListState {
+  GetLovedListRefreshed(this.postsList);
+  final List<PostModel> postsList;
+}

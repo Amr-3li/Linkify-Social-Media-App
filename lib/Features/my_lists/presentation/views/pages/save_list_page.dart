@@ -21,60 +21,80 @@ class SaveListPage extends StatefulWidget {
 class _SaveListPageState extends State<SaveListPage> {
   List<PostModel> postsList = [];
   late ScrollController _scrollController;
+
   @override
-  initState() {
+  void initState() {
     super.initState();
     _scrollController = ScrollController();
-    _scrollController.addListener(
-      () {
-        final cubit = context.read<GetSavedListCubit>();
-        if (_scrollController.position.pixels >=
-                _scrollController.position.maxScrollExtent - 300 &&
-            cubit.hasMore) {
-          cubit.getSavedPostsList();
-        }
-      },
-    );
+
+    _scrollController.addListener(() {
+      final cubit = context.read<GetSavedListCubit>();
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 300 &&
+          cubit.hasMore) {
+        cubit.getSavedPostsList();
+      }
+    });
+
+    // أول لود
+    context.read<GetSavedListCubit>().getSavedPostsList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppbar(title: Constants.lovedList.tr()),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          postsList.clear();
-          await context.read<GetSavedListCubit>().refresh();
-        },
-        child: BlocBuilder<GetSavedListCubit, GetSavedListState>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (_) =>
+                AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
+        BlocProvider(
+            create: (_) =>
+                SaveUnsavePostCubit(gitItInstanse<PostControlRepo>())),
+      ],
+      child: Scaffold(
+        appBar: CustomAppbar(title: Constants.lovedList.tr()),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            postsList.clear();
+            await context.read<GetSavedListCubit>().refresh();
+          },
+          child: BlocConsumer<GetSavedListCubit, GetSavedListState>(
+            listener: (context, state) {
+              if (state is GetSavedListLoaded) {
+                postsList.addAll(state.postsList);
+              }
+
+              if (state is GetSavedListRefreshed) {
+                postsList = []; // امسح الليست
+                postsList.addAll(state.postsList); // ضيف الجديد
+              }
+            },
             builder: (context, state) {
-          if (state is GetSavedListLoaded && state.postsList.isNotEmpty) {
-            postsList.addAll(state.postsList);
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                    create: (_) =>
-                        AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
-                BlocProvider(
-                    create: (_) =>
-                        SaveUnsavePostCubit(gitItInstanse<PostControlRepo>())),
-              ],
-              child: ListView.builder(
-                itemCount: postsList.length,
-                itemBuilder: (context, index) {
-                  return PostContainer(post: postsList[index]);
-                },
-              ),
-            );
-          }
-          if (state is GetSavedListLoading) {
-            return Center(
-              child: Skeletonizer(child: LoadingPost()),
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
-        }),
+              // لو البيانات موجودة → اعرضها
+              if (postsList.isNotEmpty) {
+                return ListView.builder(
+                  controller: _scrollController,
+                  itemCount: postsList.length,
+                  itemBuilder: (context, index) {
+                    return PostContainer(post: postsList[index]);
+                  },
+                );
+              }
+
+              // أول لود
+              if (state is GetSavedListLoading) {
+                return Center(
+                  child: Skeletonizer(child: LoadingPost()),
+                );
+              }
+
+              // لو مافيش بيانات
+              return Center(
+                child: Text("No saved posts found"),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

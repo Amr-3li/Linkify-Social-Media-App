@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:linkify/Features/home/data/Models/post_model.dart';
-import 'package:linkify/Features/home/presentation/cubit/save_unsave_post/save_unsave_post_cubit.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/losding_post.dart';
 import 'package:linkify/Features/home/presentation/view/widgets/post_container.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_loved_list/get_loved_list_cubit.dart';
@@ -26,12 +25,13 @@ class _LoveListPageState extends State<LoveListPage> {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(
-      () {
+      () async {
         final cubit = context.read<GetLovedListCubit>();
         if (_scrollController.position.pixels >=
-                _scrollController.position.maxScrollExtent - 300 &&
+                _scrollController.position.maxScrollExtent &&
             cubit.hasMore) {
-          cubit.getLikedPostsList();
+          print('load more loved posts......');
+          await cubit.getLikedPostsList();
         }
       },
     );
@@ -42,40 +42,38 @@ class _LoveListPageState extends State<LoveListPage> {
     return Scaffold(
       appBar: CustomAppbar(title: Constants.lovedList.tr()),
       body: RefreshIndicator(
-        onRefresh: () async {
-          postsList.clear();
-          await context.read<GetLovedListCubit>().refresh();
-        },
-        child: BlocBuilder<GetLovedListCubit, GetLovedListState>(
+          onRefresh: () async {
+            postsList.clear();
+            await context.read<GetLovedListCubit>().refresh();
+          },
+          child: BlocConsumer<GetLovedListCubit, GetLovedListState>(
+            listener: (context, state) {
+              if (state is GetLovedListLoaded) {
+                postsList.addAll(state.postsList);
+              }
+              if (state is GetLovedListRefreshed) {
+                postsList.clear();
+                postsList.addAll(state.postsList);
+              }
+            },
             builder: (context, state) {
-          if (state is GetLovedListLoaded && state.postsList.isNotEmpty) {
-            postsList.addAll(state.postsList);
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                    create: (_) =>
-                        AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
-                BlocProvider(
-                    create: (_) =>
-                        SaveUnsavePostCubit(gitItInstanse<PostControlRepo>())),
-              ],
-              child: ListView.builder(
-                itemCount: postsList.length,
-                itemBuilder: (context, index) {
-                  return PostContainer(post: postsList[index]);
-                },
-              ),
-            );
-          }
-          if (state is GetLovedListLoading) {
-            return const Center(
-              child: Skeletonizer(child: LoadingPost()),
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
-        }),
-      ),
+              if (postsList.isNotEmpty) {
+                return ListView.builder(
+                  controller: _scrollController,
+                  itemCount: postsList.length,
+                  itemBuilder: (context, index) {
+                    return PostContainer(post: postsList[index]);
+                  },
+                );
+              }
+
+              if (state is GetLovedListLoading) {
+                return Center(child: Skeletonizer(child: LoadingPost()));
+              }
+
+              return SizedBox.shrink();
+            },
+          )),
     );
   }
 }

@@ -16,3 +16,9 @@ final class GetSavedListError extends GetSavedListState {
   GetSavedListError(this.message);
   final String message;
 }
+
+final class GetSavedListRefreshed extends GetSavedListState {
+  final List<PostModel> postsList;
+
+  GetSavedListRefreshed(this.postsList);
+}

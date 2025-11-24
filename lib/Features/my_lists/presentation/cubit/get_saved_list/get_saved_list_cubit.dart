@@ -26,7 +26,7 @@ class GetSavedListCubit extends Cubit<GetSavedListState> {
     final failureOrPostsList = await getPostsListRepo.refreshSavedPostsList();
     failureOrPostsList.fold(
         (failure) => emit(GetSavedListError(failure.toString())), (postsList) {
-      emit(GetSavedListLoaded(postsList));
+      emit(GetSavedListRefreshed(postsList));
       if (postsList.isEmpty) {
         hasMore = false;
       }

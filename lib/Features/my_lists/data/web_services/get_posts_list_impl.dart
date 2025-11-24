@@ -12,11 +12,9 @@ class GetPostsListImpl implements GetPostsList {
   bool _hasMoreLiked = true;
   bool _hasMoreSaved = true;
   @override
-  Future<List<PostModel>> getLikedPostsList({bool loadMore = false}) async {
+  Future<List<PostModel>> getLikedPostsList({bool loadMore = true}) async {
     try {
       final currentUserId = _getCurrentUserId();
-
-      // لو المستخدم بيطلب صفحة جديدة لكن مفيش بيانات أصلاً
       if (loadMore && !_hasMoreLiked) return [];
 
       Query query = firestore
@@ -25,27 +23,58 @@ class GetPostsListImpl implements GetPostsList {
           .collection("MyLovedPosts")
           .orderBy("createdAt", descending: true)
           .limit(7);
-
-      // لو بنجيب Page جديدة
       if (loadMore && _lastDocLikedList != null) {
         query = query.startAfterDocument(_lastDocLikedList!);
       }
-
       final snapshot = await query.get();
-
-      // لو مفيش بيانات جديدة
       if (snapshot.docs.isEmpty) {
         _hasMoreLiked = false;
         return [];
       }
-
-      // تحديث آخر Doc
       _lastDocLikedList = snapshot.docs.last;
-
-      // تحويل البيانات
       final postsList = snapshot.docs
           .map((e) =>
               MyPostInListModel.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
+      print(postsList.length);
+      List<PostModel> postModel = [];
+      for (int i = 0; i < postsList.length; i++) {
+        final postSnapshot = await firestore
+            .collection("posts")
+            .doc(postsList[i].postTime)
+            .get();
+        postModel.add(PostModel.fromJson(postSnapshot.data()!));
+      }
+      print(postModel.length);
+      return postModel;
+    } on FirebaseException catch (e) {
+      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
+    } catch (e) {
+      throw "something went wrong";
+    }
+  }
+
+  @override
+  Future<List<PostModel>> refreshLikedPostsList() async {
+    try {
+      final currentUserId = _getCurrentUserId();
+
+      _lastDocLikedList = null;
+      _hasMoreLiked = true;
+
+      final snapshot = await firestore
+          .collection("userPostsList")
+          .doc(currentUserId)
+          .collection("MyLovedPosts")
+          .orderBy("createdAt", descending: true)
+          .limit(5)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        _lastDocLikedList = snapshot.docs.last;
+      }
+      final postsList = snapshot.docs
+          .map((e) => MyPostInListModel.fromJson(e.data()))
           .toList();
       print(postsList.length);
       List<PostModel> postModel = [];
@@ -101,7 +130,6 @@ class GetPostsListImpl implements GetPostsList {
           .map((e) =>
               MyPostInListModel.fromJson(e.data() as Map<String, dynamic>))
           .toList();
-      print(postsList.length);
       List<PostModel> postModel = [];
       for (int i = 0; i < postsList.length; i++) {
         final postSnapshot = await firestore
@@ -110,7 +138,6 @@ class GetPostsListImpl implements GetPostsList {
             .get();
         postModel.add(PostModel.fromJson(postSnapshot.data()!));
       }
-      print(postModel.length);
       return postModel;
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
@@ -121,46 +148,6 @@ class GetPostsListImpl implements GetPostsList {
 
   String _getCurrentUserId() {
     return SharedPreferenceSingelton.getString("uid")!;
-  }
-
-  @override
-  Future<List<PostModel>> refreshLikedPostsList() async {
-    try {
-      final currentUserId = _getCurrentUserId();
-
-      _lastDocLikedList = null;
-      _hasMoreLiked = true;
-
-      final snapshot = await firestore
-          .collection("userPostsList")
-          .doc(currentUserId)
-          .collection("MyLovedPosts")
-          .orderBy("createdAt", descending: true)
-          .limit(20)
-          .get();
-
-      if (snapshot.docs.isNotEmpty) {
-        _lastDocLikedList = snapshot.docs.last;
-      }
-      final postsList = snapshot.docs
-          .map((e) => MyPostInListModel.fromJson(e.data()))
-          .toList();
-      print(postsList.length);
-      List<PostModel> postModel = [];
-      for (int i = 0; i < postsList.length; i++) {
-        final postSnapshot = await firestore
-            .collection("posts")
-            .doc(postsList[i].postTime)
-            .get();
-        postModel.add(PostModel.fromJson(postSnapshot.data()!));
-      }
-      print(postModel.length);
-      return postModel;
-    } on FirebaseException catch (e) {
-      throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);
-    } catch (e) {
-      throw "something went wrong";
-    }
   }
 
   @override
@@ -185,7 +172,6 @@ class GetPostsListImpl implements GetPostsList {
       final postsList = snapshot.docs
           .map((e) => MyPostInListModel.fromJson(e.data()))
           .toList();
-      print(postsList.length);
       List<PostModel> postModel = [];
       for (int i = 0; i < postsList.length; i++) {
         final postSnapshot = await firestore
@@ -194,7 +180,6 @@ class GetPostsListImpl implements GetPostsList {
             .get();
         postModel.add(PostModel.fromJson(postSnapshot.data()!));
       }
-      print(postModel.length);
       return postModel;
     } on FirebaseException catch (e) {
       throw FirebaseExeptionHandler.handleFirebaseFirestoreError(e);

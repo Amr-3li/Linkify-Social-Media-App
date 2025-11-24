@@ -1,3 +1,4 @@
+import 'package:linkify/Features/home/presentation/cubit/save_unsave_post/save_unsave_post_cubit.dart';
 import 'package:linkify/Features/my_lists/data/repo/get_posts_list_repo.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_loved_list/get_loved_list_cubit.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_saved_list/get_saved_list_cubit.dart';
@@ -195,30 +196,50 @@ abstract class AppRouter {
                   BlocProvider(
                     create: (context) =>
                         GetLovedListCubit(gitItInstanse<GetPostsListRepo>())
-                          ..getLikedPostsList(),
+                          ..refresh(),
                   ),
                   BlocProvider(
                     create: (context) =>
                         GetSavedListCubit(gitItInstanse<GetPostsListRepo>())
-                          ..getSavedPostsList(),
+                          ..refresh(),
                   ),
                 ],
                 child: const MyPostsListPage(),
               )),
       GoRoute(
           path: LoveListPage.routeName,
-          builder: (context, state) => BlocProvider(
-                create: (context) =>
-                    GetLovedListCubit(gitItInstanse<GetPostsListRepo>())
-                      ..refresh(),
+          builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) =>
+                        GetLovedListCubit(gitItInstanse<GetPostsListRepo>())
+                          ..refresh(),
+                  ),
+                  BlocProvider(
+                      create: (_) =>
+                          AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
+                  BlocProvider(
+                      create: (_) => SaveUnsavePostCubit(
+                          gitItInstanse<PostControlRepo>())),
+                ],
                 child: const LoveListPage(),
               )),
       GoRoute(
           path: SaveListPage.routeName,
-          builder: (context, state) => BlocProvider(
-                create: (context) =>
-                    GetSavedListCubit(gitItInstanse<GetPostsListRepo>())
-                      ..refresh(),
+          builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) =>
+                        GetSavedListCubit(gitItInstanse<GetPostsListRepo>())
+                          ..refresh(),
+                  ),
+                  BlocProvider(
+                      create: (_) =>
+                          AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
+                  BlocProvider(
+                      create: (_) => SaveUnsavePostCubit(
+                          gitItInstanse<PostControlRepo>())),
+                ],
                 child: const SaveListPage(),
               )),
     ],

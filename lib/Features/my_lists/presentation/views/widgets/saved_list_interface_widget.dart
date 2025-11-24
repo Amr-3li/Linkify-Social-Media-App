@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:linkify/Features/home/presentation/cubit/save_unsave_post/save_unsave_post_cubit.dart';
 import 'package:linkify/Features/my_lists/presentation/cubit/get_saved_list/get_saved_list_cubit.dart';
 import 'package:linkify/Features/my_lists/presentation/views/pages/save_list_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -19,7 +20,7 @@ class SavedListInterfaceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetSavedListCubit, GetSavedListState>(
       builder: (context, state) {
-        if (state is GetSavedListLoaded && state.postsList.isNotEmpty) {
+        if (state is GetSavedListRefreshed && state.postsList.isNotEmpty) {
           return Column(
             children: [
               ListTitle(
@@ -27,7 +28,17 @@ class SavedListInterfaceWidget extends StatelessWidget {
                 title: Constants.savedList.tr(),
                 onTap: () => GoRouter.of(context).push(SaveListPage.routeName),
               ),
-              PostContainer(post: state.postsList.first),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                      create: (_) =>
+                          AddRemoveLoveCubit(gitItInstanse<PostControlRepo>())),
+                  BlocProvider(
+                      create: (_) => SaveUnsavePostCubit(
+                          gitItInstanse<PostControlRepo>())),
+                ],
+                child: PostContainer(post: state.postsList.first),
+              ),
             ],
           );
         }

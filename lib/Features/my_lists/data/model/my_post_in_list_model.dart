@@ -1,6 +1,6 @@
 class MyPostInListModel {
   final String postTime;
-  final String createdAt;
+  final int createdAt;
 
   MyPostInListModel({required this.postTime, required this.createdAt});
 

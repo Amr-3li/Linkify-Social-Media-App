@@ -185,7 +185,7 @@ class PostControlImpl implements PostControl {
   // local functions
 
   Future<void> _addInLoveList(String postTime) async {
-    final time = DateTime.now().microsecondsSinceEpoch.toString();
+    final time = DateTime.now().microsecondsSinceEpoch;
     firestore
         .collection("userPostsList")
         .doc(user.uid)
@@ -204,7 +204,7 @@ class PostControlImpl implements PostControl {
   }
 
   Future<void> _addInSavedList(String postTime) async {
-    final time = DateTime.now().microsecondsSinceEpoch.toString();
+    final time = DateTime.now().microsecondsSinceEpoch;
     firestore
         .collection("userPostsList")
         .doc(user.uid)
