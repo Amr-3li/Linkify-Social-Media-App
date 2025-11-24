@@ -107,6 +107,8 @@ class Constants {
   static const String settings = "settings";
   static const String updateUserData = "updateUserData";
   static const String save = "save";
+  static const String saved = "saved";
+  static const String unSaved = "unSaved";
   static const String general = "general";
   static const String language = "language";
   static const String english = "english";

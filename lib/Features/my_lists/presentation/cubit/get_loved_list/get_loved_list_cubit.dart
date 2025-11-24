@@ -10,6 +10,7 @@ class GetLovedListCubit extends Cubit<GetLovedListState> {
   final GetPostsListRepo getPostsListRepo;
   bool hasMore = true;
   Future<void> getLikedPostsList() async {
+    if (state is GetLovedListLoading || !hasMore) return;
     final failureOrPostsList = await getPostsListRepo.getLikedPostsList();
     failureOrPostsList.fold(
       (failure) => emit(GetLovedListError(failure.toString())),

@@ -15,7 +15,7 @@ class GetSavedListCubit extends Cubit<GetSavedListState> {
     failureOrPostsList.fold(
         (failure) => emit(GetSavedListError(failure.toString())), (postsList) {
       emit(GetSavedListLoaded(postsList));
-      if (postsList.isEmpty) {
+      if (postsList.isEmpty || postsList.length < 5) {
         hasMore = false;
       }
     });
@@ -27,7 +27,7 @@ class GetSavedListCubit extends Cubit<GetSavedListState> {
     failureOrPostsList.fold(
         (failure) => emit(GetSavedListError(failure.toString())), (postsList) {
       emit(GetSavedListRefreshed(postsList));
-      if (postsList.isEmpty) {
+      if (postsList.isEmpty || postsList.length < 5) {
         hasMore = false;
       }
     });

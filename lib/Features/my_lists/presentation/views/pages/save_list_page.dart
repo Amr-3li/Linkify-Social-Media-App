@@ -27,12 +27,12 @@ class _SaveListPageState extends State<SaveListPage> {
     super.initState();
     _scrollController = ScrollController();
 
-    _scrollController.addListener(() {
+    _scrollController.addListener(() async {
       final cubit = context.read<GetSavedListCubit>();
       if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 300 &&
+              _scrollController.position.maxScrollExtent &&
           cubit.hasMore) {
-        cubit.getSavedPostsList();
+        await cubit.getSavedPostsList();
       }
     });
 
