@@ -8,7 +8,7 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
   static StreamController<NotificationResponse> streamController =
       StreamController();
-  static onTap(NotificationResponse notificationResponse) {
+  static void onTap(NotificationResponse notificationResponse) {
     // log(notificationResponse.id!.toString());
     // log(notificationResponse.payload!.toString());
     streamController.add(notificationResponse);

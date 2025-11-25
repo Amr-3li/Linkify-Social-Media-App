@@ -21,7 +21,7 @@ class ListTitle extends StatelessWidget {
       leading: Icon(icon, color: Colors.grey),
       trailing: Text(Constants.seeAll.tr(),
           style: TextStyle(color: Colors.grey, fontSize: 16)),
-      tileColor: Theme.of(context).colorScheme.surfaceVariant,
+      tileColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       onTap: onTap,
     );
   }

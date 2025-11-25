@@ -39,7 +39,7 @@ class SettingsBody extends StatelessWidget {
                       onChanged: (value) {
                         context.read<ChangeThemeCubit>().changeTheme();
                       },
-                      activeColor: Theme.of(context).colorScheme.primary,
+                      activeThumbColor: Theme.of(context).colorScheme.primary,
                       activeTrackColor: MyColors.light,
                       inactiveThumbColor: Theme.of(context).colorScheme.primary,
                       inactiveTrackColor: MyColors.light,
@@ -52,7 +52,7 @@ class SettingsBody extends StatelessWidget {
                     trailing: Switch(
                       value: false,
                       onChanged: null,
-                      activeColor: MyColors.light,
+                      activeThumbColor: MyColors.light,
                       activeTrackColor: MyColors.light,
                       inactiveThumbColor: MyColors.light,
                       inactiveTrackColor: MyColors.light,
